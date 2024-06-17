@@ -46,6 +46,11 @@ body {
     background: #202E41;
 }
 
+ul{
+    margin: 0;
+    padding: 0;
+}
+
 h2.title {
     font-size: 80px;
     line-height: 120px;
@@ -53,6 +58,16 @@ h2.title {
     text-transform: uppercase;
     margin: 0;
     letter-spacing: 2px;
+}
+
+h2.title span {
+    font-family: 'DP Céline';
+    font-size: 80px;
+    font-style: italic;
+    font-weight: 100;
+    line-height: 120px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .swiper-button-next:after,
@@ -203,15 +218,6 @@ section.Our_Services .services_list .swiper-slide-active.item p {
 }
 
 /* trending */
-section.trending h2.title span {
-    font-family: 'DP Céline';
-    font-size: 80px;
-    font-style: italic;
-    font-weight: 100;
-    line-height: 120px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
 section.trending h2.title.line_1 {
     margin-bottom: -24px;
     margin-left: -300px;
@@ -220,4 +226,157 @@ section.trending h2.title.line_1 {
 section.trending h2.title.line_2 {
     margin-top: -24px;
     margin-right: -100px;
+}
+
+section.trending .box_trending {
+    gap: 16px;
+    padding: 80px 0 160px;
+}
+
+section.trending .box_trending .left {
+    width: 55%;
+}
+
+section.trending .box_trending .left img {
+    border-radius: 0px 180px;
+    max-height: 810px;
+    object-fit: cover;
+}
+
+section.trending .box_trending .right {
+    width: 45%;
+    gap: 16px;
+}
+
+section.trending .box_trending .right .context {
+    padding: 98px 88px 98px 87px;
+    border-radius: 180px 0px;
+    background: #CDC4BB;
+}
+
+section.trending .box_trending .right .img {
+    max-height: 430px;
+    object-fit: cover;
+    border-radius: 0px 180px 0px 0px;
+}
+
+section.trending .box_trending .right .context p {
+    letter-spacing: 0.48px;
+    color: #4B4034;
+}
+
+section.trending .box_trending .right .context h3 {
+    letter-spacing: 0.48px;
+    color: #4B4034;
+    font-family: "DP Céline";
+    font-size: 64px;
+    line-height: 96px;
+    letter-spacing: 2px;
+}
+
+section.trending .box_trending .right .context a {
+    color: #4B4034;
+    line-height: 20px;
+    /* 125% */
+    letter-spacing: 1px;
+}
+
+section.trending .box_trending .right .context a img {
+    margin-left: 16px;
+}
+
+
+/* project */
+section.project,
+.clients {
+    margin-bottom: 240px;
+}
+
+section.project .container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* clients */
+.clients .list_clients {
+    margin-top: 80px;
+}
+
+.clients .list_clients h3 {
+    font-family: "DP Céline";
+    font-size: 48px;
+    font-weight: 100;
+    line-height: 72px;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #F7F5F3;
+}
+
+/* footer */
+footer .line {
+    overflow: hidden;
+}
+
+footer .line ul {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    padding: 12px 0;
+    border-top: 0.4px solid #748FB9;
+    border-bottom: 0.4px solid #748FB9;
+    justify-content: center;
+}
+
+footer .line li {
+    list-style: none;
+    color: #748FB9;
+    font-family: "DP Céline";
+    display: flex;
+    align-items: center;
+    margin-right: 6px;
+    line-height: 18px;
+}
+
+footer .line li img {
+    padding-right: 6px;
+}
+
+footer .footer-middle {
+    padding-top: 140px;
+    padding-bottom: 170px;
+}
+
+footer .footer-middle h3 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    color: #D5CCC3;
+    letter-spacing: 0.48px;
+}
+footer .footer-middle li, footer .footer-middle li a {
+    color: #F7F5F3;
+    list-style: none;
+    text-decoration: none;
+}
+footer .footer-bottom {
+    height: 256px;
+    position: relative;
+    overflow: hidden;
+}
+footer .footer-bottom p {
+    font-size: 320px;
+    line-height: 92px;
+    font-family: "DP Céline";
+    color: rgba(247, 245, 243, 1);
+    opacity: 0.1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 50px);
+    position: absolute;
+    width: auto;
+    white-space: nowrap;
 }
