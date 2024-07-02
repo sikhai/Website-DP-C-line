@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'additional_fields'=> 'Additional Fields',
+    'category'         => 'Product Category',
+    'content'          => 'Product Content',
+    'code'             => 'Product Code',
+    'details'          => 'Product Details',
+    'excerpt'          => 'Excerpt <small>Small description of this product</small>',
+    'image'            => 'Product Image',
+    'meta_description' => 'Meta Description',
+    'short_description'=> 'Short Description <small>Small description of this product</small>',
+    'meta_keywords'    => 'Meta Keywords',
+    'new'              => 'Create New product',
+    'seo_content'      => 'SEO Content',
+    'seo_title'        => 'SEO Title',
+    'slug'             => 'URL slug',
+    'status'           => 'Product Status',
+    'status_draft'     => 'draft',
+    'status_pending'   => 'pending',
+    'status_published' => 'published',
+    'title'            => 'Product Title',
+    'title_sub'        => 'The title for your product',
+    'update'           => 'Update product',
+];

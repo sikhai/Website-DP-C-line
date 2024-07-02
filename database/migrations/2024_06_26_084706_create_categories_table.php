@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->id('CategoryID');
-            $table->string('CategoryName');
-            $table->text('Description')->nullable();
+            $table->id('category_id');
+            $table->string('name');
+            $table->text('description')->nullable();
             $table->timestamps();  // This will add the CreatedAt and UpdatedAt columns with appropriate default values
         });
     }

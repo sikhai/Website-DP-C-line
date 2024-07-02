@@ -14,16 +14,19 @@ return new class extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id('ProductID');
-            $table->string('ProductName');
-            $table->string('ProductCode')->unique();
-            $table->text('Description')->nullable();
-            $table->decimal('Price', 10, 2);
-            $table->integer('StockQuantity');
-            $table->string('ImageURL')->nullable();
-            $table->text('Keywords')->nullable();
-            $table->string('Status')->nullable();
-            $table->boolean('IsFeatured')->default(false);
+            $table->id('product_id');
+            $table->string('name');
+            $table->string('title');
+            $table->string('code')->unique();
+            $table->string('slug')->unique();
+            $table->text('short_description')->nullable();
+            $table->text('description')->nullable();
+            $table->decimal('price', 10, 2)->default(0.00)->nullable();
+            $table->integer('stock_quantity')->default(0)->nullable();
+            $table->string('image')->nullable();
+            $table->text('keywords')->nullable();
+            $table->enum('status', ['PUBLISHED', 'DRAFT', 'PENDING'])->default('DRAFT');
+            $table->boolean('is_featured')->default(0);
             $table->timestamps();  // This will add the CreatedAt and UpdatedAt columns with appropriate default values
         });
     }

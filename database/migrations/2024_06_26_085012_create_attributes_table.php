@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('attributes', function (Blueprint $table) {
-            $table->id('AttributeID');
-            $table->string('AttributeName');
+            $table->id('attribute_id');
+            $table->string('name');
             $table->timestamps();  // This will add the CreatedAt and UpdatedAt columns with appropriate default values
         });
     }

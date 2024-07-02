@@ -14,17 +14,17 @@ class CreateProductAttributeValuesTable extends Migration
     public function up()
     {
         Schema::create('product_attribute_values', function (Blueprint $table) {
-            $table->unsignedBigInteger('ProductID');
-            $table->unsignedBigInteger('AttributeID');
-            $table->text('Value')->nullable();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('attribute_id');
+            $table->text('value')->nullable();
             $table->timestamps();  // This will add the CreatedAt and UpdatedAt columns with appropriate default values
 
-            $table->primary(['ProductID', 'AttributeID']);
-            $table->foreign('ProductID')->references('ProductID')->on('products')->onDelete('cascade');
-            $table->foreign('AttributeID')->references('AttributeID')->on('attributes')->onDelete('cascade');
+            $table->primary(['product_id', 'attribute_id']);
+            $table->foreign('product_id')->references('product_id')->on('products')->onDelete('cascade');
+            $table->foreign('attribute_id')->references('attribute_id')->on('attributes')->onDelete('cascade');
             
             // Add index with length for TEXT column
-            $table->index(['AttributeID', DB::raw('Value(255)')], 'idx_product_attribute');
+            $table->index(['attribute_id', DB::raw('Value(255)')], 'idx_product_attribute');
         });
     }
 

@@ -12,8 +12,8 @@ class ProductAttributeValue extends Pivot
     protected $table = 'product_attribute_values';
 
     protected $fillable = [
-        'ProductID',
-        'AttributeID',
-        'Value',
+        'product_id',
+        'attribute_id',
+        'value',
     ];
 }

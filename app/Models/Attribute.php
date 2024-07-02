@@ -9,15 +9,15 @@ class Attribute extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'AttributeID';
+    protected $primaryKey = 'attribute_id';
 
     protected $fillable = [
-        'AttributeName',
-    ];
+        'name',
+    ]; 
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'product_attribute_values', 'AttributeID', 'ProductID')
+        return $this->belongsToMany(Product::class, 'product_attribute_values', 'attribute_id', 'ProductID')
                     ->withPivot('Value');
     }
 }
