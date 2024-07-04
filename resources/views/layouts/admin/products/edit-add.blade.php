@@ -104,10 +104,10 @@
                         </div>
                         <div class="panel-body">
                             @include('voyager::multilingual.input-hidden', [
-                                '_field_name'  => 'name',
-                                '_field_trans' => get_field_translations($dataTypeContent, 'name')
+                                '_field_name'  => 'product_name',
+                                '_field_trans' => get_field_translations($dataTypeContent, 'product_name')
                             ])
-                            <input type="text" required class="form-control" id="name" name="name" placeholder="{{ __('voyager::generic.name') }}" value="{{ $dataTypeContent->getTranslatedAttribute('name', app()->getLocale(), 'en') ?? '' }}">
+                            <input type="text" required class="form-control" id="product_name" name="product_name" placeholder="{{ __('voyager::generic.name') }}" value="{{ $dataTypeContent->getTranslatedAttribute('product_name', app()->getLocale(), 'en') ?? '' }}">
                         </div>
                         
                     </div>
@@ -226,17 +226,17 @@
                                 <label for="category_id">{{ __('voyager::product.category') }}</label>
                                 <select class="form-control" name="category_id">
                                     @foreach(Voyager::model('Category')::all() as $category)
-                                        <option value="{{ $category->id }}"@if(isset($dataTypeContent->category_id) && $dataTypeContent->category_id == $category->id) selected="selected"@endif>{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}"@if(isset($dataTypeContent->category_id) && $dataTypeContent->category_id == $category->id) selected="selected"@endif>{{ $category->category_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="code">{{ __('voyager::product.code') }}</label>
+                                <label for="product_code">{{ __('voyager::product.code') }}</label>
                                 @include('voyager::multilingual.input-hidden', [
-                                    '_field_name'  => 'code',
-                                    '_field_trans' => get_field_translations($dataTypeContent, 'code')
+                                    '_field_name'  => 'product_code',
+                                    '_field_trans' => get_field_translations($dataTypeContent, 'product_code')
                                 ])
-                                <input required type="text" class="form-control" name="code" placeholder="product code" value="{{ $dataTypeContent->code ?? '' }}">
+                                <input required type="text" class="form-control" name="product_code" placeholder="product code" value="{{ $dataTypeContent->product_code ?? '' }}">
                             </div>
                             <div class="form-group">
                                 <label for="is_featured">{{ __('voyager::generic.featured') }}</label>
