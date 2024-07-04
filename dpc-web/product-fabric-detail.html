@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DP Céline - Fabric - Detail</title>
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/product-fabric-detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="big-layout">
+        <div class="opacity-layer" style="display: none;"></div>
+        <div class="layout">
+            <!-- /* header */ -->
+            <section class="header">
+                <div class="container">
+                    <div class="top_head pt-3 pb-3">
+                        <div class="row">
+                            <div class="col-2 d-flex align-items-center" style="justify-content: center;">
+                                <a class="nav_item" href="/contact.html">CONTACT</a>
+                            </div>
+                            <div class="col-8 text-center">
+                                <a href="/">
+                                    <img src="images/logo.svg" width="55" id="img-logo-ref" alt="logo" loading="lazy">
+                                </a>
+                            </div>
+                            <div class="col-2 d-flex align-items-center menu_right">
+                                <a class="nav_item" id="search">SEARCH</a>
+                                <a class="nav_item" id="open-menu" onclick="openmenu()">MENU</a>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </section>
+
+            <!-- detail item -->
+            <section class="detail-fabric">
+                <div class="container" style="margin-top: 90px;">
+                    <div class="row img-detail">
+                        <div class="col-10 main-view" >
+                            <img id="main-image" src="images/DPC/deluxe-03.jpg" onclick="switchImage(this)" alt="">
+                        </div>
+                        <div class="col-2 small-view">
+                            <div class="current-selected">
+                                <img src="images/DPC/deluxe-03.jpg" onclick="switchImage(this)" alt="">
+                            </div>
+                            <div class="next-selected">
+                                <img src="images/DPC/deluxe-15.jpg" onclick="switchImage(this)" alt="">
+                            </div>
+                            <div class="next-selected">
+                                <img src="images/DPC/deluxe-19.jpg" onclick="switchImage(this)" alt="">
+                            </div>
+                            <div class="next-selected">
+                                <img src="images/DPC/deluxe-25.jpg" onclick="switchImage(this)" alt="">
+                            </div>
+                            <div class="next-selected">
+                                <img src="images/DPC/deluxe-34.jpg" onclick="switchImage(this)" alt="">
+                            </div>
+                            <div class="next-selected">
+                                <img src="images/DPC/deluxe-36.jpg" onclick="switchImage(this)" alt="">
+                            </div>
+                            <div class="next-selected">
+                                <img src="images/DPC/deluxe-46.jpg" onclick="switchImage(this)" alt="">
+                            </div>
+                            <div class="next-selected">
+                                <img src="images/DPC/deluxe-53.jpg" onclick="switchImage(this)" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3 lable-general">
+                        <div class="d-flex directory">
+                            <a class="back-directory">All products</a>
+                            <a class="back-directory" style="cursor: default">/</a>
+                            <a class="back-directory">Fabric</a>
+                            <a class="back-directory" style="cursor: default">/</a>
+                            <a class="back-directory">Collection</a>
+                            <a class="back-directory" style="cursor: default">/</a>
+                            <a class="back-directory">Deluxe</a>
+                            <a class="back-directory" style="cursor: default">/</a>
+                            <a class="current-directory">03 Mouse</a>
+                        </div>
+                        <div class="d-flex mt-5 lable-fabric">
+                            <div id="code">03 Mouse</div>
+                            <div id="name">La Souris</div>
+                        </div>
+            
+                        <button type="button" class="btn btn-secondary">Deluxe</button>
+                    </div>
+                    <div class="row p-0" style="margin-top: 80px;">
+                        <div class="download">
+                            <div class="d-flex download-item">
+                                <img src="images/file-download.svg" alt="">
+                                <div id="name">
+                                    <p style="margin-top: -3px;">TECHNICAL</p>
+                                    <p style="margin-top: -15px;">DOCUMENTS</p>
+                                </div>
+                            </div>
+                            <div class="d-flex mt-3 download-item">
+                                <img src="images/file-download.svg" alt="">
+                                <div id="name">
+                                    <p>HD IMAGES</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-0 left-description">
+                            <div class="content">
+                                <div class="title"><p>About Collection</p></div>
+                                <div class="description"><p>Hacienda - Irregularity of the tie&dye thread, color vibration</p></div>
+                            </div>
+                            <div class="content">
+                                <div class="title"><p>Use</p></div>
+                                <div class="description"><p>Curtain, decorative seat</p></div>
+                            </div>
+                            <div class="content">
+                                <div class="title"><p>Pattern Repeat</p></div>
+                                <div class="description"><p>No repeat</p></div>
+                            </div>
+                            <div class="content">
+                                <div class="title"><p>Sales Unit</p></div>
+                                <div class="description"><p>Mètre linéaire / MT</p></div>
+                            </div>
+                            <div class="content">
+                                <div class="title"><p>Dimensions</p></div>
+                                <div class="description"><p>Useful width 140cm (55")</p></div>
+                            </div>
+                            <div class="content">
+                                <div class="title"><p>Weight</p></div>
+                                <div class="description"><p>16oz per sq.yd</p></div>
+                            </div>
+                        </div>
+                        <div class="p-0 left-description">
+                            <div class="content">
+                                <div class="title"><p>UV Lightfastness</p></div>
+                                <div class="description"><p>7 on a scale of 8</p></div>
+                            </div>
+                            <div class="content">
+                                <div class="title"><p>+ Products</p></div>
+                                <div class="description"><p>Irregular yarns, very good light resistance</p></div>
+                            </div>
+                            <div class="content">
+                                <div class="title"><p>Martindale</p></div>
+                                <div class="description"><p>16 000 T</p></div>
+                            </div>
+                            <div class="content">
+                                <div class="title"><p>Composition</p></div>
+                                <div class="description"><p>45% VI 19% CO 12% PC 11% LI 6% PA 4% WO 3% PL</p></div>
+                            </div>
+                            <div class="content">
+                                <div class="title"><p>Care</p></div>
+                                <div class="description">
+                                    <div class="d-flex" style="gap: 22px;">
+                                        <img src="images/icon-mayui.svg" alt="">
+                                        <img src="images/icon-nowash.svg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <div class="title"><p>Environment Standard</p></div>
+                                <div class="description">
+                                    <div class="d-flex mt-3" style="gap: 18px;">
+                                        <img src="images/GRS_Grey.png" alt="">
+                                        <img src="images/OekoTex_100RecycledPolyester_2111231_noQR_Grey_RGB.png" alt="">
+                                        <img src="images/ISO_14001_grey_RGB.png" alt="">
+                                        <img src="images/ECO_grey50.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- /* tab-general-fabric collection design */ -->
+        
+            <section class="table-products position-relative">
+                <div class="row">
+                    <div class="col-4" style="margin:27px 70px 0px">
+                        <p id="lable-samecollection">In the same collection</p>
+                    </div>
+                </div>
+                <div class="container mt-5">
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/DPC/amigo01.jpg" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Amigo</p>
+                        <p class="pt-2 m-0" id="design-code">Amigo - 01-Walnut</p>
+                    </div>
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/DPC/amigo02.jpg" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Amigo</p>
+                        <p class="pt-2 m-0" id="design-code">Amigo - 02-Mushroom</p>
+                    </div>
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/DPC/amigo03.jpg" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Amigo</p>
+                        <p class="pt-2 m-0" id="design-code">Amigo - 03-Taupe</p>
+                    </div>
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/DPC/amigo04.jpg" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Amigo</p>
+                        <p class="pt-2 m-0" id="design-code">Amigo - 04-Pecan</p>
+                    </div>
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/DPC/amigo08.jpg" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Amigo</p>
+                        <p class="pt-2 m-0" id="design-code">Amigo - 08-Plum</p>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/DPC/VELLUTO-1-160x160.webp" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Velluto</p>
+                        <p class="pt-2 m-0" id="design-code">Velluto - 01-Cream</p>
+                    </div>
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/DPC/VELLUTO-3-160x160.webp" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Velluto</p>
+                        <p class="pt-2 m-0" id="design-code">Velluto - 03-Mika</p>
+                    </div>
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/DPC/VELLUTO-9-160x160.webp" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Velluto</p>
+                        <p class="pt-2 m-0" id="design-code">Velluto - 09-Olive</p>
+                    </div>
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/DPC/Velluto-33-Rust-160x160.webp" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Velluto</p>
+                        <p class="pt-2 m-0" id="design-code">Velluto - 33-Rust</p>
+                    </div>
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/DPC/Velluto-36-Peacock-160x160.webp" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Velluto</p>
+                        <p class="pt-2 m-0" id="design-code">Velluto - 36-Peacock</p>
+                    </div>
+                </div>
+
+                <!-- <div class="button-showmore">
+                    <button type="button" class="btn btn-primary" id="btn-showmore">
+                        SHOW MORE PRODUCTS
+                    </button>
+                </div> -->
+            </section>
+
+            <!-- Filter bar -->
+            <section class="filter-bar-section" style="display: none;">
+                <div class="opacity-layer"></div>
+                <div class="filter-bar">
+                    <div class="container">
+                        <!-- top title filter-bar -->
+                        <div class="row">
+                            <div class="col-2 p-0">
+                                <h3>Filters</h3> 
+                            </div>
+                            <div class="col-10 p-0" style="display: flex; justify-content:flex-end; align-items:center">
+                                <img id="x-close-1" src="images/x-close.png" onclick="hide_filterbar()" alt="">
+                            </div>
+                        </div>
+                        <div class="row p-0">
+                            <div id="line-8"></div>
+                        </div>
+                        
+                        <!-- selected Filters -->
+                        <div class="row" style="margin-top: 40px;">
+                            <div class="col-6 p-0" >
+                                <h4>Selected Filters</h4>
+                            </div>
+                            <div class="col-6 p-0" style="display: flex; justify-content:flex-end;">
+                                <h5 onclick="clear_sellected_item()">CLEAR ALL</h5>
+                            </div>
+                        </div>
+                        <div class="row d-flex mt-3 p-0" id="row-items-selected" style="gap: 8px;">
+                            <div class="item-selected d-flex align-items-center" >
+                                Drapery <img id="x-close-items" src="images/x-close-8x8.svg" onclick="deleteItem()" alt="" style="cursor: pointer;">
+                            </div>
+                            <div class="item-selected d-flex align-items-center" >
+                                Silk / Silk blend <img id="x-close-items" src="images/x-close-8x8.svg" onclick="deleteItem()" alt="" style="cursor: pointer;">
+                            </div>
+                        </div>
+
+                        <!-- usage -->
+                        <div class="row mt-5">
+                            <div class="col-1 p-0"><h4>Usage</h4></div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_sheer">
+                                    <label class="form-check-label" for="check_sheer">
+                                        Sheer
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_finishedproduct">
+                                    <label class="form-check-label" for="check_finishedproduct">
+                                        Finished Product
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_drapery">
+                                    <label class="form-check-label" for="check_drapery">
+                                        Drapery
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_miscellaneous">
+                                    <label class="form-check-label" for="check_miscellaneous">
+                                        Miscellaneous
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_residentialseats">
+                                    <label class="form-check-label" for="check_residentialseats">
+                                        Residential seats
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_durableseats">
+                                    <label class="form-check-label" for="check_durableseats">
+                                        Durable seats
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Matiere -->
+                        <div class="row mt-5">
+                            <div class="col-1 p-0"><h4>Matiere</h4></div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_velvet">
+                                    <label class="form-check-label" for="check_velvet">
+                                        Velvet
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_polyester">
+                                    <label class="form-check-label" for="check_polyester">
+                                        Polyester
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_cotton/cottonblend">
+                                    <label class="form-check-label" for="check_cotton/cottonblend">
+                                        Cotton / Cotton Blend
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_silk/silkblend">
+                                    <label class="form-check-label" for="check_silk/silkblend">
+                                        Silk / Silk blend
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_leather/fauxleather">
+                                    <label class="form-check-label" for="check_leather/fauxleather">
+                                        Leather / Faux leather
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_suedette">
+                                    <label class="form-check-label" for="check_suedette">
+                                        Suedette
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_wool/woolblend">
+                                    <label class="form-check-label" for="check_wool/woolblend">
+                                        Wool / Wool blend
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_othersyntheticmaterials">
+                                    <label class="form-check-label" for="check_othersyntheticmaterials">
+                                        Other synthetic materials
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_linen/linenblend">
+                                    <label class="form-check-label" for="check_linen/linenblend">
+                                        Linen / Linen blend
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_miscellaneous">
+                                    <label class="form-check-label" for="check_miscellaneous">
+                                        Miscellaneous
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Performance -->
+                        <div class="row mt-5">
+                            <div class="col-1 p-0"><h4>Performance</h4></div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_fireretardant">
+                                    <label class="form-check-label" for="check_fireretardant">
+                                        Fire retardant
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_eco-friendly">
+                                    <label class="form-check-label" for="check_eco-friendly">
+                                        Eco-friendly
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_treviracs">
+                                    <label class="form-check-label" for="check_treviracs">
+                                        Trevira CS
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_acoustic">
+                                    <label class="form-check-label" for="check_acoustic">
+                                        Acoustic
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_washable">
+                                    <label class="form-check-label" for="check_washable">
+                                        Washable
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_stainresistant">
+                                    <label class="form-check-label" for="check_stainresistant">
+                                        Stain resistant
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_in-outdoor">
+                                    <label class="form-check-label" for="check_in-outdoor">
+                                        In-Outdoor
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_standardimo">
+                                    <label class="form-check-label" for="check_standardimo">
+                                        Standard IMO
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Style -->
+                        <div class="row mt-5">
+                            <div class="col-1 p-0"><h4>Style</h4></div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_handcrafted">
+                                    <label class="form-check-label" for="check_handcrafted">
+                                        Handcrafted
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_plain/semiplain">
+                                    <label class="form-check-label" for="check_plain/semiplain">
+                                        Plain / Semi plain
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_design">
+                                    <label class="form-check-label" for="check_design">
+                                        Design
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_miscellaneous">
+                                    <label class="form-check-label" for="check_miscellaneous">
+                                        Miscellaneous
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_geometric">
+                                    <label class="form-check-label" for="check_geometric">
+                                        Geometric
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Technique -->
+                        <div class="row mt-5">
+                            <div class="col-1 p-0"><h4>Technique</h4></div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_3d">
+                                    <label class="form-check-label" for="check_3d">
+                                        3D
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_satin">
+                                    <label class="form-check-label" for="check_satin">
+                                        Satin
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_embroidery">
+                                    <label class="form-check-label" for="check_embroidery">
+                                        Embroidery
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_stonewashed">
+                                    <label class="form-check-label" for="check_stonewashed">
+                                        Stonewashed
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_chenille">
+                                    <label class="form-check-label" for="check_chenille">
+                                        Chenille
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_weaving">
+                                    <label class="form-check-label" for="check_weaving">
+                                        Weaving
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_embossing">
+                                    <label class="form-check-label" for="check_embossing">
+                                        Embossing
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_braiding">
+                                    <label class="form-check-label" for="check_braiding">
+                                        Braiding
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_print">
+                                    <label class="form-check-label" for="check_print">
+                                        Print
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_velvet">
+                                    <label class="form-check-label" for="check_velvet">
+                                        Velvet
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_jacquard">
+                                    <label class="form-check-label" for="check_jacquard">
+                                        Jacquard
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_othertechnique">
+                                    <label class="form-check-label" for="check_othertechnique">
+                                        Other technique
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- Color -->
+                         <div class="row mt-5">
+                            <div class="col-1 p-0"><h4>Color</h4></div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_silver">
+                                    <label class="form-check-label" for="check_silver">
+                                        Silver
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_multicolour">
+                                    <label class="form-check-label" for="check_multicolour">
+                                        Multicolour
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_beige">
+                                    <label class="form-check-label" for="check_beige">
+                                        Beige
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_black">
+                                    <label class="form-check-label" for="check_black">
+                                        Black
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_white">
+                                    <label class="form-check-label" for="check_white">
+                                        White
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_gold">
+                                    <label class="form-check-label" for="check_gold">
+                                        Gold
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_blue">
+                                    <label class="form-check-label" for="check_blue">
+                                        Blue
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_orange">
+                                    <label class="form-check-label" for="check_orange">
+                                        Orange
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_bronze">
+                                    <label class="form-check-label" for="check_bronze">
+                                        Bronze
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_Pink">
+                                    <label class="form-check-label" for="check_Pink">
+                                        Pink
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_copper">
+                                    <label class="form-check-label" for="check_copper">
+                                        Copper
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_red">
+                                    <label class="form-check-label" for="check_red">
+                                        Red
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_grey">
+                                    <label class="form-check-label" for="check_grey">
+                                        Grey
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_green">
+                                    <label class="form-check-label" for="check_green">
+                                        Green
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_brown">
+                                    <label class="form-check-label" for="check_brown">
+                                        Brown
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_purple">
+                                    <label class="form-check-label" for="check_purple">
+                                        Purple
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 p-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check_yellow">
+                                    <label class="form-check-label" for="check_yellow">
+                                        Yellow
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- button apply  -->
+                        <div class="row mt-5">
+                            <button type="button" class="btn btn-secondary">
+                                APPLY(29) 
+                            </button>
+                            <div id="arrow">
+                                <img src="images/arrow-down-right.svg" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!-- /* Footer */ -->
+            <footer>
+                <div class="line">
+                    <ul class="d-flex">
+                        <li><img src="images/Exclude.svg" alt=""> SOPHISTICATED</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                        <li><img src="images/Exclude.svg" alt=""> SOPHISTICATED</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                        <li><img src="images/Exclude.svg" alt=""> SOPHISTICATED</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                    </ul>
+                </div>
+                <div class="footer-middle">
+                    <div class="container">
+                        <div class="row justify-content-between">
+                            <div class="col-lg-3 col-md-6">
+                                <h3 class="box-footer-title">START A CONVERSATION</h3>
+                                <ul class="list-cate">
+                                    <li>
+                                        <a href="mailto:hello@dpceline.com">hello@dpceline.com</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <h3 class="box-footer-title">OUR OFFICE</h3>
+                                <ul class="list-cate">
+                                    <li>
+                                        39/09 Street 48, Hiep Binh Chanh, Thu Duc, Ho Chi Minh City 70000
+                                    </li>
+                                    <li>
+                                        <a href="tel:024-0000-0000">024-0000-0000</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <h3 class="box-footer-title">SOCIAL MEDIA</h3>
+                                <ul class="list-cate">
+                                    <li>
+                                        <a href="">Twitter (X)</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Instagram</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Facebook</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>DP CÉLINE</p>
+                </div>
+            </footer>
+
+            <section class="menu-area" style="display: none;">
+                <div class="header-menu">
+                    <div class="row mt-3">
+                        <div class="col-2 d-flex align-items-center">
+                            
+                        </div>
+                        <div class="col-8 text-center">
+                            <a>
+                                <img src="images/logo.svg" width="55" id="img-logo-ref" alt="logo" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="col-2 d-flex align-items-center menu_right">
+                            <a class="nav_item" onclick="closemenu()">CLOSE</a>
+                            <img src="images/x-close-12x12.svg" style="cursor:pointer;" onclick="closemenu()" alt="">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="body-menu" >
+                    <div class="row p-0">
+                        <div class="col-3 d-flex flex-column">
+                            <a class="option-menu" href="product-fabric-collection.html">Fabric</a>
+                            <a class="option-menu" href="#">Leather</a>
+                            <a class="option-menu" href="#">Curtain</a>
+                        </div>
+                        <div class="col-5 d-flex flex-column">
+                            <a class="option-menu" href="#">Roller Blind</a>
+                            <a class="option-menu" href="#">Wall Covering</a>
+                            <a class="option-menu" href="#">Window furnishing</a>
+                        </div>
+                        <div class="col-4 d-flex flex-column">
+                            <a class="option-menu" href="#">Bespoke Services</a>
+                            <a class="option-menu" href="#">Our Projects</a>
+                            <a class="option-menu" href="#">About Us</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <script src="js/scripts.js" ></script>
+        <script src="js/main.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </div>
+   
+</body>
+</html>

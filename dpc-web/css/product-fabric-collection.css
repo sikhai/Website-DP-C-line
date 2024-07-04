@@ -1,0 +1,629 @@
+:root {
+    --main: #F7F5F3;
+    --blue: #202E41;
+}
+
+@font-face {
+    font-family: 'DP Céline';
+    src: url('../fonts/DFVNIvyPrestoDisplay/IvyPrestoDisplay-Thin.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DP Céline bold';
+    src: url('../fonts/DFVNIvyPrestoDisplay/IvyPrestoDisplay-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PlusJakartaSans-Medium';
+    src: url('../fonts/Plus_Jakarta_Sans/Plus_Jakarta_Sans/static/PlusJakartaSans-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PlusJakartaSans-SemiBold';
+    src: url('../fonts/Plus_Jakarta_Sans/Plus_Jakarta_Sans/static/PlusJakartaSans-SemiBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    font-family: 'PlusJakartaSans-Medium';
+    line-height: 24px;
+    color: var(--main);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+h2.title {
+    font-size: 80px;
+    line-height: 120px;
+    font-family: "DP Céline";
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+h2.title span {
+    font-family: 'DP Céline';
+    font-size: 80px;
+    font-style: italic;
+    font-weight: 100;
+    line-height: 120px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    content: '';
+    background-image: url(../images/arrow.svg);
+    width: 64px;
+    height: 64px;
+}
+
+.swiper-button-prev:after {
+    transform: rotate(180deg);
+}
+
+.big-layout{
+    /* background-color: black; */
+    display: flex;
+    justify-content: center;
+    background-color: #202E41;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.layout {
+    /* background: url('../images/BG-items.webp'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    mix-blend-mode: lumino1sity !important;
+    width: 1440px;
+    background-color: #202E41;
+    position: relative;
+}
+
+/* header */
+.top_head .nav_item {
+    font-family: "PlusJakartaSans-SemiBold";
+    text-decoration: none;
+    color: #D5CCC3;
+    cursor: pointer;
+}
+
+.top_head .menu_right {
+    gap: 24px;
+}
+
+
+.body_head {
+    padding: 140px 0 75px;
+}
+
+.body_head h1 {
+    font-size: 80px;
+    text-align: center;
+    /* text-transform: uppercase; */
+    font-family: "DP Céline";
+    color: #D5CCC3;
+}
+
+.body_head .menu_fabric{
+    display: flex;
+    justify-content: center;    
+    margin-top: 20px;
+}
+
+.body_head .menu_fabric #next-tab{
+    text-align: center;
+    font-family: "PlusJakartaSans-Medium";
+    font-size: 16px;
+    text-decoration: none;
+    color:#BEB0A2;
+    margin-top: -10px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.body_head .menu_fabric #current-tab{
+    text-align: center;
+    font-family: "PlusJakartaSans-SemiBold";
+    font-size: 16px;
+    text-decoration: none;
+    /* color:#BEB0A2; */
+    margin-top: -10px;
+    padding-left: 4px;
+    padding-right: 4px;
+    color: #F7F5F3;
+}
+
+.body_head .menu_fabric p{
+    width: 8px;
+    height: 24px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #BEB0A2;
+
+}
+
+.body_head #line{
+    /* Line 3 */
+
+    margin-top :15px;
+    width: 1280px;
+    height: 0px;
+    border: 1px solid rgba(253, 252, 245, 0.2);
+
+}
+
+/* tab collection fabric */
+.tab-general-fabric{
+    
+}
+.tab-general-fabric .tab-collection-design{
+    display: flex;
+    justify-content: center;
+    margin-left: 30px;
+    gap: 24px;
+}
+.tab-general-fabric .tab-collection-design #next-tab{
+    /* Collection */
+    text-decoration: none ;
+    width: 203px;
+    height: 72px;
+
+    /* iv - 48 */
+    font-family: 'DP Céline';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 48px;
+    line-height: 72px;
+    /* identical to box height, onextr 150% */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 2px;
+
+    /* beige / 600 */
+    color: #8D7863;
+}
+.tab-general-fabric .tab-collection-design #current-tab{
+    /* Collection */
+    text-decoration: none ;
+    width: 203px;
+    height: 72px;
+
+    /* iv - 48 */
+    font-family: 'DP Céline';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 48px;
+    line-height: 72px;
+    /* identical to box height, or 150% */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 2px;
+    color: var(--main);
+}
+
+
+/* category dropdown */
+.tab-general-fabric .all-category-dropdown{
+    margin-left: 70px;
+}
+.tab-general-fabric .all-category-dropdown #dropdownMenu-AllCategory{
+    background-color: transparent;
+    border-radius: 21px;
+    border-color: #4B5565;
+    font-family: 'PlusJakartaSans-SemiBold';
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.03em;
+    color: var(--main);
+    padding-right: 40px;
+    width: 179px;
+}
+
+.tab-general-fabric .all-category-dropdown .dropdown-toggle::after {
+    display: none;
+}
+
+.tab-general-fabric .all-category-dropdown .dropdown-toggle {
+    padding-right: 30px;
+    position: relative;
+}
+
+.tab-general-fabric .all-category-dropdown .dropdown-toggle #chevron-down {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    /* font-weight: 100; */
+}
+
+/* sort by dropdown */
+.tab-general-fabric .menu_right_filter{
+    margin-left: -137px;
+    gap: 16px;
+}
+.menu_right_filter #dropdownMenu-sortby{
+    background-color: transparent;
+    border-radius: 21px;
+    border-color: #4B5565;
+    font-family: 'PlusJakartaSans-SemiBold';
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.03em;
+    color: var(--main);
+    padding-right: 40px;
+    width: 203px;
+}
+
+.menu_right_filter .dropdown-toggle::after {
+    display: none;
+}
+
+.menu_right_filter .dropdown-toggle {
+    padding-right: 30px;
+    position: relative;
+}
+
+.menu_right_filter .dropdown-toggle #chevron-down {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    /* font-weight: 100; */
+}
+
+/* filter button */
+.menu_right_filter #btn-filter{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 115px;
+    background-color: transparent;
+    border-radius: 30px;
+    border-color: #4B5565;
+    font-family: 'PlusJakartaSans-SemiBold';
+    font-size: 16px;
+    color: var(--main);
+    letter-spacing: 1px;
+}
+
+
+/* table product */
+.table-products #sum-products {
+    font-family: 'PlusJakartaSans-Medium';
+    font-size: 16px;
+    color: var(--main);
+}
+
+.table-products .container{
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    height: 307px;
+    margin-bottom: 80px;
+}
+
+.table-products .container .fabric-item{
+    width: 421px;
+    gap: 8px;
+    padding: 0px;
+}
+
+.table-products .container .fabric-item .img{
+    height: 236px;
+}
+
+.table-products .container .fabric-item #block-collection-lable{
+    gap: 4px;
+}
+
+.table-products .container .fabric-item #collection-name{
+    font-family: 'DP Céline';
+    font-size: 36px;
+    color: var(--main);
+    margin-top: 16px;
+    letter-spacing: 1px;
+    /* color: #BEB0A2; */
+}
+
+.table-products .container .fabric-item #collection-quantity{
+    font-family: 'PlusJakartaSans-Medium';
+    font-size: 14px;
+    color: #BEB0A2;
+    
+}
+
+.table-products .button-showmore {
+    display: flex;
+    justify-content: center;
+    margin: -17px 0px 103px;
+}
+.table-products .button-showmore #btn-showmore{
+    background-color: var(--main) ;
+    border-color: var(--main);
+    width: 357px;
+    height: 68px;
+    border-radius: 100px;
+    color: #3B3229;
+    font-family: 'PlusJakartaSans-Medium';
+    font-size: 20px;
+    letter-spacing: 3%;
+}
+
+/* filter-bar */
+.big-layout .opacity-layer{
+    position: absolute;
+    width: 100%;
+    height: 2017px;
+    right: 0px;
+    top: 0px;
+    background: #27384F;
+    opacity: 60%;
+}
+.layout .opacity-layer{
+    position: absolute;
+    width: 100%;
+    height: 2017px;
+    right: 0px;
+    top: 0px;
+    background: #27384F;
+    opacity: 60%;
+}
+.layout .filter-bar{
+
+    position: absolute;
+    width: 680px;
+    height: 2017px;
+    right: 0px;
+    top: 0px;
+    background: #202E41;
+}
+
+.filter-bar .container{
+    position: absolute;
+    top: 36px;
+    left: 48px;
+    width: 584px;
+}
+
+.filter-bar #x-close-1{
+    width: 24px;
+    height: 24px;
+}
+
+.filter-bar #line-8{
+    position: absolute;
+    width: 584px;
+    height: 0px;
+    top: 73.5px;
+    border: 1px solid #4B5565;
+}
+
+.filter-bar h3{
+    font-family: 'DP Céline';
+    font-size: 48px;
+    color: var(--main);
+    letter-spacing: 1px;
+}
+
+.filter-bar .container h4{
+    color: #9AA4B2;
+    font-family: 'PlusJakartaSans-Medium';
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.filter-bar .container h5{
+    color: var(--main);
+    font-family: 'PlusJakartaSans-Medium';
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.filter-bar .container .item-selected{
+    background-color: #364152;
+    border-color: #364152;
+    padding: 12px 12px 12px 16px;
+    gap: 8px;
+    width: fit-content;
+    border-radius: 50px;
+    font-family: 'PlusJakartaSans-Medium';
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: var(--main);
+}
+.filter-bar .container #x-close-items{
+    width: 8px;
+    height: 8px;
+}
+.filter-bar .container .form-check {
+    gap: 12px;
+    display: flex;
+}
+.filter-bar .container .form-check .form-check-input{
+    background-color: transparent;
+    border-radius: 0px;
+    border-color: #4B5565;
+}
+.filter-bar .container .form-check .form-check-lable{
+    font-family: 'PlusJakartaSans-Medium';
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: var(--main);
+}
+.filter-bar .container .form-check .form-check-input:checked{
+    background-color: white !important;
+}
+
+.filter-bar .btn-secondary{
+    width: 608px;
+    height: 68px;
+    gap: 10px;
+    padding: 22px 24px 22px 24px;
+    font-family: 'PlusJakartaSans-Medium';
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #3B3229;
+    border-radius: 50px;
+    border-color: var(--main);
+    background-color: var(--main);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.filter-bar .container #arrow{
+    position: absolute;
+    left: 530px;
+    margin-top: 20px;
+}
+
+/* menu-area */
+.menu-area {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 0;
+    /* left: 0; */
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    width: 1440px;
+    height: 960px;
+    background-color: #202E41;
+    
+}
+.menu-area .header-menu{
+    max-width: 1440px;
+    
+}
+
+.menu-area .header-menu .menu_right{
+    gap: 8px;
+}
+.menu-area .header-menu .menu_right .nav_item{
+    color: #D5CCC3;
+    text-decoration: none;
+    font-family: "PlusJakartaSans-SemiBold";
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.body-menu {
+    /* position: relative; */
+    margin: 220px 100px;
+    gap: 160px;
+}
+.body-menu .option-menu{
+    font-family: "DP Céline";
+    text-decoration: none;
+    font-size: 48px;
+    font-weight: 100;
+    line-height: 72px;
+    letter-spacing: 2px;
+    /* text-align: center; */
+    color: #BEB0A2;
+    margin-bottom: 24px;
+}
+.body-menu .option-menu:hover{
+    color: #F7F5F3;
+}
+
+
+/* footer */
+footer .line {
+    overflow: hidden;
+}
+
+footer .line ul {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    padding: 12px 0;
+    border-top: 0.4px solid #748FB9;
+    border-bottom: 0.4px solid #748FB9;
+    justify-content: center;
+}
+
+footer .line li {
+    list-style: none;
+    color: #748FB9;
+    font-family: "DP Céline";
+    display: flex;
+    align-items: center;
+    margin-right: 6px;
+    line-height: 18px;
+}
+
+footer .line li img {
+    padding-right: 6px;
+}
+
+footer .footer-middle {
+    padding-top: 140px;
+    padding-bottom: 170px;
+}
+
+footer .footer-middle h3 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    color: #D5CCC3;
+    letter-spacing: 0.48px;
+}
+footer .footer-middle li, footer .footer-middle li a {
+    color: #F7F5F3;
+    list-style: none;
+    text-decoration: none;
+}
+footer .footer-bottom {
+    height: 256px;
+    position: relative;
+    overflow: hidden;
+}
+footer .footer-bottom p {
+    font-size: 320px;
+    line-height: 92px;
+    font-family: "DP Céline";
+    color: rgba(247, 245, 243, 1);
+    opacity: 0.1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 50px);
+    position: absolute;
+    width: auto;
+    white-space: nowrap;
+}
+
+
