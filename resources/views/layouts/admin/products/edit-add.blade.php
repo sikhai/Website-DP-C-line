@@ -51,6 +51,13 @@
             overflow-x: hidden;
             min-height: 100%;
         }
+
+        #add-attribute-btn {
+            margin-bottom: 25px;
+        }
+        #attributes-container .remove-attribute-btn {
+            margin-top: 0px;
+        }
     </style>
 @stop
 
@@ -151,7 +158,7 @@
                         </div>
                     </div><!-- .panel -->
 
-                    {{-- <div class="panel">
+                    <div class="panel">
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ __('voyager::product.additional_fields') }}</h3>
                             <div class="panel-actions">
@@ -159,38 +166,35 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                            @php
-                                $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};
-                                $exclude = ['title', 'body', 'excerpt', 'slug', 'status', 'category_id', 'author_id', 'featured', 'image', 'meta_description', 'meta_keywords', 'title'];
-                            @endphp
-
-                            @foreach($dataTypeRows as $row)
-                                @if(!in_array($row->field, $exclude))
-                                    @php
-                                        $display_options = $row->details->display ?? NULL;
-                                    @endphp
-                                    @if (isset($row->details->formfields_custom))
-                                        @include('voyager::formfields.custom.' . $row->details->formfields_custom)
-                                    @else
-                                        <div class="form-group @if($row->type == 'hidden') hidden @endif @if(isset($display_options->width)){{ 'col-md-' . $display_options->width }}@endif" @if(isset($display_options->id)){{ "id=$display_options->id" }}@endif>
-                                            {{ $row->slugify }}
-                                            <label for="name">{{ $row->getTranslatedAttribute('display_name') }}</label>
-                                            @include('voyager::multilingual.input-hidden-bread-edit-add')
-                                            @if($row->type == 'relationship')
-                                                @include('voyager::formfields.relationship', ['options' => $row->details])
-                                            @else
-                                                {!! app('voyager')->formField($row, $dataType, $dataTypeContent) !!}
-                                            @endif
-
-                                            @foreach (app('voyager')->afterFormFields($row, $dataType, $dataTypeContent) as $after)
-                                                {!! $after->handle($row, $dataType, $dataTypeContent) !!}
-                                            @endforeach
-                                        </div>
-                                    @endif
+                            <button type="button" class="btn btn-primary" id="add-attribute-btn">{{ __('Add Attribute') }}</button>
+                            <div id="attributes-container">
+                                <!-- Existing attributes -->
+                                @if(isset($attributes) && is_array($attributes))
+                                @php
+                                $attribute_id = $dataTypeContent->attributes->last()->id;
+                                @endphp
+                                @if (isset($attribute_id))
+                                <input type="hidden" name="attribute_id" value="{{$attribute_id}}">
                                 @endif
-                            @endforeach
+                                    @foreach($attributes as $key => $attribute)
+                                        <div class="form-group attribute">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <input type="text" name="attributes[{{$key}}][name]" class="form-control" placeholder="{{ __('Attribute Name') }}" value="{{ $attribute['name'] }}">
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="attributes[{{$key}}][value]" class="form-control" placeholder="{{ __('Attribute Value') }}" value="{{ $attribute['value'] }}">
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button type="button" class="btn btn-danger remove-attribute-btn">{{ __('Remove') }}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
                         </div>
-                    </div> --}}
+                    </div>
 
                 </div>
                 <div class="col-md-4">
@@ -248,7 +252,7 @@
                     <!-- ### IMAGE ### -->
                     <div class="panel panel-bordered panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="icon wb-image"></i> {{ __('voyager::product.image') }}</h3>
+                            <h3 class="panel-title"><i class="icon wb-image"></i> {{ __('voyager::post.image') }}</h3>
                             <div class="panel-actions">
                                 <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
                             </div>
@@ -398,6 +402,33 @@
                 $('#confirm_delete_modal').modal('hide');
             });
             $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let attributeIndex = Math.max(...Array.from(document.querySelectorAll('[name^="attributes["]'))
+                .map(input => parseInt(input.name.match(/\[(\d+)\]/)?.[1] || 0)), 0) + 1;
+
+            document.getElementById('add-attribute-btn').addEventListener('click', function () {
+                const container = document.getElementById('attributes-container');
+                const newField = document.createElement('div');
+                newField.classList.add('form-group', 'attribute');
+                newField.innerHTML = `
+                    <div class="row">
+                        <div class="col-md-5">
+                            <input type="text" name="attributes[${attributeIndex}][name]" class="form-control" placeholder="Attribute Name" required>
+                        </div>
+                        <div class="col-md-5">
+                            <input type="text" name="attributes[${attributeIndex}][value]" class="form-control" placeholder="Attribute Value" required>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-danger remove-attribute-btn mt-0">Remove</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(newField);
+                attributeIndex++;
+                newField.querySelector('.remove-attribute-btn').addEventListener('click', () => newField.remove());
+            });
         });
     </script>
 @stop

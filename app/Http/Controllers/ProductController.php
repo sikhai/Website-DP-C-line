@@ -10,6 +10,10 @@ use TCG\Voyager\Events\BreadDataAdded;
 use TCG\Voyager\Events\BreadDataUpdated;
 use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
+
+use App\Models\Attribute;
 
 class ProductController extends VoyagerBaseController
 {
@@ -83,15 +87,33 @@ class ProductController extends VoyagerBaseController
     
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
-        
+
         // Handle file upload
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $path = $image->store('products', 'public'); // Store in the 'public' disk's 'products' directory
-            $request->merge(['image' => $path]);
+            $imagePath = $image->store('products', 'public'); // Store in the 'public' disk's 'products' directory
+            
+            // Convert image to WebP
+            $webpImagePath = str_replace('.' . $image->getClientOriginalExtension(), '.webp', $imagePath);
+            $image = Image::make(Storage::disk('public')->path($imagePath))->encode('webp', 70);
+            Storage::disk('public')->put($webpImagePath, (string) $image);
+            
+            // Update request with WebP image path
+            $request->merge(['image' => $webpImagePath]);
         }
     
         $data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name());
+
+        // Update or create attributes from JSON input
+        if ($request->has('attributes')) {
+            $attributes = $request->input('attributes');
+
+            $attributesJson = json_encode($attributes);
+            $attribute = \App\Models\Attribute::firstOrCreate(['value' => $attributesJson]);
+            // thêm hoặc cập nhật liên kết giữa sản phẩm và attribute trong bảng trung gian product_attribute
+            $data->attributes()->syncWithoutDetaching([$attribute->id]);
+
+        }
     
         event(new BreadDataAdded($dataType, $data));
     
@@ -163,9 +185,13 @@ class ProductController extends VoyagerBaseController
         // Eagerload Relations
         $this->eagerLoadRelations($dataTypeContent, $dataType, 'edit', $isModelTranslatable);
 
+        // Lấy danh sách các attribute liên kết với sản phẩm
+        $attributes = $dataTypeContent->attributes->pluck('value')->last();
+        $attributes = json_decode($attributes, true);
+
         $view = 'layouts.admin.products.edit-add';
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'attributes'));
     }
 
     // POST BR(E)AD
@@ -194,12 +220,19 @@ class ProductController extends VoyagerBaseController
     
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
-        
+
         // Handle file upload
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $path = $image->store('products', 'public'); // Store in the 'public' disk's 'images' directory
-            $request->merge(['image' => $path]);
+            $imagePath = $image->store('products', 'public'); // Store in the 'public' disk's 'products' directory
+            
+            // Convert image to WebP
+            $webpImagePath = str_replace('.' . $image->getClientOriginalExtension(), '.webp', $imagePath);
+            $image = Image::make(Storage::disk('public')->path($imagePath))->encode('webp', 70);
+            Storage::disk('public')->put($webpImagePath, (string) $image);
+            
+            // Update request with WebP image path
+            $request->merge(['image' => $webpImagePath]);
         }
     
         // Get fields with images to remove before updating and make a copy of $data
@@ -214,6 +247,29 @@ class ProductController extends VoyagerBaseController
     
         // Delete Images
         $this->deleteBreadImages($original_data, $to_remove);
+
+        // Update or create attributes from JSON input
+        if ($request->has('attributes')) {
+            $attributes = $request->input('attributes');
+            $attributesJson = json_encode($attributes);
+
+            if ($request->has('attribute_id')) {
+                $attribute_id = $request->input('attribute_id');
+                
+                if (isset($attribute_id)) {
+                    // Update existing attribute
+                    $existingAttribute = \App\Models\Attribute::find($attribute_id);
+                    if ($existingAttribute) {
+                        $existingAttribute->update(['value' => $attributesJson]);
+                    }
+                } else {
+                    // Create new attribute
+                    $newAttribute = \App\Models\Attribute::create(['value' => $attributesJson]);
+                    // thêm hoặc cập nhật liên kết giữa sản phẩm và attribute trong bảng trung gian product_attribute
+                    $data->attributes()->syncWithoutDetaching([$newAttribute->id]);
+                }
+            }
+        }
     
         event(new BreadDataUpdated($dataType, $data));
     
