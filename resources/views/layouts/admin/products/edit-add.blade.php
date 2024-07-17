@@ -258,10 +258,25 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                            @if(isset($dataTypeContent->image))
+                            {{-- @if(isset($dataTypeContent->image))
                                 <img src="{{ filter_var($dataTypeContent->image, FILTER_VALIDATE_URL) ? $dataTypeContent->image : Voyager::image( $dataTypeContent->image ) }}" style="width:100%" />
                             @endif
-                            <input type="file" name="image">
+                            <input type="file" name="image"> --}}
+                            <div class="form-group">
+                                <input type="file" name="images[]" multiple>
+                                @if(isset($dataTypeContent->images))
+                                    <div id="image-preview">
+                                        @foreach(json_decode($dataTypeContent->images, true) as $index => $image)
+                                            <div class="image-item" style="display: inline-block; position: relative; margin: 5px;">
+                                                <img src="{{ Storage::disk('public')->url($image) }}" style="width: 100px; height: auto;">
+                                                <button type="button" class="btn btn-danger btn-sm remove-image" data-index="{{ $index }}" style="position: absolute; top: 5px; right: 5px;">X</button>
+                                                <input type="hidden" name="existing_images[]" value="{{ $image }}">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
+                            
                         </div>
                     </div>
 
@@ -428,6 +443,17 @@
                 container.appendChild(newField);
                 attributeIndex++;
                 newField.querySelector('.remove-attribute-btn').addEventListener('click', () => newField.remove());
+            });
+        });
+        document.querySelectorAll('.remove-image').forEach(function (button) {
+            button.addEventListener('click', function () {
+                const index = this.getAttribute('data-index');
+                this.parentElement.remove();
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'remove_images[]';
+                input.value = index;
+                document.getElementById('image-preview').appendChild(input);
             });
         });
     </script>

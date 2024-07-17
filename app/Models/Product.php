@@ -11,6 +11,10 @@ class Product extends Model
 {
     use HasFactory, Translatable;
 
+    protected $casts = [
+        'images' => 'array',
+    ];
+
     protected $fillable = [
         'product_name', 'title', 'product_code', 'description', 'short_description', 'price', 'stock_quantity',
         'image', 'keywords', 'slug', 'status', 'is_featured', 'category_id'

@@ -79,51 +79,52 @@ class ProductController extends VoyagerBaseController
     public function store(Request $request)
     {
         $slug = $this->getSlug($request);
-    
+
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
-    
+
         // Check permission
         $this->authorize('add', app($dataType->model_name));
-    
+
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
 
-        // Handle file upload
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imagePath = $image->store('products', 'public'); // Store in the 'public' disk's 'products' directory
-            
-            // Convert image to WebP
-            $webpImagePath = str_replace('.' . $image->getClientOriginalExtension(), '.webp', $imagePath);
-            $image = Image::make(Storage::disk('public')->path($imagePath))->encode('webp', 70);
-            Storage::disk('public')->put($webpImagePath, (string) $image);
-            
-            // Update request with WebP image path
-            $request->merge(['image' => $webpImagePath]);
+        // Handle multiple file upload for images
+        $imagePaths = [];
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                $imagePath = $image->store('products', 'public');
+                $webpImagePath = str_replace('.' . $image->getClientOriginalExtension(), '.webp', $imagePath);
+                $image = Image::make(Storage::disk('public')->path($imagePath))->encode('webp', 70);
+                Storage::disk('public')->put($webpImagePath, (string) $image);
+                $imagePaths[] = $webpImagePath;
+            }
         }
-    
+
         $data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name());
 
-        // Update or create attributes from JSON input
+        if (!empty($imagePaths)) {
+            $data->images = json_encode($imagePaths);
+            $data->save();
+        }
+
+        // Handle attributes
         if ($request->has('attributes')) {
             $attributes = $request->input('attributes');
-
             $attributesJson = json_encode($attributes);
             $attribute = \App\Models\Attribute::firstOrCreate(['value' => $attributesJson]);
-            // thêm hoặc cập nhật liên kết giữa sản phẩm và attribute trong bảng trung gian product_attribute
             $data->attributes()->syncWithoutDetaching([$attribute->id]);
-
         }
-    
+
         event(new BreadDataAdded($dataType, $data));
-    
+
         if (!$request->has('_tagging')) {
             if (auth()->user()->can('browse', $data)) {
                 $redirect = redirect()->route("voyager.{$dataType->slug}.index");
             } else {
                 $redirect = redirect()->back();
             }
-    
+
             return $redirect->with([
                 'message'    => __('voyager::generic.successfully_added_new')." {$dataType->getTranslatedAttribute('display_name_singular')}",
                 'alert-type' => 'success',
@@ -198,12 +199,11 @@ class ProductController extends VoyagerBaseController
     public function update(Request $request, $id)
     {
         $slug = $this->getSlug($request);
-    
+
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
-    
-        // Compatibility with Model binding.
+
         $id = $id instanceof \Illuminate\Database\Eloquent\Model ? $id->{$id->getKeyName()} : $id;
-    
+
         $model = app($dataType->model_name);
         $query = $model->query();
         if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope'.ucfirst($dataType->scope))) {
@@ -212,29 +212,44 @@ class ProductController extends VoyagerBaseController
         if ($model && in_array(SoftDeletes::class, class_uses_recursive($model))) {
             $query = $query->withTrashed();
         }
-    
+
         $data = $query->findOrFail($id);
-    
+
         // Check permission
         $this->authorize('edit', $data);
-    
+
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
 
-        // Handle file upload
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imagePath = $image->store('products', 'public'); // Store in the 'public' disk's 'products' directory
-            
-            // Convert image to WebP
-            $webpImagePath = str_replace('.' . $image->getClientOriginalExtension(), '.webp', $imagePath);
-            $image = Image::make(Storage::disk('public')->path($imagePath))->encode('webp', 70);
-            Storage::disk('public')->put($webpImagePath, (string) $image);
-            
-            // Update request with WebP image path
-            $request->merge(['image' => $webpImagePath]);
+        // Handle multiple file upload for images
+        $imagePaths = json_decode($data->images, true) ?: [];
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                $imagePath = $image->store('products', 'public');
+                $webpImagePath = str_replace('.' . $image->getClientOriginalExtension(), '.webp', $imagePath);
+                $image = Image::make(Storage::disk('public')->path($imagePath))->encode('webp', 70);
+                Storage::disk('public')->put($webpImagePath, (string) $image);
+                $imagePaths[] = $webpImagePath;
+            }
         }
-    
+
+        // Handle removal of existing images
+        if ($request->has('remove_images')) {
+            $removeIndexes = $request->input('remove_images');
+            foreach ($removeIndexes as $index) {
+                if (isset($imagePaths[$index])) {
+                    Storage::disk('public')->delete($imagePaths[$index]);
+                    unset($imagePaths[$index]);
+                }
+            }
+            $imagePaths = array_values($imagePaths); // Reindex array
+        }
+
+        // Update the data record with the new image paths
+        $data->images = json_encode($imagePaths);
+        $data->save();
+
         // Get fields with images to remove before updating and make a copy of $data
         $to_remove = $dataType->editRows->where('type', 'image')
             ->filter(function ($item, $key) use ($request) {
@@ -242,13 +257,18 @@ class ProductController extends VoyagerBaseController
             });
 
         $original_data = clone($data);
-    
+
         $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
-    
+
+        if (!empty($imagePaths)) {
+            $data->images = json_encode($imagePaths);
+            $data->save();
+        }
+
         // Delete Images
         $this->deleteBreadImages($original_data, $to_remove);
 
-        // Update or create attributes from JSON input
+        // Handle attributes
         if ($request->has('attributes')) {
             $attributes = $request->input('attributes');
             $attributesJson = json_encode($attributes);
@@ -265,20 +285,19 @@ class ProductController extends VoyagerBaseController
                 } else {
                     // Create new attribute
                     $newAttribute = \App\Models\Attribute::create(['value' => $attributesJson]);
-                    // thêm hoặc cập nhật liên kết giữa sản phẩm và attribute trong bảng trung gian product_attribute
                     $data->attributes()->syncWithoutDetaching([$newAttribute->id]);
                 }
             }
         }
-    
+
         event(new BreadDataUpdated($dataType, $data));
-    
+
         if (auth()->user()->can('browse', app($dataType->model_name))) {
             $redirect = redirect()->route("voyager.{$dataType->slug}.index");
         } else {
             $redirect = redirect()->back();
         }
-    
+
         return $redirect->with([
             'message'    => __('voyager::generic.successfully_updated')." {$dataType->getTranslatedAttribute('display_name_singular')}",
             'alert-type' => 'success',
