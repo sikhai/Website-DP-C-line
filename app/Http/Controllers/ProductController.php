@@ -272,23 +272,25 @@ class ProductController extends VoyagerBaseController
         if ($request->has('attributes')) {
             $attributes = $request->input('attributes');
             $attributesJson = json_encode($attributes);
-
-            if ($request->has('attribute_id')) {
-                $attribute_id = $request->input('attribute_id');
-                
-                if (isset($attribute_id)) {
-                    // Update existing attribute
-                    $existingAttribute = \App\Models\Attribute::find($attribute_id);
-                    if ($existingAttribute) {
-                        $existingAttribute->update(['value' => $attributesJson]);
-                    }
+        
+            $attribute_id = $request->input('attribute_id');
+        
+            if ($attribute_id) {
+                // Update existing attribute or create new one if not found
+                $existingAttribute = \App\Models\Attribute::find($attribute_id);
+                if ($existingAttribute) {
+                    $existingAttribute->update(['value' => $attributesJson]);
                 } else {
-                    // Create new attribute
                     $newAttribute = \App\Models\Attribute::create(['value' => $attributesJson]);
                     $data->attributes()->syncWithoutDetaching([$newAttribute->id]);
                 }
+            } else {
+                // Create new attribute
+                $newAttribute = \App\Models\Attribute::create(['value' => $attributesJson]);
+                $data->attributes()->syncWithoutDetaching([$newAttribute->id]);
             }
         }
+        
 
         event(new BreadDataUpdated($dataType, $data));
 
