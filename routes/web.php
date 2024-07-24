@@ -24,3 +24,6 @@ Route::get('/product', [MainController::class, 'product'])->name('product');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::post('/check-product-code', [ProductController::class, 'checkProductCode'])->name('check.product.code');
+

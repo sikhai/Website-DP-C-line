@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Models\Attribute;
 
+use App\Models\Product;
+
 class ProductController extends VoyagerBaseController
 {
 
@@ -333,4 +335,14 @@ class ProductController extends VoyagerBaseController
 
         return $uniqueNames_Attribute;
     }
+
+    public function checkProductCode(Request $request)
+    {
+        $productCode = $request->input('product_code');
+
+        $exists = Product::where('product_code', $productCode)->exists();
+
+        return response()->json(['exists' => $exists]);
+    }
+
 }

@@ -73,6 +73,8 @@
 
 @section('content')
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <div class="page-content container-fluid">
         <form role="form"
                 class="form-edit-add"
@@ -258,7 +260,8 @@
                                     '_field_name'  => 'product_code',
                                     '_field_trans' => get_field_translations($dataTypeContent, 'product_code')
                                 ])
-                                <input required type="text" class="form-control" name="product_code" placeholder="product code" value="{{ $dataTypeContent->product_code ?? '' }}">
+                                <input required type="text" class="form-control" name="product_code" id="product_code" placeholder="product code" value="{{ $dataTypeContent->product_code ?? '' }}">
+                                <span id="product-code-error" style="color: red; display: none;"></span>
                             </div>
                             <div class="form-group">
                                 <label for="is_featured">{{ __('voyager::generic.featured') }}</label>
@@ -472,6 +475,30 @@
                 input.name = 'remove_images[]';
                 input.value = index;
                 document.getElementById('image-preview').appendChild(input);
+            });
+        });
+
+        $(document).ready(function() {
+            $('#product_code').on('blur', function() {
+                var productCode = $(this).val();
+                $('#product-code-error').text( productCode + ' already exists.');
+                $.ajax({
+                    url: '{{ route('check.product.code') }}',
+                    type: 'POST',
+                    data: {
+                        product_code: productCode,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if (response.exists) {
+                            $('#product-code-error').show();
+                            $('#product_code').val('');
+                            $('#product_code').focus();
+                        } else {
+                            $('#product-code-error').hide();
+                        }
+                    }
+                });
             });
         });
     </script>
