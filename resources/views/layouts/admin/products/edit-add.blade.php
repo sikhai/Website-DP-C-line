@@ -170,12 +170,12 @@
                             <div id="attributes-container">
                                 <!-- Existing attributes -->
                                 @if(isset($attributes) && is_array($attributes))
-                                @php
-                                $attribute_id = $dataTypeContent->attributes->last()->id;
-                                @endphp
-                                @if (isset($attribute_id))
-                                <input type="hidden" name="attribute_id" value="{{$attribute_id}}">
-                                @endif
+                                    @php
+                                    $attribute_id = $dataTypeContent->attributes->last()->id;
+                                    @endphp
+                                    @if (isset($attribute_id))
+                                    <input type="hidden" name="attribute_id" value="{{$attribute_id}}">
+                                    @endif
                                     @foreach($attributes as $key => $attribute)
                                         <div class="form-group attribute">
                                             <div class="row">
@@ -191,6 +191,24 @@
                                             </div>
                                         </div>
                                     @endforeach
+                                @else
+                                    @if (isset($attributes_name))
+                                        @foreach($attributes_name as $key => $name)
+                                        <div class="form-group attribute">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <input type="text" name="attributes_name[{{$key}}]" class="form-control" placeholder="{{ __('Attribute Name') }}" value="{{ $name }}">
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="attributes_name[{{$key}}]" class="form-control" placeholder="{{ __('Attribute Value') }}" value="" required>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button type="button" class="btn btn-danger remove-attribute-btn">{{ __('Remove') }}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    @endif
                                 @endif
                             </div>
                         </div>

@@ -48,8 +48,8 @@ class ProductController extends VoyagerBaseController
         $this->authorize('add', app($dataType->model_name));
 
         $dataTypeContent = (strlen($dataType->model_name) != 0)
-                            ? new $dataType->model_name()
-                            : false;
+            ? new $dataType->model_name()
+            : false;
 
         foreach ($dataType->addRows as $key => $row) {
             $dataType->addRows[$key]['col_width'] = $row->details->width ?? 100;
@@ -64,12 +64,16 @@ class ProductController extends VoyagerBaseController
         // Eagerload Relations
         $this->eagerLoadRelations($dataTypeContent, $dataType, 'add', $isModelTranslatable);
 
+        //get all name attributes
+
+        $attributes_name = $this->getUniqueAttributeNames();
+
         $view = 'layouts.admin.products.edit-add';
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'attributes_name'));
     }
 
-        /**
+    /**
      * POST BRE(A)D - Store data.
      *
      * @param \Illuminate\Http\Request $request
@@ -126,14 +130,14 @@ class ProductController extends VoyagerBaseController
             }
 
             return $redirect->with([
-                'message'    => __('voyager::generic.successfully_added_new')." {$dataType->getTranslatedAttribute('display_name_singular')}",
+                'message'    => __('voyager::generic.successfully_added_new') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
                 'alert-type' => 'success',
             ]);
         } else {
             return response()->json(['success' => true, 'data' => $data]);
         }
     }
-    
+
 
     //***************************************
     //                ______
@@ -161,7 +165,7 @@ class ProductController extends VoyagerBaseController
             if ($model && in_array(SoftDeletes::class, class_uses_recursive($model))) {
                 $query = $query->withTrashed();
             }
-            if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope'.ucfirst($dataType->scope))) {
+            if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope' . ucfirst($dataType->scope))) {
                 $query = $query->{$dataType->scope}();
             }
             $dataTypeContent = call_user_func([$query, 'findOrFail'], $id);
@@ -206,7 +210,7 @@ class ProductController extends VoyagerBaseController
 
         $model = app($dataType->model_name);
         $query = $model->query();
-        if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope'.ucfirst($dataType->scope))) {
+        if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope' . ucfirst($dataType->scope))) {
             $query = $query->{$dataType->scope}();
         }
         if ($model && in_array(SoftDeletes::class, class_uses_recursive($model))) {
@@ -256,7 +260,7 @@ class ProductController extends VoyagerBaseController
                 return $request->hasFile($item->field);
             });
 
-        $original_data = clone($data);
+        $original_data = clone ($data);
 
         $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
 
@@ -272,9 +276,9 @@ class ProductController extends VoyagerBaseController
         if ($request->has('attributes')) {
             $attributes = $request->input('attributes');
             $attributesJson = json_encode($attributes);
-        
+
             $attribute_id = $request->input('attribute_id');
-        
+
             if ($attribute_id) {
                 // Update existing attribute or create new one if not found
                 $existingAttribute = \App\Models\Attribute::find($attribute_id);
@@ -290,7 +294,7 @@ class ProductController extends VoyagerBaseController
                 $data->attributes()->syncWithoutDetaching([$newAttribute->id]);
             }
         }
-        
+
 
         event(new BreadDataUpdated($dataType, $data));
 
@@ -301,10 +305,32 @@ class ProductController extends VoyagerBaseController
         }
 
         return $redirect->with([
-            'message'    => __('voyager::generic.successfully_updated')." {$dataType->getTranslatedAttribute('display_name_singular')}",
+            'message'    => __('voyager::generic.successfully_updated') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
             'alert-type' => 'success',
         ]);
     }
-        
-}
 
+    public function getUniqueAttributeNames()
+    {
+        // Lấy tất cả các giá trị từ bảng attributes
+        $attributes = Attribute::all();
+
+        // Thu thập các giá trị của 'name' từ trường 'value'
+        $names = [];
+        foreach ($attributes as $attribute) {
+            $values = json_decode($attribute->value, true);
+            if (is_array($values)) {
+                foreach ($values as $value) {
+                    if (isset($value['name'])) {
+                        $names[] = $value['name'];
+                    }
+                }
+            }
+        }
+
+        // Loại bỏ các giá trị trùng lặp
+        $uniqueNames_Attribute = array_unique($names);
+
+        return $uniqueNames_Attribute;
+    }
+}
