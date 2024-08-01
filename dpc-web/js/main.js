@@ -92,52 +92,52 @@ input.addEventListener('input', function (evt) {
 // });
 
 //banner annimation
-document.querySelector('.banner').addEventListener('scroll', function() {
-    const scrollSection = document.querySelector('.banner');
-    const scrollPosition = scrollSection.scrollTop;
-    const sectionHeight = scrollSection.clientHeight;
-    const scrollHeight = scrollSection.scrollHeight;
-    const scrollPercentage = scrollPosition / (scrollHeight - sectionHeight);
+// document.querySelector('.banner').addEventListener('scroll', function() {
+//     const scrollSection = document.querySelector('.banner');
+//     const scrollPosition = scrollSection.scrollTop;
+//     const sectionHeight = scrollSection.clientHeight;
+//     const scrollHeight = scrollSection.scrollHeight;
+//     const scrollPercentage = scrollPosition / (scrollHeight - sectionHeight);
 
-    // Calculate scales based on scrollPercentage
-    const maxScale = 3.33; // Adjust the maximum scale as needed
-    const minScale = 1;
-    const scale = minScale + (maxScale - minScale) * scrollPercentage;
+//     // Calculate scales based on scrollPercentage
+//     const maxScale = 3.33; // Adjust the maximum scale as needed
+//     const minScale = 1;
+//     const scale = minScale + (maxScale - minScale) * scrollPercentage;
     
-    // Calculate translations based on scrollPercentage
-    const maxTranslation = 1000; // Adjust the maximum translation as needed
-    const translateYTop = -maxTranslation * scrollPercentage;
-    const translateYBottom = maxTranslation * scrollPercentage;
-    const translateXSide = maxTranslation * scrollPercentage;
+//     // Calculate translations based on scrollPercentage
+//     const maxTranslation = 1000; // Adjust the maximum translation as needed
+//     const translateYTop = -maxTranslation * scrollPercentage;
+//     const translateYBottom = maxTranslation * scrollPercentage;
+//     const translateXSide = maxTranslation * scrollPercentage;
     
-    // Apply transformations
-    // document.querySelector('.row:nth-child(1) .image').style.transform = `translateY(${translateYTop}px) `;
+//     // Apply transformations
+//     // document.querySelector('.row:nth-child(1) .image').style.transform = `translateY(${translateYTop}px) `;
     
-    // document.querySelector('.row:nth-child(2) .image:nth-child(1)').style.transform = `translateX(-${translateXSide}px)`;
-    // document.querySelector('.row:nth-child(2) .image:nth-child(3)').style.transform = `translateX(${translateXSide}px)`;
+//     // document.querySelector('.row:nth-child(2) .image:nth-child(1)').style.transform = `translateX(-${translateXSide}px)`;
+//     // document.querySelector('.row:nth-child(2) .image:nth-child(3)').style.transform = `translateX(${translateXSide}px)`;
     
-    const maxContainerWidth = 1440; // Adjust the maximum width as needed
-    const maxContainerHeight = 860; // Adjust the maximum height as needed
-    const minContainerWidth = 400;  // Adjust the minimum width as needed
-    const minContainerHeight = 225; // Adjust the minimum height as needed
+//     const maxContainerWidth = 1440; // Adjust the maximum width as needed
+//     const maxContainerHeight = 860; // Adjust the maximum height as needed
+//     const minContainerWidth = 400;  // Adjust the minimum width as needed
+//     const minContainerHeight = 225; // Adjust the minimum height as needed
 
-    const scale_index = minScale + (maxContainerWidth - minContainerWidth) * scrollPercentage;
-    const containerHeight = minContainerHeight + (maxContainerHeight - minContainerHeight) * scrollPercentage;
+//     const scale_index = minScale + (maxContainerWidth - minContainerWidth) * scrollPercentage;
+//     const containerHeight = minContainerHeight + (maxContainerHeight - minContainerHeight) * scrollPercentage;
 
-    const middleContainer = document.querySelector('.image');
-    middleContainer.style.scale = `${scale_index}`;
-    // middleContainer.style.height = `${containerHeight}px`;
+//     const middleContainer = document.querySelector('.image');
+//     middleContainer.style.scale = `${scale_index}`;
+//     // middleContainer.style.height = `${containerHeight}px`;
     
-    // document.querySelector('.row:nth-child(3) .image:nth-child(1)').style.transform = `translateY(${translateYBottom}px)`;
-    // document.querySelector('.row:nth-child(3) .image:nth-child(2)').style.transform = `translateY(${translateYBottom}px)`;
+//     // document.querySelector('.row:nth-child(3) .image:nth-child(1)').style.transform = `translateY(${translateYBottom}px)`;
+//     // document.querySelector('.row:nth-child(3) .image:nth-child(2)').style.transform = `translateY(${translateYBottom}px)`;
 
-    // if (scrollPercentage >= 0.95) {
-    //     middleContainer.classList.add('show');
-    // } else {
-    //     middleContainer.classList.remove('show');
-    // }
+//     // if (scrollPercentage >= 0.95) {
+//     //     middleContainer.classList.add('show');
+//     // } else {
+//     //     middleContainer.classList.remove('show');
+//     // }
 
-});
+// });
 
 
 //project annimantion
