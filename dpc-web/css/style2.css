@@ -216,18 +216,25 @@ h2.title span {
     height: 860px;
     position: relative;
     padding: 0;
+    max-width: 1440px;
+    /* transition: height 0.3s ease-out, width 0.3s ease-out, opacity 0.3s ease-out; */
 }
+/* .container .content, .container .swiper-button-next, .container .swiper-button-prev {
+    opacity: 0;
+    transition: opacity 0.5s;
+} */
 .banner .proj_mouth .swiper-button-next,
 .banner .proj_mouth .swiper-button-prev,
 section.Our_Services .services_list .swiper-button-next,
 section.Our_Services .services_list .swiper-button-prev {
     width: 64px;
-    top: calc(100% - 32px);
+    top: calc(100% - 100px);
+    left: calc(100% - 120px);
 }
 
 .banner .proj_mouth .swiper-button-prev,
 section.Our_Services .services_list .swiper-button-prev {
-    left: var(--swiper-navigation-sides-offset, calc(100% - 144px));
+    left: var(--swiper-navigation-sides-offset, calc(100% - 188px));
 }
 
 
@@ -242,18 +249,19 @@ section.Our_Services .services_list .swiper-button-prev {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0; /* Ensure the image is behind the content */
-    overflow: hidden; /* Add this to hide overflow */
+    z-index: 0; 
+    overflow: hidden; 
+    /* scale: 0.3; */
 }
 .banner .proj_mouth img{
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image covers the entire area */
+    object-fit: cover;
 }
 
 .banner .proj_mouth .item .content{
     z-index: 999;
-    width: 100%;
+    /* width: 100%; */
     position: relative;
     margin-left: 85px;
 }
@@ -345,7 +353,7 @@ section.trending .box_trending .left {
 }
 .left .flip-card {
     width: 100%;
-    height: 100%;
+    height: 810px;
     position: relative;
 }
 
@@ -354,9 +362,10 @@ section.trending .box_trending .left {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.3s;
+    transition: transform 1.5s ease-in-out;
     transform-style: preserve-3d;
-    animation: flip 30s infinite;
+    /* animation: flipSequence 24s infinite;
+    animation-delay: 0s; */
 }
 
 .left .flip-card-front, .flip-card-back {
@@ -371,21 +380,15 @@ section.trending .box_trending .left {
     transform: rotateY(180deg);
 }
 
-@keyframes flip {
-    0% { transform: rotateY(0); }
-    30% { transform: rotateY(180deg); }
-    60% { transform: rotateY(360deg); }
-}
-
 section.trending .box_trending .left .flip-card-front img {
     border-radius: 0px 180px;
-    max-height: 810px;
-    object-fit: cover;
+    height: 810px;
+    /* object-fit: cover; */
 }
 section.trending .box_trending .left .flip-card-back img {
     border-radius: 0px 180px;
-    max-height: 810px;
-    object-fit: cover;
+    height: 810px;
+    /* object-fit: cover; */
 }
 
 section.trending .box_trending .right {
@@ -439,9 +442,10 @@ section.trending .box_trending .right .context a img {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.3s;
+    transition: transform 1.5s ease-in-out;
     transform-style: preserve-3d;
-    animation: flip2 30s infinite;
+    /* animation: flipSequence 24s infinite;
+    animation-delay: 8s; */
 }
 
 .context .flip-card-front, .context .flip-card-back {
@@ -460,12 +464,6 @@ section.trending .box_trending .right .context a img {
     transform: rotateY(180deg);
 }
 
-@keyframes flip2 {
-    10% { transform: rotateY(0); }
-    40% { transform: rotateY(180deg); }
-    70% { transform: rotateY(360deg); }
-}
-
 .img-rightbottom{
     height: 414px;
     perspective: 1000px;
@@ -482,9 +480,10 @@ section.trending .box_trending .right .context a img {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.3s;
+    transition: transform 1.5s ease-in-out;
     transform-style: preserve-3d;
-    animation: flip3 30s infinite;
+    /* animation: flipSequence 24s infinite;
+    animation-delay: 16s; */
 }
 
 .img-rightbottom .flip-card-front, .img-rightbottom .flip-card-back {
@@ -497,15 +496,8 @@ section.trending .box_trending .right .context a img {
     backface-visibility: hidden;
 }
 
-
 .img-rightbottom .flip-card-back {
     transform: rotateY(180deg);
-}
-
-@keyframes flip3 {
-    20% { transform: rotateY(0); }
-    50% { transform: rotateY(180deg); }
-    80% { transform: rotateY(360deg); }
 }
 
 
