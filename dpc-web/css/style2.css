@@ -200,6 +200,7 @@ h2.title span {
     padding: 0;
     position: relative;
     overflow: hidden;
+    
 }
 
 /* .banner:after {
@@ -217,6 +218,7 @@ h2.title span {
     position: relative;
     padding: 0;
     max-width: 1440px;
+    
     /* transition: height 0.3s ease-out, width 0.3s ease-out, opacity 0.3s ease-out; */
 }
 /* .container .content, .container .swiper-button-next, .container .swiper-button-prev {
@@ -224,17 +226,23 @@ h2.title span {
     transition: opacity 0.5s;
 } */
 .banner .proj_mouth .swiper-button-next,
-.banner .proj_mouth .swiper-button-prev,
-section.Our_Services .services_list .swiper-button-next,
-section.Our_Services .services_list .swiper-button-prev {
+.banner .proj_mouth .swiper-button-prev
+ {
     width: 64px;
     top: calc(100% - 100px);
     left: calc(100% - 120px);
 }
+section.Our_Services .services_list .swiper-button-next,
+section.Our_Services .services_list .swiper-button-prev{
+    width: 64px;
+    top: calc(100% - 18px);
+}
 
-.banner .proj_mouth .swiper-button-prev,
-section.Our_Services .services_list .swiper-button-prev {
+.banner .proj_mouth .swiper-button-prev{
     left: var(--swiper-navigation-sides-offset, calc(100% - 188px));
+}
+section.Our_Services .services_list .swiper-button-prev{
+    left: var(--swiper-navigation-sides-offset, calc(100% - 144px));
 }
 
 
@@ -283,6 +291,42 @@ section.Our_Services .services_list .swiper-button-prev {
     overflow: hidden;
     margin: 0;
     color: #D5CCC3;
+}
+
+/* scroll annimation  */
+.banner .image {
+    transform: scale(0.3);
+    transition: transform 0.3s ease;
+}
+
+.banner .content, .swiper-button-next, .swiper-button-prev {
+    opacity: 0;
+    transform: translateY(200px);
+    
+    transition: opacity 1.5s ease, transform 1.5s ease;
+    /* transition-delay: 3s; */
+}
+
+.banner.scrolled .image img {
+    transform: scale(1);
+}
+
+.banner.revealed  .content, .banner.revealed  .swiper-button-next, .banner.revealed  .swiper-button-prev {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.imagetop{
+    width: 842px;
+    height: 420px;
+}
+.image_midleft, .image_midright, .image_bottom1{
+    width: 375px;
+    height: 287px;
+}
+.image_bottom2 {
+    width: 750px;
+    height: 430px;
 }
 
 /*************************** our service **************************/
