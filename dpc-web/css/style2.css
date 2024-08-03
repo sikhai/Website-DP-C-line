@@ -218,13 +218,8 @@ h2.title span {
     position: relative;
     padding: 0;
     max-width: 1440px;
-    
-    /* transition: height 0.3s ease-out, width 0.3s ease-out, opacity 0.3s ease-out; */
 }
-/* .container .content, .container .swiper-button-next, .container .swiper-button-prev {
-    opacity: 0;
-    transition: opacity 0.5s;
-} */
+
 .banner .proj_mouth .swiper-button-next,
 .banner .proj_mouth .swiper-button-prev
  {
@@ -232,19 +227,10 @@ h2.title span {
     top: calc(100% - 100px);
     left: calc(100% - 120px);
 }
-section.Our_Services .services_list .swiper-button-next,
-section.Our_Services .services_list .swiper-button-prev{
-    width: 64px;
-    top: calc(100% - 18px);
-}
 
 .banner .proj_mouth .swiper-button-prev{
     left: var(--swiper-navigation-sides-offset, calc(100% - 188px));
 }
-section.Our_Services .services_list .swiper-button-prev{
-    left: var(--swiper-navigation-sides-offset, calc(100% - 144px));
-}
-
 
 .banner .proj_mouth .item {
     display: flex;
@@ -299,8 +285,8 @@ section.Our_Services .services_list .swiper-button-prev{
     transition: transform 0.3s ease;
 }
 
-.banner .content, .swiper-button-next, .swiper-button-prev {
-    opacity: 0;
+.banner .content, .banner .swiper-button-next, .banner .swiper-button-prev {
+    /* opacity: 0; */
     transform: translateY(200px);
     
     transition: opacity 1.5s ease, transform 1.5s ease;
@@ -312,22 +298,62 @@ section.Our_Services .services_list .swiper-button-prev{
 }
 
 .banner.revealed  .content, .banner.revealed  .swiper-button-next, .banner.revealed  .swiper-button-prev {
-    opacity: 1;
+    /* opacity: 1; */
     transform: translateY(0);
 }
 
-.imagetop{
+.cover-images {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.cover-image {
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.topimg{
     width: 842px;
     height: 420px;
+    /* justify-content: center; */
+    /* transform: translateY(30px); */
 }
-.image_midleft, .image_midright, .image_bottom1{
+.center-left, .center-right, .bottom-left{
     width: 375px;
     height: 287px;
 }
-.image_bottom2 {
+.bottom-right {
     width: 750px;
     height: 430px;
 }
+
+.cover-image.topimg {
+    top: 0;
+    left: 0;
+}
+
+.cover-image.center-left {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cover-image.center-right {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cover-image.bottom-right {
+    bottom: 0;
+    right: 0;
+}
+
+.cover-image.bottom-left {
+    bottom: 0;
+    right: 0;
+}
+
 
 /*************************** our service **************************/
 section.Our_Services {
@@ -355,6 +381,14 @@ section.Our_Services .services_list .item p {
     font-size: 36px;
     line-height: 54px;
     font-family: 'DP Céline';
+}
+section.Our_Services .services_list .swiper-button-next,
+section.Our_Services .services_list .swiper-button-prev{
+    width: 64px;
+    top: calc(100% - 18px);
+}
+section.Our_Services .services_list .swiper-button-prev{
+    left: var(--swiper-navigation-sides-offset, calc(100% - 144px));
 }
 
 section.Our_Services .services_list .swiper-slide-active.item p {
