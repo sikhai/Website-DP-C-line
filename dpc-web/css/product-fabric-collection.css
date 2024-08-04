@@ -559,12 +559,17 @@ h2.title span {
 }
 
 
-/* footer */
+/***************************************** footer *******************************/
 footer .line {
     overflow: hidden;
+    /* position: relative;
+     */
+     display: flex;
+    width: 100%;
 }
 
 footer .line ul {
+    
     margin: 0;
     padding: 0;
     white-space: nowrap;
@@ -573,6 +578,7 @@ footer .line ul {
     border-top: 0.4px solid #748FB9;
     border-bottom: 0.4px solid #748FB9;
     justify-content: center;
+    animation: scroll 60s linear infinite;
 }
 
 footer .line li {
@@ -583,6 +589,16 @@ footer .line li {
     align-items: center;
     margin-right: 6px;
     line-height: 18px;
+    letter-spacing: 1px;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 footer .line li img {
@@ -625,5 +641,6 @@ footer .footer-bottom p {
     width: auto;
     white-space: nowrap;
 }
+
 
 

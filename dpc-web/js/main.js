@@ -8,6 +8,12 @@ var swiper = new Swiper(".proj_mouth", {
 var swiper = new Swiper(".services_list", {
     slidesPerView: 1,
     spaceBetween: 10,
+    loop: true,
+    // loopAdditionalSlides: 6,
+    autoplay: {
+        delay: 3000, // 3 seconds
+        disableOnInteraction: false, // Continue autoplay even after user interactions
+    },
     pagination: {
         el: ".swiper-pagination",
         type: "progressbar",
@@ -30,7 +36,37 @@ var swiper = new Swiper(".services_list", {
             spaceBetween: 24,
         },
     },
+    on: {
+        slideChange: function () {
+          document.querySelectorAll('.overlay-service').forEach(function (overlay) {
+            overlay.style.opacity = '1';
+          });
+          var activeSlide = swiper.slides[swiper.activeIndex];
+          var overlay = activeSlide.querySelector('.overlay-service');
+          if (overlay) {
+            overlay.style.opacity = '0';
+          }
+
+          if (activeSlide.classList.contains('blank-slide')) {
+            // Move to the first real slide
+            swiper.slideToLoop(0, 0, false); // 0 is the first real slide, 0ms duration, false no transition
+            swiper.autoplay.stop();
+            // Restart autoplay after a short delay
+            setTimeout(function () {
+                swiper.autoplay.start();
+            }, 100); 
+        }
+        },
+        
+    }
 });
+// Initially hide overlay for the first active slide
+var initialActiveSlide = swiper.slides[swiper.activeIndex];
+var initialOverlay = initialActiveSlide.querySelector('.overlay-service');
+if (initialOverlay) {
+  initialOverlay.style.opacity = '0';
+}
+
 
 function openmenu(){
     let menu = document.querySelector('.menu-area');

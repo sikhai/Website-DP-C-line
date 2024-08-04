@@ -70,17 +70,7 @@ h2.title span {
     text-transform: uppercase;
 }
 
-.swiper-button-next:after,
-.swiper-button-prev:after {
-    content: '';
-    background-image: url(../images/arrow.svg);
-    width: 64px;
-    height: 64px;
-}
 
-.swiper-button-prev:after {
-    transform: rotate(180deg);
-}
 
 .big-layout{
     /* background-color: black; */
@@ -102,8 +92,38 @@ h2.title span {
 }
 
 /* header */
+.header {
+    position: relative;
+    height: 860px;
+}
+.header .background{
+    background: url(../images/spacejoy-YI2YkyaREHk-unsplash.jpg);
+    background-position-y: center;
+    background-size: cover;
+    /* height: 860px; */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.header .background:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(32, 46, 65, 0.3) 0%, rgba(32, 46, 65, 0.8) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+.header .container {
+    position: relative;
+    z-index: 3;
+}
 .top_head{
-    z-index: 99;
+    z-index: 999;
 }
 .top_head .nav_item {
     font-family: "PlusJakartaSans-SemiBold";
@@ -116,6 +136,57 @@ h2.title span {
     gap: 24px;
 }
 
+.header .container .back-btn{
+    gap: 24px;
+    margin: 50px 0px 330px;
+}
+.header .container .back-btn img{
+    width: 42px;
+    height: 32px;
+}
+.header .container a{
+    text-decoration: none;
+}
+.header .container .back-btn h3{
+    font-family: "PlusJakartaSans-SemiBold";
+    font-size: 20px;
+    color: #F7F5F3;
+    letter-spacing: 1px;
+    align-items: center;
+}
+
+.header .container .content{
+    gap: 8px;
+}
+.header .container .content p {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0;
+    color: #F7F5F3;
+    letter-spacing: 1px;
+}
+
+.header .container .content h3 {
+    font-size: 80px;
+    line-height: 120px;
+    font-family: "DP Céline";
+    height: 240px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+    color: #F7F5F3;
+    letter-spacing: 2px;
+    margin-top: 22px;
+}
+
+/* project info */
+.project-info {
+    margin: 100px 0 100px;
+    gap: 100px;
+}
 
 .body_head {
     padding: 140px 0 75px;
