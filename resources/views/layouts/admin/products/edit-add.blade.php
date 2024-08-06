@@ -199,10 +199,10 @@
                                         <div class="form-group attribute">
                                             <div class="row">
                                                 <div class="col-md-5">
-                                                    <input type="text" name="attributes_name[{{$key}}]" class="form-control" placeholder="{{ __('Attribute Name') }}" value="{{ $name }}">
+                                                    <input type="text" name="attributes[{{$key}}][name]" class="form-control" placeholder="{{ __('Attribute Name') }}" value="{{ $name }}">
                                                 </div>
                                                 <div class="col-md-5">
-                                                    <input type="text" name="attributes_name[{{$key}}]" class="form-control" placeholder="{{ __('Attribute Value') }}" value="" required>
+                                                    <input type="text" name="attributes[{{$key}}][value]" class="form-control" placeholder="{{ __('Attribute Value') }}" value="" required>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <button type="button" class="btn btn-danger remove-attribute-btn">{{ __('Remove') }}</button>
