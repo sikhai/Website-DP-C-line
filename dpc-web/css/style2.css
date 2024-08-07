@@ -192,33 +192,15 @@ h2.title span {
 /***************************************** banner slide *******************************/
 
 .banner {
-    width: 100%;
+    
     height: 100vh;
-    /* background: url(../images/spacejoy-YI2YkyaREHk-unsplash.jpg); */
-    background-position-y: center;
-    background-size: cover;
     padding: 0;
     position: relative;
-    overflow: hidden;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* .banner:after {
-    content: '';
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(32, 46, 65, 0.3) 0%, rgba(32, 46, 65, 0.8) 100%);
-    position: absolute;
-    top: 0;
-    left: 0;
-} */
-.banner .container{
-    width: 100%;
-    height: 860px;
-    position: relative;
-    padding: 0;
-    max-width: 1440px;
-}
 
 .banner .proj_mouth .swiper-button-next,
 .banner .proj_mouth .swiper-button-prev
@@ -232,30 +214,8 @@ h2.title span {
     left: var(--swiper-navigation-sides-offset, calc(100% - 188px));
 }
 
-.banner .proj_mouth .item {
-    display: flex;
-    align-items: flex-end; 
-    position: relative;
-}
-.banner .proj_mouth .image{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0; 
-    overflow: hidden; 
-    /* scale: 0.3; */
-}
-.banner .proj_mouth img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 .banner .proj_mouth .item .content{
     z-index: 999;
-    /* width: 100%; */
     position: relative;
     margin-left: 85px;
 }
@@ -279,80 +239,45 @@ h2.title span {
     color: #D5CCC3;
 }
 
-/* scroll annimation  */
-.banner .image {
-    transform: scale(0.3);
-    transition: transform 0.3s ease;
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+.image-container {
+  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    height: 280px;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    transition: width 0.5s ease, height 0.5s ease;
+}
+.image-container img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1400px; /* Kích thước đầy đủ của ảnh */
+    height: 860px; /* Kích thước đầy đủ của ảnh */
+    transform: translate(-50%, -50%);
+
 }
 
-.banner .content, .banner .swiper-button-next, .banner .swiper-button-prev {
-    /* opacity: 0; */
+/* .banner .content, .banner .swiper-button-next, .banner .swiper-button-prev {
     transform: translateY(200px);
-    
     transition: opacity 1.5s ease, transform 1.5s ease;
-    /* transition-delay: 3s; */
-}
+} */
 
-.banner.scrolled .image img {
+/* .banner.scrolled .image img {
     transform: scale(1);
-}
+} */
 
-.banner.revealed  .content, .banner.revealed  .swiper-button-next, .banner.revealed  .swiper-button-prev {
-    /* opacity: 1; */
+/* .banner.revealed  .content, .banner.revealed  .swiper-button-next, .banner.revealed  .swiper-button-prev {
     transform: translateY(0);
-}
-
-.cover-images {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-.cover-image {
-    position: absolute;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.topimg{
-    width: 842px;
-    height: 420px;
-    /* justify-content: center; */
-    /* transform: translateY(30px); */
-}
-.center-left, .center-right, .bottom-left{
-    width: 375px;
-    height: 287px;
-}
-.bottom-right {
-    width: 750px;
-    height: 430px;
-}
-
-.cover-image.topimg {
-    top: 0;
-    left: 0;
-}
-
-.cover-image.center-left {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.cover-image.center-right {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.cover-image.bottom-right {
-    bottom: 0;
-    right: 0;
-}
-
-.cover-image.bottom-left {
-    bottom: 0;
-    right: 0;
-}
+} */
 
 
 /*************************** our service **************************/
@@ -936,4 +861,6 @@ footer .footer-bottom p {
     width: auto;
     white-space: nowrap;
 }
+
+
 

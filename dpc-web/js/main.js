@@ -9,9 +9,10 @@ var swiper = new Swiper(".services_list", {
     slidesPerView: 1,
     spaceBetween: 10,
     loop: true,
+    speed: 2000,
     // loopAdditionalSlides: 6,
     autoplay: {
-        delay: 3000, // 3 seconds
+        delay: 1000, // 3 seconds
         disableOnInteraction: false, // Continue autoplay even after user interactions
     },
     pagination: {
@@ -128,45 +129,77 @@ input.addEventListener('input', function (evt) {
 // });
 
 //banner annimation
-document.addEventListener('scroll', function() {
-    const banner = document.querySelector('.banner');
-    const zoomImages = document.querySelectorAll('#zoomImage');
-    const content = document.querySelectorAll('.content');
-    const nextButton = document.querySelector('.swiper-button-next');
-    const prevButton = document.querySelector('.swiper-button-prev');
+// document.addEventListener('scroll', function() {
+//     const banner = document.querySelector('.banner');
+//     const zoomImages = document.querySelectorAll('#zoomImage');
+//     const content = document.querySelectorAll('.content');
+//     const nextButton = document.querySelector('.swiper-button-next');
+//     const prevButton = document.querySelector('.swiper-button-prev');
     
-    const scrollPosition = window.scrollY;
-    const maxScroll = 700; // maximum scroll area
+//     const scrollPosition = window.scrollY;
+//     const maxScroll = 700; // maximum scroll area
 
-    // if (scrollPosition <= maxScroll) {
-    //     const scale = 0.3 + (scrollPosition / maxScroll) * 0.7;
-    //     zoomImages.forEach(img => img.style.transform = `scale(${scale})`);
-
-    //     const opacity = scrollPosition / maxScroll;
-    //     content.forEach(cont => cont.style.opacity = opacity);
-    //     nextButton.style.opacity = opacity;
-    //     prevButton.style.opacity = opacity;
-
-    //     const translateY = 20 - (scrollPosition / maxScroll) * 20;
-    //     content.forEach(cont => cont.style.transform = `translateY(${translateY}px)`);
-    //     nextButton.style.transform = `translateY(${translateY}px)`;
-    //     prevButton.style.transform = `translateY(${translateY}px)`;
-    // }
-    if (scrollPosition <= maxScroll) {
-        const scale = 0.3 + (scrollPosition / maxScroll) * 0.7;
-        zoomImages.forEach(img => img.style.transform = `scale(${scale})`);
+//     if (scrollPosition <= maxScroll) {
+//         const scale = 0.3 + (scrollPosition / maxScroll) * 0.7;
+//         zoomImages.forEach(img => img.style.transform = `scale(${scale})`);
         
-        if (scrollPosition >= 0.95*maxScroll) {
-            banner.classList.add('zoomed');
-            banner.classList.add('revealed');
-        } else {
-            banner.classList.remove('revealed');
-            if (scrollPosition < maxScroll * 0.7) {
-                banner.classList.remove('zoomed');
-            }
-        }
+//         if (scrollPosition >= 0.95*maxScroll) {
+//             banner.classList.add('zoomed');
+//             banner.classList.add('revealed');
+//         } else {
+//             banner.classList.remove('revealed');
+//             if (scrollPosition < maxScroll * 0.7) {
+//                 banner.classList.remove('zoomed');
+//             }
+//         }
+//     }
+// });
+
+window.addEventListener('scroll', () => {
+    const section = document.getElementById('image-section');
+    const imageContainers = document.querySelectorAll('.image-container');
+    const sectionRect = section.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+  
+    if (sectionRect.top <= windowHeight / 2 && sectionRect.bottom >= windowHeight / 2) {
+        const scrollPercentage = (windowHeight / 2 - sectionRect.top) / sectionRect.height;
+    
+        // Expand the image container based on scroll percentage
+        const maxWidth = 1400;
+        const maxHeight = 860;
+        const initialWidth = 420;
+        const initialHeight = 280;
+    
+        const newWidth = initialWidth + (maxWidth - initialWidth) * scrollPercentage;
+        const newHeight = initialHeight + (maxHeight - initialHeight) * scrollPercentage;
+        imageContainers.forEach((imageContainer) => {
+            imageContainer.style.width = `${newWidth}px`;
+            imageContainer.style.height = `${newHeight}px`;
+            imageContainer.style.position = 'fixed';
+            imageContainer.style.transform = 'translate(-50%, -50%)';
+            console.log("1");
+        })
+    } else if (sectionRect.bottom < windowHeight) {
+        // Keep the image in place when reaching the end of section 2
+        imageContainers.forEach((imageContainer) => {
+            imageContainer.style.position = 'fixed';
+            imageContainer.style.top = '50%';
+            imageContainer.style.transform = 'translate(-50%, -50%)';
+        })
+    } else {
+        // Before reaching section 2
+        imageContainers.forEach((imageContainer) => {
+            imageContainer.style.width = '420px';
+            imageContainer.style.height = '280px';
+            imageContainer.style.position = 'absolute';
+            imageContainer.style.top = '50%';
+            imageContainer.style.left = '50%';
+            imageContainer.style.transform = 'translate(-50%, -50%)';
+        })
     }
-});
+  });
+  
+  
 //project annimantion
 const images = document.querySelectorAll('.img-wrapper');
 const imgArea = document.querySelector('.img-area');
