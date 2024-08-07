@@ -8,10 +8,11 @@ var swiper = new Swiper(".proj_mouth", {
 var swiper = new Swiper(".services_list", {
     slidesPerView: 1,
     spaceBetween: 10,
+    speed: 2500,
     loop: true,
     // loopAdditionalSlides: 6,
     autoplay: {
-        delay: 3000, // 3 seconds
+        delay: 2000, // 3 seconds
         disableOnInteraction: false, // Continue autoplay even after user interactions
     },
     pagination: {
@@ -160,36 +161,34 @@ document.addEventListener('scroll', function() {
     const prevButton = document.querySelector('.swiper-button-prev');
     
     const scrollPosition = window.scrollY;
-    const maxScroll = 700; // maximum scroll area
+    const maxScroll = 1440; // maximum scroll area
 
     // if (scrollPosition <= maxScroll) {
     //     const scale = 0.3 + (scrollPosition / maxScroll) * 0.7;
     //     zoomImages.forEach(img => img.style.transform = `scale(${scale})`);
-
-    //     const opacity = scrollPosition / maxScroll;
-    //     content.forEach(cont => cont.style.opacity = opacity);
-    //     nextButton.style.opacity = opacity;
-    //     prevButton.style.opacity = opacity;
-
-    //     const translateY = 20 - (scrollPosition / maxScroll) * 20;
-    //     content.forEach(cont => cont.style.transform = `translateY(${translateY}px)`);
-    //     nextButton.style.transform = `translateY(${translateY}px)`;
-    //     prevButton.style.transform = `translateY(${translateY}px)`;
-    // }
-    if (scrollPosition <= maxScroll) {
-        const scale = 0.3 + (scrollPosition / maxScroll) * 0.7;
-        zoomImages.forEach(img => img.style.transform = `scale(${scale})`);
         
-        if (scrollPosition >= 0.95*maxScroll) {
-            banner.classList.add('zoomed');
-            banner.classList.add('revealed');
-        } else {
-            banner.classList.remove('revealed');
-            if (scrollPosition < maxScroll * 0.7) {
-                banner.classList.remove('zoomed');
-            }
-        }
-    }
+    //     if (scrollPosition >= 0.95*maxScroll) {
+    //         banner.classList.add('zoomed');
+    //         banner.classList.add('revealed');
+    //     } else {
+    //         banner.classList.remove('revealed');
+    //         if (scrollPosition < maxScroll * 0.7) {
+    //             banner.classList.remove('zoomed');
+    //         }
+    //     }
+    // }
+    const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+    const maxWidth = 1400; // Image width
+    const maxHeight = 860; // Image height
+    const minWidth = 420; // Initial frame width
+    const minHeight = 280; // Initial frame height
+    
+    const newWidth = minWidth + (maxWidth - minWidth) * scrollPercent;
+    const newHeight = minHeight + (maxHeight - minHeight) * scrollPercent;
+    
+    const container = document.querySelector('.item');
+    container.style.width = `${newWidth}px`;
+    container.style.height = `${newHeight}px`;
 });
 //project annimantion
 const images = document.querySelectorAll('.img-wrapper');
