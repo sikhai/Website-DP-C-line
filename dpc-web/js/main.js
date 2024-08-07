@@ -129,12 +129,45 @@ input.addEventListener('input', function (evt) {
 // });
 
 //banner annimation
+<<<<<<< HEAD
 // document.addEventListener('scroll', function() {
 //     const banner = document.querySelector('.banner');
 //     const zoomImages = document.querySelectorAll('#zoomImage');
 //     const content = document.querySelectorAll('.content');
 //     const nextButton = document.querySelector('.swiper-button-next');
 //     const prevButton = document.querySelector('.swiper-button-prev');
+=======
+// const banner = document.querySelector('.banner');
+// const zoomImages = banner.querySelectorAll('#zoomImage');
+// const maxWidth = 1400; // Image width
+// const maxHeight = 860; // Image height
+// const minWidth = 420; // Initial frame width
+// const minHeight = 280; // Initial frame height
+
+// window.addEventListener('scroll', function() {
+//     const bannerRect = banner.getBoundingClientRect();
+//     const bannerHeight = bannerRect.height;
+//     const scrollTop = window.scrollY;
+    
+//     if (bannerRect.top < window.innerHeight && bannerRect.bottom > 0) {
+//         // Calculate the scroll percentage within the banner section
+//         const scrollPercent = (window.innerHeight - bannerRect.top) / bannerHeight;
+//         const newWidth = minWidth + (maxWidth - minWidth) * scrollPercent;
+//         const newHeight = minHeight + (maxHeight - minHeight) * scrollPercent;
+
+//         zoomImages.forEach((container) => {
+//             container.style.width = `${newWidth}px`;
+//             container.style.height = `${newHeight}px`;
+//         });
+//     }
+// });
+document.addEventListener('scroll', function() {
+    const banner = document.querySelector('.banner');
+    const zoomImages = document.querySelectorAll('#zoomImage');
+    const content = document.querySelectorAll('.content');
+    const nextButton = document.querySelector('.swiper-button-next');
+    const prevButton = document.querySelector('.swiper-button-prev');
+>>>>>>> d98806ce5515438ca5703379f2701e954e1dc44f
     
 //     const scrollPosition = window.scrollY;
 //     const maxScroll = 700; // maximum scroll area
