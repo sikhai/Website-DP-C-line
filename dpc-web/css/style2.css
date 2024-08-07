@@ -192,33 +192,23 @@ h2.title span {
 /***************************************** banner slide *******************************/
 
 .banner {
+<<<<<<< HEAD
     width: 100%;
     height: 200vh;
     /* background: url(../images/spacejoy-YI2YkyaREHk-unsplash.jpg); */
     background-position-y: center;
     background-size: cover;
+=======
+    
+    height: 100vh;
+>>>>>>> d23241eedee2fca43747a007cb9cc0800d9e0d7a
     padding: 0;
     position: relative;
-    overflow: hidden;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* .banner:after {
-    content: '';
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(32, 46, 65, 0.3) 0%, rgba(32, 46, 65, 0.8) 100%);
-    position: absolute;
-    top: 0;
-    left: 0;
-} */
-.banner .container{
-    width: 100%;
-    height: 860px;
-    position: relative;
-    padding: 0;
-    max-width: 1440px;
-}
 
 .banner .proj_mouth .swiper-button-next,
 .banner .proj_mouth .swiper-button-prev
@@ -232,6 +222,7 @@ h2.title span {
     left: var(--swiper-navigation-sides-offset, calc(100% - 188px));
 }
 
+<<<<<<< HEAD
 .banner .proj_mouth .item {
     /* display: flex;
     align-items: flex-end; 
@@ -268,9 +259,10 @@ h2.title span {
     object-fit: cover;
 }
 
+=======
+>>>>>>> d23241eedee2fca43747a007cb9cc0800d9e0d7a
 .banner .proj_mouth .item .content{
     z-index: 999;
-    /* width: 100%; */
     position: relative;
     margin-left: 85px;
 }
@@ -294,6 +286,7 @@ h2.title span {
     color: #D5CCC3;
 }
 
+<<<<<<< HEAD
 /* scroll annimation  */
 
 .image {
@@ -316,19 +309,47 @@ h2.title span {
 .banner .image {
     transform: scale(0.3);
     transition: transform 0.3s ease;
+=======
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+.image-container {
+  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    height: 280px;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    transition: width 0.5s ease, height 0.5s ease;
+}
+.image-container img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1400px; /* Kích thước đầy đủ của ảnh */
+    height: 860px; /* Kích thước đầy đủ của ảnh */
+    transform: translate(-50%, -50%);
+
+>>>>>>> d23241eedee2fca43747a007cb9cc0800d9e0d7a
 }
 
-.banner .content, .banner .swiper-button-next, .banner .swiper-button-prev {
+/* .banner .content, .banner .swiper-button-next, .banner .swiper-button-prev {
     transform: translateY(200px);
     transition: opacity 1.5s ease, transform 1.5s ease;
-}
+} */
 
-.banner.scrolled .image img {
+/* .banner.scrolled .image img {
     transform: scale(1);
-}
+} */
 
-.banner.revealed  .content, .banner.revealed  .swiper-button-next, .banner.revealed  .swiper-button-prev {
+/* .banner.revealed  .content, .banner.revealed  .swiper-button-next, .banner.revealed  .swiper-button-prev {
     transform: translateY(0);
+<<<<<<< HEAD
 }
 
 .cover-images {
@@ -380,6 +401,9 @@ h2.title span {
     bottom: 0;
     right: 0;
 }
+=======
+} */
+>>>>>>> d23241eedee2fca43747a007cb9cc0800d9e0d7a
 
 
 /*************************** our service **************************/
@@ -963,4 +987,6 @@ footer .footer-bottom p {
     width: auto;
     white-space: nowrap;
 }
+
+
 
