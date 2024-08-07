@@ -1,7 +1,7 @@
-body, html {
+section.a {
     margin: 0;
     padding: 0;
-    height: 200vh; /* To enable scrolling */
+    height: 300vh; /* To enable scrolling */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,4 +39,9 @@ body, html {
     width: 100%;
     text-align: center;
     padding: 20px;
+}
+
+.banner{
+    position: relative;
+    width: 100vh;
 }

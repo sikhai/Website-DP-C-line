@@ -13,11 +13,7 @@ var swiper = new Swiper(".services_list", {
     speed: 2000,
     // loopAdditionalSlides: 6,
     autoplay: {
-<<<<<<< HEAD
-        delay: 2000, // 3 seconds
-=======
         delay: 1000, // 3 seconds
->>>>>>> d23241eedee2fca43747a007cb9cc0800d9e0d7a
         disableOnInteraction: false, // Continue autoplay even after user interactions
     },
     pagination: {
@@ -161,46 +157,14 @@ input.addEventListener('input', function (evt) {
 // });
 
 window.addEventListener('scroll', () => {
-    const section = document.getElementById('image-section');
+    const section_ = document.getElementById('image-section');
     const imageContainers = document.querySelectorAll('.image-container');
-    const sectionRect = section.getBoundingClientRect();
+    const sectionRect = section_.getBoundingClientRect();
     const windowHeight = window.innerHeight;
   
     if (sectionRect.top <= windowHeight / 2 && sectionRect.bottom >= windowHeight / 2) {
         const scrollPercentage = (windowHeight / 2 - sectionRect.top) / sectionRect.height;
     
-<<<<<<< HEAD
-    const scrollPosition = window.scrollY;
-    const maxScroll = 1440; // maximum scroll area
-
-    // if (scrollPosition <= maxScroll) {
-    //     const scale = 0.3 + (scrollPosition / maxScroll) * 0.7;
-    //     zoomImages.forEach(img => img.style.transform = `scale(${scale})`);
-        
-    //     if (scrollPosition >= 0.95*maxScroll) {
-    //         banner.classList.add('zoomed');
-    //         banner.classList.add('revealed');
-    //     } else {
-    //         banner.classList.remove('revealed');
-    //         if (scrollPosition < maxScroll * 0.7) {
-    //             banner.classList.remove('zoomed');
-    //         }
-    //     }
-    // }
-    const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-    const maxWidth = 1400; // Image width
-    const maxHeight = 860; // Image height
-    const minWidth = 420; // Initial frame width
-    const minHeight = 280; // Initial frame height
-    
-    const newWidth = minWidth + (maxWidth - minWidth) * scrollPercent;
-    const newHeight = minHeight + (maxHeight - minHeight) * scrollPercent;
-    
-    const container = document.querySelector('.item');
-    container.style.width = `${newWidth}px`;
-    container.style.height = `${newHeight}px`;
-});
-=======
         // Expand the image container based on scroll percentage
         const maxWidth = 1400;
         const maxHeight = 860;
@@ -210,11 +174,11 @@ window.addEventListener('scroll', () => {
         const newWidth = initialWidth + (maxWidth - initialWidth) * scrollPercentage;
         const newHeight = initialHeight + (maxHeight - initialHeight) * scrollPercentage;
         imageContainers.forEach((imageContainer) => {
+            imageContainer.style.position = 'fixed';
             imageContainer.style.width = `${newWidth}px`;
             imageContainer.style.height = `${newHeight}px`;
-            imageContainer.style.position = 'fixed';
             imageContainer.style.transform = 'translate(-50%, -50%)';
-            console.log("1");
+            // console.log("1");
         })
     } else if (sectionRect.bottom < windowHeight) {
         // Keep the image in place when reaching the end of section 2
@@ -237,7 +201,6 @@ window.addEventListener('scroll', () => {
   });
   
   
->>>>>>> d23241eedee2fca43747a007cb9cc0800d9e0d7a
 //project annimantion
 const images = document.querySelectorAll('.img-wrapper');
 const imgArea = document.querySelector('.img-area');
