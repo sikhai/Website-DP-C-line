@@ -1,18 +1,18 @@
-function openmenu(){
-    let main_view = document.getElementsByClassName('container');
-    let menu = document.getElementsByClassName('menu-container');
+// function openmenu(){
+//     let main_view = document.getElementsByClassName('container');
+//     let menu = document.getElementsByClassName('menu-container');
 
-    main_view[0].style.display  = 'none';
-    menu[0].style.display  = 'block';
-}
+//     main_view[0].style.display  = 'none';
+//     menu[0].style.display  = 'block';
+// }
 
-function closemenu(){
-    let main_view = document.getElementsByClassName('container');
-    let menu = document.getElementsByClassName('menu-container');
+// function closemenu(){
+//     let main_view = document.getElementsByClassName('container');
+//     let menu = document.getElementsByClassName('menu-container');
 
-    main_view[0].style.display  = 'block';
-    menu[0].style.display  = 'none';
-}
+//     main_view[0].style.display  = 'block';
+//     menu[0].style.display  = 'none';
+// }
 
 function hide_filterbar(){
     let filterbar = document.getElementsByClassName('filter-bar-section');

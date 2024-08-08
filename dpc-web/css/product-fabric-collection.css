@@ -23,6 +23,13 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'PlusJakartaSans-Light';
+    src: url('../fonts/Plus_Jakarta_Sans/Plus_Jakarta_Sans/static/PlusJakartaSans-Light.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
 
 @font-face {
     font-family: 'PlusJakartaSans-SemiBold';
@@ -520,7 +527,16 @@ h2.title span {
     width: 1440px;
     height: 960px;
     background-color: #202E41;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1000;
     
+}
+.menu-area.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
 .menu-area .header-menu{
     max-width: 1440px;
@@ -556,6 +572,97 @@ h2.title span {
 }
 .body-menu .option-menu:hover{
     color: #F7F5F3;
+}
+
+/******************************* search-area ************************/
+.search-area {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 0;
+    /* left: 0; */
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    width: 1440px;
+    height: 960px;
+    background-color: #202E41;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1000;
+    
+}
+.search-area.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+.search-area .header-search{
+    max-width: 1440px;
+    
+}
+
+.search-area .header-search .menu_right{
+    gap: 8px;
+}
+.search-area .header-search .menu_right .nav_item{
+    color: #D5CCC3;
+    text-decoration: none;
+    font-family: "PlusJakartaSans-SemiBold";
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.body-search {
+    /* position: relative; */
+    margin: 220px 348px;
+    gap: 160px;
+}
+.body-search .option-menu{
+    font-family: "DP Céline";
+    text-decoration: none;
+    font-size: 48px;
+    font-weight: 100;
+    line-height: 72px;
+    letter-spacing: 2px;
+    /* text-align: center; */
+    color: #BEB0A2;
+    margin-bottom: 24px;
+}
+.body-search .input-group {
+    width: 654px;
+}
+.body-search .input-group input{
+    background-color: transparent;
+    border-width: 0px 0px 1px 0px;
+    border-radius: 0px;
+    border-color: #697586;
+    width: 655px;
+    height: 100px;
+    color: #FCFCFD;
+    font-size: 48px;
+    font-family: 'PlusJakartaSans-Light';
+}
+.body-search .input-group input::placeholder {
+    color: #697586;
+    font-size: 48px;
+    letter-spacing: 1%;
+    font-weight: 100;
+    opacity: 1; /* Firefox */
+}
+.body-search .input-group input::-ms-input-placeholder { /* Edge 12 -18 */
+    color: #697586;
+    font-size: 48px;
+    letter-spacing: 1%;
+    font-weight: 100;
+}
+.body-search h4{
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-left: 15px;
+    /* font-family: 'PlusJakartaSans-Light'; */
 }
 
 

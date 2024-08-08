@@ -193,7 +193,7 @@ h2.title span {
 
 .banner {
     
-    height: 200vh;
+    height: 100vh;
     padding: 0;
     position: relative;
     display: flex;
@@ -263,9 +263,9 @@ h2.title span {
     left: 50%;
     width: 1400px; /* Kích thước đầy đủ của ảnh */
     height: 860px; /* Kích thước đầy đủ của ảnh */
-    will-change: transform;
+    /* will-change: transform; */
     transform: translate(-50%, -50%);
-    transition: transform 0.5s ease-in-out;
+    /* transition: transform 0.5s ease-in-out; */
 
 }
 
@@ -432,12 +432,12 @@ section.trending .box_trending .left {
     transform: rotateY(180deg);
 }
 
-section.trending .box_trending .left .flip-card-front img {
+section.trending .box_trending .left .flip-card-front .img-flip {
     border-radius: 0px 180px;
     height: 810px;
     /* object-fit: cover; */
 }
-section.trending .box_trending .left .flip-card-back img {
+section.trending .box_trending .left .flip-card-back .img-flip {
     border-radius: 0px 180px;
     height: 810px;
     /* object-fit: cover; */
@@ -655,8 +655,18 @@ section.project .img-area{
     width: 1440px;
     height: 960px;
     background-color: #202E41;
-    
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1000;
 }
+
+.menu-area.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .menu-area .header-menu{
     max-width: 1440px;
     
@@ -713,7 +723,16 @@ section.project .img-area{
     width: 1440px;
     height: 960px;
     background-color: #202E41;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1000;
     
+}
+.search-area.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
 .search-area .header-search{
     max-width: 1440px;
