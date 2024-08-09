@@ -237,7 +237,9 @@ h2.title span {
 
 /* table product */
 
-
+.table-projects a{
+    text-decoration: none;
+}
 .table-projects .container{
     display: flex;
     justify-content: space-between;
