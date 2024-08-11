@@ -10,10 +10,9 @@ var swiper = new Swiper(".services_list", {
     spaceBetween: 10,
     speed: 2500,
     loop: true,
-    speed: 2000,
     // loopAdditionalSlides: 6,
     autoplay: {
-        delay: 1000, // 3 seconds
+        delay: 0, // 3 seconds
         disableOnInteraction: false, // Continue autoplay even after user interactions
     },
     pagination: {
@@ -56,7 +55,7 @@ var swiper = new Swiper(".services_list", {
             // Restart autoplay after a short delay
             setTimeout(function () {
                 swiper.autoplay.start();
-            }, 100); 
+            }, 10000); 
         }
         },
         
@@ -68,47 +67,6 @@ var initialOverlay = initialActiveSlide.querySelector('.overlay-service');
 if (initialOverlay) {
   initialOverlay.style.opacity = '0';
 }
-
-
-function openmenu(){
-    let menu = document.querySelector('.menu-area');
-    menu.style.display = "block";
-}
-
-function opensearch(){
-    let search = document.querySelector('.search-area');
-    search.style.display = "block";
-}
-
-function closemenu(){
-    let menu = document.querySelector('.menu-area');
-    let search_area = document.querySelector('.search-area');
-    
-    menu.style.display = "none";
-    search_area.style.display = "none";
-}
-
-// document.getElementsById("search-item")[0].addEventListener('change', function (evt) {
-//     var text_search = this.value;
-//     let elemnet = document.querySelector('.text-search');
-//     if (text_search == ""){
-//         elemnet.style.display = "none";
-//     }
-//     else{
-//         elemnet.style.display = "block";
-//     }
-// });
-const input = document.querySelector('#search-item');
-input.addEventListener('input', function (evt) {
-    var text_search = this.value;
-    let elemnet = document.querySelector('.text-search');
-    if (text_search == ""){
-        elemnet.style.display = "none";
-    }
-    else{
-        elemnet.style.display = "block";
-    }
-});
 
 
 // document.addEventListener('scroll', function() {

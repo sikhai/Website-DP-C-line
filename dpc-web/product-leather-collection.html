@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DP Céline - Fabric - D</title>
+    <title>DP Céline - Leather</title>
     <!-- bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -28,19 +28,19 @@
                                 </a>
                             </div>
                             <div class="col-2 d-flex align-items-center menu_right">
-                                <a class="nav_item" id="search">SEARCH</a>
+                                <a class="nav_item" id="search" onclick="opensearch()">SEARCH</a>
                                 <a class="nav_item" id="open-menu" onclick="openmenu()">MENU</a>
                             </div>
                         </div>
                     </div>
                     <div class="body_head">
-                        <h1>Fabric</h1>
+                        <h1>Leather</h1>
                         <div class="d-flex align-items-center menu_fabric">
                             <a class="nav_item" id="next-tab" href="homepage2.html">Home</a>
                             <p class="nav_item">/</p>
                             <a class="nav_item" id="next-tab">All Products</a>
                             <p class="nav_item">/</p>
-                            <a class="nav_item" id="current-tab">Fabric</a>
+                            <a class="nav_item" id="current-tab">Leather</a>
                         </div>
                         <div id="line"></div>
                     </div>
@@ -51,7 +51,7 @@
                 <div class="row">
                     <div class="d-flex align-items-center tab-collection-design">
                         <a class="nav_item" id="current-tab" >Collection</a>
-                        <a class="nav_item" id="next-tab" href="product-fabric-design.html">Design</a>
+                        <a class="nav_item" id="next-tab" href="product-leather-design.html">Design</a>
                     </div>
                 </div>
                 <div class="row pt-5 pb-3">
@@ -939,7 +939,7 @@
                 </div>
             </footer>
 
-            <section class="menu-area" style="display: none;">
+            <section class="menu-area">
                 <div class="header-menu">
                     <div class="row mt-3">
                         <div class="col-2 d-flex align-items-center">
@@ -961,25 +961,56 @@
                     <div class="row p-0">
                         <div class="col-3 d-flex flex-column">
                             <a class="option-menu" href="product-fabric-collection.html">Fabric</a>
-                            <a class="option-menu" href="#">Leather</a>
+                            <a class="option-menu" href="./product-leather-collection.html">Leather</a>
                             <a class="option-menu" href="#">Curtain</a>
                         </div>
                         <div class="col-5 d-flex flex-column">
                             <a class="option-menu" href="#">Roller Blind</a>
-                            <a class="option-menu" href="#">Wall Covering</a>
+                            <a class="option-menu" href="./product-wallpaper-collection.html">Wall Covering</a>
                             <a class="option-menu" href="#">Window furnishing</a>
                         </div>
                         <div class="col-4 d-flex flex-column">
                             <a class="option-menu" href="#">Bespoke Services</a>
-                            <a class="option-menu" href="#">Our Projects</a>
+                            <a class="option-menu" href="./our-project.html">Our Projects</a>
                             <a class="option-menu" href="#">About Us</a>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="search-area">
+                <div class="header-search">
+                    <div class="row mt-3">
+                        <div class="col-2 d-flex align-items-center">
+                            
+                        </div>
+                        <div class="col-8 text-center">
+                            <a>
+                                <img src="images/logo.svg" width="55" id="img-logo-ref" alt="logo" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="col-2 d-flex align-items-center menu_right">
+                            <a class="nav_item" onclick="closemenu()">CLOSE</a>
+                            <img src="images/x-close-12x12.svg" id="img-close-ref" style="cursor:pointer;"  onclick="closemenu()" alt="">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="body-search" >
+                    <div class="row p-0">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Search" id="search-item">
+                          </div>
+                    </div>
+                    <div class="row p-0 mt-2 text-search" style="display: none;">
+                        <h4>Press Enter to search</h4>
                     </div>
                 </div>
             </section>
         </div>
 
         <script src="js/scripts.js" ></script>
+        <script src="js/menu-script.js"></script>
         <script src="js/main.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
