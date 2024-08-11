@@ -1,3 +1,5 @@
+
+// swiper project
 var swiper = new Swiper(".proj_mouth", {
     navigation: {
         nextEl: ".swiper-button-next",
@@ -135,6 +137,8 @@ window.addEventListener('scroll', () => {
             imageContainer.style.position = 'fixed';
             imageContainer.style.width = `${newWidth}px`;
             imageContainer.style.height = `${newHeight}px`;
+            imageContainer.style.top = '50%'; // Always center the image vertically
+            imageContainer.style.left = '50%'; // Always center the image horizontally
             imageContainer.style.transform = 'translate(-50%, -50%)';
             // console.log("1");
         })
@@ -193,39 +197,6 @@ imgArea.addEventListener('mouseleave', () => {
         img.style.transform = 'translate(0, 0)';
     });
 });
-
-// images.forEach((img, index) => {
-//     img.addEventListener('mousemove', (e) => {
-//         const rect = img.getBoundingClientRect();
-//         const mouseX = e.clientX - rect.left;
-//         const mouseY = e.clientY - rect.top;
-//         const centerX = rect.width / 2;
-//         const centerY = rect.height / 2;
-
-//         const deltaX = mouseX - centerX;
-//         const deltaY = mouseY - centerY;
-        
-//         const moveX = (deltaX / centerX) * 200; // Tăng biên độ dao động
-//         const moveY = (deltaY / centerY) * 200; // Tăng biên độ dao động
-
-//         img.style.transform = `translate(${moveX}px, ${moveY}px)`;
-
-//         // Di chuyển các ảnh khác ra xa
-//         images.forEach((otherImg, otherIndex) => {
-//             if (otherIndex !== index) {
-//                 otherImg.style.transform = `translate(${moveX * -0.5}px, ${moveY * -0.5}px)`;
-//             }
-//         });
-//     });
-
-//     // img.addEventListener('mouseleave', () => {
-//     //     img.style.transform = 'translate(0, 0)';
-//     //     images.forEach((otherImg) => {
-//     //         otherImg.style.transform = 'translate(0, 0)';
-//     //     });
-//     // });
-// });
-
 
 
 // Flip annimation
