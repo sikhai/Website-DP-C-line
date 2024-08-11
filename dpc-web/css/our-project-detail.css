@@ -200,7 +200,7 @@ h2.title span {
     font-size: 20px;
     width: 524px;
     line-height: 32px;
-    font-family: "PlusJakartaSans-SemiBold";
+    font-family: "PlusJakartaSans-Medium";
     font-weight: 500;
     letter-spacing: 1px;
     color: #F7F5F3;
@@ -209,7 +209,7 @@ h2.title span {
 .project-info h3{
     font-size: 20px;
     line-height: 32px;
-    font-family: "PlusJakartaSans-SemiBold";
+    font-family: "PlusJakartaSans-Medium";
     font-weight: 500;
     letter-spacing: 1px;
     color: #9AA4B2;
@@ -218,7 +218,7 @@ h2.title span {
     font-size: 20px;
     width: 524px;
     line-height: 32px;
-    font-family: "PlusJakartaSans-SemiBold";
+    font-family: "PlusJakartaSans-Medium";
     font-weight: 500;
     letter-spacing: 1px;
     color: #F7F5F3;
@@ -251,6 +251,45 @@ h2.title span {
     pointer-events: none;
 }
 
+.next-project{
+    margin: 0px 0px 200px 0px;
+}
+.next-project img{
+    width: 100%;
+    height: 530px;
+    max-width: 700px;
+    object-fit: cover;
+    overflow: hidden;
+}
+.next-project a{
+    font-size: 20px;
+    line-height: 32px;
+    font-family: "PlusJakartaSans-Medium";
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #F7F5F3;
+    margin-top: 80px;
+}
+.next-project p{
+    font-size: 20px;
+    line-height: 32px;
+    font-family: "PlusJakartaSans-Medium";
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #F7F5F3;
+    margin-top: 150px;
+    margin-bottom: 44px;
+}
+.next-project h2{
+    font-size: 48px;
+    line-height: 72px;
+    font-family: "DP Céline";
+    /* text-transform: uppercase; */
+    font-weight: 100;
+    margin: 0;
+    letter-spacing: 2px;
+    width: 100%;
+}
 /* menu-area */
 .menu-area {
     position: absolute;
