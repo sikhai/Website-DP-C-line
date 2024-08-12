@@ -23,32 +23,125 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Animate section 3 with a different effect
-    // gsap.to('#section3', {
-    //     rotation: 360,
+    // ------------------phase1
+    // gsap.to(".banner .surround-img:nth-child(1)", {
+    //     y: "-300px",
     //     scrollTrigger: {
-    //         trigger: '#section3',
-    //         start: 'top 50%',
-    //         end: 'bottom 50%',
+    //         trigger: ".banner .image-container",
+    //         start: "top center",
+    //         end: "center center",
     //         scrub: true,
-    //         markers: false // Optional, for debugging
+    //         markers: true
     //     }
     // });
 
-    // Animation for the title appearing at 95% of the content2 expansion
-    // gsap.to("#section2 .title", {
-    //     opacity: 1,
-    //     y: 0,
-    //     duration: 1,
+    // gsap.to(".banner .surround-img:nth-child(2)", {
+    //     x: "-200px",
     //     scrollTrigger: {
-    //         trigger: "#section2 .content2",
-    //         start: "top 95%",  // Trigger the animation when content2 has reached 95% of its target
-    //         toggleActions: "play none none none", // Only play the animation once
-    //         markers: true,     // Optional: Show markers for debugging
-    //         onEnter: () => gsap.to("#section2 .title", { opacity: 1, y: 0 }),  // Animate title into view
-    //         onLeaveBack: () => gsap.set("#section2 .title", { opacity: 0, y: 100 }), // Reset title when scrolling back
+    //         trigger: ".banner .image-container",
+    //         start: "top center",
+    //         end: "center center",
+    //         scrub: true,
+    //         markers: true
     //     }
     // });
+
+    // gsap.to(".banner .surround-img:nth-child(3)", {
+    //     x: "200px",
+    //     scrollTrigger: {
+    //         trigger: ".banner .image-container",
+    //         start: "top center",
+    //         end: "center center",
+    //         scrub: true,
+    //         markers: true
+    //     }
+    // });
+
+    // gsap.to(".banner .surround-img:nth-child(4)", {
+    //     y: "200px",
+    //     scrollTrigger: {
+    //         trigger: ".banner .image-container",
+    //         start: "top center",
+    //         end: "center center",
+    //         scrub: true,
+    //         markers: true
+    //     }
+    // });
+
+    // gsap.to(".banner .surround-img:nth-child(5)", {
+    //     x: "100px",
+    //     y: "-100px",
+    //     scrollTrigger: {
+    //         trigger: ".banner .image-container",
+    //         start: "top center",
+    //         end: "center center",
+    //         scrub: true,
+    //         markers: true
+    //     }
+    // });
+
+    // ------------------phase2
+    // gsap.to(".banner .surround-img:nth-child(1)", {
+    //     y: "-1000px",
+    //     scale:2,
+    //     scrollTrigger: {
+    //         trigger: ".banner .image-container",
+    //         start: "center center",
+    //         end: "bottom top",
+    //         scrub: true,
+    //         markers: true
+    //     }
+    // });
+
+    // gsap.to(".banner .surround-img:nth-child(2)", {
+    //     x: "-500px",
+    //     scale:2,
+    //     scrollTrigger: {
+    //         trigger: ".banner .image-container",
+    //         start: "center center",
+    //         end: "bottom top",
+    //         scrub: true,
+    //         markers: true
+    //     }
+    // });
+
+    // gsap.to(".banner .surround-img:nth-child(3)", {
+    //     x: "500px",
+    //     scale:2,
+    //     scrollTrigger: {
+    //         trigger: ".banner .image-container",
+    //         start: "center center",
+    //         end: "bottom top",
+    //         scrub: true,
+    //         markers: true
+    //     }
+    // });
+
+    // gsap.to(".banner .surround-img:nth-child(4)", {
+    //     y: "500px",
+    //     scale:2,
+    //     scrollTrigger: {
+    //         trigger: ".banner .image-container",
+    //         start: "center center",
+    //         end: "bottom top",
+    //         scrub: true,
+    //         markers: true
+    //     }
+    // });
+
+    // gsap.to(".banner .surround-img:nth-child(5)", {
+    //     x: "300px",
+    //     y: "-300px",
+    //     scale: 2,
+    //     scrollTrigger: {
+    //         trigger: ".banner .image-container",
+    //         start: "center center",
+    //         end: "bottom top",
+    //         scrub: true,
+    //         markers: true
+    //     }
+    // });
+   
     // Animation for the title appearing at 95% of the content2 expansion
     ScrollTrigger.create({
         trigger: ".banner .image-container",
