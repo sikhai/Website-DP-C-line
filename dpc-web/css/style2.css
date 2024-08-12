@@ -193,8 +193,8 @@ h2.title span {
 
 .banner {
     
-    height: 100vh;
-    padding: 0;
+    height: 150vh;
+    /* padding: 0; */
     position: relative;
     display: flex;
     justify-content: center;
@@ -214,20 +214,27 @@ h2.title span {
     left: var(--swiper-navigation-sides-offset, calc(100% - 188px));
 }
 
-.banner .proj_mouth .item .content{
+.banner .content{
     z-index: 999;
     position: relative;
-    margin-left: 85px;
+    width: 60%;
+    margin-left: -300px;
+    margin-top: 500px;
+    opacity: 0; /* Hide the title initially */
+    transform: translateY(300px); /* Position the title off-screen */
+    /* text-align: center; */
+    transition: transform 2s ease-out, opacity 2s ease-out; /* Smooth animation */
 }
-.banner .proj_mouth .item .content p {
+.banner .content p {
     font-size: 16px;
-    line-height: 24px;
+    line-height: 80px;
     margin: 0;
 }
 
-.banner .proj_mouth .item .content h3 {
+.banner .content h3 {
+    /* margin-top: 50px; */
     font-size: 80px;
-    line-height: 120px;
+    line-height: 95px;
     font-family: "DP Céline";
     height: 240px;
     text-overflow: ellipsis;
@@ -239,32 +246,42 @@ h2.title span {
     color: #D5CCC3;
 }
 
-.image-wrapper {
+/* .image-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
-  }
+  } */
 .image-container {
-  
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 50%;
     width: 420px;
     height: 280px;
-    will-change: transform;
     transform: translate(-50%, -50%);
     overflow: hidden;
-    transition: width 0.5s ease, height 0.5s ease;
+    transition: width 0.5s ease, height 0.5s ease; */
+    width: 420px;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: absolute; /* Absolutely positioned to stay centered */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-.image-container img{
+.banner img{
     position: absolute;
+    max-width: none;
     top: 50%;
     left: 50%;
     width: 1400px; /* Kích thước đầy đủ của ảnh */
     height: 860px; /* Kích thước đầy đủ của ảnh */
     /* will-change: transform; */
     transform: translate(-50%, -50%);
+    pointer-events: none;
     /* transition: transform 0.5s ease-in-out; */
 
 }
@@ -285,7 +302,8 @@ h2.title span {
 
 /*************************** our service **************************/
 section.Our_Services {
-    padding: 204px 0;
+    margin-top: 200px;
+    padding: 200px 0;
 }
 
 section.Our_Services .services_list {
@@ -296,7 +314,7 @@ section.Our_Services .services_list {
     transition: transform 0.3s ease;
     overflow: hidden;
 }
-.overlay-service {
+.overlay_service {
     position: absolute;
     top: 0;
     left: 0;
@@ -305,7 +323,7 @@ section.Our_Services .services_list {
     background: linear-gradient(rgba(32, 46, 65, 0.3) 0%, rgba(32, 46, 65, 0.8) 100%);
     transition: background 2s ease;
 }
-.img-wrapper-service:hover .overlay-service{
+.img-wrapper-service:hover .overlay_service{
     opacity: 0;
 }
 
@@ -327,22 +345,22 @@ section.Our_Services .services_list .item:nth-child(4n + 4) .overlay-service  {
     border-radius: 0px 0px 0px 120px;
 } */
 .swiper-slide[data-shape="shape1"] img,
-.swiper-slide[data-shape="shape1"] .overlay-service {
+.swiper-slide[data-shape="shape1"] .overlay_service {
     border-radius: 120px 0px 0px 0px;
 }
 
 .swiper-slide[data-shape="shape2"] img,
-.swiper-slide[data-shape="shape2"] .overlay-service {
+.swiper-slide[data-shape="shape2"] .overlay_service {
     border-radius: 0px 120px 0px 0px;
 }
 
 .swiper-slide[data-shape="shape3"] img,
-.swiper-slide[data-shape="shape3"] .overlay-service {
+.swiper-slide[data-shape="shape3"] .overlay_service {
     border-radius: 0px 0px 120px 0px;
 }
 
 .swiper-slide[data-shape="shape4"] img,
-.swiper-slide[data-shape="shape4"] .overlay-service {
+.swiper-slide[data-shape="shape4"] .overlay_service {
     border-radius: 0px 0px 0px 120px;
 }
 .swiper-slide.blank-slide {

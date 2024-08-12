@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScrollMagic Example</title>
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.section {
+    height: 200vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f5f5;
+    position: relative;
+    overflow: hidden;
+}
+
+#section1 {
+    background: #ff9999;
+}
+
+#section2 {
+    background: #99ff99;
+}
+.section .content2{
+    width: 420px;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: absolute; /* Absolutely positioned to stay centered */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the content2 div */
+    border: 2px solid #333;
+    box-sizing: border-box;
+}
+img{
+    max-width: none; /* Prevent the image from scaling */
+    width: 1400px; /* Ensures the image keeps its original width */
+    height: 860px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the image */
+    pointer-events: none; /* Prevent interactions */
+}
+.title {
+    opacity: 0; /* Hide the title initially */
+    transform: translateY(200px); /* Position the title off-screen */
+    text-align: center;
+    transition: transform 2s ease-out, opacity 2s ease-out; /* Smooth animation */
+}
+
+#section3 {
+    background: #9999ff;
+}
+
+.content {
+    font-size: 2rem;
+    text-align: center;
+    color: #333;
+}
+
+    </style>
+</head>
+<body>
+    <section class="section" id="section1">
+        <div class="content">Scroll Down</div>
+    </section>
+    <section class="section" id="section2">
+        <div class="content2">
+            <img src="images/spacejoy-YI2YkyaREHk-unsplash.jpg" alt="">
+        </div>
+        <div class="title w-75" >
+            <p>PROJECT OF THE MONTH</p>
+            <h3>THE GALLERIA BY MASTERIS HOMES</h3>
+        </div>
+    </section>
+    <section class="section" id="section3">
+        <div class="content">Keep Scrolling</div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Register the ScrollTrigger plugin
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Ensure the title is initially hidden and off-screen
+            gsap.set("#section2 .title", {
+                opacity: 0,
+                y: 100
+            });
+
+
+            // Animate section 1 when scrolling down
+            gsap.to('#section1', {
+                backgroundColor: '#00ff00',
+                scrollTrigger: {
+                    trigger: '#section1',
+                    start: 'top 50%',
+                    end: 'bottom 50%',
+                    scrub: true,
+                    markers: false // Optional, for debugging
+                }
+            });
+
+            // Animate section 2 when scrolling up
+            gsap.to("#section2 .content2", {
+            width: "100%",
+            height: "100vh",
+            scrollTrigger: {
+                trigger: "#section2",
+                start: "center center", // Animation starts as soon as the section enters the viewport
+                end: "bottom center", // Animation continues until the section is fully out of the viewport
+                pin: true,
+                pinSpacing: false,
+                scrub: true, // Links the animation progress to the scroll position
+                markers: true // Optional: Show markers for debugging
+                }
+            });
+
+            // Animate section 3 with a different effect
+            gsap.to('#section3', {
+                rotation: 360,
+                scrollTrigger: {
+                    trigger: '#section3',
+                    start: 'top 50%',
+                    end: 'bottom 50%',
+                    scrub: true,
+                    markers: false // Optional, for debugging
+                }
+            });
+
+            // Animation for the title appearing at 95% of the content2 expansion
+            // gsap.to("#section2 .title", {
+            //     opacity: 1,
+            //     y: 0,
+            //     duration: 1,
+            //     scrollTrigger: {
+            //         trigger: "#section2 .content2",
+            //         start: "top 95%",  // Trigger the animation when content2 has reached 95% of its target
+            //         toggleActions: "play none none none", // Only play the animation once
+            //         markers: true,     // Optional: Show markers for debugging
+            //         onEnter: () => gsap.to("#section2 .title", { opacity: 1, y: 0 }),  // Animate title into view
+            //         onLeaveBack: () => gsap.set("#section2 .title", { opacity: 0, y: 100 }), // Reset title when scrolling back
+            //     }
+            // });
+            // Animation for the title appearing at 95% of the content2 expansion
+            ScrollTrigger.create({
+                trigger: "#section2 .content2",
+                start: "top 95%",  // Trigger the animation when content2 has reached 95% of its target
+                onEnter: () => gsap.to("#section2 .title", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1
+                }),  // Animate title into view
+                onLeaveBack: () => gsap.set("#section2 .title", {
+                    opacity: 0,
+                    y: 100
+                }), // Reset title when scrolling back
+                markers: true           // Optional: Show markers for debugging
+            });
+        });
+
+    </script>
+</body>
+</html>
