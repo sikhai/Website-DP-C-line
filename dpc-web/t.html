@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      
+      .section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      #image-section {
+        position: relative;
+      }
+      
+      .image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      
+      .image-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 420px;
+        height: 280px;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+        transition: width 0.5s ease, height 0.5s ease;
+        background-color: red;
+      }
+      
+      .image-container img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 1400px; /* Kích thước đầy đủ của ảnh */
+        height: 860px; /* Kích thước đầy đủ của ảnh */
+        transform: translate(-50%, -50%);
+
+      }
+      
+          
+          
+    </style>
+    <section class="section" style="background-color:aqua;height: 200vh;">
+        <h1>Section 1</h1>
+      </section>
+      <section class="section banner position-relative mt-5" id="image-section" style="height: 100vh;">
+        <div class="container h-100">
+          <div class="swiper proj_mouth m-0 h-100">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide item">
+                <a href="" style="text-decoration: none;"> 
+                  <div class="image-wrapper">
+                    <div class="image-container">
+                      <img src="images/spacejoy-YI2YkyaREHk-unsplash.jpg" alt="" loading="lazy">
+                      <div class="overlay"></div>
+                    </div>
+                  </div>
+                  <div class="content w-75">
+                    <p>PROJECT OF THE MONTH</p>
+                    <h3>JW MARRIOT PHU QUOC RESORT</h3>
+                  </div>
+                </a>
+              </div>
+              <div class="swiper-slide item">
+                <a href="" style="text-decoration: none;">
+                  <div class="image-wrapper">
+                    <div class="image-container">
+                      <img src="images/trichsai-project.jpg" alt="" loading="lazy">
+                      <div class="overlay"></div>
+                    </div>
+                  </div>
+                  <div class="content w-75">
+                    <p>PROJECT OF THE MONTH</p>
+                    <h3>THE WESTLAKE PLAZZO TRICHSAI VILLA</h3>
+                  </div>
+                </a>
+              </div>
+              <div class="swiper-slide item">
+                <a href="" style="text-decoration: none;">
+                  <div class="image-wrapper">
+                    <div class="image-container">
+                      <img src="images/project/The masterise sale gallery/khu-vuc-sa-ban-the-galleria-by-masterise-homes.jpg" alt="" loading="lazy">
+                      <div class="overlay"></div>
+                    </div>
+                  </div>
+                  <div class="content w-75">
+                    <p>PROJECT OF THE MONTH</p>
+                    <h3>THE GALLERIA BY MASTERIS HOMES</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+      </section>
+    
+      <section class="section" style="background-color:aqua;height: 1000vh;">
+        <h1>Section 3</h1>
+      </section>
+    
+      <script>
+        window.addEventListener('scroll', () => {
+          const section = document.getElementById('image-section');
+          const imageContainer = document.querySelector('.image-container');
+          const sectionRect = section.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+        
+          if (sectionRect.top <= windowHeight / 2 && sectionRect.bottom >= windowHeight / 2) {
+            const scrollPercentage = (windowHeight / 2 - sectionRect.top) / sectionRect.height;
+        
+            // Expand the image container based on scroll percentage
+            const maxWidth = 1400;
+            const maxHeight = 860;
+            const initialWidth = 420;
+            const initialHeight = 280;
+        
+            const newWidth = initialWidth + (maxWidth - initialWidth) * scrollPercentage;
+            const newHeight = initialHeight + (maxHeight - initialHeight) * scrollPercentage;
+            
+            imageContainer.style.width = `${newWidth}px`;
+            imageContainer.style.height = `${newHeight}px`;
+            imageContainer.style.position = 'fixed';
+            imageContainer.style.transform = 'translate(-50%, -50%)';
+          } else if (sectionRect.bottom < windowHeight) {
+            // Keep the image in place when reaching the end of section 2
+            imageContainer.style.position = 'relative';
+            imageContainer.style.top = '50%';
+            imageContainer.style.transform = 'translate(-50%, -50%)';
+          } else {
+            // Before reaching section 2
+            imageContainer.style.width = '420px';
+            imageContainer.style.height = '280px';
+            imageContainer.style.position = 'absolute';
+            imageContainer.style.top = '50%';
+            imageContainer.style.left = '50%';
+            imageContainer.style.transform = 'translate(-50%, -50%)';
+          }
+        });
+        
+          
+      </script>
+</body>
+</html>

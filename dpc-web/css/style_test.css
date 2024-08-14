@@ -1,0 +1,47 @@
+section.a {
+    margin: 0;
+    padding: 0;
+    height: 300vh; /* To enable scrolling */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 420px;
+    height: 280px;
+    overflow: hidden;
+    transition: width 0.5s, height 0.5s;
+}
+
+.frame {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    width: 1400px;
+    height: 860px;
+    object-fit: cover;
+}
+
+.content {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+.banner{
+    position: relative;
+    width: 100vh;
+}
