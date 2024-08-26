@@ -193,12 +193,13 @@ h2.title span {
 
 .banner {
     
-    height: 150vh;
+    height: 100vh;
     /* padding: 0; */
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: translate(0px, 0px) !important;
 }
 
 
@@ -261,8 +262,8 @@ h2.title span {
     transform: translate(-50%, -50%);
     overflow: hidden;
     transition: width 0.5s ease, height 0.5s ease; */
-    width: 420px;
-    height: 280px;
+    width: 768px;
+    height: 367px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -271,6 +272,7 @@ h2.title span {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: -1;
 }
 .banner .image-container img{
     position: absolute;
@@ -282,9 +284,57 @@ h2.title span {
     /* will-change: transform; */
     transform: translate(-50%, -50%);
     pointer-events: none;
+    object-fit: cover;
     /* transition: transform 0.5s ease-in-out; */
 
 }
+
+.banner .surrounding-top-images {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+}
+
+.banner .surrounding-top-images .surround-img {
+    width:864px;
+    height: 413px;
+    object-fit: cover;
+}
+
+
+.banner .surrounding-bottom-images {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+}
+
+.banner .surrounding-bottom-images .surround-img {
+    width:768px;
+    height: 413px;
+    object-fit: cover;
+}
+
+
+.banner .surrounding-left-images .surround-img {
+    width: 384px;
+    height: 275px;
+    object-fit: cover;
+}
+
+.banner .surrounding-right-images .surround-img {
+    width: 384px;
+    height: 275px;
+    object-fit: cover;
+}
+
+.banner .surrounding-bottom-left-images .surround-img {
+    width: 384px;
+    height: 275px;
+    object-fit: cover;
+}
+
 
 /* .surrounding-images {
     position: absolute;
