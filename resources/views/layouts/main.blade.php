@@ -15,6 +15,8 @@
     <link rel="canonical" href="{{ url()->current() }}">
     @yield('meta_tags')
     @yield('structured_data')
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @yield('styles')
 </head>
 <body>
     <header>
