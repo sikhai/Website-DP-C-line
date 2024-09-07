@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
         pin: ".banner",
         pinSpacing: false,
         scrub: true, // Links the animation progress to the scroll position
-        markers: true // Optional: Show markers for debugging
+        markers: false // Optional: Show markers for debugging
         }
     });
 
@@ -62,6 +62,6 @@ document.addEventListener('DOMContentLoaded', function () {
             opacity: 0,
             y: 300
         }), // Reset title when scrolling back
-        markers: true           // Optional: Show markers for debugging
+        markers: false           // Optional: Show markers for debugging
     });
 });

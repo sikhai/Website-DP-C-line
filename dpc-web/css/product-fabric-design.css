@@ -331,33 +331,48 @@ h2.title span {
     color: var(--main);
 }
 
-.table-products .container{
+.table-products .swiper-container{
     display: flex;
     justify-content: space-between;
     gap: 8px;
     height: 205px;
     margin-bottom: 80px;
+    overflow-x: scroll;
+    scrollbar-width: none; /* For Firefox */
+    --ms-overflow-style: none; /* For Internet Explorer and Edge */
+    margin-left: 56px;
 }
-
-.table-products .container .fabric-item{
+.table-products .swiper-container::-webkit-scrollbar{
+    display: none;  /* For Chrome, Safari, and Opera */
+}
+.table-products .swiper-container .fabric-item{
     width: 250px;
+    min-width: 250px;
     gap: 12px;
+    box-sizing: border-box;
 }
 
-.table-products .container .fabric-item .img{
+.table-products .swiper-container .fabric-item .img{
     height: 141px;
 }
 
-.table-products .container .fabric-item #design-name{
+.table-products .swiper-container .fabric-item #design-name{
     font-family: 'PlusJakartaSans-Medium';
     font-size: 16px;
     color: #BEB0A2;
 }
 
-.table-products .container .fabric-item #design-code{
+.table-products .swiper-container .fabric-item #design-code{
     font-family: 'PlusJakartaSans-Medium';
     font-size: 16px;
     color: var(--main);
+}
+
+.swiper-button-prev{
+    display: none;
+}
+.swiper-button-next{
+    display: none;
 }
 
 .table-products .button-showmore {
