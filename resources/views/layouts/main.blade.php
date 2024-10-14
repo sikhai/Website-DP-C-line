@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,20 +19,24 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @yield('styles')
 </head>
+
 <body>
-    <header>
-        <nav>
-            <a href="{{ route('home') }}">Home</a>
-            <a href="{{ route('news') }}">News</a>
-            <a href="{{ route('product') }}">Product</a>
-            <a href="{{ route('contact') }}">Contact</a>
-        </nav>
-    </header>
-    <main>
-        @yield('content')
+    <main class="big-layout">
+        <div class="layout">
+            @include('partials.header')
+            @yield('content')
+            @include('partials.footer')
+        </div>
     </main>
-    <footer>
-        <p>&copy; 2024 Your Website</p>
-    </footer>
+    @home
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{{ asset('js/main.js') }}" defer></script>
+    <script src="{{ asset('js//menu-script.js') }}" defer></script>
+    <script src="{{ asset('js/Scrollbanner.js') }}" defer></script>
+    @endhome
+    @stack('scripts')
 </body>
+
 </html>

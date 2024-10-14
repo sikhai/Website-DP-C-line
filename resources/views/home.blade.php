@@ -6,7 +6,7 @@
 @section('meta_image', asset('images/home-page-image.jpg'))
 
 @section('structured_data')
-<script type="application/ld+json">
+    <script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -16,7 +16,14 @@
 </script>
 @endsection
 
+@yield('structured_data')
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+@yield('styles')
+
 @section('content')
-    <h1>Welcome to Home Page</h1>
-    <p>This is the home page.</p>
+    @include('partials.banner')
+    @include('partials.our_services')
+    @include('partials.trending')
+    @include('partials.project')
+    @include('partials.clients')
 @endsection

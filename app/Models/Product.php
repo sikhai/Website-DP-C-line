@@ -17,7 +17,7 @@ class Product extends Model
 
     protected $fillable = [
         'product_name', 'title', 'product_code', 'description', 'short_description', 'price', 'stock_quantity',
-        'image', 'keywords', 'slug', 'status', 'is_featured', 'category_id'
+        'image', 'images', 'keywords', 'slug', 'status', 'is_featured', 'category_id'
     ];
 
     protected $translatable = ['product_name', 'short_description', 'description', 'keywords', 'slug'];
@@ -36,9 +36,14 @@ class Product extends Model
                     ->withTimestamps();
     }
 
-    public function setIsFeaturedAttribute($value)
+    public function projects()
     {
-        $this->attributes['is_featured'] = $value ? 1 : 0;
+        return $this->belongsToMany(Project::class, 'product_project');
     }
+
+    // public function setIsFeaturedAttribute($value)
+    // {
+    //     $this->attributes['is_featured'] = $value ? 1 : 0;
+    // }
 }
 

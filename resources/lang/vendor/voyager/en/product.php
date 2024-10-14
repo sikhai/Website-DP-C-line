@@ -5,6 +5,7 @@ return [
     'category'         => 'Product Category',
     'content'          => 'Product Content',
     'code'             => 'Product Code',
+    'trending'         => 'Product Trending',
     'details'          => 'Product Details',
     'excerpt'          => 'Excerpt <small>Small description of this product</small>',
     'image'            => 'Product Image',

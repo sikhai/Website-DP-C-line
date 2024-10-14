@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 use  App\Http\Controllers\MainController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProjectsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +20,18 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', [MainController::class, 'home'])->name('home');
-Route::get('/news', [MainController::class, 'news'])->name('news');
-Route::get('/contact', [MainController::class, 'contact'])->name('contact');
-Route::get('/product', [MainController::class, 'product'])->name('product');
-
+/* admin */
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
 Route::post('/check-product-code', [ProductController::class, 'checkProductCode'])->name('check.product.code');
+/* admin */
+Route::get('/our-project', [ProjectsController::class, 'show'])->name('project.show');
+
+// Route hiển thị chi tiết Category với slug
+Route::get('/{category_slug}', [CategoryController::class, 'show'])->name('category.show');
+
+// Route hiển thị danh sách hoặc chi tiết các Product thuộc Category
+Route::get('/{category_slug}/{product_slug?}', [ProductsController::class, 'show'])->name('product.show');
 

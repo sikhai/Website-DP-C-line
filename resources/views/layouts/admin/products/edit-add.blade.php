@@ -294,6 +294,11 @@
                                 <input type="checkbox"
                                     name="is_featured"@if (isset($dataTypeContent->is_featured) && $dataTypeContent->is_featured) checked="checked" @endif>
                             </div>
+                            <div class="form-group">
+                                <label for="is_trending">{{ __('voyager::product.trending') }}</label>
+                                <input type="checkbox"
+                                    name="is_trending"@if (isset($dataTypeContent->is_trending) && $dataTypeContent->is_trending) checked="checked" @endif>
+                            </div>
                         </div>
                     </div>
 
