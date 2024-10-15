@@ -16,8 +16,8 @@
                     @foreach ($categories as $item)
                         <li>
                             <a class="dropdown-item"
-                                href="{{ $item['id'] != $category->id ? '/' . $item['slug'] : 'javascript:void(0);' }}">
-                                {{ $item['name'] }}
+                                href="{{ $category && $item->id != $category->id ? '/' . $item->slug : 'javascript:void(0);' }}">
+                                {{ $item->name }}
                             </a>
                         </li>
                     @endforeach

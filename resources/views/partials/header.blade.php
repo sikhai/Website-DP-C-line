@@ -21,22 +21,20 @@
             @home
                 <h1>Li<span>v</span>e <span>A</span>rtf<span>u</span>lly</h1>
             @else
-            <h1>{{ isset($category) ? $category->name : '' }}</h1>
-            <div class="d-flex align-items-center menu_fabric">
-                <a class="nav_item" id="next-tab" href="{{ route('home') }}">Home</a>
-                <p class="nav_item">/</p>
-                @isset($category)
-                    <a class="nav_item" id="next-tab"
-                        href="{{ route('category.show', ['category_slug' => $category->slug]) }}">All Products</a>
+                <h1>{{ isset($category) ? $category->name : '' }}</h1>
+                <div class="d-flex align-items-center menu_fabric">
+                    <a class="nav_item" id="next-tab" href="{{ route('home') }}">Home</a>
                     <p class="nav_item">/</p>
-                    <a class="nav_item" id="current-tab">{{ $category->name }}</a>
-                @else
-                    <a class="nav_item" id="next-tab">All Products</a>
-                    <p class="nav_item">/</p>
-                    <a class="nav_item" id="current-tab">Fabric</a>
-                @endisset
-            </div>
-            <div id="line"></div>
+                    @isset($category)
+                        <a class="nav_item" id="next-tab"
+                            href="{{ route('category.show', ['category_slug' => $category->slug]) }}">All Products</a>
+                        <p class="nav_item">/</p>
+                        <a class="nav_item" id="current-tab">{{ $category->name }}</a>
+                    @else
+                        <a class="nav_item" id="current-tab">All Products</a>
+                    @endisset
+                </div>
+                <div id="line"></div>
             @endhome
         </div>
     </div>
@@ -61,19 +59,20 @@
     </div>
     <div class="body-menu">
         <div class="row p-0">
-            <div class="col-3 d-flex flex-column">
-                <a class="option-menu" href="/fabric">Fabric</a>
-                <a class="option-menu" href="/leather">Leather</a>
-                <a class="option-menu" href="/curtain">Curtain</a>
-            </div>
-            <div class="col-5 d-flex flex-column">
-                <a class="option-menu" href="/roller-blind">Roller Blind</a>
-                <a class="option-menu" href="/wall-covering">Wall Covering</a>
-                <a class="option-menu" href="/Window furnishing">Window furnishing</a>
+            <div class="col-4 d-flex flex-column">
+                @foreach ($categories->take(3) as $key => $category)
+                    <a class="option-menu" href="/{{ $category->slug }}">{{ $category->name }}</a>
+                @endforeach
             </div>
             <div class="col-4 d-flex flex-column">
-                <a class="option-menu" href="/bespoke-service">Bespoke Services</a>
-                <a class="option-menu" href="/our-project">Our Projects</a>
+                @foreach ($categories->skip(3)->take(3) as $key => $category)
+                    <a class="option-menu" href="/{{ $category->slug }}">{{ $category->name }}</a>
+                @endforeach
+            </div>
+            <div class="col-4 d-flex flex-column">
+                @foreach ($categories->skip(6)->take(2) as $key => $category)
+                    <a class="option-menu" href="/{{ $category->slug }}">{{ $category->name }}</a>
+                @endforeach
                 <a class="option-menu" href="#">About Us</a>
             </div>
         </div>

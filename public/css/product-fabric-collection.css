@@ -293,17 +293,7 @@ h2.title span {
     font-size: 16px;
     color: var(--main);
 }
-
-.table-products .container{
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    height: 307px;
-    margin-bottom: 80px;
-}
-
 .table-products .container .fabric-item{
-    width: 421px;
     gap: 8px;
     padding: 0px;
 }

@@ -276,17 +276,11 @@ h2.title span {
     color: var(--main);
 }
 
-.table-products .container{
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    height: 205px;
-    margin-bottom: 80px;
+.table-products .container .row{
+    row-gap: calc(var(--bs-gutter-x));
 }
 
 .table-products .container .fabric-item{
-    width: 250px;
-    gap: 12px;
 }
 
 .table-products .container .fabric-item .img{
@@ -308,7 +302,7 @@ h2.title span {
 .table-products .button-showmore {
     display: flex;
     justify-content: center;
-    margin: -17px 0px 103px;
+    margin: 0px 0px 103px;
 }
 .table-products .button-showmore #btn-showmore{
     background-color: var(--main) ;

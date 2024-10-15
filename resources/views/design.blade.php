@@ -35,7 +35,7 @@
 @section('content')
     <!-- tab-general-fabric collection design -->
     @include('partials.tab_list')
-    @include('product.show')
+    @include('design.show')
     <!-- Filter bar -->
     @include('partials.filter_bar')
 @endsection

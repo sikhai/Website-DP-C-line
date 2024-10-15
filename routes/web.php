@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\DesignController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +30,17 @@ Route::post('/check-product-code', [ProductController::class, 'checkProductCode'
 /* admin */
 Route::get('/our-project', [ProjectsController::class, 'show'])->name('project.show');
 
-// Route hiển thị chi tiết Category với slug
-Route::get('/{category_slug}', [CategoryController::class, 'show'])->name('category.show');
+// Route cho sản phẩm
+Route::get('/products', [CategoryController::class, 'showProducts'])->name('products.show');
+
+// Route cho category với slug động
+Route::get('/{category_slug}', [CategoryController::class, 'showCategory'])->name('category.show');
+
+
+Route::prefix('design')->group(function () {
+    // Route hiển thị chi tiết Design với slug
+    Route::get('{design_slug}', [DesignController::class, 'show'])->name('design.show');
+});
 
 // Route hiển thị danh sách hoặc chi tiết các Product thuộc Category
 Route::get('/{category_slug}/{product_slug?}', [ProductsController::class, 'show'])->name('product.show');

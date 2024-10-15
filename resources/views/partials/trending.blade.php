@@ -21,7 +21,7 @@
                                 <a href="/{{ $item->parentCategory['slug'] }}">
                                     @if (!empty($images) && isset($images[0]))
                                         <img class="img-flip w-100" src="{{ Voyager::image($images[0]) }}"
-                                            alt="{{ $item['design_name'] }}">
+                                            alt="{{ $item['name'] }}">
                                     @endif
                                 </a>
                             </div>
@@ -36,7 +36,7 @@
                             @foreach ($designs_is_trending as $key => $item)
                                 <div class="flip-card-{{ $key == 0 ? 'front' : 'back' }}">
                                     <p>{{ $item->parentCategory['category_name'] }}</p>
-                                    <h3>{{ $item['design_name'] }}</h3>
+                                    <h3>{{ $item['name'] }}</h3>
                                     <a href="/{{ $item->parentCategory['slug'] }}">SEE COLLECTION <img
                                             src="{{ asset('images/arrow-right-beige800.svg') }}" alt="arrow"></a>
                                 </div>
@@ -55,7 +55,7 @@
                                     <a href="/{{ $item->parentCategory['slug'] }}">
                                         @if (!empty($images) && isset($images[1]))
                                             <img class="w-100 img" src="{{ Voyager::image($images[1]) }}"
-                                                alt="{{ $item['design_name'] }}">
+                                                alt="{{ $item['name'] }}">
                                         @endif
                                     </a>
                                 </div>
