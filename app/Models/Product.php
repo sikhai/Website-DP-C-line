@@ -16,11 +16,11 @@ class Product extends Model
     ];
 
     protected $fillable = [
-        'product_name', 'title', 'product_code', 'description', 'short_description', 'price', 'stock_quantity',
+        'name', 'title', 'product_code', 'description', 'short_description', 'price', 'stock_quantity',
         'image', 'images', 'keywords', 'slug', 'status', 'is_featured', 'category_id'
     ];
 
-    protected $translatable = ['product_name', 'short_description', 'description', 'keywords', 'slug'];
+    protected $translatable = ['name', 'short_description', 'description', 'keywords', 'slug'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

@@ -372,10 +372,12 @@ h2.title span {
 
     position: absolute;
     width: 680px;
-    height: 2017px;
+    height: 100vh;
     right: 0px;
     top: 0px;
     background: #202E41;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .filter-bar .container{

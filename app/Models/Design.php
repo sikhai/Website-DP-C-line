@@ -10,7 +10,7 @@ use App\Models\Category;
 class Design extends Model
 {
     protected $fillable = [
-        'design_name',
+        'name',
         'parent_id',
         'slug',
         'images',

@@ -118,9 +118,9 @@
                                 '_field_name' => 'product_name',
                                 '_field_trans' => get_field_translations($dataTypeContent, 'product_name'),
                             ])
-                            <input type="text" required class="form-control" id="product_name" name="product_name"
+                            <input type="text" required class="form-control" id="name" name="name"
                                 placeholder="{{ __('voyager::generic.name') }}"
-                                value="{{ $dataTypeContent->getTranslatedAttribute('product_name', app()->getLocale(), 'en') ?? '' }}">
+                                value="{{ $dataTypeContent->getTranslatedAttribute('name', app()->getLocale(), 'en') ?? '' }}">
                         </div>
 
                     </div>

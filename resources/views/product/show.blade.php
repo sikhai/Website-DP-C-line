@@ -5,7 +5,7 @@
 <section class="table-products position-relative">
     <div class="row">
         <div class="col-4" style="margin:27px 70px 0px">
-            <p id="sum-products">20488 Products, 1598 designs</p>
+            <p id="sum-products">{{ count($products) }} Products, {{ count($designs) }} designs</p>
         </div>
     </div>
     <div class="container">

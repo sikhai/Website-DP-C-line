@@ -29,22 +29,19 @@
             </div>
 
             @foreach ($result_attributes as $name => $values)
-                <!-- Duyệt qua từng tên thuộc tính -->
                 <div class="row mt-5">
                     <div class="col-12 p-0">
-                        <h4>{{ ucfirst($name) }}</h4> <!-- Hiển thị tên thuộc tính -->
+                        <h4>{{ ucfirst($name) }}</h4>
                     </div>
                 </div>
                 <div class="row mt-2">
                     @foreach ($values as $value)
-                        <!-- Duyệt qua từng giá trị -->
-                        <div class="col-3 p-0"> <!-- Chia thành 2 cột -->
+                        <div class="col-3 p-0">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="{{ $value }}"
-                                    id="check_{{ $name }}_{{ $value }}">
-                                <!-- ID duy nhất cho từng checkbox -->
-                                <label class="form-check-label" for="check_{{ $name }}_{{ $value }}">
-                                    {{ $value }} <!-- Hiển thị giá trị -->
+                                    id="check_{{ $value }}">
+                                <label class="form-check-label" for="check_{{ $value }}">
+                                    {{ $value }} 
                                 </label>
                             </div>
                         </div>
@@ -54,12 +51,10 @@
 
 
 
-
-
             <!-- button apply  -->
             <div class="row mt-5">
                 <button type="button" class="btn btn-secondary">
-                    APPLY(29)
+                    APPLY
                 </button>
                 <div id="arrow">
                     <img src="images/arrow-down-right.svg" alt="">
