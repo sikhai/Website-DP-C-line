@@ -31,7 +31,11 @@ Route::post('/check-product-code', [ProductController::class, 'checkProductCode'
 Route::get('/our-project', [ProjectsController::class, 'show'])->name('project.show');
 
 // Route cho sản phẩm
-Route::get('/products', [CategoryController::class, 'showProducts'])->name('products.show');
+Route::get('/collection', [CategoryController::class, 'showCollection'])->name('collection.show');
+Route::get('/products', [DesignController::class, 'showProducts'])->name('products.show');
+// Route hiển thị chi tiết sản phẩm với slug
+Route::get('/products/{product_slug}', [ProductsController::class, 'detail'])->name('product.detail');
+
 
 // Route cho category với slug động
 Route::get('/{category_slug}', [CategoryController::class, 'showCategory'])->name('category.show');

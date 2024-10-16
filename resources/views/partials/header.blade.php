@@ -21,17 +21,17 @@
             @home
                 <h1>Li<span>v</span>e <span>A</span>rtf<span>u</span>lly</h1>
             @else
-                <h1>{{ isset($category) ? $category->name : '' }}</h1>
+                <h1>{{ isset($category) ? $category->name : (isset($title_head) ? $title_head : '') }}</h1>
                 <div class="d-flex align-items-center menu_fabric">
                     <a class="nav_item" id="next-tab" href="{{ route('home') }}">Home</a>
                     <p class="nav_item">/</p>
                     @isset($category)
                         <a class="nav_item" id="next-tab"
-                            href="{{ route('category.show', ['category_slug' => $category->slug]) }}">All Products</a>
+                            href="/products">All Products</a>
                         <p class="nav_item">/</p>
                         <a class="nav_item" id="current-tab">{{ $category->name }}</a>
                     @else
-                        <a class="nav_item" id="current-tab">All Products</a>
+                        <a class="nav_item" id="current-tab">{{ isset($title_head) ? $title_head : '' }}</a>
                     @endisset
                 </div>
                 <div id="line"></div>

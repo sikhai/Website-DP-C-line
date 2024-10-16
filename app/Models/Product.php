@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use TCG\Voyager\Traits\Translatable;
 use TCG\Voyager\Facades\Voyager;
+use App\Models\Design;
 
 class Product extends Model
 {
@@ -27,7 +28,7 @@ class Product extends Model
      */
     public function category()
     {
-        return $this->belongsTo(Voyager::modelClass('Category'));
+        return $this->belongsTo(Design::class, 'category_id');
     }
 
     public function attributes()

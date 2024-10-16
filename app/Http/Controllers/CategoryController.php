@@ -10,9 +10,11 @@ use App\Models\Product;
 class CategoryController extends Controller
 {
 
-    public function showProducts()
+    public function showCollection()
     {
         $category = null;
+
+        $title_head = 'Collection';
 
         $categories = Category::where('is_featured', 1)->get();
 
@@ -26,7 +28,7 @@ class CategoryController extends Controller
         $result_attributes = $this->getAttributesWithProductCount();
         
         // Trả về view hiển thị sản phẩm
-        return view('product', compact('category', 'categories', 'result_attributes', 'products', 'designs'));
+        return view('product', compact('category', 'categories', 'result_attributes', 'products', 'designs', 'title_head'));
     }
 
     public function showCategory($category_slug)

@@ -3,39 +3,6 @@
     --blue: #202E41;
 }
 
-@font-face {
-    font-family: 'DP Céline';
-    src: url('../fonts/DFVNIvyPrestoDisplay/IvyPrestoDisplay-Thin.otf') format('opentype');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'DP Céline bold';
-    src: url('../fonts/DFVNIvyPrestoDisplay/IvyPrestoDisplay-Bold.otf') format('opentype');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'PlusJakartaSans-Medium';
-    src: url('../fonts/Plus_Jakarta_Sans/Plus_Jakarta_Sans/static/PlusJakartaSans-Medium.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'PlusJakartaSans-Light';
-    src: url('../fonts/Plus_Jakarta_Sans/Plus_Jakarta_Sans/static/PlusJakartaSans-Light.ttf') format('truetype');
-    font-weight: 100;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'PlusJakartaSans-SemiBold';
-    src: url('../fonts/Plus_Jakarta_Sans/Plus_Jakarta_Sans/static/PlusJakartaSans-SemiBold.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
 
 * {
     padding: 0;
@@ -95,6 +62,7 @@ h2.title span {
     background-color: #202E41;
     background-size: cover;
     background-repeat: no-repeat;
+    background-image: none;
 }
 
 .layout {
@@ -122,7 +90,7 @@ h2.title span {
 
 
 .body_head {
-    padding: 140px 0 75px;
+    display: none;
 }
 
 .body_head h1 {

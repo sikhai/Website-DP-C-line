@@ -13,9 +13,11 @@
             @foreach ($products as $item)
                 <div class="col-lg-3">
                     <div class="fabric-item">
-                        <img class="img w-100" src="{{ env('APP_URL').'/storage/'.$item['image'] }}" alt="" loading="lazy">
-                        <p class="pt-2 m-0" id="design-name">{{ $item['name'] }}</p>
-                        <p class="pt-2 m-0" id="design-code">{{ $designs->name }}</p>
+                        <a class="text-decoration-none" href="/products/{{ $item['slug'] }}">
+                            <img class="img w-100" src="{{ env('APP_URL').'/storage/'.$item['image'] }}" alt="" loading="lazy">
+                            <p class="pt-2 m-0" id="design-name">{{ $item['name'] }}</p>
+                            <p class="pt-2 m-0" id="design-code">{{ $designs->name }}</p>
+                        </a>
                     </div>
                 </div>
             @endforeach

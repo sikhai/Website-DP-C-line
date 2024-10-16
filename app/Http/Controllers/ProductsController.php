@@ -7,31 +7,24 @@ use App\Models\Product;
 
 class ProductsController extends Controller
 {
-    public function show($category_slug, $product_slug = null)
+    public function detail($product_slug)
     {
-        // Tìm category theo slug
-        $category = Category::where('slug', $category_slug)->first();
 
-        // Nếu không tìm thấy category, trả về lỗi 404
-        if (!$category) {
-            abort(404);
-        }
+        $collection = null;
 
-        // Nếu không có product_slug, hiển thị danh sách các sản phẩm trong category
-        if (!$product_slug) {
-            $products = $category->products; // Quan hệ giữa Category và Product
-            return view('product.index', compact('category', 'products'));
-        }
+        $categories = Category::where('is_featured', 1)->get();
 
         // Nếu có product_slug, tìm product theo slug
-        $products = Product::where('slug', $product_slug)->where('category_id', $category->id)->get();
+        $product = Product::with('category')->with('attributes')->where('slug', $product_slug)->where('is_featured', 1)->first();
 
-        // Nếu không tìm thấy product, trả về lỗi 404
-        if (!$products) {
+        if( isset($product->category->parent_id) ){
+            $collection = Category::where('id', $product->category->parent_id)->where('is_featured', 1)->first();
+        }
+        
+        if (!$product) {
             abort(404);
         }
 
-        // Trả về view hiển thị chi tiết sản phẩm
-        return view('product.show', compact('category', 'products'));
+        return view('product_detail', compact('collection', 'categories', 'product'));
     }
 }

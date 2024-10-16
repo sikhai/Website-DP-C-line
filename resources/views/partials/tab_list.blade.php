@@ -1,8 +1,8 @@
 <section class="tab-general-fabric position-relative">
     <div class="row">
         <div class="d-flex align-items-center tab-collection-design">
-            <a class="nav_item" id="current-tab">Collection</a>
-            <a class="nav_item" id="next-tab" href="product-leather-design.html">Design</a>
+            <a class="nav_item" id="{{ !isset($title_head) ? 'current-tab' : ($title_head == 'Collection' ? 'current-tab' : 'next-tab') }}" href="/collection">Collection</a>
+            <a class="nav_item" id="{{ !isset($title_head) ? 'next-tab' : ($title_head == 'All Products' ? 'current-tab' : 'next-tab') }}" href="/products">Design</a>
         </div>
     </div>
     <div class="row pt-5 pb-3">
@@ -10,13 +10,13 @@
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu-AllCategory"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    All Categories <img src="{{ asset('images/chevron-down.svg') }}" id="chevron-down" alt="">
+                    {{ isset($category->name) ? $category->name : 'All Categories' }}<img src="{{ asset('images/chevron-down.svg') }}" id="chevron-down" alt="">
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu-sortby">
                     @foreach ($categories as $item)
                         <li>
                             <a class="dropdown-item"
-                                href="{{ $category && $item->id != $category->id ? '/' . $item->slug : 'javascript:void(0);' }}">
+                                href="/{{ $item->slug}}">
                                 {{ $item->name }}
                             </a>
                         </li>

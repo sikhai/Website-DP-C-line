@@ -31,6 +31,24 @@ class DesignController extends Controller
         return view('design', compact('category', 'categories', 'result_attributes', 'products', 'designs'));
     }
 
+    public function showProducts()
+    {
+        $designs = Design::with('products')->where('is_featured', 1)->first();
+
+        $category = null;
+
+        $title_head = 'All Products';
+
+        $categories = Category::where('is_featured', 1)->get();
+
+        $products = Product::with('attributes')->where('category_id', $designs->id)->get();
+
+        $result_attributes = $this->getAttributesWithProductCount();
+
+        // Trả về view hiển thị thông tin category
+        return view('design', compact('category', 'categories', 'result_attributes', 'products', 'designs', 'title_head'));
+    }
+
     public function getAttributesWithProductCount()
     {
         $values = Attribute::pluck('value'); // chỉ lấy cột 'value'

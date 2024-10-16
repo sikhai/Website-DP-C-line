@@ -40,6 +40,7 @@ h2.title span {
     display: flex;
     justify-content: center;
     background-color: #202E41;
+    background-image: none;
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -285,6 +286,7 @@ h2.title span {
 
 .table-products .container .fabric-item .img{
     height: 141px;
+    object-fit: cover;
 }
 
 .table-products .container .fabric-item #design-name{
