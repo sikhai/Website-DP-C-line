@@ -44,8 +44,9 @@
                 <div id="code">{{ $product['product_code'] }}</div>
                 <div id="name">{{ $product['name'] }}</div>
             </div>
-
-            <button type="button" class="btn btn-secondary">{{ isset($product->category->name) ? $product->category->name : '' }}</button>
+            @if ( isset($product->category->name) )
+            <button type="button" class="btn btn-secondary">{{ $product->category->name }}</button>
+            @endif
         </div>
         <div class="row p-0" style="margin-top: 80px;">
             <div class="download">
