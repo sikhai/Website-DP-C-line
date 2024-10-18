@@ -52,7 +52,7 @@
             </div>
             <div class="col-2 d-flex align-items-center menu_right">
                 <a class="nav_item" onclick="closemenu()">CLOSE</a>
-                <img src="images/x-close-12x12.svg" style="cursor:pointer;" onclick="closemenu()" alt="">
+                <img src="{{ asset('images/x-close-12x12.svg') }}" style="cursor:pointer;" onclick="closemenu()" alt="">
             </div>
         </div>
 
@@ -91,7 +91,7 @@
             </div>
             <div class="col-2 d-flex align-items-center menu_right">
                 <a class="nav_item" onclick="closemenu()">CLOSE</a>
-                <img src="images/x-close-12x12.svg" id="img-close-ref" style="cursor:pointer;" onclick="closemenu()"
+                <img src="{{ asset('images/x-close-12x12.svg') }}" id="img-close-ref" style="cursor:pointer;" onclick="closemenu()"
                     alt="">
             </div>
         </div>

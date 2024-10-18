@@ -14,6 +14,7 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="@yield('meta_image', asset('default-image.jpg'))">
     <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ Voyager::image(setting('site.logo')) }}">
     @yield('meta_tags')
     @yield('structured_data')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">

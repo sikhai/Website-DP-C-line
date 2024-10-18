@@ -8,7 +8,7 @@
                     <h3>Filters</h3>
                 </div>
                 <div class="col-10 p-0" style="display: flex; justify-content:flex-end; align-items:center">
-                    <img id="x-close-1" src="images/x-close.png" onclick="hide_filterbar()" alt=""
+                    <img id="x-close-1" src="{{ asset('images/x-close.png') }}" onclick="hide_filterbar()" alt=""
                         style="cursor:pointer">
                 </div>
             </div>
@@ -57,7 +57,7 @@
                     APPLY
                 </button>
                 <div id="arrow">
-                    <img src="images/arrow-down-right.svg" alt="">
+                    <img src="{{ asset('images/arrow-down-right.svg') }}" alt="">
                 </div>
             </div>
 

@@ -8,7 +8,7 @@
             <p id="sum-products">{{ count($products) }} Products, 1 designs</p>
         </div>
     </div>
-    <div class="container">
+    <div class="container mb-5">
         <div class="row">
             @foreach ($products as $item)
                 <div class="col-lg-3">
