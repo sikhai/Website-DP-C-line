@@ -12,19 +12,65 @@ class ProductsController extends Controller
 
         $collection = null;
 
+        $attributes = null;
+
+        $data_attributes = null;
+
+        $products_orther = null;
+
         $categories = Category::where('is_featured', 1)->get();
 
         // Nếu có product_slug, tìm product theo slug
         $product = Product::with('category')->with('attributes')->where('slug', $product_slug)->where('is_featured', 1)->first();
 
-        if( isset($product->category->parent_id) ){
-            $collection = Category::where('id', $product->category->parent_id)->where('is_featured', 1)->first();
+        if (isset($product->category->parent_id)) {
+            $collection = Category::with('childCategories.products')->find($product->category->parent_id);
+
+            $products = collect();
+
+            foreach ($collection->childCategories as $design) {
+                $products_orther = $products->merge(
+                    $design->products()
+                        ->where('id', '!=', $product->id)
+                        ->take(11 - $products->count())
+                        ->get()
+                );
+
+                // Nếu đã đủ 10 sản phẩm, thoát khỏi vòng lặp
+                if ($products_orther->count() >= 10) {
+                    break;
+                }
+            }
         }
-        
+
         if (!$product) {
             abort(404);
         }
 
-        return view('product_detail', compact('collection', 'categories', 'product'));
+        if (isset($product->attributes[0])) {
+            $attributes = $product->attributes[0];
+            $data_attributes = json_decode($attributes->value, true);
+            $attributes = $this->caculateAttribute($data_attributes);
+        }
+
+
+        return view('product_detail', compact('collection', 'categories', 'product', 'attributes', 'products_orther'));
+    }
+
+    public function caculateAttribute($data)
+    {
+        if (!$data) {
+            return null;
+        }
+
+        $totalItems = count($data);
+        $firstArraySize = ceil($totalItems / 2);
+
+        $firstArray = array_slice($data, 0, $firstArraySize);
+        $secondArray = array_slice($data, $firstArraySize);
+
+        $attributes = [$firstArray, $secondArray];
+
+        return $attributes;
     }
 }

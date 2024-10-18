@@ -19,7 +19,7 @@ body {
     user-select: none;
 }
 
-ul{
+ul {
     margin: 0;
     padding: 0;
 }
@@ -55,7 +55,7 @@ h2.title span {
     transform: rotate(180deg);
 }
 
-.big-layout{
+.big-layout {
     /* background-color: black; */
     display: flex;
     justify-content: center;
@@ -107,20 +107,22 @@ h2.title span {
 } */
 
 /* detail items */
-.detail-fabric .container .img-detail{
+.detail-fabric .container .img-detail {
     width: 1150px;
     height: 500px;
     margin-left: 95px;
 }
 
-.detail-fabric .container .img-detail .small-view img:hover{
+.detail-fabric .container .img-detail .small-view img:hover {
     scale: 1.1;
 }
-.detail-fabric .container .img-detail .main-view{
+
+.detail-fabric .container .img-detail .main-view {
     width: 850px;
     height: 500px;
 }
-.detail-fabric .container .img-detail .main-view img{
+
+.detail-fabric .container .img-detail .main-view img {
     width: 100%;
     height: 500px;
     background: no-repeat;
@@ -129,25 +131,28 @@ h2.title span {
 }
 
 .detail-fabric .container .img-detail .small-view::-webkit-scrollbar {
-    display: none;  /* chorme */
-  }
+    display: none;
+    /* chorme */
+}
 
-.detail-fabric .container .img-detail .small-view{
+.detail-fabric .container .img-detail .small-view {
     width: 200px;
     height: 500px;
     overflow: scroll;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
     margin-left: 63px;
     gap: 32px;
 }
 
-.detail-fabric .container .img-detail .small-view img{
+.detail-fabric .container .img-detail .small-view img {
     width: 99px;
     height: 56px;
 }
 
-.detail-fabric .container .img-detail .small-view .current-selected{
+.detail-fabric .container .img-detail .small-view .current-selected {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -155,7 +160,8 @@ h2.title span {
     height: 76px;
     border: 1px solid var(--main);
 }
-.detail-fabric .container .img-detail .small-view .next-selected{
+
+.detail-fabric .container .img-detail .small-view .next-selected {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -164,32 +170,36 @@ h2.title span {
     /* margin-top: 12px; */
 }
 
-.layout .detail-fabric .lable-general{
+.layout .detail-fabric .lable-general {
     margin-left: 94px;
 }
 
-.layout .detail-fabric .lable-general .directory{
+.layout .detail-fabric .lable-general .directory {
     gap: 4px;
     margin-top: 10px;
 }
-.layout .detail-fabric .lable-general .directory a{
+
+.layout .detail-fabric .lable-general .directory a {
     text-decoration: none;
     cursor: pointer;
     font-family: 'PlusJakartaSans-Medium';
     font-size: 16px;
     /* color: #BEB0A2; */
 }
+
 .layout .detail-fabric .lable-general .directory .back-directory {
     color: #BEB0A2;
 }
+
 .layout .detail-fabric .lable-general .directory .current-directory {
     color: #F7F5F3;
 }
 
-.layout .detail-fabric .lable-general .lable-fabric{
+.layout .detail-fabric .lable-general .lable-fabric {
     gap: 24px;
 }
-.layout .detail-fabric .lable-general .lable-fabric #code{
+
+.layout .detail-fabric .lable-general .lable-fabric #code {
     font-family: "DP Céline";
     font-size: 48px;
     color: #F7F5F3;
@@ -197,14 +207,15 @@ h2.title span {
     font-weight: 100 !important;
 }
 
-.layout .detail-fabric .lable-general .lable-fabric #name{
+.layout .detail-fabric .lable-general .lable-fabric #name {
     font-family: "DP Céline";
     font-size: 48px;
-    color:#BEB0A2;
+    color: #BEB0A2;
     letter-spacing: 2px;
     font-weight: 100 !important;
 }
-.layout .detail-fabric .lable-general .btn-secondary{
+
+.layout .detail-fabric .lable-general .btn-secondary {
     width: fit-content;
     padding: 8px 16px 8px 16px;
     height: 40px;
@@ -218,7 +229,7 @@ h2.title span {
     margin-left: 10px;
 }
 
-.layout .detail-fabric .download{
+.layout .detail-fabric .download {
     width: 242px;
     height: 96px;
     gap: 24px;
@@ -228,21 +239,24 @@ h2.title span {
     letter-spacing: 3%;
     /* padding: 0px; */
 }
-.layout .detail-fabric .download .download-item{
+
+.layout .detail-fabric .download .download-item {
     gap: 15px;
     height: 48px;
 }
-.layout .detail-fabric .download .download-item img{
+
+.layout .detail-fabric .download .download-item img {
     width: 17px;
     height: 20px;
 }
 
-.layout .detail-fabric .left-description{
+.layout .detail-fabric .left-description {
     width: 410px;
     gap: 24px;
     margin-left: 109px;
 }
-.layout .detail-fabric .left-description .content{
+
+.layout .detail-fabric .left-description .content {
     /* width: 410px; */
     gap: 8px;
     font-family: 'PlusJakartaSans-Medium';
@@ -250,17 +264,21 @@ h2.title span {
     /* color: #F7F5F3; */
     letter-spacing: 3%;
 }
-.layout .detail-fabric .left-description .content .title{
+
+.layout .detail-fabric .left-description .content .title {
     margin-bottom: 8px;
 }
-.layout .detail-fabric .left-description .content .title p{
+
+.layout .detail-fabric .left-description .content .title p {
     color: #9AA4B2;
     margin: 0px 0px 0px;
 }
-.layout .detail-fabric .left-description .content .description{
+
+.layout .detail-fabric .left-description .content .description {
     margin-bottom: 24px;
 }
-.layout .detail-fabric .left-description .content .description p{
+
+.layout .detail-fabric .left-description .content .description p {
     color: var(--main);
     margin: 0px 0px 0px;
 }
@@ -275,30 +293,26 @@ h2.title span {
     margin-top: 144px;
 }
 
-.table-products .container{
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    height: 205px;
-    margin-bottom: 80px;
+.table-products .container .row {
+    row-gap: var(--bs-gutter-x);
 }
 
-.table-products .container .fabric-item{
+.table-products .container .fabric-item {
     width: 250px;
     gap: 12px;
 }
 
-.table-products .container .fabric-item .img{
+.table-products .container .fabric-item .img {
     height: 141px;
 }
 
-.table-products .container .fabric-item #design-name{
+.table-products .container .fabric-item #design-name {
     font-family: 'PlusJakartaSans-Medium';
     font-size: 16px;
     color: #BEB0A2;
 }
 
-.table-products .container .fabric-item #design-code{
+.table-products .container .fabric-item #design-code {
     font-family: 'PlusJakartaSans-Medium';
     font-size: 16px;
     color: var(--main);
@@ -309,8 +323,9 @@ h2.title span {
     justify-content: center;
     margin: -17px 0px 103px;
 }
-.table-products .button-showmore #btn-showmore{
-    background-color: var(--main) ;
+
+.table-products .button-showmore #btn-showmore {
+    background-color: var(--main);
     border-color: var(--main);
     width: 357px;
     height: 68px;
@@ -322,7 +337,7 @@ h2.title span {
 }
 
 /* filter-bar */
-.big-layout .opacity-layer{
+.big-layout .opacity-layer {
     position: absolute;
     width: 100%;
     height: 2017px;
@@ -331,7 +346,8 @@ h2.title span {
     background: #27384F;
     opacity: 60%;
 }
-.layout .opacity-layer{
+
+.layout .opacity-layer {
     position: absolute;
     width: 100%;
     height: 2017px;
@@ -340,7 +356,8 @@ h2.title span {
     background: #27384F;
     opacity: 60%;
 }
-.layout .filter-bar{
+
+.layout .filter-bar {
 
     position: absolute;
     width: 680px;
@@ -350,19 +367,19 @@ h2.title span {
     background: #202E41;
 }
 
-.filter-bar .container{
+.filter-bar .container {
     position: absolute;
     top: 36px;
     left: 48px;
     width: 584px;
 }
 
-.filter-bar #x-close-1{
+.filter-bar #x-close-1 {
     width: 24px;
     height: 24px;
 }
 
-.filter-bar #line-8{
+.filter-bar #line-8 {
     position: absolute;
     width: 584px;
     height: 0px;
@@ -370,28 +387,28 @@ h2.title span {
     border: 1px solid #4B5565;
 }
 
-.filter-bar h3{
+.filter-bar h3 {
     font-family: 'DP Céline';
     font-size: 48px;
     color: var(--main);
     letter-spacing: 1px;
 }
 
-.filter-bar .container h4{
+.filter-bar .container h4 {
     color: #9AA4B2;
     font-family: 'PlusJakartaSans-Medium';
     font-size: 16px;
     letter-spacing: 1px;
 }
 
-.filter-bar .container h5{
+.filter-bar .container h5 {
     color: var(--main);
     font-family: 'PlusJakartaSans-Medium';
     font-size: 16px;
     letter-spacing: 1px;
 }
 
-.filter-bar .container .item-selected{
+.filter-bar .container .item-selected {
     background-color: #364152;
     border-color: #364152;
     padding: 12px 12px 12px 16px;
@@ -403,30 +420,35 @@ h2.title span {
     letter-spacing: 1px;
     color: var(--main);
 }
-.filter-bar .container #x-close-items{
+
+.filter-bar .container #x-close-items {
     width: 8px;
     height: 8px;
 }
+
 .filter-bar .container .form-check {
     gap: 12px;
     display: flex;
 }
-.filter-bar .container .form-check .form-check-input{
+
+.filter-bar .container .form-check .form-check-input {
     background-color: transparent;
     border-radius: 0px;
     border-color: #4B5565;
 }
-.filter-bar .container .form-check .form-check-lable{
+
+.filter-bar .container .form-check .form-check-lable {
     font-family: 'PlusJakartaSans-Medium';
     font-size: 16px;
     letter-spacing: 1px;
     color: var(--main);
 }
-.filter-bar .container .form-check .form-check-input:checked{
+
+.filter-bar .container .form-check .form-check-input:checked {
     background-color: white !important;
 }
 
-.filter-bar .btn-secondary{
+.filter-bar .btn-secondary {
     width: 608px;
     height: 68px;
     gap: 10px;
@@ -443,7 +465,7 @@ h2.title span {
     align-items: center;
 }
 
-.filter-bar .container #arrow{
+.filter-bar .container #arrow {
     position: absolute;
     left: 530px;
     margin-top: 20px;
@@ -466,23 +488,25 @@ h2.title span {
     transform: translateY(-100%);
     transition: opacity 0.5s ease, transform 0.5s ease;
     z-index: 1000;
-    
+
 }
+
 .menu-area.show {
     display: block;
     opacity: 1;
     transform: translateY(0);
 }
 
-.menu-area .header-menu{
+.menu-area .header-menu {
     max-width: 1440px;
-    
+
 }
 
-.menu-area .header-menu .menu_right{
+.menu-area .header-menu .menu_right {
     gap: 8px;
 }
-.menu-area .header-menu .menu_right .nav_item{
+
+.menu-area .header-menu .menu_right .nav_item {
     color: #D5CCC3;
     text-decoration: none;
     font-family: "PlusJakartaSans-SemiBold";
@@ -495,7 +519,8 @@ h2.title span {
     margin: 220px 100px;
     gap: 160px;
 }
-.body-menu .option-menu{
+
+.body-menu .option-menu {
     font-family: "DP Céline";
     text-decoration: none;
     font-size: 48px;
@@ -506,7 +531,8 @@ h2.title span {
     color: #BEB0A2;
     margin-bottom: 24px;
 }
-.body-menu .option-menu:hover{
+
+.body-menu .option-menu:hover {
     color: #F7F5F3;
 }
 
@@ -527,22 +553,25 @@ h2.title span {
     transform: translateY(-100%);
     transition: opacity 0.5s ease, transform 0.5s ease;
     z-index: 1000;
-    
+
 }
+
 .search-area.show {
     display: block;
     opacity: 1;
     transform: translateY(0);
 }
-.search-area .header-search{
+
+.search-area .header-search {
     max-width: 1440px;
-    
+
 }
 
-.search-area .header-search .menu_right{
+.search-area .header-search .menu_right {
     gap: 8px;
 }
-.search-area .header-search .menu_right .nav_item{
+
+.search-area .header-search .menu_right .nav_item {
     color: #D5CCC3;
     text-decoration: none;
     font-family: "PlusJakartaSans-SemiBold";
@@ -555,7 +584,8 @@ h2.title span {
     margin: 220px 348px;
     gap: 160px;
 }
-.body-search .option-menu{
+
+.body-search .option-menu {
     font-family: "DP Céline";
     text-decoration: none;
     font-size: 48px;
@@ -566,10 +596,12 @@ h2.title span {
     color: #BEB0A2;
     margin-bottom: 24px;
 }
+
 .body-search .input-group {
     width: 654px;
 }
-.body-search .input-group input{
+
+.body-search .input-group input {
     background-color: transparent;
     border-width: 0px 0px 1px 0px;
     border-radius: 0px;
@@ -580,20 +612,25 @@ h2.title span {
     font-size: 48px;
     font-family: 'PlusJakartaSans-Light';
 }
+
 .body-search .input-group input::placeholder {
     color: #697586;
     font-size: 48px;
     letter-spacing: 1%;
     font-weight: 100;
-    opacity: 1; /* Firefox */
+    opacity: 1;
+    /* Firefox */
 }
-.body-search .input-group input::-ms-input-placeholder { /* Edge 12 -18 */
+
+.body-search .input-group input::-ms-input-placeholder {
+    /* Edge 12 -18 */
     color: #697586;
     font-size: 48px;
     letter-spacing: 1%;
     font-weight: 100;
 }
-.body-search h4{
+
+.body-search h4 {
     font-weight: 500;
     font-size: 20px;
     letter-spacing: 1px;
@@ -606,12 +643,12 @@ footer .line {
     overflow: hidden;
     /* position: relative;
      */
-     display: flex;
+    display: flex;
     width: 100%;
 }
 
 footer .line ul {
-    
+
     margin: 0;
     padding: 0;
     white-space: nowrap;
@@ -638,6 +675,7 @@ footer .line li {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-100%);
     }
@@ -660,16 +698,20 @@ footer .footer-middle h3 {
     color: #D5CCC3;
     letter-spacing: 0.48px;
 }
-footer .footer-middle li, footer .footer-middle li a {
+
+footer .footer-middle li,
+footer .footer-middle li a {
     color: #F7F5F3;
     list-style: none;
     text-decoration: none;
 }
+
 footer .footer-bottom {
     height: 256px;
     position: relative;
     overflow: hidden;
 }
+
 footer .footer-bottom p {
     font-size: 320px;
     line-height: 92px;

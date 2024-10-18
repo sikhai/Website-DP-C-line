@@ -23,21 +23,10 @@ class Category extends Model
     public function products()
     {
         return $this->hasMany(Product::class, 'category_id');
-    }
+    }    
 
-    public function parentCategory()
+    public function childCategories()
     {
-        return $this->belongsTo(Design::class, 'parent_id');
+        return $this->hasMany(Design::class, 'parent_id');
     }
-    
-
-    // public function childCategories()
-    // {
-    //     return $this->hasMany(Design::class, 'parent_id');
-    // }
-
-    // public function scopeExcludeSelf($query)
-    // {
-    //     return $query->where('id', '!=', $this->id);
-    // }  
 }

@@ -47,7 +47,7 @@
             </div>
             <div class="col-8 text-center">
                 <a>
-                    <img src="images/logo.svg" width="55" id="img-logo-ref" alt="logo" loading="lazy">
+                    <img src="{{ Voyager::image(setting('site.logo')) }}" width="55" id="img-logo-ref" alt="logo" loading="lazy">
                 </a>
             </div>
             <div class="col-2 d-flex align-items-center menu_right">
@@ -86,7 +86,7 @@
             </div>
             <div class="col-8 text-center">
                 <a>
-                    <img src="images/logo.svg" width="55" id="img-logo-ref" alt="logo" loading="lazy">
+                    <img src="{{ Voyager::image(setting('site.logo')) }}" width="55" id="img-logo-ref" alt="logo" loading="lazy">
                 </a>
             </div>
             <div class="col-2 d-flex align-items-center menu_right">

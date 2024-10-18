@@ -41,10 +41,5 @@ class Product extends Model
     {
         return $this->belongsToMany(Project::class, 'product_project');
     }
-
-    // public function setIsFeaturedAttribute($value)
-    // {
-    //     $this->attributes['is_featured'] = $value ? 1 : 0;
-    // }
 }
 
