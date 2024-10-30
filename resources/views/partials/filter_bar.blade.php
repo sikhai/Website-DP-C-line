@@ -35,10 +35,10 @@
                     </div>
                 </div>
                 <div class="row mt-2">
-                    @foreach ($values as $value)
+                    @foreach ($values as $value => $data)
                         <div class="col-3 p-0">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{ $value }}"
+                                <input class="form-check-input" type="checkbox" value="{{ $value }}" data-products="{{ count($data['list_ids']) }}"
                                     id="check_{{ $value }}">
                                 <label class="form-check-label" for="check_{{ $value }}">
                                     {{ $value }} 

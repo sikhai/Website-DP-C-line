@@ -7,8 +7,18 @@ use App\Models\Attribute;
 use App\Models\Design;
 use App\Models\Product;
 
+use App\Services\ProductService;
+
 class CategoryController extends Controller
 {
+
+    protected $productService;
+
+
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
 
     public function showCollection()
     {
@@ -25,7 +35,8 @@ class CategoryController extends Controller
         $products = Product::where('is_featured', 1)->get();
 
         // Gọi hàm lấy attributes với số lượng sản phẩm
-        $result_attributes = $this->getAttributesWithProductCount();
+
+        $result_attributes = $this->productService->getAttributesWithProductCount();
         
         // Trả về view hiển thị sản phẩm
         return view('product', compact('category', 'categories', 'result_attributes', 'products', 'designs', 'title_head'));
@@ -54,7 +65,8 @@ class CategoryController extends Controller
             ->get();
 
         // Gọi hàm lấy attributes với số lượng sản phẩm
-        $result_attributes = $this->getAttributesWithProductCount();
+
+        $result_attributes = $this->productService->getAttributesWithProductCount();
 
         // Nếu không tìm thấy category, trả về lỗi 404
         if (!$category) {
@@ -65,28 +77,4 @@ class CategoryController extends Controller
         return view('product', compact('category', 'categories', 'result_attributes', 'products', 'designs'));
     }
 
-
-    public function getAttributesWithProductCount()
-    {
-        $values = Attribute::pluck('value'); // chỉ lấy cột 'value'
-
-        $result_attributes = [];
-
-        foreach ($values as $value) {
-            $decodedValues = json_decode($value, true);
-
-            foreach ($decodedValues as $item) {
-                $name = $item['name'];
-                $value = $item['value'];
-
-                $result_attributes[$name][$value] = true;
-            }
-        }
-
-        foreach ($result_attributes as $name => $values) {
-            $result_attributes[$name] = array_keys($values);
-        }
-
-        return $result_attributes;
-    }
 }

@@ -368,6 +368,7 @@ h2.title span {
     background: #202E41;
     overflow-y: scroll;
     overflow-x: hidden;
+    z-index: 2;
 }
 
 .filter-bar .container{

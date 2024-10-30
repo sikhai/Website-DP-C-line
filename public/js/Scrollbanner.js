@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
    
     // Animation for the title appearing at 95% of the content2 expansion
     ScrollTrigger.create({
-        trigger: ".banner .image-container",
+        trigger: ".banner",
         start: "top top",  // Trigger the animation when content2 has reached 95% of its target
         onEnter: () => gsap.to(".banner .content", {
             opacity: 1,

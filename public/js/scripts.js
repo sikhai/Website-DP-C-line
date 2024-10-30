@@ -35,25 +35,27 @@ function open_filterbar(){
 
 
 const checkboxes = document.querySelectorAll('.form-check-input');
+let totalProducts = 0;
         
 checkboxes.forEach(checkbox => {
     checkbox.addEventListener('change', function() {
         const label = document.querySelector(`label[for='${this.id}']`).innerText;
         const selected_item = document.querySelector("#row-items-selected");
         let id_checkbox = "check_"+label.replaceAll(" ", "").toLowerCase();
+        let list_products_checkbox = parseInt(this.getAttribute('data-products'));
         
         if (this.checked) {
-            console.log(`Checked: ${label}`); 
+            totalProducts += list_products_checkbox;
             selected_item.innerHTML +=`<div class="item-selected d-flex align-items-center" id="`+id_checkbox+`">
                                             `+label+` <img id="x-close-items" src="images/x-close-8x8.svg"  alt="" style="cursor: pointer;"  onclick="deleteItem()">
                                         </div>`;
         }
         else {
-            console.log(`Unchecked: ${label}`); // In ra nhãn của checkbox khi bỏ chọn
-            
+            totalProducts -= list_products_checkbox;
             let selected_item = document.querySelector("#"+id_checkbox);
             selected_item.remove();
         }
+        console.log("Total Products:", totalProducts);
     });
 });
 
