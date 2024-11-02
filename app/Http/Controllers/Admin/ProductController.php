@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 
 use App\Models\Attribute;
 
@@ -120,7 +121,10 @@ class ProductController extends VoyagerBaseController
             $attributesJson = json_encode($attributes);
             $attribute = \App\Models\Attribute::firstOrCreate(['value' => $attributesJson]);
             $data->attributes()->syncWithoutDetaching([$attribute->id]);
-        }
+        
+            // Xóa cache để lần sau sẽ tạo lại cache mới
+            Cache::forget('attributes_with_product_count');
+        }        
 
         event(new BreadDataAdded($dataType, $data));
 
@@ -280,6 +284,9 @@ class ProductController extends VoyagerBaseController
             $attributesJson = json_encode($attributes);
 
             $attribute_id = $request->input('attribute_id');
+
+            // Xóa cache để lần sau sẽ tạo lại cache mới
+            Cache::forget('attributes_with_product_count');
 
             if ($attribute_id) {
                 // Update existing attribute or create new one if not found
