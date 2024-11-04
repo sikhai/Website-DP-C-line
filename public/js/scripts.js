@@ -36,28 +36,51 @@ function open_filterbar(){
 
 const checkboxes = document.querySelectorAll('.form-check-input');
 let totalProducts = 0;
-        
+
 checkboxes.forEach(checkbox => {
     checkbox.addEventListener('change', function() {
         const label = document.querySelector(`label[for='${this.id}']`).innerText;
-        const selected_item = document.querySelector("#row-items-selected");
-        let id_checkbox = "check_"+label.replaceAll(" ", "").toLowerCase();
-        let list_products_checkbox = parseInt(this.getAttribute('data-products'));
+        const selectedItemContainer = document.querySelector("#row-items-selected");
+        const btnFilterAction = document.querySelector(".btn-filter-action");
+        let idCheckbox = "check_" + label.replaceAll(" ", "").toLowerCase();
+        let listProductsCheckbox = parseInt(this.getAttribute('data-products'));
         
         if (this.checked) {
-            totalProducts += list_products_checkbox;
-            selected_item.innerHTML +=`<div class="item-selected d-flex align-items-center" id="`+id_checkbox+`">
-                                            `+label+` <img id="x-close-items" src="images/x-close-8x8.svg"  alt="" style="cursor: pointer;"  onclick="deleteItem()">
-                                        </div>`;
+            totalProducts += listProductsCheckbox;
+            selectedItemContainer.innerHTML += `<div class="item-selected d-flex align-items-center" id="${idCheckbox}">
+                                                    ${label} 
+                                                    <img src="images/x-close-8x8.svg" alt="" style="cursor: pointer;" onclick="deleteItem('${idCheckbox}', ${listProductsCheckbox})">
+                                                </div>`;
+        } else {
+            totalProducts -= listProductsCheckbox;
+            let selectedItem = document.querySelector("#" + idCheckbox);
+            if (selectedItem) {
+                selectedItem.remove();
+            }
         }
-        else {
-            totalProducts -= list_products_checkbox;
-            let selected_item = document.querySelector("#"+id_checkbox);
-            selected_item.remove();
-        }
-        console.log("Total Products:", totalProducts);
+
+        btnFilterAction.innerHTML = "APPLY " + "(" + totalProducts + ")";
     });
 });
+
+function deleteItem(idCheckbox, productCount) {
+    const itemToRemove = document.getElementById(idCheckbox);
+    if (itemToRemove) {
+        itemToRemove.remove();
+        totalProducts -= productCount;
+
+        // Uncheck the associated checkbox
+        checkboxes.forEach(checkbox => {
+            const label = document.querySelector(`label[for='${checkbox.id}']`).innerText;
+            if ("check_" + label.replaceAll(" ", "").toLowerCase() === idCheckbox) {
+                checkbox.checked = false;
+            }
+        });
+
+        document.querySelector(".btn-filter-action").innerHTML = "APPLY " + "(" + totalProducts + ")";
+    }
+}
+
 
 function clear_sellected_item(){
     const selected_item = document.querySelector("#row-items-selected");
@@ -67,28 +90,6 @@ function clear_sellected_item(){
     checkboxes.forEach(checkbox => {
         checkbox.checked = false;
     });
-}
-
-function deleteItem(){
-    const closeButtons = document.querySelectorAll('#x-close-items');
-
-        closeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Tìm phần tử cha có class item-selected và xóa class đó
-                const parent = this.closest('.item-selected');
-                if (parent) {
-                    // parent.classList.remove('item-selected');
-                    let id = parent.id;
-                    checkboxes.forEach(checkbox => {
-                        if (checkbox.id == id){
-                            checkbox.checked = false;
-                        }
-                        
-                    });
-                    parent.remove();
-                }
-            });
-        });
 }
 
 // detail items 

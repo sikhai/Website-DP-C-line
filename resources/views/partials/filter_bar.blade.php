@@ -38,10 +38,11 @@
                     @foreach ($values as $value => $data)
                         <div class="col-3 p-0">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{ $value }}" data-products="{{ count($data['list_ids']) }}"
-                                    id="check_{{ $value }}">
+                                <input class="form-check-input" type="checkbox" value="{{ $value }}"
+                                    data-products="{{ count($data['list_ids']) }}" id="check_{{ $value }}"
+                                    attribute-name="{{ ucfirst($name) }}">
                                 <label class="form-check-label" for="check_{{ $value }}">
-                                    {{ $value }} 
+                                    {{ $value }}
                                 </label>
                             </div>
                         </div>
@@ -52,8 +53,8 @@
 
 
             <!-- button apply  -->
-            <div class="row mt-5">
-                <button type="button" class="btn btn-secondary">
+            <div class="row mt-5 mb-5">
+                <button type="button" class="btn btn-secondary btn-filter-action">
                     APPLY
                 </button>
                 <div id="arrow">
@@ -64,3 +65,23 @@
         </div>
     </div>
 </section>
+
+<script>
+    document.querySelector('.btn-filter-action').addEventListener('click', function() {
+        // Lấy tất cả các checkbox đã checked
+        const checkedCheckboxes = Array.from(document.querySelectorAll('.form-check-input:checked'));
+
+        // Tạo chuỗi cặp `attribute-name` và `value`, ngăn cách từng cặp bằng dấu phẩy
+        const attributePairs = checkedCheckboxes.map(checkbox => {
+            const attributeName = checkbox.getAttribute('attribute-name');
+            const value = checkbox.value;
+            return `${attributeName}-${value}`;
+        }).join(',');
+
+        // Tạo URL với tham số mới
+        const urlParams = `?attribute=${attributePairs}`;
+
+        // Điều hướng đến URL với tham số đã tạo
+        window.location.href = urlParams;
+    });
+</script>

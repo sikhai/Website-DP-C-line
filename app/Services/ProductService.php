@@ -23,47 +23,70 @@ class ProductService
                 return $result_attributes; // Trả về mảng rỗng nếu không có thuộc tính
             }
 
-            foreach ($attributes as $attribute) {
-                if (!$attribute->value) {
-                    continue; // Bỏ qua nếu không có giá trị
-                }
+            $this->getAttributes($attributes, $result_attributes);
+            $this->getProductsByAttribute($result_attributes);
 
-                // Giải mã giá trị JSON thành mảng
-                $decodedValues = json_decode($attribute->value, true);
+        return $result_attributes;
 
-                foreach ($decodedValues as $item) {
-                    $name = $item['name'];
-                    $value = $item['value'];
+        });
+    }
 
-                    // Khởi tạo mảng nếu chưa tồn tại
-                    if (!isset($result_attributes[$name])) {
-                        $result_attributes[$name] = [];
-                    }
-
-                    if (!isset($result_attributes[$name][$value])) {
-                        $result_attributes[$name][$value] = [
-                            'list_ids' => [], // Khởi tạo danh sách ID rỗng
-                            'product_count' => 0 // Khởi tạo số lượng sản phẩm
-                        ];
-                    }
-
-                    // Truy vấn sản phẩm có thuộc tính cụ thể
-                    $productIds = Product::whereHas('attributes', function ($query) use ($item) {
-                        $query->whereRaw("JSON_CONTAINS(value, ?)", [json_encode($item)]);
-                    })->pluck('id')->toArray();
-
-                    // Thêm danh sách ID vào phần tử list_ids
-                    $result_attributes[$name][$value]['list_ids'] = array_merge(
-                        $result_attributes[$name][$value]['list_ids'],
-                        $productIds
-                    );
-
-                    // Cập nhật số lượng sản phẩm
-                    $result_attributes[$name][$value]['product_count'] = count($result_attributes[$name][$value]['list_ids']);
-                }
+    // Hàm xử lý thuộc tính để xây dựng mảng result_attributes
+    public function getAttributes($attributes, &$result_attributes)
+    {
+        foreach ($attributes as $attribute) {
+            if (!$attribute->value) {
+                continue; // Bỏ qua nếu không có giá trị
             }
 
-            return $result_attributes;
-        });
+            // Giải mã giá trị JSON thành mảng
+            $decodedValues = json_decode($attribute->value, true);
+
+            foreach ($decodedValues as $item) {
+                $name = $item['name'];
+                $value = $item['value'];
+
+                // Khởi tạo mảng nếu chưa tồn tại
+                if (!isset($result_attributes[$name])) {
+                    $result_attributes[$name] = [];
+                }
+
+                if (!isset($result_attributes[$name][$value])) {
+                    $result_attributes[$name][$value] = [
+                        'list_ids' => [], // Khởi tạo danh sách ID rỗng
+                        'product_count' => 0 // Khởi tạo số lượng sản phẩm
+                    ];
+                }
+            }
+        }
+
+        return $result_attributes;
+    }
+
+    // Hàm truy vấn sản phẩm và cập nhật danh sách ID và số lượng
+    public function getProductsByAttribute(&$result_attributes)
+    {
+        foreach ($result_attributes as $name => $values) {
+            foreach ($values as $value => $data) {
+                // Truy vấn sản phẩm có thuộc tính cụ thể
+                $productIds = Product::whereHas('attributes', function ($query) use ($name, $value) {
+                    $query->whereRaw("JSON_CONTAINS(value, ?)", [json_encode(['name' => $name, 'value' => $value])]);
+                })->pluck('id')->toArray();
+
+                // Thêm danh sách ID vào phần tử list_ids
+                $result_attributes[$name][$value]['list_ids'] = array_merge(
+                    $result_attributes[$name][$value]['list_ids'],
+                    $productIds
+                );
+
+                // Loại bỏ trùng lặp trong list_ids
+                $result_attributes[$name][$value]['list_ids'] = array_unique($result_attributes[$name][$value]['list_ids']);
+
+                // Cập nhật số lượng sản phẩm
+                $result_attributes[$name][$value]['product_count'] = count($result_attributes[$name][$value]['list_ids']);
+            }
+        }
+
+        return $result_attributes;
     }
 }

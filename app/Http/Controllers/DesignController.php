@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Category;
@@ -6,6 +7,8 @@ use App\Models\Attribute;
 use App\Models\Design;
 use App\Models\Product;
 use App\Services\ProductService;
+use Illuminate\Http\Request;
+
 
 class DesignController extends Controller
 {
@@ -33,8 +36,24 @@ class DesignController extends Controller
         return view('design', compact('category', 'categories', 'result_attributes', 'products', 'designs'));
     }
 
-    public function showProducts()
+    public function showProducts(Request $request)
     {
+
+        $attributeString = $request->input('attribute');
+        $attributePairs = explode(',', $attributeString);
+
+        $attributes_filler = [];
+        $all_list_ids = [];
+
+        // Duyệt qua từng cặp và tách thành 'attribute-name' và 'value'
+        foreach ($attributePairs as $pair) {
+            list($attributeName, $value) = explode('-', $pair);
+            $attributes_filler[] = [
+                'attribute-name' => $attributeName,
+                'value' => $value
+            ];
+        }
+
         $designs = Design::with('products')->where('is_featured', 1)->first();
 
         // Kiểm tra null cho `$designs`
@@ -44,10 +63,29 @@ class DesignController extends Controller
 
         $category = null;
         $title_head = 'All Products';
+
         $categories = Category::where('is_featured', 1)->get();
         $products = Product::with('attributes')->where('category_id', $designs->id)->get();
 
         $result_attributes = $this->productService->getAttributesWithProductCount();
+
+
+        if (count($attributes_filler) > 0) {
+            foreach ($attributes_filler as $attribute) {
+                // Lấy tên thuộc tính và giá trị từ mảng
+                $attributeName = $attribute['attribute-name'];
+                $value = $attribute['value'];
+            
+                // Kiểm tra xem thuộc tính có trong $result_attributes hay không
+                if (isset($result_attributes[$attributeName][$value])) {
+                    // Gộp các list_ids vào mảng all_list_ids
+                    $all_list_ids = array_merge($all_list_ids, $result_attributes[$attributeName][$value]['list_ids']);
+                }
+            }
+            
+            // Xóa các giá trị trùng lặp (nếu cần)
+            $all_list_ids = array_unique($all_list_ids);
+        }
 
         return view('design', compact('category', 'categories', 'result_attributes', 'products', 'designs', 'title_head'));
     }
