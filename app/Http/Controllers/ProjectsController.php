@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
     public function show()
     {
+        $categories = Category::where('is_featured', 1)->get();
         // Lấy danh sách tất cả các project, có thể phân trang hoặc lấy theo điều kiện
         $projects = Project::with('products')->get(); // Nếu cần chỉ lấy các project nhất định, có thể dùng where hoặc take
 
         // Trả về view và truyền dữ liệu projects
-        return view('project.show', compact('projects'));
+        return view('project.show', compact('projects', 'categories'));
+        
     }
 }
