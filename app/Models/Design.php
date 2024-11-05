@@ -18,6 +18,11 @@ class Design extends Model
         'is_featured',
     ];
 
+    protected $casts = [
+        'parent_id' => 'integer',
+    ];
+
+
     public function products()
     {
         return $this->hasMany(Product::class, 'category_id');
@@ -27,5 +32,15 @@ class Design extends Model
     {
         return $this->belongsTo(Category::class, 'parent_id');
     }
- 
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Lắng nghe sự kiện `saving` (gọi cả khi tạo và cập nhật)
+        static::saving(function ($design) {
+            // dd(request()->all()); // Dừng và in dữ liệu của `Design` trước khi lưu
+            // dd($design); // Dừng và in dữ liệu của `Design` trước khi lưu
+        });
+    }
 }

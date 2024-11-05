@@ -3,40 +3,6 @@
     --blue: #202E41;
 }
 
-@font-face {
-    font-family: 'DP Céline';
-    src: url('../fonts/DFVNIvyPrestoDisplay/IvyPrestoDisplay-Thin.otf') format('opentype');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'DP Céline bold';
-    src: url('../fonts/DFVNIvyPrestoDisplay/IvyPrestoDisplay-Bold.otf') format('opentype');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'PlusJakartaSans-Medium';
-    src: url('../fonts/Plus_Jakarta_Sans/Plus_Jakarta_Sans/static/PlusJakartaSans-Medium.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'PlusJakartaSans-Light';
-    src: url('../fonts/Plus_Jakarta_Sans/Plus_Jakarta_Sans/static/PlusJakartaSans-Light.ttf') format('truetype');
-    font-weight: 100;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'PlusJakartaSans-SemiBold';
-    src: url('../fonts/Plus_Jakarta_Sans/Plus_Jakarta_Sans/static/PlusJakartaSans-SemiBold.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 * {
     padding: 0;
     margin: 0;
@@ -136,6 +102,7 @@ h2.title span {
 /* header */
 .top_head{
     z-index: 99;
+    animation: none;
 }
 .top_head .nav_item {
     font-family: "PlusJakartaSans-SemiBold";
@@ -151,6 +118,7 @@ h2.title span {
 
 .body_head {
     padding: 140px 0 75px;
+    animation: none;
 }
 
 .body_head h1 {
@@ -267,21 +235,18 @@ h2.title span {
     text-decoration: none;
 }
 .table-projects .container{
-    display: flex;
-    justify-content: space-between;
-    gap: 64px;
-    height: 407px;
     margin-bottom: 80px;
 }
 
 .table-projects .container .froject-item{
-    width: 624px;
     gap: 8px;
     padding: 0px;
+    padding-bottom: 80px;
 }
 
 .table-projects .container .froject-item .img{
     height: 333px;
+    object-fit: cover;
 }
 
 .table-projects .container .froject-item #block-collection-lable{

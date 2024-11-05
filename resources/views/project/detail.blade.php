@@ -42,48 +42,19 @@
 @endsection
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/our-project.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/our-project-detail.css') }}">
 @endsection
 
 @section('content')
-    <section class="table-projects position-relative">
-        <div class="container">
-            <div class="row">
-                @foreach ($projects as $project)
-                    <div class="col-6">
-                        <div class="froject-item">
-                            <a href="/our-project/{{ $project['slug'] }}">
-                                @php
-                                    $image = json_decode($project->images)[0];
-                                @endphp
-                                @if ($image)
-                                    <img class="img w-100" src="{{ Voyager::image($image) }}" alt="{{ $project['name'] }}"
-                                        loading="lazy">
-                                @endif
-                                <div class="d-flex pt-4 m-0" id="block-collection-lable">
-                                    <p id="collection-name">{{ $project['name'] }}</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-@endsection
+    
 
-@section('loader')
-    <div class="loader">
-        <img src="./images/dpceline.png" alt="">
-    </div>
+    ádasd
 @endsection
 
 @push('scripts')
-    <!-- <script src="js/main.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
-    <script src="{{ asset('js/loader.js') }}"></script>
     <script src="{{ asset('js/menu-script.js') }}"></script>
 @endpush

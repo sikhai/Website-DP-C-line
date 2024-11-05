@@ -28,7 +28,9 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::post('/check-product-code', [ProductController::class, 'checkProductCode'])->name('check.product.code');
 /* admin */
+/* our-project */
 Route::get('/our-project', [ProjectsController::class, 'show'])->name('project.show');
+Route::get('/our-project/{project_slug}', [ProjectsController::class, 'detail'])->name('project.detail');
 
 // Route cho sản phẩm
 Route::get('/collection', [CategoryController::class, 'showCollection'])->name('collection.show');
