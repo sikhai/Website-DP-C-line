@@ -45,10 +45,95 @@
     <link rel="stylesheet" href="{{ asset('css/our-project-detail.css') }}">
 @endsection
 
-@section('content')
-    
+@section('top_head')
+    <div class="row pt-3">
+        <a href="/our-project">
+            <div class="col-2 d-flex align-items-center back-btn">
+                <img src="{{ asset('images/arr-back.png') }}" alt="">
+                <h3 id="back">BACK</h3>
+            </div>
+        </a>
+    </div>
 
-    ádasd
+    <div class="row">
+        <div class="content w-75">
+            <p>PROJECT OF THE MONTH</p>
+            <h3>{{ $project->name }}</h3>
+        </div>
+    </div>
+@endsection
+
+@section('content')
+    <section class="project-info">
+        <div class="container">
+            <div class="row mt-3 d-flex p-0">
+                <div class="col-6">
+                    <p>{{ $project->short_description }}</p>
+                </div>
+                <div class="col-6">
+                    <div class="line1"></div>
+                    <div class="row d-flex p-0">
+                        <div class="col-3">
+                            <h3>Products</h3>
+                        </div>
+                        <div class="col-9">
+                            <p>A paragraph is a unit of text that consists of a group of sentences related to a central
+                                topic or idea. </p>
+                        </div>
+                    </div>
+                    <div class="line1"></div>
+                    <div class="row d-flex p-0">
+                        <div class="col-3">
+                            <h3>Project</h3>
+                        </div>
+                        <div class="col-9">
+                            <p>{{ $project->name }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {!! $project->description !!}
+            <div class="products">
+                <div class="row">
+                    <h2>in this project</h2>
+                </div>
+                <div class="row d-flex">
+                    <div class="col-3">
+                        <img src="./images/project/JW marriot/sheer.png" class="img-2" alt="">
+                        <h5>Sheer</h5>
+                    </div>
+                    <div class="col-3">
+                        <img src="./images/project/JW marriot/curtain1.png" class="img-2" alt="">
+                        <h5>Fabric Curtain</h5>
+                    </div>
+                    <div class="col-3">
+                        <img src="./images/project/JW marriot/curtain2.png" class="img-2" alt="">
+                        <h5>Fabric Curtain</h5>
+                    </div>
+                    <div class="col-3">
+                        <img src="./images/project/JW marriot/upholstery.png" class="img-2" alt="">
+                        <h5>Upholstery</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="next-project">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <img src="./images/project/The masterise sale gallery/khu-vuc-tiep-khach-the-galleria-by-masterise-homes.jpg"
+                        alt="">
+                </div>
+                <div class="col-6" style="margin-top: 80px;padding-left:30px">
+                    <a href="./our-project-detail.html">READ MORE</a>
+                    <p>Next project</p>
+                    <h2>The Galleria by Masterise Homes</h2>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
 
 @push('scripts')

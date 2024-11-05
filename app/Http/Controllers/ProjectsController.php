@@ -25,15 +25,13 @@ class ProjectsController extends Controller
     public function detail($project_slug)
     {
 
-        $title_head = 'Our Projects';
-
         $categories = Category::where('is_featured', 1)->get();
-        $projects = Project::with('products')->where('slug',$project_slug)->get();
+        $project = Project::with('products')->where('slug',$project_slug)->first();
 
-        if (!$projects) {
+        if (!$project) {
             abort(404);
         }
 
-        return view('project.detail', compact('projects', 'categories', 'title_head'));
+        return view('project.detail', compact('project', 'categories'));
     }
 }

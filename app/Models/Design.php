@@ -18,11 +18,6 @@ class Design extends Model
         'is_featured',
     ];
 
-    protected $casts = [
-        'parent_id' => 'integer',
-    ];
-
-
     public function products()
     {
         return $this->hasMany(Product::class, 'category_id');

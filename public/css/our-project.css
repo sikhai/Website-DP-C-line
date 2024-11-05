@@ -59,6 +59,7 @@ h2.title span {
     display: flex;
     justify-content: center;
     background-color: #202E41;
+    background-image: none;
     background-size: cover;
     background-repeat: no-repeat;
 }

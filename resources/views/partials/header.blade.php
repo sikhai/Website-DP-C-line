@@ -16,25 +16,27 @@
                     <a class="nav_item" id="open-menu" onclick="openmenu()">MENU</a>
                 </div>
             </div>
+            @yield('top_head')
         </div>
         <div class="body_head">
             @home
                 <h1>Li<span>v</span>e <span>A</span>rtf<span>u</span>lly</h1>
             @else
-                <h1>{{ isset($category) ? $category->name : (isset($title_head) ? $title_head : '') }}</h1>
-                <div class="d-flex align-items-center menu_fabric">
-                    <a class="nav_item" id="next-tab" href="{{ route('home') }}">Home</a>
-                    <p class="nav_item">/</p>
-                    @isset($category)
-                        <a class="nav_item" id="next-tab"
-                            href="/products">All Products</a>
+                @if (isset($category) || isset($title_head))
+                    <h1>{{ isset($category) ? $category->name : (isset($title_head) ? $title_head : '') }}</h1>
+                    <div class="d-flex align-items-center menu_fabric">
+                        <a class="nav_item" id="next-tab" href="{{ route('home') }}">Home</a>
                         <p class="nav_item">/</p>
-                        <a class="nav_item" id="current-tab">{{ $category->name }}</a>
-                    @else
-                        <a class="nav_item" id="current-tab">{{ isset($title_head) ? $title_head : '' }}</a>
-                    @endisset
-                </div>
-                <div id="line"></div>
+                        @isset($category)
+                            <a class="nav_item" id="next-tab" href="/products">All Products</a>
+                            <p class="nav_item">/</p>
+                            <a class="nav_item" id="current-tab">{{ $category->name }}</a>
+                        @else
+                            <a class="nav_item" id="current-tab">{{ isset($title_head) ? $title_head : '' }}</a>
+                        @endisset
+                    </div>
+                    <div id="line"></div>
+                @endif
             @endhome
         </div>
     </div>
@@ -47,12 +49,14 @@
             </div>
             <div class="col-8 text-center">
                 <a>
-                    <img src="{{ Voyager::image(setting('site.logo')) }}" width="55" id="img-logo-ref" alt="logo" loading="lazy">
+                    <img src="{{ Voyager::image(setting('site.logo')) }}" width="55" id="img-logo-ref"
+                        alt="logo" loading="lazy">
                 </a>
             </div>
             <div class="col-2 d-flex align-items-center menu_right">
                 <a class="nav_item" onclick="closemenu()">CLOSE</a>
-                <img src="{{ asset('images/x-close-12x12.svg') }}" style="cursor:pointer;" onclick="closemenu()" alt="">
+                <img src="{{ asset('images/x-close-12x12.svg') }}" style="cursor:pointer;" onclick="closemenu()"
+                    alt="">
             </div>
         </div>
 
@@ -86,13 +90,14 @@
             </div>
             <div class="col-8 text-center">
                 <a>
-                    <img src="{{ Voyager::image(setting('site.logo')) }}" width="55" id="img-logo-ref" alt="logo" loading="lazy">
+                    <img src="{{ Voyager::image(setting('site.logo')) }}" width="55" id="img-logo-ref"
+                        alt="logo" loading="lazy">
                 </a>
             </div>
             <div class="col-2 d-flex align-items-center menu_right">
                 <a class="nav_item" onclick="closemenu()">CLOSE</a>
-                <img src="{{ asset('images/x-close-12x12.svg') }}" id="img-close-ref" style="cursor:pointer;" onclick="closemenu()"
-                    alt="">
+                <img src="{{ asset('images/x-close-12x12.svg') }}" id="img-close-ref" style="cursor:pointer;"
+                    onclick="closemenu()" alt="">
             </div>
         </div>
 
