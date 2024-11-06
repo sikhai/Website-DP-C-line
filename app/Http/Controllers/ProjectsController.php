@@ -26,12 +26,16 @@ class ProjectsController extends Controller
     {
 
         $categories = Category::where('is_featured', 1)->get();
-        $project = Project::with('products')->where('slug',$project_slug)->first();
+        $project = Project::with(['products.category.parentCategory'])->where('slug',$project_slug)->first();
+
+        $project_other = Project::where('id', '<>', $project->id)
+                        ->inRandomOrder()
+                        ->first();
 
         if (!$project) {
             abort(404);
         }
 
-        return view('project.detail', compact('project', 'categories'));
+        return view('project.detail', compact('project', 'categories', 'project_other'));
     }
 }

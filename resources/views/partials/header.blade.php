@@ -6,7 +6,7 @@
                     <a class="nav_item" href="#contact-mail">CONTACT</a>
                 </div>
                 <div class="col-8 text-center">
-                    <a href="{{ env('APP_URL') }}">
+                    <a href="{{ url('/') }}">
                         <img src="{{ Voyager::image(setting('site.logo')) }}" width="55" id="img-logo-ref"
                             alt="logo" loading="lazy">
                     </a>
@@ -23,11 +23,11 @@
                 <h1>Li<span>v</span>e <span>A</span>rtf<span>u</span>lly</h1>
             @else
                 @if (isset($category) || isset($title_head))
-                    <h1>{{ isset($category) ? $category->name : (isset($title_head) ? $title_head : '') }}</h1>
+                    <h1>{{ isset( $category->name) ? $category->name : (isset($title_head) ? $title_head : '') }}</h1>
                     <div class="d-flex align-items-center menu_fabric">
                         <a class="nav_item" id="next-tab" href="{{ route('home') }}">Home</a>
                         <p class="nav_item">/</p>
-                        @isset($category)
+                        @isset( $category->name )
                             <a class="nav_item" id="next-tab" href="/products">All Products</a>
                             <p class="nav_item">/</p>
                             <a class="nav_item" id="current-tab">{{ $category->name }}</a>
@@ -48,7 +48,7 @@
 
             </div>
             <div class="col-8 text-center">
-                <a>
+                <a href="{{ url('/') }}">
                     <img src="{{ Voyager::image(setting('site.logo')) }}" width="55" id="img-logo-ref"
                         alt="logo" loading="lazy">
                 </a>
@@ -89,7 +89,7 @@
 
             </div>
             <div class="col-8 text-center">
-                <a>
+                <a href="{{ url('/') }}">
                     <img src="{{ Voyager::image(setting('site.logo')) }}" width="55" id="img-logo-ref"
                         alt="logo" loading="lazy">
                 </a>

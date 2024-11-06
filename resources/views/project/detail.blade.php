@@ -1,9 +1,13 @@
 @extends('layouts.main')
 
-@section('title', 'Our Projects')
-@section('meta_description', 'This is the Our Projects description')
+@php
+    $image = json_decode($project->images)[0];
+@endphp
+
+@section('title', $project->name)
+@section('meta_description', $project->short_description)
 @section('meta_keywords', 'product, item, details')
-@section('meta_image', asset('images/product-page-image.jpg'))
+@section('meta_image', Voyager::image($image))
 
 @section('structured_data')
     <script type="application/ld+json">
@@ -93,43 +97,47 @@
                 </div>
             </div>
             {!! $project->description !!}
-            <div class="products">
-                <div class="row">
-                    <h2>in this project</h2>
+            @php
+                $uniqueCategories = $project->products
+                    ->map(function ($product) {
+                        return optional($product->category)->parentCategory;
+                    })
+                    ->filter()
+                    ->unique('id');
+            @endphp
+            @if (count($uniqueCategories))
+                <div class="products">
+                    <div class="row">
+                        <h2>in this project</h2>
+                    </div>
+                    <div class="row d-flex">
+
+                        @foreach ($uniqueCategories as $category)
+                            <div class="col-3">
+                                <img src="{{ Voyager::image($category->image) }}" class="img-2" alt="">
+                                <h5>{{ $category->name }}</h5>
+                            </div>
+                        @endforeach
+
+                    </div>
                 </div>
-                <div class="row d-flex">
-                    <div class="col-3">
-                        <img src="./images/project/JW marriot/sheer.png" class="img-2" alt="">
-                        <h5>Sheer</h5>
-                    </div>
-                    <div class="col-3">
-                        <img src="./images/project/JW marriot/curtain1.png" class="img-2" alt="">
-                        <h5>Fabric Curtain</h5>
-                    </div>
-                    <div class="col-3">
-                        <img src="./images/project/JW marriot/curtain2.png" class="img-2" alt="">
-                        <h5>Fabric Curtain</h5>
-                    </div>
-                    <div class="col-3">
-                        <img src="./images/project/JW marriot/upholstery.png" class="img-2" alt="">
-                        <h5>Upholstery</h5>
-                    </div>
-                </div>
-            </div>
+            @endif
         </div>
     </section>
 
     <section class="next-project">
         <div class="container">
             <div class="row">
+                @php
+                    $image_other = json_decode($project_other->images)[0];
+                @endphp
                 <div class="col-6">
-                    <img src="./images/project/The masterise sale gallery/khu-vuc-tiep-khach-the-galleria-by-masterise-homes.jpg"
-                        alt="">
+                    <img src="{{ Voyager::image($image_other) }}" alt="{{ $project_other->name }}">
                 </div>
                 <div class="col-6" style="margin-top: 80px;padding-left:30px">
-                    <a href="./our-project-detail.html">READ MORE</a>
+                    <a href="/our-project/{{ $project_other->slug }}">READ MORE</a>
                     <p>Next project</p>
-                    <h2>The Galleria by Masterise Homes</h2>
+                    <h2>{{ $project_other->name }}</h2>
                 </div>
             </div>
         </div>
