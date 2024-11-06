@@ -49,21 +49,28 @@
             @endif
         </div>
         <div class="row p-0" style="margin-top: 80px;">
-            <div class="download">
-                <div class="d-flex download-item">
-                    <img src="{{ asset('images/file-download.svg') }}" alt="">
-                    <div id="name">
-                        <p style="margin-top: -3px;">TECHNICAL</p>
-                        <p style="margin-top: -15px;">DOCUMENTS</p>
+            @if ($product->file)
+                <div class="download">
+                    <div class="d-flex download-item">
+                        <img src="{{ asset('images/file-download.svg') }}" alt="">
+                        @php
+                            $filePath = json_decode($product->file, true)[0];
+                        @endphp
+                        <div id="name">
+                            <a class="text-decoration-none" href="{{ Storage::url($filePath['download_link']) }}" download="{{ basename($filePath['original_name']) }}">
+                                <p style="margin-top: -3px;">TECHNICAL</p>
+                                <p style="margin-top: -15px;">DOCUMENTS</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="d-flex mt-3 download-item">
+                        <img src="{{ asset('images/file-download.svg') }}" alt="">
+                        <div id="name">
+                            <p>HD IMAGES</p>
+                        </div>
                     </div>
                 </div>
-                <div class="d-flex mt-3 download-item">
-                    <img src="{{ asset('images/file-download.svg') }}" alt="">
-                    <div id="name">
-                        <p>HD IMAGES</p>
-                    </div>
-                </div>
-            </div>
+            @endif
             @if ($attributes)
                 @foreach ($attributes as $attribute)
                     <div class="p-0 left-description">
@@ -96,7 +103,8 @@
         <div class="row">
             @foreach ($products_orther as $item)
                 <div class="col-lg-3 w-20 fabric-item">
-                    <img class="img w-100" src="{{ env('APP_URL') . '/storage/' . $product['image'] }}" alt="" loading="lazy">
+                    <img class="img w-100" src="{{ env('APP_URL') . '/storage/' . $product['image'] }}" alt=""
+                        loading="lazy">
                     <p class="pt-2 m-0" id="design-name">{{ $item['name'] }}</p>
                     <p class="pt-2 m-0" id="design-code">{{ $item['product_code'] }}</p>
                 </div>

@@ -299,6 +299,16 @@
                                 <input type="checkbox"
                                     name="is_trending"@if (isset($dataTypeContent->is_trending) && $dataTypeContent->is_trending) checked="checked" @endif>
                             </div>
+                            <div class="form-group">
+                                <label for="file">{{ __('voyager::product.view_file') }}</label>
+                                <input type="file" name="file" id="file">
+                                @if (isset($dataTypeContent->file))
+                                    @php
+                                        $filePath = json_decode($dataTypeContent->file, true)[0];
+                                    @endphp
+                                    <p>Current file: <a href="{{ Storage::url($filePath['download_link']) }}" download="{{ basename($filePath['original_name']) }}">{{ $filePath['original_name'] }}</a></p>
+                                @endif
+                            </div>
                         </div>
                     </div>
 
