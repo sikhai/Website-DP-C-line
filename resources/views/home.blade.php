@@ -16,10 +16,6 @@
 </script>
 @endsection
 
-@yield('structured_data')
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-@yield('styles')
-
 @section('content')
     @include('partials.banner')
     @include('partials.our_services')

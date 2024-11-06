@@ -10,13 +10,11 @@
             @php
                 $images = json_decode($item['images'], true);
             @endphp
-            <a href="/our-project/{{ $item['slug'] }}">
-                <div class="img-wrapper image{{ $key + 1 }}">
-                    <img src="{{ Voyager::image($images[0]) }}" alt="{{ $item['project_name'] }}" loading="lazy"
-                        class="hover-image ">
-                    <div class="overlay"></div>
-                </div>
-            </a>
+            <div class="img-wrapper image{{ $key + 1 }}">
+                <img src="{{ Voyager::image($images[0]) }}" alt="{{ $item['project_name'] }}" loading="lazy"
+                    class="hover-image ">
+                <div class="overlay"></div>
+            </div>
         @endforeach
     </div>
 </section>
