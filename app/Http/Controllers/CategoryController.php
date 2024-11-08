@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Category;
@@ -19,15 +20,21 @@ class CategoryController extends Controller
     {
         $category = null;
         $title_head = 'Collection';
-        
+
         // Lấy categories và designs nổi bật
         $categories = Category::where('is_featured', 1)->get();
-        $designs = Design::with('products')->where('is_featured', 1)->get();
+        $designs = Design::with(['products' => function ($query) {
+            $query->where('is_featured', 1);
+        }])->where('is_featured', 1)
+            ->whereHas('products', function ($query) {
+                $query->where('is_featured', 1);
+            })->get();
+
         $products = Product::where('is_featured', 1)->get();
 
         // Gọi ProductService để lấy attributes với số lượng sản phẩm
         $result_attributes = $this->productService->getAttributesWithProductCount();
-        
+
         // Trả về view hiển thị sản phẩm
         return view('product', compact('category', 'categories', 'result_attributes', 'products', 'designs', 'title_head'));
     }

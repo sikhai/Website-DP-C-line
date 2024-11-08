@@ -5,7 +5,7 @@
 <section class="table-products position-relative">
     <div class="row">
         <div class="col-4" style="margin:27px 70px 0px">
-            <p id="sum-products">{{ count($products) }} Products, 1 designs</p>
+            <p id="sum-products">{{ count($products) }} Products</p>
         </div>
     </div>
     <div class="container mb-5">
@@ -16,7 +16,7 @@
                         <a class="text-decoration-none" href="/products/{{ $item['slug'] }}">
                             <img class="img w-100" src="{{ env('APP_URL').'/storage/'.$item['image'] }}" alt="" loading="lazy">
                             <p class="pt-2 m-0" id="design-name">{{ $item['name'] }}</p>
-                            <p class="pt-2 m-0" id="design-code">{{ $designs->name }}</p>
+                            <p class="pt-2 m-0" id="design-code">{{ $item->category->name }}</p>
                         </a>
                     </div>
                 </div>

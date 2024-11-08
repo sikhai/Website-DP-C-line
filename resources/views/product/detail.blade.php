@@ -3,7 +3,7 @@
 @endsection
 
 <!-- detail item -->
-<section class="detail-fabric">
+<section class="detail-fabric pb-5">
     <div class="container" style="margin-top: 90px;">
         <div class="row img-detail">
             <div class="col-10 main-view">
@@ -57,7 +57,8 @@
                             $filePath = json_decode($product->file, true)[0];
                         @endphp
                         <div id="name">
-                            <a class="text-decoration-none" href="{{ Storage::url($filePath['download_link']) }}" download="{{ basename($filePath['original_name']) }}">
+                            <a class="text-decoration-none" href="{{ Storage::url($filePath['download_link']) }}"
+                                download="{{ basename($filePath['original_name']) }}">
                                 <p style="margin-top: -3px;">TECHNICAL</p>
                                 <p style="margin-top: -15px;">DOCUMENTS</p>
                             </a>
@@ -93,6 +94,7 @@
 
 <!-- /* tab-general-fabric collection design */ -->
 
+@if ($products_orther)
 <section class="table-products position-relative">
     <div class="row">
         <div class="col-4" style="margin:27px 70px 0px">
@@ -103,10 +105,12 @@
         <div class="row">
             @foreach ($products_orther as $item)
                 <div class="col-lg-3 w-20 fabric-item">
-                    <img class="img w-100" src="{{ env('APP_URL') . '/storage/' . $product['image'] }}" alt=""
-                        loading="lazy">
-                    <p class="pt-2 m-0" id="design-name">{{ $item['name'] }}</p>
-                    <p class="pt-2 m-0" id="design-code">{{ $item['product_code'] }}</p>
+                    <a href="/products/{{ $item['slug'] }}">
+                        <img class="img w-100" src="{{ env('APP_URL') . '/storage/' . $item['image'] }}" alt=""
+                            loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">{{ $item['name'] }}</p>
+                        <p class="pt-2 m-0" id="design-code">{{ $item['product_code'] }}</p>
+                    </a>
                 </div>
             @endforeach
 
@@ -120,3 +124,4 @@
         </button>
     </div> -->
 </section>
+@endif

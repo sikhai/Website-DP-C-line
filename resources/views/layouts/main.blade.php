@@ -17,7 +17,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ Voyager::image(setting('site.logo')) }}">
     @yield('meta_tags')
     @yield('structured_data')
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @yield('styles')
 </head>
 

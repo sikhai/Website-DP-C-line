@@ -25,10 +25,10 @@ class DesignController extends Controller
         $designs = Design::with('products')->where('slug', $design_slug)->where('is_featured', 1)->firstOrFail();
 
         // Lấy category dựa vào `parent_id` của Design
-        $category = Category::where('id', $designs->parent_id)->firstOrFail();
+        $category = Category::where('id', $designs->parent_id)->first();
 
         $categories = Category::where('is_featured', 1)->get();
-        $products = Product::with('attributes')->where('category_id', $designs->id)->get();
+        $products = Product::with('attributes')->where('category_id', $designs->id)->where('is_featured', 1)->get();
 
         // Sử dụng ProductService để lấy attributes và đếm số lượng
         $result_attributes = $this->productService->getAttributesWithProductCount();
@@ -55,18 +55,15 @@ class DesignController extends Controller
             }
         }
 
-        $designs = Design::with('products')->where('is_featured', 1)->first();
-
-        // Kiểm tra null cho `$designs`
-        if (!$designs) {
-            abort(404);
-        }
+        $searchString = $request->input('search');
 
         $category = null;
         $title_head = 'All Products';
 
+        // dd($designs->id);
+
         $categories = Category::where('is_featured', 1)->get();
-        $products = Product::with('attributes')->where('category_id', $designs->id)->get();
+        $products = Product::with('attributes')->with('category')->where('is_featured', 1)->get();
 
         $result_attributes = $this->productService->getAttributesWithProductCount();
 
@@ -88,6 +85,6 @@ class DesignController extends Controller
             $all_list_ids = array_unique($all_list_ids);
         }
 
-        return view('design', compact('category', 'categories', 'result_attributes', 'products', 'designs', 'title_head'));
+        return view('design', compact('category', 'categories', 'result_attributes', 'products', 'title_head'));
     }
 }

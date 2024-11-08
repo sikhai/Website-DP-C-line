@@ -858,6 +858,10 @@ section.project .img-area{
 .body-search .input-group {
     width: 654px;
 }
+
+.body-search .input-group input:focus{
+    box-shadow: none;
+}
 .body-search .input-group input{
     background-color: transparent;
     border-width: 0px 0px 1px 0px;
