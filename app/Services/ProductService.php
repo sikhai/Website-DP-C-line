@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Attribute;
 use App\Models\Product;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Http\Request;
 
 class ProductService
 {
@@ -26,8 +27,7 @@ class ProductService
             $this->getAttributes($attributes, $result_attributes);
             $this->getProductsByAttribute($result_attributes);
 
-        return $result_attributes;
-
+            return $result_attributes;
         });
     }
 
@@ -88,5 +88,23 @@ class ProductService
         }
 
         return $result_attributes;
+    }
+
+    public function loadMoreProducts(Request $request)
+    {
+        $searchString = $request->input('search');
+        $page = $request->input('page', 1); // Lấy trang hiện tại, mặc định là trang 1
+
+        $query = Product::with('attributes', 'category')->where('is_featured', 1);
+
+        if ($searchString) {
+            $query->where('name', 'LIKE', "%{$searchString}%");
+        }
+
+        $products = $query->paginate(20, ['*'], 'page', $page);
+
+        return response()->json([
+            'products' => $products
+        ]);
     }
 }

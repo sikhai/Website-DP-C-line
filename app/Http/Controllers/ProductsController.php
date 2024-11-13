@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
@@ -72,5 +73,28 @@ class ProductsController extends Controller
         $attributes = [$firstArray, $secondArray];
 
         return $attributes;
+    }
+
+    public function loadMoreProducts(Request $request)
+    {
+        // Lấy số lượng sản phẩm cần tải thêm từ tham số request hoặc mặc định là 20
+        $perPage = $request->get('per_page', 20);
+        $page = $request->get('page', 1);
+
+        // Kiểm tra xem có bộ lọc hoặc điều kiện khác không
+        $query = Product::query();
+
+        // Nếu có điều kiện lọc (ví dụ: theo danh mục, từ khóa, giá, v.v.)
+        if ($request->has('category_id')) {
+            $query->where('category_id', $request->get('category_id'));
+        }
+
+        // Thêm các điều kiện khác nếu cần (ví dụ: lọc theo thuộc tính)
+
+        // Phân trang sản phẩm
+        $products = $query->paginate($perPage, ['*'], 'page', $page);
+
+        // Trả về JSON cho AJAX
+        return response()->json(["products" => $products]);
     }
 }

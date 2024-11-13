@@ -55,15 +55,26 @@ class DesignController extends Controller
             }
         }
 
-        $searchString = $request->input('search');
-
         $category = null;
         $title_head = 'All Products';
 
-        // dd($designs->id);
+        $searchString = $request->input('search');
 
         $categories = Category::where('is_featured', 1)->get();
-        $products = Product::with('attributes')->with('category')->where('is_featured', 1)->get();
+
+        // Base query for featured products
+        $query = Product::with('attributes', 'category')->where('is_featured', 1);
+
+        if ($searchString) {
+            $title_head = 'Search';
+
+            $query->where(function ($q) use ($searchString) {
+                $q->where('name', 'LIKE', "%{$searchString}%");
+                    // ->orWhere('Description', 'LIKE', "%{$searchString}%");
+            });
+        }
+
+        $products = $query->paginate(20);
 
         $result_attributes = $this->productService->getAttributesWithProductCount();
 
