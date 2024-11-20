@@ -18,13 +18,42 @@ window.closemenu = function closemenu() {
 }
 
 // Xử lý sự kiện input của thanh tìm kiếm
-const input = document.querySelector('#search-item');
-input.addEventListener('input', function (evt) {
-    var text_search = this.value;
-    let elemnet = document.querySelector('.text-search');
-    if (text_search === "") {
-        elemnet.style.display = "none";
-    } else {
-        elemnet.style.display = "block";
+document.addEventListener('DOMContentLoaded', () => {
+    const input = document.querySelector('#search-item');
+    const textSearchElement = document.querySelector('.text-search');
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchParam = urlParams.get('search');
+
+    if (searchParam) {
+        input.value = searchParam; 
     }
+
+    // Cập nhật hiển thị thông báo
+    const updateTextSearch = (message = '') => {
+        textSearchElement.textContent = message;
+        textSearchElement.style.display = message ? 'block' : 'none';
+    };
+
+    // Xử lý sự kiện nhập liệu
+    input.addEventListener('input', () => {
+        if (input.value.trim() === '') {
+            updateTextSearch('');
+        }else{
+            updateTextSearch('Press Enter to search');
+        }
+    });
+
+    // Xử lý sự kiện nhấn Enter
+    input.addEventListener('keydown', (evt) => {
+        if (evt.key === 'Enter') {
+            const query = input.value.trim();
+            if (query) {
+                window.location.href = `/products?search=${encodeURIComponent(query)}`;
+            } else {
+                updateTextSearch('Vui lòng nhập từ khóa tìm kiếm!');
+            }
+        }
+    });
 });
+

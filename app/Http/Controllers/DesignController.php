@@ -60,6 +60,8 @@ class DesignController extends Controller
 
         $searchString = $request->input('search');
 
+        $searchString = strip_tags($searchString);
+
         $categories = Category::where('is_featured', 1)->get();
 
         // Base query for featured products
