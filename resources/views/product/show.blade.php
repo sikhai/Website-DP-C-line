@@ -19,7 +19,7 @@
                 <div class="col-lg-4">
                     <div class="fabric-item">
                         <a class="text-decoration-none" href="/design/{{ $item['slug'] }}">
-                            <img class="img w-100" src="{{ Voyager::image($images[0]) }}" alt="{{ $item['name'] }}"
+                            <img class="img w-100" src="{{ isset($images[0]) ? Voyager::image($images[0]) : ''}}" alt="{{ $item['name'] }}"
                                 loading="lazy">
                             <div class="d-flex m-0" id="block-collection-lable">
                                 <p id="collection-name">{{ $item['name'] }}</p>

@@ -304,9 +304,13 @@
                                 <input type="file" name="file" id="file">
                                 @if (isset($dataTypeContent->file))
                                     @php
-                                        $filePath = json_decode($dataTypeContent->file, true)[0];
+                                        $filePath = isset(json_decode($dataTypeContent->file, true)[0]) ? json_decode($dataTypeContent->file, true)[0] : null;
                                     @endphp
-                                    <p>Current file: <a href="{{ Storage::url($filePath['download_link']) }}" download="{{ basename($filePath['original_name']) }}">{{ $filePath['original_name'] }}</a></p>
+                                    @if (isset($filePath))
+                                        <p>Current file: <a href="{{ Storage::url($filePath['download_link']) }}"
+                                                download="{{ basename($filePath['original_name']) }}">{{ $filePath['original_name'] }}</a>
+                                        </p>
+                                    @endif
                                 @endif
                             </div>
                         </div>
