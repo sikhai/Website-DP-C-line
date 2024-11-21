@@ -25,9 +25,10 @@
         </div>
     </div>
 
-    @if (count($products) > 12)
-        <div class="button-showmore pt-5">
+    @if ($products->total() > 20)
+        <div class="button-showmore">
             <button type="button" class="btn btn-primary" id="btn-showmore" data-category="{{ isset($designs->name) ? $designs->name : '' }}">
+                <span id="btn-loading" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                 SHOW MORE PRODUCTS
             </button>
         </div>

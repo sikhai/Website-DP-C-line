@@ -304,7 +304,7 @@ h2.title span {
 .table-products .button-showmore {
     display: flex;
     justify-content: center;
-    margin: 0px 0px 103px;
+    margin: 48px 0px 103px;
 }
 .table-products .button-showmore #btn-showmore{
     background-color: var(--main) ;

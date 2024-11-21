@@ -1,6 +1,10 @@
 var nextPage = 2; // Trang tiếp theo (ban đầu là 2 vì trang đầu đã hiển thị)
 
 function loadMoreProducts(categorySlug) {
+    // Hiển thị spinner
+    $('#btn-loading').removeClass('d-none');
+    $('#btn-showmore').prop('disabled', true);
+    $('#btn-showmore').addClass('active');
     $.ajax({
         url: '/api/load-more-products',
         method: 'GET',
@@ -14,23 +18,26 @@ function loadMoreProducts(categorySlug) {
                 var template = Handlebars.compile(source);
 
                 response.products.forEach(function(product) {
-                    // Thêm các trường cần thiết để khớp với template
                     product.image_url = product.image_url || '';
 
                     var html = template(product);
                     $('#product-list').append(html);
                 });
 
-                // Cập nhật trang tiếp theo
                 if (response.next_page) {
                     nextPage = response.next_page;
                 } else {
-                    $('#btn-showmore').hide(); // Ẩn nút nếu không còn trang nào
+                    $('#btn-showmore').hide();
                 }
             }
         },
         error: function() {
             alert("An error occurred while loading more products.");
+        },
+        complete: function() {
+            $('#btn-loading').addClass('d-none');
+            $('#btn-showmore').prop('disabled', false);
+            $('#btn-showmore').removeClass('active');
         }
     });
 }
