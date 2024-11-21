@@ -31,11 +31,11 @@
             @endforeach
         </div>
     </div>
-    @if (count($designs) > 12)
+    {{-- @if (count($designs) > 12)
         <div class="button-showmore pt-5">
             <button type="button" class="btn btn-primary" id="btn-showmore">
                 SHOW MORE PRODUCTS
             </button>
         </div>
-    @endif
+    @endif --}}
 </section>

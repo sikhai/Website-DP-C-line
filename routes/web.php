@@ -50,5 +50,3 @@ Route::prefix('design')->group(function () {
 
 // Route hiển thị danh sách hoặc chi tiết các Product thuộc Category
 Route::get('/{category_slug}/{product_slug}', [ProductsController::class, 'show'])->name('product.show');
-
-Route::get('/load-more-products', [ProductsController::class, 'loadMoreProducts']);

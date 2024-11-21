@@ -28,7 +28,10 @@ class DesignController extends Controller
         $category = Category::where('id', $designs->parent_id)->first();
 
         $categories = Category::where('is_featured', 1)->get();
-        $products = Product::with('attributes')->where('category_id', $designs->id)->where('is_featured', 1)->get();
+        $products = Product::with('attributes')
+            ->where('category_id', $designs->id)
+            ->where('is_featured', 1)
+            ->paginate(20);
 
         // Sử dụng ProductService để lấy attributes và đếm số lượng
         $result_attributes = $this->productService->getAttributesWithProductCount();
@@ -72,7 +75,7 @@ class DesignController extends Controller
 
             $query->where(function ($q) use ($searchString) {
                 $q->where('name', 'LIKE', "%{$searchString}%");
-                    // ->orWhere('Description', 'LIKE', "%{$searchString}%");
+                // ->orWhere('Description', 'LIKE', "%{$searchString}%");
             });
         }
 

@@ -77,24 +77,25 @@ class ProductsController extends Controller
 
     public function loadMoreProducts(Request $request)
     {
-        // Lấy số lượng sản phẩm cần tải thêm từ tham số request hoặc mặc định là 20
         $perPage = $request->get('per_page', 20);
         $page = $request->get('page', 1);
 
-        // Kiểm tra xem có bộ lọc hoặc điều kiện khác không
-        $query = Product::query();
+        $categorySlug = $request->get('category_slug'); // Lấy slug category từ yêu cầu
 
-        // Nếu có điều kiện lọc (ví dụ: theo danh mục, từ khóa, giá, v.v.)
-        if ($request->has('category_id')) {
-            $query->where('category_id', $request->get('category_id'));
+        $query = Product::with('attributes', 'category')->where('is_featured', 1);
+        
+        // Nếu có slug category, thêm điều kiện lọc theo category
+        if ($categorySlug) {
+            $query->whereHas('category', function($q) use ($categorySlug) {
+                $q->where('slug', $categorySlug);
+            });
         }
-
-        // Thêm các điều kiện khác nếu cần (ví dụ: lọc theo thuộc tính)
-
-        // Phân trang sản phẩm
+        
         $products = $query->paginate($perPage, ['*'], 'page', $page);
-
-        // Trả về JSON cho AJAX
-        return response()->json(["products" => $products]);
+        
+        return response()->json([
+            "products" => $products->items(),
+            "next_page" => $products->currentPage() < $products->lastPage() ? $products->currentPage() + 1 : null,
+        ]);
     }
 }

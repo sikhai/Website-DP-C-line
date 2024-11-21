@@ -5,31 +5,43 @@
 <section class="table-products position-relative">
     <div class="row">
         <div class="col-4" style="margin:27px 70px 0px">
-            <p id="sum-products">{{ count($products) }} Products</p>
+            <p id="sum-products">{{ $products->total() }} Products</p>
         </div>
     </div>
     <div class="container mb-5">
-        <div class="row">
+        <div class="row" id="product-list">
             @foreach ($products as $item)
                 <div class="col-lg-3">
                     <div class="fabric-item">
                         <a class="text-decoration-none" href="/products/{{ $item['slug'] }}">
-                            <img class="img w-100" src="{{ env('APP_URL').'/storage/'.$item['image'] }}" alt="" loading="lazy">
+                            <img class="img w-100" src="{{ env('APP_URL') . '/storage/' . $item['image'] }}"
+                                alt="{{ $item['name'] }}" loading="lazy">
                             <p class="pt-2 m-0" id="design-name">{{ $item['name'] }}</p>
                             <p class="pt-2 m-0" id="design-code">{{ $item->category->name }}</p>
                         </a>
                     </div>
                 </div>
             @endforeach
-
         </div>
     </div>
 
     @if (count($products) > 12)
         <div class="button-showmore pt-5">
-            <button type="button" class="btn btn-primary" id="btn-showmore">
+            <button type="button" class="btn btn-primary" id="btn-showmore" data-category="{{ isset($designs->name) ? $designs->name : '' }}">
                 SHOW MORE PRODUCTS
             </button>
         </div>
     @endif
 </section>
+
+<script id="product-template" type="text/x-handlebars-template">
+    <div class="col-lg-3">
+        <div class="fabric-item">
+            <a class="text-decoration-none" href="/design/@{{ slug }}">
+                <img class="img w-100" src="@{{ image_url }}" alt="@{{ name }}" loading="lazy">
+                <p class="pt-2 m-0" id="design-name">@{{ name }}</p>
+                <p class="pt-2 m-0" id="design-code">@{{ category.name }}</p>
+            </a>
+        </div>
+    </div>
+</script>
