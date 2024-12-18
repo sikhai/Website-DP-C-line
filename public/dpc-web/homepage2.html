@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DP Céline</title>
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/style2.css">
+    
+</head>
+
+<body>
+    <div class="big-layout">
+        <div class="layout">
+            <!-- /* header */ -->
+            <section class="header">
+                <div class="container">
+                    <div class="top_head pt-3 pb-3">
+                        <div class="row">
+                            <div class="col-2 d-flex align-items-center">
+                                <a class="nav_item" href="#contact-mail">CONTACT</a>
+                            </div>
+                            <div class="col-8 text-center">
+                                <a href="#">
+                                    <img src="images/logo.svg" width="55" id="img-logo-ref" alt="logo" loading="lazy">
+                                </a>
+                            </div>
+                            <div class="col-2 d-flex align-items-center menu_right">
+                                <a class="nav_item" id="search" onclick="opensearch()">SEARCH</a>
+                                <a class="nav_item" id="open-menu" onclick="openmenu()">MENU</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body_head">
+                        <h1>Li<span>v</span>e&ensp;<span>A</span>rtf<span>u</span>lly</h1>
+                    </div>
+                </div>
+            </section>
+
+            <!-- /* banner */ -->
+            <section class="banner">
+                <div class="image-container">
+                    <img src="images/spacejoy-YI2YkyaREHk-unsplash.jpg" alt="">
+                    <div class="overlay"></div>
+                </div>
+                <img src="./images/project-detail-01.jpg" alt="Overlay Image 1" class="overlay-image">
+                <img src="/images/440b7a5e8dc4e1be8abf2297431a1f07.jpg" alt="Overlay Image 2" class="overlay-image">
+                <img src="/images/jon-tyson-un5DGskIJuE-unsplash.jpg" alt="Overlay Image 3" class="overlay-image">
+                <img src="/images/project/JW marriot/pqcjw-suite-0008-hor-wide.avif" alt="Overlay Image 4" class="overlay-image">
+                <div class="content">
+                    <p>PROJECT OF THE MONTH</p>
+                    <h3>JW MARRIOT PHU QUOC RESORT</h3>
+                </div>
+            </section>
+            <!-- <section class="banner position-relative mt-5"  id="image-section">
+        
+                <div class="container h-100">
+                    <div class="swiper proj_mouth m-0 h-100">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide item">
+                                <a href="" style="text-decoration: none;"> 
+                                    <div class="image-wrapper">
+                                        <div class="image-container"  >
+                                            <img src="images/spacejoy-YI2YkyaREHk-unsplash.jpg" alt=""
+                                            loading="lazy">
+                                            <div class="overlay"></div>
+                                        </div>
+                                    </div>
+                                    <div class="content w-75">
+                                        <p>PROJECT OF THE MONTH</p>
+                                        <h3>JW MARRIOT PHU QUOC RESORT</h3>
+                                    </div>
+                                    
+                                </a>
+                            </div>
+                            <div class="swiper-slide item">
+                                <a href="" style="text-decoration: none;">
+                                    <div class="image-wrapper">
+                                        <div class="image-container" >
+                                            <img src="images/trichsai-project.jpg" alt=""
+                                            loading="lazy">
+                                            <div class="overlay"></div>
+                                        </div>
+                                    </div>
+                                    <div class="content w-75" >
+                                        <p>PROJECT OF THE MONTH</p>
+                                        <h3>THE WESTLAKE PLAZZO TRICHSAI VILLA</h3>
+                                    </div>
+                            
+                                </a>
+                            </div>
+                            <div class="swiper-slide item">
+                                <a href="" style="text-decoration: none;">
+                                    <div class="image-wrapper">
+                                        <div class="image-container">
+                                            <img src="images/project/The masterise sale gallery/khu-vuc-sa-ban-the-galleria-by-masterise-homes.jpg" alt=""
+                                            loading="lazy">
+                                            <div class="overlay"></div>
+                                        </div>
+                                    </div>
+                                    <div class="content w-75" >
+                                        <p>PROJECT OF THE MONTH</p>
+                                        <h3>THE GALLERIA BY MASTERIS HOMES</h3>
+                                    </div>
+                                    
+                                </a>
+                            </div>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+            </section> -->
+            <!-- /* Our Services */ -->
+            <section class="Our_Services">
+                <div class="container">
+                    <h2 class="title">
+                        Our Services
+                    </h2>
+                    <div class="swiper services_list">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide item" data-shape="shape1">
+                                <a href="./product-fabric-design.html" style="text-decoration: none;">
+                                    <div class="img-wrapper-service">
+                                        <img class="w-100" src="images/susan-wilkinson-1DvlOy6BcmI-unsplash.png" alt=""
+                                        loading="lazy">
+                                        <div class="overlay_service"></div>
+                                    </div>
+                                    <p class="pt-2 m-0">Fabric</p>
+                                </a>
+                            </div>
+                            <div class="swiper-slide item" data-shape="shape3">
+                                <a href="./product-leather-design.html" style="text-decoration: none;">
+                                    <div class="img-wrapper-service">
+                                        <img class="w-100" src="images/elimende-inagella-hO4AGt3czSQ-unsplash.png" alt=""
+                                        loading="lazy">
+                                        <div class="overlay_service"></div>
+                                    </div>
+                                    <p class="pt-2 m-0">Leather</p>
+                                </a>
+                            </div>
+                            <div class="swiper-slide item" data-shape="shape4">
+                                <a href="./product-wallpaper-design.html" style="text-decoration: none;">
+                                    <div class="img-wrapper-service">
+                                        <img class="w-100" src="images/mona-eendra-vC8wj_Kphak-unsplash.png" alt=""
+                                        loading="lazy">
+                                        <div class="overlay_service"></div>
+                                    </div>
+                                    <p class="pt-2 m-0">Wall Covering</p>
+                                </a>
+                            </div>
+                            <div class="swiper-slide item" data-shape="shape1">
+                                <a href="./product-fabric-design.html" style="text-decoration: none;">
+                                    <div class="img-wrapper-service">
+                                        <img class="w-100" src="images/jon-tyson-un5DGskIJuE-unsplash.png" alt="" loading="lazy">
+                                        <div class="overlay_service"></div>
+                                    </div>
+                                    <p class="pt-2 m-0">Curtain</p>
+                                </a>
+                                
+                            </div>
+                            <div class="swiper-slide item" data-shape="shape2">
+                                <a href="./product-fabric-design.html" style="text-decoration: none;">
+                                    <div class="img-wrapper-service">
+                                        <img class="w-100 h-100" src="images/440b7a5e8dc4e1be8abf2297431a1f07.jpg" alt=""
+                                        loading="lazy">
+                                        <div class="overlay_service"></div>
+                                    </div>
+                                    
+                                    <p class="pt-2 m-0">Roller Blind</p>
+                                </a>
+                            </div>
+                            <div class="swiper-slide item" data-shape="shape3">
+                                <a href="./product-fabric-design.html" style="text-decoration: none;">
+                                    <div class="img-wrapper-service">
+                                        <img class="w-100 h-100" src="images/Bespoke_service.png" alt=""
+                                        loading="lazy">
+                                        <div class="overlay_service"></div>
+                                    </div>
+                                    <p class="pt-2 m-0">Bespoke service</p>
+                                </a>
+                            </div>
+                           
+                           
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </section>
+    
+            <!-- /* Trending */ -->
+            <section class="trending">
+                <div class="container">
+                    <h2 class="title text-center line_1">
+                        <span>W</span>hat’s
+                    </h2>
+                    <h2 class="title text-center line_2">
+                        Trending
+                    </h2>
+                    
+                    <div class="box_trending d-flex">
+                        
+                        <div class="left">
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    
+                                    <div class="flip-card-front">
+                                        <a href="./product-fabric-collection.html">
+                                            <img class="img-flip w-100" src="images/tissu-copenhague-d1316c6a4eb874a2be0ed06c73bc.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <a href="./product-fabric-collection.html">
+                                            <img class="img-flip w-100" src="images/acacia-collection/collection-naturalstory.jpg" alt="Back Image">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right d-grid">
+                            <div class="context">
+                                <div class="flip-card">
+                                    <div class="flip-card-inner">
+                                        <div class="flip-card-front">
+                                            <p>Fabric</p>
+                                            <h3>Copenhague</h3>
+                                            <a href="./product-fabric-collection.html">SEE COLLECTION <img src="images/arrow-right-beige800.svg" alt=""></a>
+                                        </div>
+                                        <div class="flip-card-back">
+                                            <p>Fabric</p>
+                                            <h3>Natural Story</h3>
+                                            <a href="./product-fabric-collection.html">SEE COLLECTION <img src="images/arrow-right-beige800.svg" alt=""></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="img-rightbottom">
+                                <div class="flip-card">
+                                    <div class="flip-card-inner">
+                                        
+                                            <div class="flip-card-front">
+                                                <a href="./product-fabric-collection.hltm">
+                                                    <img class="w-100 img" src="images/tissu-copenhague-d1316c6a4eb874a2be0ed06c73bc1.png" alt="">
+                                                </a>
+                                                
+                                            </div>
+                                            <div class="flip-card-back">
+                                                <a href="./product-fabric-collection.hltm">
+                                                    <img class="w-100 img" src="images/acacia-collection/collection-naturalstory-01.jpg" alt="Back Image">
+                                                </a>
+                                            </div>
+                                        
+                                    </div>
+                                </div>                            
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- /* project */ -->
+            <section class="project position-relative">
+                <div class="container">
+                    <h2 class="title text-center">
+                        Projects we are proud of
+                    </h2>
+                </div>
+                <a href="./our-project.html">
+                    <div class="d-flex img-area">
+                        <div class="img-wrapper image1">
+                            <img src="images/alen-kajtezovic-S-AI-1k0F1k-unsplash.png" alt="" loading="lazy" class="hover-image ">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="img-wrapper image2">
+                            <img src="images/jason-wang-NxAwryAbtIw-unsplash2.png" alt="" loading="lazy" class="hover-image ">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="img-wrapper image3">
+                            <img src="images/suhyeon-choi-ehxwis6Ltxg-unsplash.png" alt="" loading="lazy" class="hover-image ">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="img-wrapper image4">
+                            <img src="images/spacejoy-eyEy5YZhSvU-unsplash.png" alt="" loading="lazy" class="hover-image ">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="img-wrapper image5">
+                            <img src="images/dmitry-spravko-TBmsFkzjHxA-unsplash.png" alt="" loading="lazy" class="hover-image ">
+                            <div class="overlay"></div>
+                        </div>
+                    </div>
+                </a>
+            </section>
+            <!-- /* clients */ -->
+            <section class="clients">
+                <div class="container">
+                    <h2 class="title text-center">
+                        SELECTED CL<span>I</span>ENTS
+                    </h2>
+                    <div class="list_clients">
+                        <h3>JW Marriot | Park Hyatt | Aman | Ritz-Carlton | Six Senses | Hilton | Four Seasons | JW Marriot |
+                            Park Hyatt | Aman | Ritz-Carlton | Six Senses | Hilton | Four Seasons</h3>
+                    </div>
+                </div>
+                <div class="line_list">
+    
+                </div>
+            </section>
+            
+            <!-- Footer -->
+            <footer>
+                <div class="line">
+                    <ul class="d-flex">
+                        <li><img src="images/Exclude.svg" alt=""> SOPHISTICATED</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                        <li><img src="images/Exclude.svg" alt=""> SOPHISTICATED</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                        <li><img src="images/Exclude.svg" alt=""> SOPHISTICATED</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                    </ul>
+                    <ul class="d-flex">
+                        <li><img src="images/Exclude.svg" alt=""> SOPHISTICATED</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                        <li><img src="images/Exclude.svg" alt=""> SOPHISTICATED</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                        <li><img src="images/Exclude.svg" alt=""> SOPHISTICATED</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                        <li><img src="images/Exclude.svg" alt=""> PROFESSIONAL</li>
+                        <li><img src="images/Exclude.svg" alt=""> LUXURIOUS</li>
+                        <li><img src="images/Exclude.svg" alt=""> SUSTAINABLE</li>
+                    </ul>
+                </div>
+                <div class="footer-middle">
+                    <div class="container">
+                        <div class="row justify-content-between">
+                            <div class="col-lg-3 col-md-6">
+                                <h3 class="box-footer-title">START A CONVERSATION</h3>
+                                <ul class="list-cate">
+                                    <li>
+                                        <a href="mailto:hello@dpceline.com" id="contact-mail">info@dpceline.com</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <h3 class="box-footer-title">OUR OFFICE</h3>
+                                <ul class="list-cate">
+                                    <li>
+                                        89L Street 48, Hiep Binh Chanh, Thu Duc, Ho Chi Minh City 70000
+                                    </li>
+                                    <li>
+                                        <a href="tel:024-0000-0000">(+84)93-944-1023</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <h3 class="box-footer-title">SOCIAL MEDIA</h3>
+                                <ul class="list-cate">
+                                    <li>
+                                        <a href="">Twitter (X)</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Instagram</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.facebook.com/PavoVietNam.Co.Ltd">Facebook</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>DP CÉLINE</p>
+                </div>
+            </footer>
+            <section class="menu-area">
+                <div class="header-menu">
+                    <div class="row mt-3">
+                        <div class="col-2 d-flex align-items-center">
+                            
+                        </div>
+                        <div class="col-8 text-center">
+                            <a>
+                                <img src="images/logo.svg" width="55" id="img-logo-ref" alt="logo" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="col-2 d-flex align-items-center menu_right">
+                            <a class="nav_item" onclick="closemenu()">CLOSE</a>
+                            <img src="images/x-close-12x12.svg" style="cursor:pointer;" onclick="closemenu()" alt="">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="body-menu" >
+                    <div class="row p-0">
+                        <div class="col-3 d-flex flex-column">
+                            <a class="option-menu" href="product-fabric-collection.html">Fabric</a>
+                            <a class="option-menu" href="./product-leather-collection.html">Leather</a>
+                            <a class="option-menu" href="#">Curtain</a>
+                        </div>
+                        <div class="col-5 d-flex flex-column">
+                            <a class="option-menu" href="#">Roller Blind</a>
+                            <a class="option-menu" href="./product-wallpaper-collection.html">Wall Covering</a>
+                            <a class="option-menu" href="#">Window furnishing</a>
+                        </div>
+                        <div class="col-4 d-flex flex-column">
+                            <a class="option-menu" href="#">Bespoke Services</a>
+                            <a class="option-menu" href="./our-project.html">Our Projects</a>
+                            <a class="option-menu" href="#">About Us</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="search-area">
+                <div class="header-search">
+                    <div class="row mt-3">
+                        <div class="col-2 d-flex align-items-center">
+                            
+                        </div>
+                        <div class="col-8 text-center">
+                            <a>
+                                <img src="images/logo.svg" width="55" id="img-logo-ref" alt="logo" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="col-2 d-flex align-items-center menu_right">
+                            <a class="nav_item" onclick="closemenu()">CLOSE</a>
+                            <img src="images/x-close-12x12.svg" id="img-close-ref" style="cursor:pointer;"  onclick="closemenu()" alt="">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="body-search" >
+                    <div class="row p-0">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Search" id="search-item">
+                          </div>
+                    </div>
+                    <div class="row p-0 mt-2 text-search" style="display: none;">
+                        <h4>Press Enter to search</h4>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- <section class="loader">
+        <div class="container">
+            <img src="./images/dpceline.png" alt="">
+        </div>
+    </section> -->
+
+    <!-- Swiper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/menu-script.js"></script>
+    <script src="js/Scrollbanner.js"></script>
+</body>
+
+</html>

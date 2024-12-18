@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Animation</title>
+  <style>
+    body {
+      margin: 0;
+      height: 300vh; /* Make the page scrollable */
+      overflow-x: hidden;
+    }
+    .section {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .images-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    .main-image {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      z-index: 1;
+      border-radius: 10px;
+    }
+    .overlay-image {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
+      opacity: 1;
+    }
+    .overlay-image:nth-child(1) { top: 20%; left: 10%; }
+    .overlay-image:nth-child(2) { top: 10%; right: 10%; }
+    .overlay-image:nth-child(3) { bottom: 20%; left: 15%; }
+    .overlay-image:nth-child(4) { bottom: 15%; right: 15%; }
+    .overlay-image:nth-child(5) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+  <div class="section">
+    <div class="images-container">
+      <img src="https://via.placeholder.com/300" alt="Main Image" class="main-image">
+      <img src="https://via.placeholder.com/150" alt="Overlay Image 1" class="overlay-image">
+      <img src="https://via.placeholder.com/150" alt="Overlay Image 2" class="overlay-image">
+      <img src="https://via.placeholder.com/150" alt="Overlay Image 3" class="overlay-image">
+      <img src="https://via.placeholder.com/150" alt="Overlay Image 4" class="overlay-image">
+      <img src="https://via.placeholder.com/150" alt="Overlay Image 5" class="overlay-image">
+    </div>
+  </div>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const overlayImages = document.querySelectorAll('.overlay-image');
+    const mainImage = document.querySelector('.main-image');
+
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '.section',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+        pin: true,
+      }
+    })
+    .to(overlayImages, {
+      x: (index, target) => {
+        const direction = target.offsetLeft < window.innerWidth / 2 ? -1 : 1;
+        return direction * 200;
+      },
+      y: (index, target) => {
+        const direction = target.offsetTop < window.innerHeight / 2 ? -1 : 1;
+        return direction * 200;
+      },
+      scale: 1.5,
+      opacity: 0,
+      stagger: 0.1,
+      duration: 1,
+    })
+    .to(mainImage, {
+      scale: 4,
+      duration: 1,
+      ease: 'power1.out',
+    });
+  </script>
+</body>
+</html>
