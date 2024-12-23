@@ -39,9 +39,9 @@
                         <div class="col-3 p-0">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="{{ $value }}"
-                                    data-products="{{ count($data['list_ids']) }}" id="check_{{ $value }}"
+                                    data-products="{{ count($data['list_ids']) }}" id="check_{{ucfirst($name)}}_{{ $value }}"
                                     attribute-name="{{ ucfirst($name) }}">
-                                <label class="form-check-label" for="check_{{ $value }}">
+                                <label class="form-check-label" for="check_{{ucfirst($name)}}_{{ $value }}">
                                     {{ $value }}
                                 </label>
                             </div>
