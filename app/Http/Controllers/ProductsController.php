@@ -82,7 +82,7 @@ class ProductsController extends Controller
 
         $categorySlug = $request->get('category_slug'); // Lấy slug category từ yêu cầu
 
-        $query = Product::with('attributes', 'category')->where('is_featured', 1);
+        $query = Product::with('attributes', 'category')->where('is_featured', 1)->orderBy('created_at', 'desc');
         
         // Nếu có slug category, thêm điều kiện lọc theo category
         if ($categorySlug) {

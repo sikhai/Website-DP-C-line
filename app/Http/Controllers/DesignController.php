@@ -31,6 +31,7 @@ class DesignController extends Controller
         $products = Product::with('attributes')
             ->where('category_id', $designs->id)
             ->where('is_featured', 1)
+            ->orderBy('created_at', 'desc')
             ->paginate(20);
 
         // Sử dụng ProductService để lấy attributes và đếm số lượng
@@ -68,7 +69,7 @@ class DesignController extends Controller
         $categories = Category::where('is_featured', 1)->get();
 
         // Base query for featured products
-        $query = Product::with('attributes', 'category')->where('is_featured', 1);
+        $query = Product::with('attributes', 'category')->where('is_featured', 1)->orderBy('created_at', 'desc');
 
         if ($searchString) {
             $title_head = 'Search';
