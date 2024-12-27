@@ -203,7 +203,7 @@ h2.title span {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translate(0px, 0px) !important;
+    overflow: hidden;
 }
 
 
@@ -226,9 +226,9 @@ h2.title span {
     margin-left: -300px;
     margin-top: 500px;
     opacity: 0; /* Hide the title initially */
-    transform: translateY(300px); /* Position the title off-screen */
+    /* transform: translateY(300px); */
     /* text-align: center; */
-    transition: transform 2s ease-out, opacity 2s ease-out; /* Smooth animation */
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
 }
 .banner .content p {
     font-size: 16px;
@@ -251,23 +251,10 @@ h2.title span {
     color: #D5CCC3;
 }
 
-/* .image-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  } */
-.image-container {
-    /* position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 420px;
-    height: 280px;
-    transform: translate(-50%, -50%);
-    overflow: hidden;
-    transition: width 0.5s ease, height 0.5s ease; */
-    width: 768px;
-    height: 367px;
+.banner .image-container {
+
+    width: 600px;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -276,7 +263,7 @@ h2.title span {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: -1;
+    z-index: 1;
 }
 .banner .image-container img{
     position: absolute;
@@ -292,87 +279,44 @@ h2.title span {
     /* transition: transform 0.5s ease-in-out; */
 
 }
-
-.banner .surrounding-top-images {
+.banner .overlay-image {
     position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-40%, -50%);
-}
-
-.banner .surrounding-top-images .surround-img {
-    width:864px;
-    height: 413px;
-    object-fit: cover;
-}
-
-
-.banner .surrounding-bottom-images {
-    position: absolute;
-    bottom: 0%;
-    left: 50%;
-    transform: translate(-40%, -50%);
-}
-
-.banner .surrounding-bottom-images .surround-img {
-    width:768px;
-    height: 413px;
-    object-fit: cover;
-}
-
-
-.banner .surrounding-left-images .surround-img {
-    width: 384px;
-    height: 275px;
-    object-fit: cover;
-}
-
-.banner .surrounding-right-images .surround-img {
-    width: 384px;
-    height: 275px;
-    object-fit: cover;
-}
-
-.banner .surrounding-bottom-left-images .surround-img {
-    width: 384px;
-    height: 275px;
-    object-fit: cover;
-}
-
-
-/* .surrounding-images {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    border-radius: 10px;
+    opacity: 1;
+    overflow: hidden;
+  }
+  .banner .overlay-image:nth-child(2) {
+    width: 300px;
+    height: 300px;
+    top: 45%;
+    left: 39%;
     transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: space-around;
+    z-index: 3;
+  }
+  .banner  .overlay-image:nth-child(3) {
     width: 400px;
-    height: 280px;
-}
-
-.surround-img {
-    position: absolute;
-    height: auto;
-} */
-/* .surround-img:nth-child(1) { top: 0%; left: 0; transform: translateX(-50%); } */
-/* .surround-img:nth-child(2) { top: 0; left: 50%; transform: translateX(-50%); }
-.surround-img:nth-child(3) { top: 0%; right: 50%; transform: translateX(-50%); }
-.surround-img:nth-child(4) { bottom: 50%; left: 50%; transform: translate(-50%, -50%); }
-.surround-img:nth-child(5) { bottom: 50%; right: 50%; transform: translate(-50%, -50%);} */
-
-/* .banner .content, .banner .swiper-button-next, .banner .swiper-button-prev {
-    transform: translateY(200px);
-    transition: opacity 1.5s ease, transform 1.5s ease;
-} */
-
-/* .banner.scrolled .image img {
-    transform: scale(1);
-} */
-
-/* .banner.revealed  .content, .banner.revealed  .swiper-button-next, .banner.revealed  .swiper-button-prev {
-    transform: translateY(0);
-} */
+    height: 250px;
+    top: 40%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+  }
+  .banner .overlay-image:nth-child(4) {
+    width: 270px;
+    height: 220px;
+    top: 60%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+  }
+  .banner .overlay-image:nth-child(5) {
+    width: 400px;
+    height: 380px;
+    top: 60%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+  }
 
 
 /*************************** our service **************************/
