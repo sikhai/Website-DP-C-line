@@ -322,7 +322,7 @@ h2.title span {
 /*************************** our service **************************/
 section.Our_Services {
     margin-top: 200px;
-    /* padding: 200px 0; */
+    padding: 200px 0;
 }
 
 section.Our_Services .services_list {

@@ -21,10 +21,9 @@
         <img src="images/spacejoy-YI2YkyaREHk-unsplash.jpg" alt="">
         <div class="overlay"></div>
     </div>
-    <img src="./images/project-detail-01.jpg" alt="Overlay Image 1" class="overlay-image">
-    <img src="/images/440b7a5e8dc4e1be8abf2297431a1f07.jpg" alt="Overlay Image 2" class="overlay-image">
-    <img src="/images/jon-tyson-un5DGskIJuE-unsplash.jpg" alt="Overlay Image 3" class="overlay-image">
-    <img src="/images/project/JW marriot/pqcjw-suite-0008-hor-wide.avif" alt="Overlay Image 4" class="overlay-image">
+    @foreach (json_decode($projects_of_mounth['images'] ?? '[]') as $item)
+        <img src="{{ Voyager::image($item) }}" alt="{{ $projects_of_mounth['name'] }}" class="overlay-image">
+    @endforeach
     <div class="content">
         <p>PROJECT OF THE MONTH</p>
         <h3>JW MARRIOT PHU QUOC RESORT</h3>

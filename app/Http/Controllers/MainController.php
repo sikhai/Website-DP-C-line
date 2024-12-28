@@ -27,9 +27,14 @@ class MainController extends Controller
             ->take(5)
             ->get();
 
+        $projects_of_mounth = Project::where('is_featured', 1)
+            ->where('is_trending', 1)
+            ->orderBy('created_at', 'desc')
+            ->first();
+
         $clients_home = Client::where('is_featured', 1)
             ->get();
 
-        return view('home', compact('designs_is_trending', 'categories', 'projects_home', 'clients_home'));
+        return view('home', compact('designs_is_trending', 'categories', 'projects_home', 'clients_home', 'projects_of_mounth'));
     }
 }
