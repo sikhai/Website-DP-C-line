@@ -35,7 +35,7 @@
                         <div class="flip-card-inner">
                             @foreach ($designs_is_trending as $key => $item)
                                 <div class="flip-card-{{ $key == 0 ? 'front' : 'back' }}">
-                                    <p>{{ $item->parentCategory['category_name'] }}</p>
+                                    <p>{{ $item->parentCategory['name'] }}</p>
                                     <h3>{{ $item['name'] }}</h3>
                                     <a href="/{{ $item->parentCategory['slug'] }}">SEE COLLECTION <img
                                             src="{{ asset('images/arrow-right-beige800.svg') }}" alt="arrow"></a>

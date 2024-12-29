@@ -14,7 +14,7 @@ class ProjectsController extends Controller
 
         $title_head = 'Our Projects';
 
-        $categories = Category::where('is_featured', 1)->get();
+        $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
         $projects = Project::with('products')->get();
 
         // Trả về view và truyền dữ liệu projects
@@ -25,7 +25,7 @@ class ProjectsController extends Controller
     public function detail($project_slug)
     {
 
-        $categories = Category::where('is_featured', 1)->get();
+        $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
         $project = Project::with(['products.category.parentCategory'])->where('slug',$project_slug)->first();
 
         $project_other = Project::where('id', '<>', $project->id)

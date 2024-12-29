@@ -9,11 +9,11 @@
                     <div class="swiper-slide item" data-shape="{{$category['shape']}}">
                         <a href="/{{ $category->slug }}" style="text-decoration: none;">
                             <div class="img-wrapper-service">
-                                <img class="w-100" src="{{ env('APP_URL').'/storage/'.$category['image'] }}" alt="{{ $category['category_name'] }}"
+                                <img class="w-100" src="{{ env('APP_URL').'/storage/'.$category['image'] }}" alt="{{ $category['name'] }}"
                                     loading="lazy">
                                 <div class="overlay_service"></div>
                             </div>
-                            <p class="pt-2 m-0">{{ $category['category_name'] }}</p>
+                            <p class="pt-2 m-0">{{ $category['name'] }}</p>
                         </a>
                     </div>
                 @endforeach

@@ -22,7 +22,7 @@ class CategoryController extends Controller
         $title_head = 'Collection';
 
         // Lấy categories và designs nổi bật
-        $categories = Category::where('is_featured', 1)->get();
+        $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
         $designs = Design::with(['products' => function ($query) {
             $query->where('is_featured', 1);
         }])->where('is_featured', 1)
@@ -45,7 +45,7 @@ class CategoryController extends Controller
         $category = Category::where('slug', $category_slug)->firstOrFail();
 
         // Lấy các categories và designs liên quan đến category này
-        $categories = Category::where('is_featured', 1)->get();
+        $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
         $designs = Design::with('products')
             ->where('parent_id', $category->id)
             ->where('is_featured', 1)

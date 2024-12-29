@@ -27,7 +27,7 @@ class DesignController extends Controller
         // Lấy category dựa vào `parent_id` của Design
         $category = Category::where('id', $designs->parent_id)->first();
 
-        $categories = Category::where('is_featured', 1)->get();
+        $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
         $products = Product::with('attributes')
             ->where('category_id', $designs->id)
             ->where('is_featured', 1)
@@ -66,7 +66,7 @@ class DesignController extends Controller
 
         $searchString = strip_tags($searchString);
 
-        $categories = Category::where('is_featured', 1)->get();
+        $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
 
         // Base query for featured products
         $query = Product::with('attributes', 'category')->where('is_featured', 1)->orderBy('created_at', 'desc');
