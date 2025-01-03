@@ -50,20 +50,29 @@
         </div>
         <div class="row p-0" style="margin-top: 80px;">
             @if ($product->file)
+                @php
+                    $filePath = null;
+                    $files = json_decode($product->file, true);
+                    if (is_array($files) && isset($files[0])) {
+                        $filePath = $files[0];
+                    }
+                @endphp
                 <div class="download">
-                    <div class="d-flex download-item">
-                        <img src="{{ asset('images/file-download.svg') }}" alt="">
-                        @php
-                            $filePath = json_decode($product->file, true)[0];
-                        @endphp
-                        <div id="name">
-                            <a class="text-decoration-none" href="{{ Storage::url($filePath['download_link']) }}"
-                                download="{{ basename($filePath['original_name']) }}">
-                                <p style="margin-top: -3px;">TECHNICAL</p>
-                                <p style="margin-top: -15px;">DOCUMENTS</p>
-                            </a>
+                    @if ($filePath)
+                        <div class="d-flex download-item">
+                            <img src="{{ asset('images/file-download.svg') }}" alt="">
+                            @if ($filePath && isset($filePath['download_link'], $filePath['original_name']))
+                                <div id="name">
+                                    <a class="text-decoration-none"
+                                        href="{{ Storage::url($filePath['download_link']) }}"
+                                        download="{{ basename($filePath['original_name']) }}">
+                                        <p style="margin-top: -3px;">TECHNICAL</p>
+                                        <p style="margin-top: -15px;">DOCUMENTS</p>
+                                    </a>
+                                </div>
+                            @endif
                         </div>
-                    </div>
+                    @endif
                     <div class="d-flex mt-3 download-item">
                         <img src="{{ asset('images/file-download.svg') }}" alt="">
                         <div id="name">
@@ -95,33 +104,33 @@
 <!-- /* tab-general-fabric collection design */ -->
 
 @if ($products_orther)
-<section class="table-products position-relative">
-    <div class="row">
-        <div class="col-4" style="margin:27px 70px 0px">
-            <p id="lable-samecollection">In the same collection</p>
-        </div>
-    </div>
-    <div class="container mt-5 mb-5">
+    <section class="table-products position-relative">
         <div class="row">
-            @foreach ($products_orther as $item)
-                <div class="col-lg-3 w-20 fabric-item">
-                    <a href="/products/{{ $item['slug'] }}">
-                        <img class="img w-100" src="{{ env('APP_URL') . '/storage/' . $item['image'] }}" alt=""
-                            loading="lazy">
-                        <p class="pt-2 m-0" id="design-name">{{ $item['name'] }}</p>
-                        <p class="pt-2 m-0" id="design-code">{{ $item['product_code'] }}</p>
-                    </a>
-                </div>
-            @endforeach
+            <div class="col-4" style="margin:27px 70px 0px">
+                <p id="lable-samecollection">In the same collection</p>
+            </div>
+        </div>
+        <div class="container mt-5 mb-5">
+            <div class="row">
+                @foreach ($products_orther as $item)
+                    <div class="col-lg-3 w-20 fabric-item">
+                        <a href="/products/{{ $item['slug'] }}">
+                            <img class="img w-100" src="{{ env('APP_URL') . '/storage/' . $item['image'] }}"
+                                alt="" loading="lazy">
+                            <p class="pt-2 m-0" id="design-name">{{ $item['name'] }}</p>
+                            <p class="pt-2 m-0" id="design-code">{{ $item['product_code'] }}</p>
+                        </a>
+                    </div>
+                @endforeach
+
+            </div>
 
         </div>
 
-    </div>
-
-    <!-- <div class="button-showmore">
+        <!-- <div class="button-showmore">
         <button type="button" class="btn btn-primary" id="btn-showmore">
             SHOW MORE PRODUCTS
         </button>
     </div> -->
-</section>
+    </section>
 @endif
