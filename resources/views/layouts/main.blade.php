@@ -37,7 +37,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="{{ asset('js/main.js') }}" defer></script>
     <script src="{{ asset('js/menu-script.js') }}" defer></script>
-    <script src="{{ asset('js/Scrollbanner.js') }}" defer></script>
+    <script src="{{ asset('js/Scrollbanner.js?v1') }}" defer></script>
     @endhome
     @stack('scripts')
 </body>
