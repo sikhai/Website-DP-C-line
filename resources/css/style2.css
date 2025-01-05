@@ -284,6 +284,7 @@ h2.title span {
     border-radius: 10px;
     opacity: 1;
     overflow: hidden;
+    transition: 0.3s;
   }
   .banner .overlay-image:nth-child(2) {
     width: 300px;
