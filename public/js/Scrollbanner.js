@@ -7,10 +7,11 @@ function calculateDynamicGap() {
   // const mainImageRect = mainImage.getBoundingClientRect();
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
+  const deviceScale = window.devicePixelRatio || 1;
   // console.log("Width: ", viewportWidth);
   // console.log("Height: ", viewportHeight);
   
-  return [viewportWidth*0.1306, viewportHeight*0.26205]
+  return [viewportWidth*0.1306*deviceScale, viewportHeight*0.26205*deviceScale, deviceScale]
 }
 
 // Initial gap calculation
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .to(overlayImages, {
             x: (index) => directions[index % directions.length].x * (0 + dynamicGap[0]*3),
             y: (index) => directions[index % directions.length].y * (0 + dynamicGap[1]*3),
-            scale: 2,
+            scale: 2/dynamicGap[2],
             opacity: 0, // Fade out images as they move out
             duration: 3,
             ease: 'none',
