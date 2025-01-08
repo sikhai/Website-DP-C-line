@@ -69,18 +69,18 @@ class DesignController extends Controller
         $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
 
         // Base query for featured products
-        $query = Product::with('attributes', 'category')->where('is_featured', 1)->orderBy('created_at', 'desc');
+        $query_products = Product::with('attributes', 'category')->where('is_featured', 1)->orderBy('created_at', 'desc');
 
         if ($searchString) {
             $title_head = 'Search';
 
-            $query->where(function ($q) use ($searchString) {
+            $query_products->where(function ($q) use ($searchString) {
                 $q->where('name', 'LIKE', "%{$searchString}%");
                 // ->orWhere('Description', 'LIKE', "%{$searchString}%");
             });
         }
 
-        $products = $query->paginate(20);
+        
 
         $result_attributes = $this->productService->getAttributesWithProductCount();
 
@@ -100,7 +100,13 @@ class DesignController extends Controller
 
             // Xóa các giá trị trùng lặp (nếu cần)
             $all_list_ids = array_unique($all_list_ids);
+
+            $query_products->where(function ($q) use ($all_list_ids) {
+                $q->whereIn('id', $all_list_ids);
+            });
         }
+
+        $products = $query_products->paginate(20);
 
         return view('design', compact('category', 'categories', 'result_attributes', 'products', 'title_head'));
     }
