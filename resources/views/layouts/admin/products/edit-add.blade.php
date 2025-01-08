@@ -52,12 +52,23 @@
             min-height: 100%;
         }
 
-        #add-attribute-btn {
+        #add-attribute-btn,
+        .setting_attribute {
             margin-bottom: 25px;
+        }
+
+        .setting_attribute {
+            background-color: #57c7d4 !important;
         }
 
         #attributes-container .remove-attribute-btn {
             margin-top: 0px;
+        }
+
+        .list-group .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
     </style>
 @stop
@@ -177,6 +188,12 @@
                         <div class="panel-body">
                             <button type="button" class="btn btn-primary"
                                 id="add-attribute-btn">{{ __('Add Attribute') }}</button>
+
+                            <button type="button" class="btn btn-primary setting_attribute" data-toggle="modal"
+                                data-target="#setting_attribute">
+                                {{ __('voyager::product.setting_attribute') }}
+                            </button>
+
                             <div id="attributes-container">
                                 <!-- Existing attributes -->
                                 @if (isset($attributes) && is_array($attributes))
@@ -231,6 +248,40 @@
                                     @endif
                                 @endif
                             </div>
+
+
+                            <div id="setting_attribute" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Nội dung modal -->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">{{ __('voyager::product.setting_attribute') }}</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul id="attribute-list" class="list-group">
+                                                @foreach ($status_attributes as $index => $item)
+                                                    <li class="list-group-item">
+                                                        <span class="item-name">{{ $item['name'] }}</span>
+                                                        <a class="btn {{ $item['status'] == 1 ? 'btn-success' : 'btn-danger' }} btn-sm change-status"
+                                                            data-index="{{ $index }}"
+                                                            data-status="{{ $item['status'] }}">
+                                                            {{ $item['status'] == 1 ? 'Active' : 'Inactive' }}
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary"
+                                                id="saveAttributes">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -304,7 +355,9 @@
                                 <input type="file" name="file" id="file">
                                 @if (isset($dataTypeContent->file))
                                     @php
-                                        $filePath = isset(json_decode($dataTypeContent->file, true)[0]) ? json_decode($dataTypeContent->file, true)[0] : null;
+                                        $filePath = isset(json_decode($dataTypeContent->file, true)[0])
+                                            ? json_decode($dataTypeContent->file, true)[0]
+                                            : null;
                                     @endphp
                                     @if (isset($filePath))
                                         <p>Current file: <a href="{{ Storage::url($filePath['download_link']) }}"
@@ -319,7 +372,8 @@
                     <!-- ### IMAGE ### -->
                     <div class="panel panel-bordered panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="icon wb-image"></i> {{ __('voyager::product.avatar') }}</h3>
+                            <h3 class="panel-title"><i class="icon wb-image"></i> {{ __('voyager::product.avatar') }}
+                            </h3>
                             <div class="panel-actions">
                                 <a class="panel-action voyager-angle-down" data-toggle="panel-collapse"
                                     aria-hidden="true"></a>
@@ -327,7 +381,8 @@
                         </div>
                         <div class="panel-body">
                             @if (isset($dataTypeContent->image))
-                                <img src="{{ filter_var($dataTypeContent->image, FILTER_VALIDATE_URL) ? $dataTypeContent->image : Voyager::image( $dataTypeContent->image ) }}" style="width:100%" />
+                                <img src="{{ filter_var($dataTypeContent->image, FILTER_VALIDATE_URL) ? $dataTypeContent->image : Voyager::image($dataTypeContent->image) }}"
+                                    style="width:100%" />
                             @endif
                             <input type="file" name="image">
                         </div>
@@ -599,6 +654,71 @@
                     }
                 }
             });
+        });
+    });
+
+
+    // Dữ liệu từ server sẽ được render vào JavaScript thông qua Blade 
+    var items = @json($status_attributes);
+
+    // Hàm hiển thị các mục vào modal
+    function loadAttributes() {
+        var attributeList = $('#attribute-list');
+        attributeList.empty(); // Xóa danh sách cũ
+
+        items.forEach(function(item, index) {
+            var statusLabel = item.status == 1 ? 'Active' : 'Inactive';
+            var statusClass = item.status == 1 ? 'btn-success' : 'btn-danger';
+
+            // Thêm phần tử vào modal
+            var listItem = `
+            <li class="list-group-item">
+                <span class="item-name">${item.name}</span>
+                <a class="btn ${statusClass} btn-sm change-status" data-index="${index}">
+                    ${statusLabel}
+                </a>
+            </li>
+        `;
+            attributeList.append(listItem);
+        });
+    }
+
+    // Khi modal được mở
+    $('#setting_attribute').on('show.bs.modal', function() {
+        loadAttributes(); // Tải lại danh sách các phần tử vào modal
+    });
+
+    // Thay đổi trạng thái khi nhấn vào nút
+    $(document).on('click', '.change-status', function() {
+        var index = $(this).data('index');
+        var newStatus = items[index].status === 1 ? 0 : 1; // Đảo trạng thái
+        items[index].status = newStatus;
+
+        // Cập nhật giao diện
+        var newLabel = newStatus == 1 ? 'Active' : 'Inactive';
+        var newClass = newStatus == 1 ? 'btn-success' : 'btn-danger';
+        $(this).text(newLabel).removeClass('btn-success btn-danger').addClass(newClass);
+    });
+
+    // Hàm gửi mảng các thay đổi status qua AJAX
+    $('#saveAttributes').click(function() {
+        // Gửi dữ liệu đã thay đổi
+        $.ajax({
+            url: '/update-status-attributes', // Địa chỉ route đã định nghĩa trong web.php
+            method: 'POST',
+            data: {
+                items: items, // Mảng items đã thay đổi status
+                _token: '{{ csrf_token() }}' // Đừng quên token CSRF để bảo mật
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert(response.message); // Thông báo thành công
+                    $('#setting_attribute').modal('hide'); // Đóng modal sau khi lưu
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('Có lỗi xảy ra khi lưu trạng thái.');
+            }
         });
     });
 </script>

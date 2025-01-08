@@ -31,6 +31,28 @@ class ProductService
         });
     }
 
+    public function getStatusAttributes($result_attributes)
+    {
+        // Cache key để định danh dữ liệu cache
+        $cacheKey = 'status_attributes';
+
+        // Lưu hoặc lấy dữ liệu từ cache với thời gian hết hạn là 720 phút
+        return Cache::remember($cacheKey, 720, function () use ($result_attributes) {
+            $status_attributes = [];
+
+            // Duyệt qua các thuộc tính trong $result_attributes
+            foreach ($result_attributes as $key => $value) {
+                $status_attributes[] = [
+                    'name'   => $key,
+                    'status' => 1,
+                ];
+            }
+
+            return $status_attributes;
+        });
+    }
+
+
     // Hàm xử lý thuộc tính để xây dựng mảng result_attributes
     public function getAttributes($attributes, &$result_attributes)
     {

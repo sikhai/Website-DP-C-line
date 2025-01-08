@@ -18,8 +18,17 @@ use App\Models\Attribute;
 
 use App\Models\Product;
 
+use App\Services\ProductService;
+
 class ProductController extends VoyagerBaseController
 {
+
+    protected $productService;
+
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
 
     public function index(Request $request)
     {
@@ -71,9 +80,15 @@ class ProductController extends VoyagerBaseController
 
         $attributes_name = $this->getUniqueAttributeNames();
 
+        $result_attributes = $this->productService->getAttributesWithProductCount();
+
+        $status_attributes = $this->productService->getStatusAttributes($result_attributes);
+
+        // dd($status_attributes);
+
         $view = 'layouts.admin.products.edit-add';
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'attributes_name'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'attributes_name', 'result_attributes', 'status_attributes'));
     }
 
     /**
@@ -121,10 +136,10 @@ class ProductController extends VoyagerBaseController
             $attributesJson = json_encode($attributes);
             $attribute = \App\Models\Attribute::firstOrCreate(['value' => $attributesJson]);
             $data->attributes()->syncWithoutDetaching([$attribute->id]);
-        
+
             // Xóa cache để lần sau sẽ tạo lại cache mới
             Cache::forget('attributes_with_product_count');
-        }        
+        }
 
         event(new BreadDataAdded($dataType, $data));
 
@@ -352,4 +367,18 @@ class ProductController extends VoyagerBaseController
         return response()->json(['exists' => $exists]);
     }
 
+    public function updateStatusAttributes(Request $request)
+    {
+        // Lấy dữ liệu từ AJAX
+        $updatedItems = $request->input('items');  // Đây là mảng các mục với trạng thái đã thay đổi
+
+        // Lấy mảng status_attributes từ cache dựa trên key (có thể thay đổi tùy vào cách bạn xây dựng key cache)
+        $cacheKey = 'status_attributes'; // Bạn có thể sử dụng các giá trị khác để làm cache key nếu cần
+
+        // Cập nhật cache với các giá trị mới
+        Cache::put($cacheKey, $updatedItems, 720);  // Lưu lại cache mới với thời gian hết hạn
+
+        // Bạn có thể trả về một phản hồi thông báo là đã lưu thành công
+        return response()->json(['success' => true, 'message' => 'Status updated successfully!']);
+    }
 }

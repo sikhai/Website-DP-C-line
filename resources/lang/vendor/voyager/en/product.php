@@ -2,6 +2,7 @@
 
 return [
     'additional_fields'=> 'Additional Fields',
+    'setting_attribute'=> 'Setting Attributes',
     'category'         => 'Product Category',
     'content'          => 'Product Content',
     'code'             => 'Product Code',
