@@ -84,8 +84,6 @@ class ProductController extends VoyagerBaseController
 
         $status_attributes = $this->productService->getStatusAttributes($result_attributes);
 
-        // dd($status_attributes);
-
         $view = 'layouts.admin.products.edit-add';
 
         return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'attributes_name', 'result_attributes', 'status_attributes'));
@@ -215,9 +213,13 @@ class ProductController extends VoyagerBaseController
         $attributes = $dataTypeContent->attributes->pluck('value')->last();
         $attributes = json_decode($attributes, true);
 
+        $result_attributes = $this->productService->getAttributesWithProductCount();
+
+        $status_attributes = $this->productService->getStatusAttributes($result_attributes);
+
         $view = 'layouts.admin.products.edit-add';
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'attributes'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'attributes', 'status_attributes'));
     }
 
     // POST BR(E)AD
