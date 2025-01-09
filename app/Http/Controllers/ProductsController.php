@@ -62,8 +62,8 @@ class ProductsController extends Controller
             $attributes = $product->attributes[0];
             $data_attributes = json_decode($attributes->value, true);
             $status_attributes = $this->productService->getStatusAttributes($data_attributes);
-            $data_attributes = $this->fillerAttributes($data_attributes, $status_attributes);
-            $attributes = $this->caculateAttribute($data_attributes);
+            $data_attributes_new = $this->fillerAttributes($data_attributes, $status_attributes);
+            $attributes = $this->caculateAttribute($data_attributes_new);
         }
 
         return view('product_detail', compact('collection', 'categories', 'product', 'attributes', 'products_orther'));
