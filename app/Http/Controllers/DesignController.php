@@ -9,9 +9,14 @@ use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 
+use App\Traits\AttributeFilter;
+
 
 class DesignController extends Controller
 {
+
+    use AttributeFilter;
+
     protected $productService;
 
     public function __construct(ProductService $productService)
@@ -35,7 +40,7 @@ class DesignController extends Controller
             ->paginate(20);
 
         // Sử dụng ProductService để lấy attributes và đếm số lượng
-        $result_attributes = $this->productService->getAttributesWithProductCount();
+        $result_attributes = $this->filterAttributesWithStatus($this->productService);
 
         return view('design', compact('category', 'categories', 'result_attributes', 'products', 'designs'));
     }
@@ -80,10 +85,7 @@ class DesignController extends Controller
             });
         }
 
-        
-
-        $result_attributes = $this->productService->getAttributesWithProductCount();
-
+        $result_attributes = $this->filterAttributesWithStatus($this->productService);
 
         if (count($attributes_filler) > 0) {
             foreach ($attributes_filler as $attribute) {

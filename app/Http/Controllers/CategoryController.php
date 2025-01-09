@@ -7,8 +7,13 @@ use App\Models\Design;
 use App\Models\Product;
 use App\Services\ProductService;
 
+use App\Traits\AttributeFilter;
+
 class CategoryController extends Controller
 {
+
+    use AttributeFilter;
+
     protected $productService;
 
     public function __construct(ProductService $productService)
@@ -33,7 +38,7 @@ class CategoryController extends Controller
         $products = Product::where('is_featured', 1)->get();
 
         // Gọi ProductService để lấy attributes với số lượng sản phẩm
-        $result_attributes = $this->productService->getAttributesWithProductCount();
+        $result_attributes = $this->filterAttributesWithStatus($this->productService);
 
         // Trả về view hiển thị sản phẩm
         return view('product', compact('category', 'categories', 'result_attributes', 'products', 'designs', 'title_head'));
@@ -60,7 +65,7 @@ class CategoryController extends Controller
             ->get();
 
         // Gọi ProductService để lấy attributes với số lượng sản phẩm
-        $result_attributes = $this->productService->getAttributesWithProductCount();
+        $result_attributes = $this->filterAttributesWithStatus($this->productService);
 
         // Trả về view hiển thị thông tin category
         return view('product', compact('category', 'categories', 'result_attributes', 'products', 'designs'));
