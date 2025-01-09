@@ -61,8 +61,13 @@ class ProductsController extends Controller
         if (isset($product->attributes[0])) {
             $attributes = $product->attributes[0];
             $data_attributes = json_decode($attributes->value, true);
-            $status_attributes = $this->productService->getStatusAttributes($data_attributes);
+
+            $result_attributes = $this->productService->getAttributesWithProductCount();
+
+            $status_attributes = $this->productService->getStatusAttributes($result_attributes);
+
             $data_attributes_new = $this->fillerAttributes($data_attributes, $status_attributes);
+
             $attributes = $this->caculateAttribute($data_attributes_new);
         }
 
