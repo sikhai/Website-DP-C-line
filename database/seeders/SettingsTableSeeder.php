@@ -131,6 +131,17 @@ class SettingsTableSeeder extends Seeder
                 'group'        => 'Admin',
             ])->save();
         }
+
+        Setting::firstOrCreate(
+            ['key' => 'status_attributes'], // Điều kiện để tìm bản ghi
+            [
+                'value'        => '', // Đặt giá trị trống
+                'display_name' => 'Status Attributes',
+                'type'         => 'text',
+                'order'        => 1,
+                'group'        => 'System', // Nhóm có thể thay đổi nếu cần
+            ]
+        );
     }
 
     /**

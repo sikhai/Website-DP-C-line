@@ -13,6 +13,7 @@ use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
+use TCG\Voyager\Models\Setting;
 
 use App\Models\Attribute;
 
@@ -372,15 +373,35 @@ class ProductController extends VoyagerBaseController
     public function updateStatusAttributes(Request $request)
     {
         // Lấy dữ liệu từ AJAX
-        $updatedItems = $request->input('items');  // Đây là mảng các mục với trạng thái đã thay đổi
+        $updatedItems = $request->input('items'); // Mảng các mục với trạng thái đã thay đổi
 
-        // Lấy mảng status_attributes từ cache dựa trên key (có thể thay đổi tùy vào cách bạn xây dựng key cache)
-        $cacheKey = 'status_attributes'; // Bạn có thể sử dụng các giá trị khác để làm cache key nếu cần
+        // Lấy key cache
+        $cacheKey = 'status_attributes';
 
-        // Cập nhật cache với các giá trị mới
-        Cache::put($cacheKey, $updatedItems, 720);  // Lưu lại cache mới với thời gian hết hạn
+        // Cập nhật cache
+        Cache::put($cacheKey, $updatedItems, 720); // Lưu giá trị mới vào cache (720 phút)
 
-        // Bạn có thể trả về một phản hồi thông báo là đã lưu thành công
+        // Cập nhật giá trị vào cơ sở dữ liệu
+        $statusAttributes = json_encode($updatedItems); // Chuyển đổi mảng thành chuỗi JSON
+        $setting = Setting::where('key', $cacheKey)->first();
+
+        if ($setting) {
+            // Cập nhật bản ghi trong bảng settings
+            $setting->value = $statusAttributes;
+            $setting->save();
+        } else {
+            // Nếu chưa tồn tại, tạo mới bản ghi
+            Setting::create([
+                'key'          => $cacheKey,
+                'value'        => $statusAttributes,
+                'display_name' => 'Status Attributes',
+                'type'         => 'text',
+                'order'        => 1,
+                'group'        => 'General',
+            ]);
+        }
+
+        // Trả về phản hồi JSON
         return response()->json(['success' => true, 'message' => 'Status updated successfully!']);
     }
 }
