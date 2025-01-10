@@ -6,6 +6,7 @@ use App\Models\Attribute;
 use App\Models\Product;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
+use TCG\Voyager\Models\Setting;
 
 class ProductService
 {
@@ -36,18 +37,43 @@ class ProductService
         // Cache key để định danh dữ liệu cache
         $cacheKey = 'status_attributes';
 
-        // Lưu hoặc lấy dữ liệu từ cache với thời gian hết hạn là 720 phút
+        // Lấy dữ liệu từ cache nếu tồn tại
         return Cache::remember($cacheKey, 720, function () use ($result_attributes) {
-            $status_attributes = [];
+            // Kiểm tra xem dữ liệu đã tồn tại trong bảng settings hay chưa
+            $setting = Setting::where('key', 'status_attributes')->first();
 
-            // Duyệt qua các thuộc tính trong $result_attributes
-            foreach ($result_attributes as $key => $value) {
-                $status_attributes[] = [
-                    'name'   => $key,
-                    'status' => 1,
-                ];
+            if ($setting && !empty($setting->value)) {
+                // Nếu tồn tại, lấy giá trị từ bảng settings và giải mã JSON
+                $status_attributes = json_decode($setting->value, true);
+            } else {
+                // Nếu không tồn tại, tạo dữ liệu từ $result_attributes
+                $status_attributes = [];
+
+                foreach ($result_attributes as $key => $value) {
+                    $status_attributes[] = [
+                        'name'   => $key,
+                        'status' => 1,
+                    ];
+                }
+
+                if ($setting && empty($setting->value) ) {
+                    $setting->update([
+                        'value' => json_encode($status_attributes),
+                    ]);
+                }else{
+                    // Lưu dữ liệu mới vào bảng settings
+                    Setting::create([
+                        'key'   => 'status_attributes',
+                        'value' => json_encode($status_attributes),
+                        'display_name' => 'Status Attributes',
+                        'type'  => 'text',
+                        'order' => 1,
+                        'group' => 'General', // Nhóm settings (tuỳ chỉnh theo nhu cầu)
+                    ]);
+                }
             }
 
+            // Trả về dữ liệu (sẽ được lưu vào cache thông qua Cache::remember)
             return $status_attributes;
         });
     }
