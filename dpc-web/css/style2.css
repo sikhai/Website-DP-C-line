@@ -284,23 +284,22 @@ h2.title span {
     border-radius: 10px;
     opacity: 1;
     overflow: hidden;
-    transition: 0.3s;
   }
   .banner .overlay-image:nth-child(2) {
-    width: 300px;
+    width: 600px;
     height: 300px;
     top: 264px;
     left: 722px;
     transform: translate(-50%, -50%);
-    z-index: 3;
+    z-index: 7;
   }
   .banner  .overlay-image:nth-child(3) {
-    width: 400px;
+    width: 300px;
     height: 250px;
     top: 522px;
     left: 457px;
     transform: translate(-50%, -50%);
-    z-index: 4;
+    z-index: 6;
   }
   .banner .overlay-image:nth-child(4) {
     width: 300px;
