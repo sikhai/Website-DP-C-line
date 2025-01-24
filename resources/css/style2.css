@@ -197,7 +197,7 @@ h2.title span {
 
 .banner {
     
-    height: 100vh;
+    height: 1000px;
     /* padding: 0; */
     position: relative;
     display: flex;
@@ -284,45 +284,44 @@ h2.title span {
     border-radius: 10px;
     opacity: 1;
     overflow: hidden;
-    /* transition: 0.3s; */
   }
   .banner .overlay-image:nth-child(2) {
     width: 600px;
     height: 300px;
-    top: 35%;
-    left: 50%;
+    top: 264px;
+    left: 722px;
     transform: translate(-50%, -50%);
     z-index: 7;
   }
   .banner  .overlay-image:nth-child(3) {
     width: 300px;
     height: 250px;
-    top: 55%;
-    left: 32%;
+    top: 522px;
+    left: 457px;
     transform: translate(-50%, -50%);
     z-index: 6;
   }
   .banner .overlay-image:nth-child(4) {
     width: 300px;
     height: 250px;
-    top: 45.5%;
-    left: 68%;
+    top: 478px;
+    left: 991px;
     transform: translate(-50%, -50%);
     z-index: 5;
   }
   .banner .overlay-image:nth-child(5) {
     width: 300px;
     height: 250px;
-    top: 62%;
-    left: 47%;
+    top: 710px;
+    left: 538px;
     transform: translate(-50%, -50%);
     z-index: 4;
   }
   .banner .overlay-image:nth-child(6) {
     width: 600px;
     height: 300px;
-    top: 66%;
-    left: 50%;
+    top: 742px;
+    left: 946px;
     transform: translate(-50%, -50%);
     z-index: 7;
   }
