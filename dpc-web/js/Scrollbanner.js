@@ -32,8 +32,10 @@ const directions_1 = [
     { x: 0.3, y: 1 }    // Bottom-right
 ];
 
+const isMobile = window.innerWidth <= 768;
 
-document.addEventListener('DOMContentLoaded', function () {
+if (isMobile === false) {
+  document.addEventListener('DOMContentLoaded', function () {
     // Register the ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
     
@@ -88,3 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
           
           ;
 });
+
+    
+}
+

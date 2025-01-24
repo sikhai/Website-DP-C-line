@@ -20,9 +20,9 @@
                     <div class="top_head pt-3 pb-3">
                         <div class="row">
                             <div class="col-2 d-flex align-items-center">
-                                <a class="nav_item" href="/contact.html">CONTACT</a>
+                                <a class="nav_item" href="/contact.html" id="contact">CONTACT</a>
                             </div>
-                            <div class="col-8 text-center">
+                            <div class="col-8 text-center logo">
                                 <a href="/">
                                     <img src="images/logo.svg" width="55" id="img-logo-ref" alt="logo" loading="lazy">
                                 </a>
@@ -73,7 +73,7 @@
                     <div class="col-2 d-flex align-items-center menu_right_filter">
                         <button type="button" class="btn btn-primary" id="btn-filter" onclick="open_filterbar()">
                             Filters <img class="w-24 mt-1" src="images/filter-icon.svg" alt=""
-                            loading="lazy">
+                            loading="lazy" id="filter-icon">
                         </button>
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu-sortby" data-bs-toggle="dropdown" aria-expanded="false">
@@ -92,321 +92,68 @@
 
             <section class="table-products position-relative">
                 <div class="row">
-                    <div class="col-4" style="margin:27px 70px 0px">
+                    <div class="col-4 sum" style="margin:27px 70px 0px">
                         <p id="sum-products">20488 Products, 1598 designs</p>
                     </div>
                 </div>
-
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Amigo/Amigo-01.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Amigo</p>
-                            <p class="pt-2 m-0" id="design-code">Amigo - 01</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Amigo/Amigo-02.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Amigo</p>
-                            <p class="pt-2 m-0" id="design-code">Amigo - 02</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Amigo/Amigo-03.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Amigo</p>
-                            <p class="pt-2 m-0" id="design-code">Amigo - 03</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Amigo/Amigo-04.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Amigo</p>
-                            <p class="pt-2 m-0" id="design-code">Amigo - 04</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Amigo/Amigo-05.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Amigo</p>
-                            <p class="pt-2 m-0" id="design-code">Amigo - 05</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Amigo/Amigo-06.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Amigo</p>
-                            <p class="pt-2 m-0" id="design-code">Amigo - 06</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Amigo/Amigo-07.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Amigo</p>
-                            <p class="pt-2 m-0" id="design-code">Amigo - 07</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Amigo/Amigo-08.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Amigo</p>
-                            <p class="pt-2 m-0" id="design-code">Amigo - 08</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Amigo/Amigo-09.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Amigo</p>
-                            <p class="pt-2 m-0" id="design-code">Amigo - 09</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Amigo/Amigo-10.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Amigo</p>
-                            <p class="pt-2 m-0" id="design-code">Amigo - 10</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Amigo/Amigo-11.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Amigo</p>
-                            <p class="pt-2 m-0" id="design-code">Amigo - 11</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Amigo/Amigo-12.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Amigo</p>
-                            <p class="pt-2 m-0" id="design-code">Amigo - 12</p>
-                        </div>
+                <div class="container">
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/Fabric/Indoor/Amigo/Amigo-01.jpg" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Amigo</p>
+                        <p class="pt-2 m-0" id="design-code">Amigo - 01</p>
                     </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination"></div>
-
-                    <!-- Add Navigation -->
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
-
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Coco/coco-11_COCO_11.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Coco</p>
-                            <p class="pt-2 m-0" id="design-code">Coco - 11</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Coco/coco-36_COCO-36.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Coco</p>
-                            <p class="pt-2 m-0" id="design-code">Coco - 36</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Coco/coco-38a_coco-38A.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Coco</p>
-                            <p class="pt-2 m-0" id="design-code">Coco - 38</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Coco/coco-38b_COCO_38B.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Coco</p>
-                            <p class="pt-2 m-0" id="design-code">Coco - 38B</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Coco/coco-52_coco-52.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Coco</p>
-                            <p class="pt-2 m-0" id="design-code">Coco - 52</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Coco/coco-53b_COCO_53B.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Coco</p>
-                            <p class="pt-2 m-0" id="design-code">Coco - 53B</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Coco/coco-54b_coco-54B.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Coco</p>
-                            <p class="pt-2 m-0" id="design-code">Coco - 54B</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Coco/coco-55a_coco-55A.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Coco</p>
-                            <p class="pt-2 m-0" id="design-code">Coco - 55A</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Coco/coco-55b_COCO_55B.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Coco</p>
-                            <p class="pt-2 m-0" id="design-code">Coco - 55B</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Coco/coco-79_COCO_79.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Coco</p>
-                            <p class="pt-2 m-0" id="design-code">Coco - 79</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Coco/coco-80_COCO_80.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Coco</p>
-                            <p class="pt-2 m-0" id="design-code">Coco - 80</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Coco/coco-83_COCO_83.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Coco</p>
-                            <p class="pt-2 m-0" id="design-code">Coco - 83</p>
-                        </div>
-            
-                        
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/Fabric/Indoor/Amigo/Amigo-02.jpg" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Amigo</p>
+                        <p class="pt-2 m-0" id="design-code">Amigo - 02</p>
                     </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination"></div>
-
-                    <!-- Add Navigation -->
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
                 </div>
-
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Terra NW/terra-06_terra_06.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Terra</p>
-                            <p class="pt-2 m-0" id="design-code">Terra - 06</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Terra NW/terra-13_terra_13.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Terra</p>
-                            <p class="pt-2 m-0" id="design-code">Terra - 13</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Terra NW/terra-26_terra_26.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Terra</p>
-                            <p class="pt-2 m-0" id="design-code">Terra - 26</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Terra NW/terra-28_terra_28.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Terra</p>
-                            <p class="pt-2 m-0" id="design-code">Terra - 28</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Terra NW/terra-29_terra_29.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Terra</p>
-                            <p class="pt-2 m-0" id="design-code">Terra - 29</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Terra NW/terra-33_terra_33.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Terra</p>
-                            <p class="pt-2 m-0" id="design-code">Terra - 33</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Terra NW/terra-39_terra_39.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Terra</p>
-                            <p class="pt-2 m-0" id="design-code">Terra - 39</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Terra NW/terra-48_terra_48.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Terra</p>
-                            <p class="pt-2 m-0" id="design-code">Terra - 48</p>
-                        </div>
+                    
+                <div class="container">
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/Fabric/Indoor/Coco/coco-11_COCO_11.webp" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Coco</p>
+                        <p class="pt-2 m-0" id="design-code">Coco - 11</p>
                     </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination"></div>
-
-                    <!-- Add Navigation -->
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
-
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Puente/puente-03_puente_03.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Puente</p>
-                            <p class="pt-2 m-0" id="design-code">Puente - 03</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Puente/puente-06_puente_06.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Puente</p>
-                            <p class="pt-2 m-0" id="design-code">Puente - 06</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Puente/puente-09_puente_09.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Puente</p>
-                            <p class="pt-2 m-0" id="design-code">Puente - 09</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Puente/puente-11_puente_11.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Puente</p>
-                            <p class="pt-2 m-0" id="design-code">Puente - 11</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Puente/puente-16_puente_16.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Puente</p>
-                            <p class="pt-2 m-0" id="design-code">Puente - 16</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Puente/puente-33_puente_33.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Puente</p>
-                            <p class="pt-2 m-0" id="design-code">Puente - 33</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Puente/puente-34_puente_34.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Puente</p>
-                            <p class="pt-2 m-0" id="design-code">Puente - 34</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Puente/puente-35_puente_35.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Puente</p>
-                            <p class="pt-2 m-0" id="design-code">Puente - 35</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Puente/puente-37_puente_37.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Puente</p>
-                            <p class="pt-2 m-0" id="design-code">Puente - 37</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Puente/puente-39_puente_39.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Puente</p>
-                            <p class="pt-2 m-0" id="design-code">Puente - 39</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Puente/puente-41_puente_41.webp" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Puente</p>
-                            <p class="pt-2 m-0" id="design-code">Puente - 41</p>
-                        </div>
-                        <div class="swiper-slide fabric-item">
-                            <img class="img w-100" src="images/Fabric/Indoor/Puente/puente-52_puente_52.jpg" alt=""
-                                        loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">Puente</p>
-                            <p class="pt-2 m-0" id="design-code">Puente - 52</p>
-                        </div>
-                        
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/Fabric/Indoor/Coco/coco-36_COCO-36.webp" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Coco</p>
+                        <p class="pt-2 m-0" id="design-code">Coco - 36</p>
                     </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination"></div>
-
-                    <!-- Add Navigation -->
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
                 </div>
+                <div class="container">
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/Fabric/Indoor/Terra NW/terra-06_terra_06.webp" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Terra</p>
+                        <p class="pt-2 m-0" id="design-code">Terra - 06</p>
+                    </div>
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/Fabric/Indoor/Terra NW/terra-13_terra_13.webp" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Terra</p>
+                        <p class="pt-2 m-0" id="design-code">Terra - 13</p>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/Fabric/Indoor/Puente/puente-03_puente_03.webp" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Puente</p>
+                        <p class="pt-2 m-0" id="design-code">Puente - 03</p>
+                    </div>
+                    <div class="fabric-item">
+                        <img class="img w-100" src="images/Fabric/Indoor/Puente/puente-06_puente_06.webp" alt=""
+                                    loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">Puente</p>
+                        <p class="pt-2 m-0" id="design-code">Puente - 06</p>
+                    </div>
+                </div>
+                
 
                 <div class="button-showmore">
                     <button type="button" class="btn btn-primary" id="btn-showmore">
