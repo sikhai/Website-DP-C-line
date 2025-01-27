@@ -19,10 +19,10 @@
                 <div class="container">
                     <div class="top_head pt-3 pb-3">
                         <div class="row">
-                            <div class="col-2 d-flex align-items-center">
-                                <a class="nav_item" href="/contact.html">CONTACT</a>
+                            <div class="col-2 d-flex align-items-center" >
+                                <a class="nav_item" href="/contact.html" id="contact">CONTACT</a>
                             </div>
-                            <div class="col-8 text-center">
+                            <div class="col-8 text-center logo">
                                 <a href="/">
                                     <img src="images/logo.svg" width="55" id="img-logo-ref" alt="logo" loading="lazy">
                                 </a>
@@ -59,6 +59,7 @@
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu-AllCategory" data-bs-toggle="dropdown" aria-expanded="false">
                                 All Categories <img src="images/chevron-down.svg" id="chevron-down" alt="">
+                                
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu-AllCategory">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
@@ -73,7 +74,9 @@
                     <div class="col-2 d-flex align-items-center menu_right_filter">
                         <button type="button" class="btn btn-primary" id="btn-filter" onclick="open_filterbar()">
                             Filters <img class="w-24 mt-1" src="images/filter-icon.svg" alt=""
-                            loading="lazy">
+                            loading="lazy" id="filter-icon">
+                            <img class="w-24 mt-1" src="images/Icon-Filter_mobile.png" alt=""
+                                loading="lazy" id="filter-icon2">
                         </button>
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu-sortby" data-bs-toggle="dropdown" aria-expanded="false">

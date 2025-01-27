@@ -998,15 +998,22 @@ footer .footer-bottom p {
         width: 100%;
     }
     section.header .container .top_head{
-        display: flex;
-        justify-content: space-between;
+        /* display: flex;
+        justify-content: space-between; */
         animation: none;
     }
-    section.header .container .top_head .logo{
+    section.header .container .top_head .logo img{
+        display: flex;
         text-align: start;
+        margin-left: -10vw;
     }
     section.header #contact{
         display: none;
+    }
+    .top_head .menu_right{
+        gap: 10px;
+        justify-content: flex-end;
+        /* margin-left: 2vw; */
     }
     .body_head {
         padding: 10vh 0 10vh;
@@ -1355,6 +1362,11 @@ footer .footer-bottom p {
     }
     footer .footer-bottom p {
         font-size: 85px;
+    }
+
+    footer .footer-middle {
+        padding-top: 0vh;
+        padding-bottom: 0vh;
     }
 
 
