@@ -337,38 +337,37 @@ h2.title span {
     color: var(--main);
 }
 
-.table-products .swiper-container{
+.table-products .container{
     display: flex;
     justify-content: space-between;
     gap: 8px;
-    height: 205px;
+    height: max-content;
     margin-bottom: 80px;
     overflow-x: scroll;
     scrollbar-width: none; /* For Firefox */
     --ms-overflow-style: none; /* For Internet Explorer and Edge */
     margin-left: 56px;
 }
-.table-products .swiper-container::-webkit-scrollbar{
+.table-products .container::-webkit-scrollbar{
     display: none;  /* For Chrome, Safari, and Opera */
 }
-.table-products .swiper-container .fabric-item{
-    width: 250px;
-    min-width: 250px;
-    gap: 12px;
-    box-sizing: border-box;
+.table-products .container .fabric-item{
+    width: 264px;
+    gap: 8px;
+    padding: 0 0.5vw 3vh;
 }
 
-.table-products .swiper-container .fabric-item .img{
+.table-products .container .fabric-item .img{
     height: 141px;
 }
 
-.table-products .swiper-container .fabric-item #design-name{
+.table-products .container .fabric-item #design-name{
     font-family: 'PlusJakartaSans-Medium';
     font-size: 16px;
     color: #BEB0A2;
 }
 
-.table-products .swiper-container .fabric-item #design-code{
+.table-products .container .fabric-item #design-code{
     font-family: 'PlusJakartaSans-Medium';
     font-size: 16px;
     color: var(--main);
@@ -959,11 +958,9 @@ footer .footer-bottom p {
         --ms-overflow-style: none; /* For Internet Explorer and Edge */
         margin-left: 2vw;
     }
-    .table-products .swiper-container .fabric-item{
-        /* width: 250px; */
-        min-width: 250px;
-        gap: 12px;
-        box-sizing: border-box;
+    .table-products .container .fabric-item{
+        width: 50vw;
+        padding: 0 2vw 4vh;
     }
 
     .table-products .container{
@@ -971,6 +968,7 @@ footer .footer-bottom p {
         justify-content: space-between;
         gap: 3vw;
         margin: 3vh 0;
+        height: max-content;
     }
     .table-products .button-showmore{
         display: flex;
