@@ -1126,6 +1126,25 @@ footer .footer-bottom p {
         /* width: 104px;
         height: 204px; */
     }
+    .swiper-slide[data-shape="shape1"] img,
+    .swiper-slide[data-shape="shape1"] .overlay_service {
+        border-radius: 10vh 0px 0px 0px;
+    }
+
+    .swiper-slide[data-shape="shape2"] img,
+    .swiper-slide[data-shape="shape2"] .overlay_service {
+        border-radius: 0px 10vh 0px 0px;
+    }
+
+    .swiper-slide[data-shape="shape3"] img,
+    .swiper-slide[data-shape="shape3"] .overlay_service {
+        border-radius: 0px 0px 10vh 0px;
+    }
+
+    .swiper-slide[data-shape="shape4"] img,
+    .swiper-slide[data-shape="shape4"] .overlay_service {
+        border-radius: 0px 0px 0px 10vh;
+    }
 
     /************************ trending ***************************/
     section.trending h2.title.line_1 {

@@ -325,6 +325,9 @@ h2.title span {
 .tab-general-fabric .menu_right_filter #filter-icon2{
     display: none;
 }
+.filter-bar .filter-hidden .btn-hidden img{
+    display: none;
+}
 
 
 /* table product */
@@ -1137,6 +1140,8 @@ footer .footer-bottom p {
         top: 5vh;
         left: 3vw;
         width: 100%;
+        height: 82vh;
+        overflow: scroll;
     }
     .layout .filter-bar .x-close, .clear-div{
         margin-left: -10vw;
@@ -1154,7 +1159,12 @@ footer .footer-bottom p {
         text-align: center;
         margin-top: 1vh;
     }
-
+    .filter-bar .container h4{
+        color: #FCFCFD;
+        font-family: 'PlusJakartaSans-Medium';
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
     .filter-bar .container h5{
         color: var(--main);
         font-family: 'PlusJakartaSans-Medium';
@@ -1162,11 +1172,17 @@ footer .footer-bottom p {
         letter-spacing: 1px;
         margin-left: -8vw;
     }
-
     .filter-bar .filter-hidden{
         display: flex;
         justify-content: space-between;
         margin-top: 0;
+    }
+    .filter-bar .filter-hidden h4{
+        color: #FCFCFD;
+        font-family: 'PlusJakartaSans-Medium';
+        font-size: 16px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
     }
     .filter-bar .filter-hidden .btn-hidden{
         display: flex;
@@ -1174,16 +1190,38 @@ footer .footer-bottom p {
         padding: 0 8vw;
     }
     .filter-bar .filter-hidden .btn-hidden img{
+        display: block;
         width: 18px;
         height: 18px;
         margin-left: -8vw;
+        transform: rotate(180deg);
     }
     .filter-bar #line-9{
         /* position: absolute; */
         width: 93%;
         height: 0px;
         /* top: 15vh; */
-        margin: 3vh 0 0 0;
+        margin: 1vh 0 0 0;
         border: 1px solid #4B5565;
+    }
+    .filter-bar #row-items-selected{
+        margin-bottom: 2vh;
+    }
+
+    .filter-bar .btn-secondary{
+        width: 93vw;
+        margin-bottom: 10vh;
+        position: fixed;
+        top: 90vh;
+    }
+    .filter-bar .container #arrow{
+        position: fixed;
+        top: 92.5vh;
+        left: 80vw;
+        margin-top: 0px;
+    }
+    .filter-bar #count{
+        display: none;
+        margin-left: 1vw;
     }
 }

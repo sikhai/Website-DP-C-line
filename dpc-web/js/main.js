@@ -1,4 +1,4 @@
-//project annimantion
+//our-project annimantion
 const images = document.querySelectorAll('.img-wrapper');
 const imgArea = document.querySelector('.img-area');
 
@@ -88,7 +88,7 @@ var swiperConfig = {
     },
     breakpoints: {
         320: {
-            slidesPerView: 1,
+            slidesPerView: 2,
             spaceBetween: 10,
         },
         480: {
@@ -96,15 +96,15 @@ var swiperConfig = {
             spaceBetween: 10,
         },
         640: {
-            slidesPerView: 3,
+            slidesPerView: 2,
             spaceBetween: 15,
         },
         768: {
-            slidesPerView: 4,
+            slidesPerView: 2,
             spaceBetween: 20,
         },
         1024: {
-            slidesPerView: 5,
+            slidesPerView: 4,
             spaceBetween: 24,
         },
     },

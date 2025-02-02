@@ -32,7 +32,7 @@ const directions_1 = [
     { x: 0.3, y: 1 }    // Bottom-right
 ];
 
-const isMobile = window.innerWidth <= 768;
+const isMobile = window.innerWidth <= 1024;
 
 if (isMobile === false) {
   document.addEventListener('DOMContentLoaded', function () {
