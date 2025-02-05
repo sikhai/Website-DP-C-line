@@ -328,7 +328,9 @@ h2.title span {
 .filter-bar .filter-hidden .btn-hidden img{
     display: none;
 }
-
+.filter-hidden #count{
+    display: none;
+}
 
 /* table product */
 .table-products #sum-products {

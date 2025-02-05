@@ -308,6 +308,16 @@ h2.title span {
     /* font-weight: 100; */
 }
 
+.tab-general-fabric .menu_right_filter #filter-icon2{
+    display: none;
+}
+.filter-bar .filter-hidden .btn-hidden img{
+    display: none;
+}
+.filter-hidden #count{
+    display: none;
+}
+
 /* filter button */
 .menu_right_filter #btn-filter{
     display: flex;
