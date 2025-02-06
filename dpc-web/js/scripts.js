@@ -13,13 +13,21 @@
 //     main_view[0].style.display  = 'block';
 //     menu[0].style.display  = 'none';
 // }
-
+const isMobile = window.innerWidth <= 1024;
 function hide_filterbar(){
     let filterbar = document.getElementsByClassName('filter-bar-section');
     let opacity_layer = document.getElementsByClassName('opacity-layer');
     opacity_layer[0].style.display = 'none';
     filterbar[0].style.display = "none";
     filterbar[0].style.transition = "width 2s";
+    if (isMobile === true) {
+        let btn_apply = document.getElementsByClassName('btn-apply-filter');
+        let btn_filter = document.getElementById('btn-filter');
+        btn_apply[0].style.position = 'none';
+        btn_filter.style.position = 'fixed';
+        btn_filter.style.display = 'flex';
+        
+    }
 }
 
 function open_filterbar(){
@@ -31,6 +39,13 @@ function open_filterbar(){
         top: 0,
         behavior: "smooth"
     });
+    if (isMobile === true) {
+        let btn_apply = document.getElementsByClassName('btn-apply-filter');
+        let btn_filter = document.getElementById('btn-filter');
+        // btn_apply[0].style.position = 'fixed';
+        btn_filter.style.display = 'none';
+        
+    }
 }
 
 
@@ -87,6 +102,46 @@ function deleteItem(){
                 }
             });
         });
+}
+
+function show_hide_characteristic(element) {
+    const targetSelector = element.getAttribute('data-target');
+    const targetElements = document.querySelectorAll(targetSelector);
+    
+    targetElements.forEach(function(targetElement) {
+        if (targetElement.style.display !== 'none') {
+            targetElement.style.display = 'none';
+            element.style.transform = 'rotate(0deg)';
+
+            // Count checked checkboxes
+            const checkboxes = targetElement.querySelectorAll('input[type="checkbox"]');
+            let checkedCount = 0;
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    checkedCount++;
+                }
+            });
+            console.log(checkedCount);
+            const countElement = targetElement.previousElementSibling.querySelector('#count');
+            if (checkedCount == 0) {
+                countElement.style.display = 'none';
+            } else {
+                countElement.style.display = 'block';
+                countElement.textContent = `(${checkedCount})`;
+            }
+            
+        } else {
+            targetElement.style.display = 'block';
+            element.style.transform = 'rotate(180deg)';
+            const countElement = targetElement.previousElementSibling.querySelector('#count');
+            countElement.style.display = 'none';
+        }
+
+        
+    
+    });
+
+    
 }
 
 // detail items 
