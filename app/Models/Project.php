@@ -10,6 +10,7 @@ class Project extends Model
         'name',
         'description',
         'images',
+        'images_with_captions',
         'slug',
         'is_featured'
     ];
@@ -18,4 +19,15 @@ class Project extends Model
     {
         return $this->belongsToMany(Product::class, 'product_project');
     }
+
+    // protected static function boot()
+    // {
+    //     parent::boot();
+
+    //     // Lắng nghe sự kiện `saving` (gọi cả khi tạo và cập nhật)
+    //     static::saving(function ($category) {
+    //         dd(request()->all()); // Dừng và in dữ liệu của `Category` trước khi lưu
+    //         // dd($Category); // Dừng và in dữ liệu của `Category` trước khi lưu
+    //     });
+    // }
 }
