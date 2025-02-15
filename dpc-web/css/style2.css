@@ -1006,6 +1006,8 @@ footer .footer-bottom p {
         display: flex;
         text-align: start;
         margin-left: -10vw;
+        width: 36px;
+        height: 40px;
     }
     section.header #contact{
         display: none;
@@ -1097,7 +1099,7 @@ footer .footer-bottom p {
 
     /************* Our service ****************/
     section.Our_Services {
-        padding: 20vh 0 ;
+        padding: 10vh 0 ;
     }
     section.Our_Services .services_list .item p {
         color: #BEB0A2;
@@ -1327,7 +1329,7 @@ footer .footer-bottom p {
     /************************ project ********************************/
     section.project .img-area{
         height: 50vh;
-        margin: 20vh 0 0 0;
+        margin: 10vh 0 0 0;
     }
     
     section.project .img-area .image1, section.project .img-area .image5{
@@ -1357,7 +1359,7 @@ footer .footer-bottom p {
     /************************ clients **********************************/
     section.clients {
         margin-bottom: 10vh;
-        margin-top: -10vh;
+        margin-top: -20vh;
     }
 
     section.clients .list_clients {
@@ -1439,6 +1441,11 @@ footer .footer-bottom p {
     .body-menu .a1, .a2, .a3{
         width: 300px;
     }
+    .header-menu .logo img{
+        width: 36px;
+        height: 40px;
+        margin-left: -6vw;
+    }
 
     /************************** search-area ******************************/
 
@@ -1470,6 +1477,11 @@ footer .footer-bottom p {
         display: flex;
         justify-content: flex-start;
         padding: 0;
+    }
+    .header-search .logo img{
+        width: 36px;
+        height: 40px;
+        margin-left: -6vw;
     }
 
     .search-area .body-search {
