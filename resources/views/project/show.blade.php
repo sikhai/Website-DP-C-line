@@ -54,12 +54,15 @@
                         <div class="froject-item">
                             <a href="/our-project/{{ $project['slug'] }}">
                                 @php
-                                    $image = json_decode($project->images)[0];
+                                    $images = json_decode($project->images_with_captions, true);
+                                    $image = $images[0]['path'] ?? null;
                                 @endphp
+
                                 @if ($image)
                                     <img class="img w-100" src="{{ Voyager::image($image) }}" alt="{{ $project['name'] }}"
                                         loading="lazy">
                                 @endif
+
                                 <div class="d-flex pt-4 m-0" id="block-collection-lable">
                                     <p id="collection-name">{{ $project['name'] }}</p>
                                 </div>

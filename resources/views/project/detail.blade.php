@@ -1,7 +1,13 @@
 @extends('layouts.main')
 
 @php
-    $image = json_decode($project->images)[0];
+    $image = json_decode($project->images_with_captions, true)[0]['path'] ?? null;
+    $image_1 = json_decode($project->images_with_captions, true)[1]['path'] ?? null;
+    $caption_image_1 = json_decode($project->images_with_captions, true)[1]['caption'] ?? null;
+    $image_2 = json_decode($project->images_with_captions, true)[2]['path'] ?? null;
+    $caption_image_2 = json_decode($project->images_with_captions, true)[2]['caption'] ?? null;
+    $image_3 = json_decode($project->images_with_captions, true)[3]['path'] ?? null;
+    $image_4 = json_decode($project->images_with_captions, true)[4]['path'] ?? null;
 @endphp
 
 @section('title', $project->name)
@@ -47,6 +53,11 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/our-project-detail.css') }}">
+    <style>
+        .header .container:before {
+            background: url('{{ Voyager::image($image) }}');
+        }
+    </style>
 @endsection
 
 @section('top_head')
@@ -96,7 +107,34 @@
                     </div>
                 </div>
             </div>
-            {!! $project->description !!}
+            <div class="description_project">
+                <div class="row">
+                    <div class="col-8">
+                        <img class="img-1"
+                            src="{{ Voyager::image($image_1) }}" alt="">
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">&nbsp;</div>
+                    <div class="col-6">
+                        <p>{{$caption_image_1}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <img class="img-1"
+                        src="{{ Voyager::image($image_2) }}" alt=""></div>
+                <div class="row mt-5">
+                    <div class="col-6">
+                        <p>{{$caption_image_2}}</p>
+                    </div>
+                    <div class="col"><img src="{{ Voyager::image($image_3) }}"
+                            alt=""></div>
+                </div>
+                <div class="row">
+                    <div class="col-7"><img class="img-1"
+                            src="{{ Voyager::image($image_4) }}" alt=""></div>
+                </div>
+            </div>
             @php
                 $uniqueCategories = $project->products
                     ->map(function ($product) {
@@ -129,7 +167,7 @@
         <div class="container">
             <div class="row">
                 @php
-                    $image_other = json_decode($project_other->images)[0];
+                    $image_other = json_decode($project_other->images_with_captions, true)[0]['path'] ?? null;
                 @endphp
                 <div class="col-6">
                     <img src="{{ Voyager::image($image_other) }}" alt="{{ $project_other->name }}">
