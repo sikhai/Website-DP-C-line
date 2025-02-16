@@ -63,7 +63,8 @@ class ProjectController extends VoyagerBaseController
         $images = [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
-                $path = $file->store('public/uploads/projects');
+                $folder = 'projects/' . now()->format('FY');
+                $path = $file->store("$folder", 'public');
                 $images[] = [
                     'path' => str_replace('public/', '', $path),
                     'caption' => ''
@@ -129,7 +130,8 @@ class ProjectController extends VoyagerBaseController
         // Xử lý hình ảnh mới
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $file) {
-                $path = $file->store('public/uploads/projects');
+                $folder = 'projects/' . now()->format('FY');
+                $path = $file->store("$folder", 'public');
                 $caption = $request->input("new_images.$index.caption") ?? '';
 
                 $imagesWithCaptions[] = [
