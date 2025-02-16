@@ -56,6 +56,8 @@
     <style>
         .header .container:before {
             background: url('{{ Voyager::image($image) }}');
+            background-position-y: center;
+            background-size: cover;
         }
     </style>
 @endsection
@@ -92,8 +94,7 @@
                             <h3>Products</h3>
                         </div>
                         <div class="col-9">
-                            <p>A paragraph is a unit of text that consists of a group of sentences related to a central
-                                topic or idea. </p>
+                            <p>{{ $project->product_descriptions }}</p>
                         </div>
                     </div>
                     <div class="line1"></div>
@@ -110,29 +111,26 @@
             <div class="description_project">
                 <div class="row">
                     <div class="col-8">
-                        <img class="img-1"
-                            src="{{ Voyager::image($image_1) }}" alt="">
-                        </div>
+                        <img class="img-1" src="{{ Voyager::image($image_1) }}" alt="">
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-6">&nbsp;</div>
                     <div class="col-6">
-                        <p>{{$caption_image_1}}</p>
+                        <p>{{ $caption_image_1 }}</p>
                     </div>
                 </div>
                 <div class="row">
-                    <img class="img-1"
-                        src="{{ Voyager::image($image_2) }}" alt=""></div>
+                    <img class="img-1" src="{{ Voyager::image($image_2) }}" alt="">
+                </div>
                 <div class="row mt-5">
                     <div class="col-6">
-                        <p>{{$caption_image_2}}</p>
+                        <p>{{ $caption_image_2 }}</p>
                     </div>
-                    <div class="col"><img src="{{ Voyager::image($image_3) }}"
-                            alt=""></div>
+                    <div class="col"><img src="{{ Voyager::image($image_3) }}" alt=""></div>
                 </div>
                 <div class="row">
-                    <div class="col-7"><img class="img-1"
-                            src="{{ Voyager::image($image_4) }}" alt=""></div>
+                    <div class="col-7"><img class="img-1" src="{{ Voyager::image($image_4) }}" alt=""></div>
                 </div>
             </div>
             @php
