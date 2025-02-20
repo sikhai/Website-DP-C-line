@@ -74,7 +74,9 @@
 
     <div class="row">
         <div class="content w-75">
-            <p>PROJECT OF THE MONTH</p>
+            @if ($project->is_trending)
+                <p>PROJECT OF THE MONTH</p>
+            @endif
             <h3>{{ $project->name }}</h3>
         </div>
     </div>

@@ -27,7 +27,6 @@ class ProjectsController extends Controller
 
         $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
         $project = Project::with(['products.category.parentCategory'])->where('slug',$project_slug)->first();
-
         $project_other = Project::where('id', '<>', $project->id)
                         ->inRandomOrder()
                         ->first();
