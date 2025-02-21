@@ -12,5 +12,9 @@ class Filter extends Model
         'status',
     ];
 
+    public function setAttributesValueAttribute($value)
+    {
+        // Chuyển mảng thành chuỗi JSON trước khi lưu
+        $this->attributes['attributes_value'] = is_array($value) ? json_encode($value) : $value;
+    }
 }
-
