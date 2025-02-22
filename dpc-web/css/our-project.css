@@ -270,14 +270,14 @@ h2.title span {
     display: flex;
     justify-content: space-between;
     gap: 64px;
-    height: 407px;
+    height: max-content;
     margin-bottom: 80px;
 }
 
 .table-projects .container .froject-item{
-    width: 624px;
+    width: 660px;
     gap: 8px;
-    padding: 0px;
+    padding: 25px;
 }
 
 .table-projects .container .froject-item .img{
