@@ -51,19 +51,42 @@ class DesignController extends Controller
     {
         $attributes_filler = [];
         $all_list_ids = [];
-        
+
         $category_slug = $request->input('category');
 
         $attributeString = $request->input('attribute');
+
         if (isset($attributeString)) {
             $attributePairs = explode(',', $attributeString);
+            $attributes_filler = [];
 
-            // Duyệt qua từng cặp và tách thành 'attribute-name' và 'value'
+            $lastAttributeName = null;
+            $combinedValue = '';
+
             foreach ($attributePairs as $pair) {
-                list($attributeName, $value) = explode('-', $pair);
+                // Nếu chứa dấu '-', tách thành attribute-name và value
+                if (strpos($pair, '-') !== false) {
+                    // Lưu giá trị trước đó nếu có
+                    if ($lastAttributeName !== null && $combinedValue !== '') {
+                        $attributes_filler[] = [
+                            'attribute-name' => $lastAttributeName,
+                            'value' => $combinedValue
+                        ];
+                    }
+
+                    // Tách attribute-name và value mới
+                    [$lastAttributeName, $combinedValue] = explode('-', $pair, 2);
+                } else {
+                    // Nếu không có attribute-name, tiếp tục nối với giá trị trước đó
+                    $combinedValue .= ($combinedValue !== '' ? ',' : '') . $pair;
+                }
+            }
+
+            // Thêm dữ liệu cuối cùng vào mảng nếu có
+            if ($lastAttributeName !== null && $combinedValue !== '') {
                 $attributes_filler[] = [
-                    'attribute-name' => $attributeName,
-                    'value' => $value
+                    'attribute-name' => $lastAttributeName,
+                    'value' => $combinedValue
                 ];
             }
         }
