@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
-use Hamcrest\Arrays\IsArray;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use App\Services\ProductService;
+
+use Illuminate\Support\Facades\Crypt;
+
 
 class ProductsController extends Controller
 {   
@@ -133,6 +134,26 @@ class ProductsController extends Controller
         }
 
         $products = $query->paginate($perPage, ['*'], 'page', $page);
+
+        return response()->json([
+            "products" => $products->items(),
+            "next_page" => $products->currentPage() < $products->lastPage() ? $products->currentPage() + 1 : null,
+        ]);
+    }
+
+    public function loadMoreFilterProducts(Request $request)
+    {
+
+        $encrypted_ids = $request->input('encrypted_ids');
+        $page = $request->input('page', 1);
+    
+        // Giải mã mảng ID
+        $decoded_ids = Crypt::decrypt($encrypted_ids);
+    
+        // Lấy sản phẩm từ danh sách ID
+        $products = Product::whereIn('id', $decoded_ids)
+                           ->paginate(20, ['*'], 'page', $page);
+
 
         return response()->json([
             "products" => $products->items(),

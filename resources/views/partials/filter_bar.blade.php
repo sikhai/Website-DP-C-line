@@ -79,7 +79,7 @@
         }).join(',');
 
         // Tạo URL với tham số mới
-        const urlParams = `/products?attribute=${attributePairs}`;
+        const urlParams = `/products?attribute=${attributePairs}&category={{$category->slug}}`;
 
         // Điều hướng đến URL với tham số đã tạo
         window.location.href = urlParams;

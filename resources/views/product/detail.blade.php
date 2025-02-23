@@ -26,7 +26,7 @@
 
         <div class="row mt-3 lable-general">
             <div class="d-flex directory">
-                <a class="back-directory" href="/products">All products</a>
+                <a class="back-directory" >All products</a>
                 <a class="back-directory" style="cursor: default">/</a>
                 @if ($collection)
                     <a class="back-directory" href="/{{ $collection->slug }}">{{ $collection->name }}</a>

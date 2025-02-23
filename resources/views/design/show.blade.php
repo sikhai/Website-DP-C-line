@@ -26,12 +26,26 @@
     </div>
 
     @if ($products->total() > 20)
-        <div class="button-showmore">
-            <button type="button" class="btn btn-primary" id="btn-showmore" data-category="{{ isset($designs->name) ? $designs->name : '' }}">
-                <span id="btn-loading" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                SHOW MORE PRODUCTS
-            </button>
-        </div>
+        @if ( isset($attributeString) && isset($category_slug) && isset($encrypted_ids) )
+            <div class="button-showmore">
+                <button type="button" class="btn btn-primary" id="btn-showmore-filter"
+                    data-list_ids="{{ $encrypted_ids }}">
+                    <span id="btn-loading" class="spinner-border spinner-border-sm d-none" role="status"
+                        aria-hidden="true"></span>
+                    SHOW MORE PRODUCTS
+                </button>
+            </div>
+        @else
+            <div class="button-showmore">
+                <button type="button" class="btn btn-primary" id="btn-showmore"
+                    data-category="{{ isset($designs->slug) ? $designs->slug : '' }}">
+                    <span id="btn-loading" class="spinner-border spinner-border-sm d-none" role="status"
+                        aria-hidden="true"></span>
+                    SHOW MORE PRODUCTS
+                </button>
+            </div>
+        @endif
+
     @endif
 </section>
 

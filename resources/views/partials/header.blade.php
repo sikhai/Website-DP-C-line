@@ -28,7 +28,7 @@
                         <a class="nav_item" id="next-tab" href="{{ route('home') }}">Home</a>
                         <p class="nav_item">/</p>
                         @isset( $category->name )
-                            <a class="nav_item" id="next-tab" href="/products">All Products</a>
+                            <a class="nav_item" id="next-tab">All Products</a>
                             <p class="nav_item">/</p>
                             <a class="nav_item" id="current-tab">{{ $category->name }}</a>
                         @else

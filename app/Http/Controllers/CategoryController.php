@@ -28,6 +28,7 @@ class CategoryController extends Controller
 
         // Lấy categories và designs nổi bật
         $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
+
         $designs = Design::with(['products' => function ($query) {
             $query->where('is_featured', 1);
         }])->where('is_featured', 1)
@@ -38,7 +39,7 @@ class CategoryController extends Controller
         $products = Product::where('is_featured', 1)->get();
 
         // Gọi ProductService để lấy attributes với số lượng sản phẩm
-        $result_attributes = $this->filterAttributesWithStatus($this->productService);
+        $result_attributes = $this->filterAttributesWithStatus($this->productService, $categories[0]['id']);
 
         // Trả về view hiển thị sản phẩm
         return view('product', compact('category', 'categories', 'result_attributes', 'products', 'designs', 'title_head'));
@@ -66,7 +67,7 @@ class CategoryController extends Controller
 
         // Gọi ProductService để lấy attributes với số lượng sản phẩm
         // $result_attributes = $this->productService->getAttributesWithProductCount();
-        $result_attributes = $this->filterAttributesWithStatus($this->productService);
+        $result_attributes = $this->filterAttributesWithStatus($this->productService, $category->id);
 
         // Trả về view hiển thị thông tin category
         return view('product', compact('category', 'categories', 'result_attributes', 'products', 'designs'));

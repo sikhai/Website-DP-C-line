@@ -7,7 +7,9 @@ use App\Models\Attribute;
 use App\Models\Design;
 use App\Models\Product;
 use App\Services\ProductService;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 use App\Traits\AttributeFilter;
 
@@ -40,7 +42,7 @@ class DesignController extends Controller
             ->paginate(20);
 
         // Sử dụng ProductService để lấy attributes và đếm số lượng
-        $result_attributes = $this->filterAttributesWithStatus($this->productService);
+        $result_attributes = $this->filterAttributesWithStatus($this->productService, $category->id);
 
         return view('design', compact('category', 'categories', 'result_attributes', 'products', 'designs'));
     }
@@ -49,6 +51,8 @@ class DesignController extends Controller
     {
         $attributes_filler = [];
         $all_list_ids = [];
+        
+        $category_slug = $request->input('category');
 
         $attributeString = $request->input('attribute');
         if (isset($attributeString)) {
@@ -65,6 +69,12 @@ class DesignController extends Controller
         }
 
         $category = null;
+
+        if ($category_slug) {
+            $category = Category::where('slug', $category_slug)->firstOrFail();
+        }
+
+
         $title_head = 'All Products';
 
         $searchString = $request->input('search');
@@ -85,7 +95,7 @@ class DesignController extends Controller
             });
         }
 
-        $result_attributes = $this->filterAttributesWithStatus($this->productService);
+        $result_attributes = $this->filterAttributesWithStatus($this->productService, $category->id);
 
         if (count($attributes_filler) > 0) {
             foreach ($attributes_filler as $attribute) {
@@ -108,8 +118,10 @@ class DesignController extends Controller
             });
         }
 
+        $encrypted_ids = Crypt::encrypt($all_list_ids);
+
         $products = $query_products->paginate(20);
 
-        return view('design', compact('category', 'categories', 'result_attributes', 'products', 'title_head'));
+        return view('design', compact('category', 'categories', 'result_attributes', 'products', 'title_head', 'attributeString', 'category_slug', 'encrypted_ids'));
     }
 }
