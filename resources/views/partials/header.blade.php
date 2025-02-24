@@ -44,10 +44,10 @@
 <section class="menu-area">
     <div class="header-menu">
         <div class="row mt-3">
-            <div class="col-2 d-flex align-items-center">
+            <div class="pd-0 col-2 d-flex align-items-center">
 
             </div>
-            <div class="col-8 text-center">
+            <div class="col-8 text-center logo">
                 <a href="{{ url('/') }}">
                     <img src="{{ Voyager::image(setting('site.logo')) }}" width="55" id="img-logo-ref"
                         alt="logo" loading="lazy">
@@ -62,18 +62,18 @@
 
     </div>
     <div class="body-menu">
-        <div class="row p-0">
-            <div class="col-4 d-flex flex-column">
+        <div class="row p-0 menu-item">
+            <div class="col-4 d-flex flex-column a1">
                 @foreach ($categories->take(3) as $key => $category)
                     <a class="option-menu" href="/{{ $category->slug }}">{{ $category->name }}</a>
                 @endforeach
             </div>
-            <div class="col-4 d-flex flex-column">
+            <div class="col-4 d-flex flex-column a2">
                 @foreach ($categories->skip(3)->take(3) as $key => $category)
                     <a class="option-menu" href="/{{ $category->slug }}">{{ $category->name }}</a>
                 @endforeach
             </div>
-            <div class="col-4 d-flex flex-column">
+            <div class="col-4 d-flex flex-column a3">
                 @foreach ($categories->skip(6)->take(2) as $key => $category)
                     <a class="option-menu" href="/{{ $category->slug }}">{{ $category->name }}</a>
                 @endforeach
@@ -88,7 +88,7 @@
             <div class="col-2 d-flex align-items-center">
 
             </div>
-            <div class="col-8 text-center">
+            <div class="col-8 text-center logo">
                 <a href="{{ url('/') }}">
                     <img src="{{ Voyager::image(setting('site.logo')) }}" width="55" id="img-logo-ref"
                         alt="logo" loading="lazy">

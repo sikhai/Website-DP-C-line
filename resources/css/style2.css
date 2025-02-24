@@ -1,6 +1,6 @@
 :root {
     --main: #D5CCC3;
-    --blue: #202E41;
+    --blue_bg: #202E41;
 }
 
 @font-face {
@@ -147,6 +147,10 @@ h2.title span {
     text-decoration: none;
     color: var(--main);
     cursor: pointer;
+}
+
+section.header .container .top_head .logo{
+    text-align: center;
 }
 
 .top_head .menu_right {
@@ -959,5 +963,603 @@ footer .footer-bottom p {
     white-space: nowrap;
 }
 
+/**************************************************
+                MOBILE CSS AREA 
+****************************************************/
+@media (max-width: 768px) {
+    body {
+       background: var(--blue_bg);
+       width: 100%;
+    }
+    .sidebar {
+        display: none;
+    }
 
+    h2.title {
+        font-size: 28px;
+        line-height: 42px;
+        font-family: "DP Céline";
+        text-transform: uppercase;
+        font-weight: 100;
+        margin: 0;
+        letter-spacing: 2px;
+        z-index: 999;
+        pointer-events: none;
+    }
+    
+    h2.title span {
+        font-family: 'DP Céline';
+        font-size: 28px;
+        font-style: italic;
+        font-weight: 100;
+        line-height: 42px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        z-index: 999;
+    }
+
+    .big-layout {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+        background: url('/images/BG-items.webp');
+        background-color: #202E41;
+        background-size: cover;
+        background-repeat: no-repeat;
+        mix-blend-mode: lumino1sity !important;
+        overflow: hidden;
+    }
+    .layout{
+        width: 100%;
+        max-width: none;
+    }
+
+    /************************** Header ************************/
+    section.header{
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    section.header .container{
+        width: 100%;
+    }
+    section.header .container .top_head{
+        /* display: flex;
+        justify-content: space-between; */
+        animation: none;
+    }
+    section.header .container .top_head .logo img{
+        display: flex;
+        text-align: start;
+        margin-left: -10vw;
+        width: 36px;
+        height: 40px;
+    }
+    section.header #contact{
+        display: none;
+    }
+    .top_head .menu_right{
+        gap: 10px;
+        justify-content: flex-end;
+        /* margin-left: 2vw; */
+    }
+    .body_head {
+        padding: 10vh 0 10vh;
+        animation: none;
+    }
+    .body_head h1 {
+        font-size: 64px;
+        text-align: center;
+        text-transform: uppercase;
+        font-family: "DP Céline";
+        letter-spacing: 2px;
+        
+    }
+
+    .body_head span {
+        font-family: 'DP Céline';
+        font-size: 64px;
+        text-align: center;
+        font-style: italic;
+        font-weight: 100;
+        text-transform: uppercase;
+        margin-left: -8px;
+        margin-right: 6px;
+    }
+
+    /*************************** banner slide *******************************/
+    section.banner{
+        width: 100%;
+        height: 40vh;
+    }
+    section.banner .overlay-image{
+        display: none;
+    }
+    section.banner .image-container{
+        width: 100%;
+        height: 100%;
+        transform: none;
+        top: 0;
+        left: 0;
+    }
+    
+    section.banner .image-container img{
+        width: 100%;
+        height: 100%;
+    }
+    section.banner .content{
+        width: 100%;
+        margin-left: 0;
+        margin-top: 0;
+        opacity: 1;
+    }
+    .banner .content{
+        z-index: 999;
+        position: relative;
+        width: 60%;
+        top: 12vh;
+        left: 5vw;
+    }
+    .banner .content p {
+        font-size: 16px;
+        line-height: 24px;
+        margin: 5px 0;
+        color: #D5CCC3;
+    }
+    
+    .banner .content h3 {
+        /* margin-top: 50px; */
+        font-size: 28px;
+        line-height: 42px;
+        font-family: "DP Céline";
+        height: auto;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin: 0;
+        color: #BEB0A2;
+        width: 80%;
+    }
+
+    /************* Our service ****************/
+    section.Our_Services {
+        padding: 10vh 0 ;
+    }
+    section.Our_Services .services_list .item p {
+        color: #BEB0A2;
+        font-size: 22px;
+        line-height: 34px;
+        font-family: 'DP Céline';
+    }
+    section.Our_Services .services_list .swiper-button-next,
+    section.Our_Services .services_list .swiper-button-prev{
+        display: none;
+    }
+    .swiper-pagination.swiper-pagination-progressbar.swiper-pagination-horizontal {
+        width: 100%;
+        top: var(--swiper-pagination-progressbar-size, calc(100% - 30px));
+        background: rgba(213, 204, 195, 0.5);
+        height: var(--swiper-pagination-progressbar-size, 2px);
+    }
+    section.Our_Services a{
+        /* width: 104px;
+        height: 204px; */
+    }
+    .img-wrapper-service {
+        position: relative;
+        transition: transform 0.3s ease;
+        overflow: hidden;
+        /* width: 104px;
+        height: 204px; */
+    }
+    .swiper-slide[data-shape="shape1"] img,
+    .swiper-slide[data-shape="shape1"] .overlay_service {
+        border-radius: 10vh 0px 0px 0px;
+    }
+
+    .swiper-slide[data-shape="shape2"] img,
+    .swiper-slide[data-shape="shape2"] .overlay_service {
+        border-radius: 0px 10vh 0px 0px;
+    }
+
+    .swiper-slide[data-shape="shape3"] img,
+    .swiper-slide[data-shape="shape3"] .overlay_service {
+        border-radius: 0px 0px 10vh 0px;
+    }
+
+    .swiper-slide[data-shape="shape4"] img,
+    .swiper-slide[data-shape="shape4"] .overlay_service {
+        border-radius: 0px 0px 0px 10vh;
+    }
+
+    /************************ trending ***************************/
+    section.trending h2.title.line_1 {
+        margin-bottom: 0px;
+        margin-left: 40vw;
+        transform: translate(-50%, -50%);
+    }
+    section.trending .box_trending {
+        gap: 4px;
+        padding: 5vh 0 0;
+    }
+    
+    section.trending .box_trending .left {
+        width: 50%;
+        perspective: 1000px; 
+    }
+    .left .flip-card {
+        width: 100%;
+        height: 40vh;
+        position: relative;
+    }
+    
+    .left .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 1.5s ease-in-out;
+        transform-style: preserve-3d;
+        /* animation: flipSequence 24s infinite;
+        animation-delay: 0s; */
+    }
+    
+    .left .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden; 
+        backface-visibility: hidden;
+        
+    }
+    
+    .left .flip-card-back {
+        transform: rotateY(180deg);
+    }
+    
+    section.trending .box_trending .left .flip-card-front .img-flip {
+        border-radius: 0px 10vh;
+        height: 40vh;
+    }
+    section.trending .box_trending .left .flip-card-back .img-flip {
+        border-radius: 0px 10vh;
+        height: 40vh;
+    }
+    
+    section.trending .box_trending .right {
+        width: 50%;
+        gap: 16px;
+        overflow: hidden;
+
+    }
+    
+    section.trending .box_trending .right .context {
+        perspective: 1000px;
+    }
+    
+    section.trending .box_trending .right .img {
+        max-height: 20vh;
+        object-fit: cover;
+        border-radius: 0px 10vh 0px 0px;
+        
+    }
+    
+    section.trending .box_trending .right .context p {
+        letter-spacing: 0.48px;
+        color: #4B4034;
+        font-size: 10px;
+        line-height: 16px;
+        text-transform: uppercase;
+        margin: -2vh 46vw;
+        margin-left: -16vw;
+    }
+    
+    section.trending .box_trending .right .context h3 {
+        letter-spacing: 0.48px;
+        color: #4B4034;
+        font-family: "DP Céline";
+        font-size: 22px;
+        line-height: 34px;
+        letter-spacing: 2px;
+        margin-top: 1vh;
+        margin-left: -35vw;
+    }
+    
+    section.trending .box_trending .right .context a {
+        color: #4B4034;
+        line-height: 20px;
+        letter-spacing: 1px;
+        font-size: 10px;
+        margin-top: 0vh;
+        margin-left: -35vw;
+    }
+    
+    section.trending .box_trending .right .context a img {
+        margin-left: 16px;
+        width: 12px;
+    }
+    
+    .context .flip-card {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    
+    .context .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 1.5s ease-in-out;
+        transform-style: preserve-3d;
+        /* animation: flipSequence 24s infinite;
+        animation-delay: 8s; */
+    }
+    
+    .context .flip-card-front, .context .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 20vh;
+        padding: 6vh 9vh 23vw 22vw;
+        border-radius: 7vh 0px;
+        background: #CDC4BB;
+        -webkit-backface-visibility: hidden; 
+        backface-visibility: hidden;
+        display: grid;
+    }
+    
+    
+    .context .flip-card-back {
+        transform: rotateY(180deg);
+    }
+    
+    .img-rightbottom{
+        height: 0;
+        perspective: 1000px;
+        margin-top: 0;
+    }
+    .img-rightbottom .flip-card {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    
+    .img-rightbottom .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 1.5s ease-in-out;
+        transform-style: preserve-3d;
+        /* animation: flipSequence 24s infinite;
+        animation-delay: 16s; */
+    }
+    
+    .img-rightbottom .flip-card-front, .img-rightbottom .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 20vh;
+        border-radius: 0px 10vh 0px 0px;
+        background: #CDC4BB;
+        -webkit-backface-visibility: hidden; 
+        backface-visibility: hidden;
+    }
+    
+    .img-rightbottom .flip-card-back {
+        transform: rotateY(180deg);
+    }
+    
+
+    /************************ project ********************************/
+    section.project .img-area{
+        height: 50vh;
+        margin: 10vh 0 0 0;
+    }
+    
+    section.project .img-area .image1, section.project .img-area .image5{
+        display: none;
+    }
+    section.project .img-area .image2{
+        border-radius: 0px 0px 0px 6vh;
+        width: 60vw;
+        height: 25vh;
+    }
+    section.project .img-area .image4{
+        border-radius: 0px 6vh 0px 0px;
+        width: 60vw;
+        height: 25vh;
+    }
+    section.project .img-area .image3{
+        border-radius: 6vh 0px 0px 0px;
+        width: 60vw;
+        height: 35vh;
+    }
+
+    section.project h2{
+        width: 80%;
+        margin: 5vh;
+    }
+
+    /************************ clients **********************************/
+    section.clients {
+        margin-bottom: 10vh;
+        margin-top: -20vh;
+    }
+
+    section.clients .list_clients {
+        margin-top: 5vh;
+    }
+
+    section.clients .list_clients h3 {
+        font-family: "DP Céline";
+        font-size: 22px;
+        font-weight: 100;
+        line-height: 34px;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #F7F5F3;
+    }
+
+    /************************** Footer ******************************/
+    footer #contact-mail, #contact-address, #contact-social{
+        padding: 5vh;
+        gap: 2vh;
+    }
+    footer .footer-bottom p {
+        font-size: 85px;
+    }
+
+    footer .footer-middle {
+        padding-top: 0vh;
+        padding-bottom: 0vh;
+    }
+
+
+    /************************** menu-area ******************************/
+
+    .menu-area {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        top: 0;
+        /* left: 0; */
+        display: flex;
+        /* justify-content: center; */
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        background-color: #202E41;
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        z-index: 1000;
+        overflow: hidden;
+    }
+    .menu-area .body-menu .menu-item {
+        display: grid;
+    }
+    .menu-area .header-menu .menu_right{
+        gap: 8px;
+        padding: 0;
+        margin-left: -12vw;
+    }
+    .menu-area .header-menu .logo{
+        display: flex;
+        justify-content: flex-start;
+        padding: 0;
+    }
+    .menu-area .body-menu {
+        margin: 10vh 10vw;
+    }
+    .body-menu .option-menu{
+        font-family: "DP Céline";
+        text-decoration: none;
+        font-size: 22px;
+        font-weight: 100;
+        line-height: 34px;
+        letter-spacing: 2px;
+        /* text-align: center; */
+        color: #BEB0A2;
+        margin-bottom: 24px;
+    }
+    .body-menu .a1, .a2, .a3{
+        width: 300px;
+    }
+    .header-menu .logo img{
+        width: 36px;
+        height: 40px;
+        margin-left: -6vw;
+    }
+
+    /************************** search-area ******************************/
+
+    .search-area {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        top: 0;
+        /* left: 0; */
+        display: flex;
+        /* justify-content: center; */
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        background-color: #202E41;
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        z-index: 1000;
+        overflow: hidden;
+    }
+
+    .search-area .header-search .menu_right{
+        gap: 8px;
+        padding: 0;
+        margin-left: -12vw;
+    }
+    .search-area .header-search .logo{
+        display: flex;
+        justify-content: flex-start;
+        padding: 0;
+    }
+    .header-search .logo img{
+        width: 36px;
+        height: 40px;
+        margin-left: -6vw;
+    }
+
+    .search-area .body-search {
+        margin: 10vh 10vw;
+    }
+    .body-search .option-menu{
+        font-family: "DP Céline";
+        text-decoration: none;
+        font-size: 48px;
+        font-weight: 100;
+        line-height: 72px;
+        letter-spacing: 2px;
+        /* text-align: center; */
+        color: #BEB0A2;
+        margin-bottom: 24px;
+    }
+    .body-search .input-group {
+        width: 654px;
+    }
+    .body-search .input-group input{
+        background-color: transparent;
+        border-width: 0px 0px 1px 0px;
+        border-radius: 0px;
+        border-color: #697586;
+        width: 655px;
+        height: 100px;
+        color: #FCFCFD;
+        font-size: 24px;
+        font-family: 'PlusJakartaSans-Light';
+    }
+    .body-search .input-group input::placeholder {
+        color: #697586;
+        font-size: 24px;
+        letter-spacing: 1%;
+        font-weight: 100;
+        opacity: 1; /* Firefox */
+    }
+    .body-search .input-group input::-ms-input-placeholder { /* Edge 12 -18 */
+        color: #697586;
+        font-size: 24px;
+        letter-spacing: 1%;
+        font-weight: 100;
+    }
+    .body-search h4{
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 1px;
+        margin-left: 15px;
+        /* font-family: 'PlusJakartaSans-Light'; */
+    }
+    
+ }
 
