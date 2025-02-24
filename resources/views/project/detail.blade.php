@@ -115,7 +115,7 @@
             <div class="description_project">
                 <div class="row">
                     <div class="col-8">
-                        <img class="img-1" src="{{ Voyager::image($image_1) }}" alt="">
+                        <img class="img-1 mw-100" src="{{ Voyager::image($image_1) }}" alt="">
                     </div>
                 </div>
                 <div class="row">
@@ -125,16 +125,16 @@
                     </div>
                 </div>
                 <div class="row">
-                    <img class="img-1" src="{{ Voyager::image($image_2) }}" alt="">
+                    <img class="img-1 mw-100" src="{{ Voyager::image($image_2) }}" alt="">
                 </div>
                 <div class="row">
                     <div class="col-6">
                         <p>{{ $caption_image_2 }}</p>
                     </div>
-                    <div class="col"><img src="{{ Voyager::image($image_3) }}" alt=""></div>
+                    <div class="col"><img class="mw-100" src="{{ Voyager::image($image_3) }}" alt=""></div>
                 </div>
                 <div class="row">
-                    <div class="col-7"><img class="img-1" src="{{ Voyager::image($image_4) }}" alt=""></div>
+                    <div class="col-7"><img class="img-1 mw-100" src="{{ Voyager::image($image_4) }}" alt=""></div>
                 </div>
             </div>
             @php
