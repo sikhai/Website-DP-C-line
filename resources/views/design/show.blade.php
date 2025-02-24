@@ -11,22 +11,20 @@
     <div class="container mb-5">
         <div class="row" id="product-list">
             @foreach ($products as $item)
-                <div class="col-lg-3">
-                    <div class="fabric-item">
-                        <a class="text-decoration-none" href="/products/{{ $item['slug'] }}">
-                            <img class="img w-100" src="{{ env('APP_URL') . '/storage/' . $item['image'] }}"
-                                alt="{{ $item['name'] }}" loading="lazy">
-                            <p class="pt-2 m-0" id="design-name">{{ $item['name'] }}</p>
-                            <p class="pt-2 m-0" id="design-code">{{ $item->category->name }}</p>
-                        </a>
-                    </div>
+                <div class="fabric-item">
+                    <a class="text-decoration-none" href="/products/{{ $item['slug'] }}">
+                        <img class="img w-100" src="{{ env('APP_URL') . '/storage/' . $item['image'] }}"
+                            alt="{{ $item['name'] }}" loading="lazy">
+                        <p class="pt-2 m-0" id="design-name">{{ $item['name'] }}</p>
+                        <p class="pt-2 m-0" id="design-code">{{ $item->category->name }}</p>
+                    </a>
                 </div>
             @endforeach
         </div>
     </div>
 
     @if ($products->total() > 20)
-        @if ( isset($attributeString) && isset($category_slug) && isset($encrypted_ids) )
+        @if (isset($attributeString) && isset($category_slug) && isset($encrypted_ids))
             <div class="button-showmore">
                 <button type="button" class="btn btn-primary" id="btn-showmore-filter"
                     data-list_ids="{{ $encrypted_ids }}">

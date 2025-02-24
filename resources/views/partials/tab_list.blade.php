@@ -33,7 +33,7 @@
             <button type="button" class="btn btn-primary" id="btn-filter" onclick="open_filterbar()">
                 Filters <img class="w-24 mt-1" src="{{ asset('images/filter-icon.svg') }}" alt=""
                     loading="lazy" id="filter-icon">
-                <img class="w-24 mt-1" src="images/Icon-Filter_mobile.png" alt=""
+                <img class="w-24 mt-1" src="{{ asset('images/Icon-Filter_mobile.png') }}" alt=""
                     loading="lazy" id="filter-icon2">
             </button>
             <div class="dropdown">
