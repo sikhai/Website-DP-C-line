@@ -4,7 +4,7 @@
 
 <section class="table-products position-relative mb-5">
     <div class="row">
-        <div class="col-4" style="margin:27px 70px 0px">
+        <div class="col-4 sum" style="margin:27px 70px 0px">
             <p id="sum-products">{{ count($products) }} Products, {{ count($designs) }} designs</p>
         </div>
     </div>
@@ -16,7 +16,7 @@
                 @php
                     $images = json_decode($item['images'], true);
                 @endphp
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-12 p-0">
                     <div class="fabric-item">
                         <a class="text-decoration-none" href="/design/{{ $item['slug'] }}">
                             <img class="img w-100" src="{{ isset($images[0]) ? Voyager::image($images[0]) : ''}}" alt="{{ $item['name'] }}"

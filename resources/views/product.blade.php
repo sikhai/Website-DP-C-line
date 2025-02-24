@@ -32,6 +32,8 @@
 </script>
 @endsection
 
+@section('body_class', 'product-layout')
+
 @section('content')
     <!-- tab-general-fabric collection design -->
     @include('partials.tab_list')

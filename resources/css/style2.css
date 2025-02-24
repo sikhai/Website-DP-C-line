@@ -116,6 +116,10 @@ h2.title span {
     mix-blend-mode: lumino1sity !important;
 }
 
+main.big-layout.product-layout{
+    background-image: none;
+}
+
 .layout {
     /* background: url('/images/BG-items.webp'); */
     /* background-size: cover;

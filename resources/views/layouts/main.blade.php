@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <main class="big-layout">
+    <main class="big-layout @yield('body_class', '')">
         <div class="opacity-layer" style="display: none;"></div>
         <div class="layout hidden">
             @include('partials.header')
