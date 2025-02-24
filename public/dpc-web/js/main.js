@@ -138,6 +138,62 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
   
+// show all images on mobile version
+function showAllImages(){
+    let images = document.querySelector('.fabric-photos');
+    let btn = document.querySelector('.btn-showimg');
+    let header = document.querySelector('.header');
+    let header_temp = document.querySelector('.header-temp');
+    let lable_general = document.querySelector('.lable-general');
+    let line = document.querySelector('.line');
+    let footer_middle = document.querySelector('.footer-middle');
+    let footer_bottom = document.querySelector('.footer-bottom');
+    let table_product = document.querySelector('.table-products');
+    let download = document.querySelector('.download');
+    let description = document.querySelectorAll('.left-description');
 
+    images.style.display = 'block';
+    btn.style.display = 'none';
+    header.style.display = 'none';
+    header_temp.style.display = 'block';
+    lable_general.style.display = 'none';
+    footer_middle.style.display = 'none';
+    line.style.display = 'none';
+    footer_bottom.style.display = 'none';
+    table_product.style.display = 'none';
+    download.style.display = 'none';
+    description[0].style.display = 'none';
+    description[1].style.display = 'none';
+
+    // header.style.width = '100%';
+
+}
+
+function back(){
+    let images = document.querySelector('.fabric-photos');
+    let btn = document.querySelector('.btn-showimg');
+    let header = document.querySelector('.header');
+    let header_temp = document.querySelector('.header-temp');
+    let lable_general = document.querySelector('.lable-general');
+    let line = document.querySelector('.line');
+    let footer_middle = document.querySelector('.footer-middle');
+    let footer_bottom = document.querySelector('.footer-bottom');
+    let table_product = document.querySelector('.table-products');
+    let download = document.querySelector('.download');
+    let description = document.querySelectorAll('.left-description');
+
+    images.style.display = 'none';
+    btn.style.display = 'flex';
+    header.style.display = 'block';
+    header_temp.style.display = 'none';
+    lable_general.style.display = 'flex';
+    footer_middle.style.display = 'block';
+    line.style.display = 'flex';
+    footer_bottom.style.display = 'block';
+    table_product.style.display = 'block';
+    download.style.display = 'block';
+    description[0].style.display = 'block';
+    description[1].style.display = 'block';
+}
 
 
