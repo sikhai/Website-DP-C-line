@@ -20,17 +20,28 @@
                     <div class="top_head pt-3 pb-3">
                         <div class="row">
                             <div class="col-2 d-flex align-items-center" style="justify-content: center;">
-                                <a class="nav_item" href="/contact.html">CONTACT</a>
+                                <a class="nav_item" href="/contact.html" id="contact">CONTACT</a>
                             </div>
-                            <div class="col-8 text-center">
+                            <div class="col-8 text-center logo">
                                 <a href="/">
                                     <img src="images/logo.svg" width="55" id="img-logo-ref" alt="logo" loading="lazy">
+                                    <img src="images/arrow-left.svg" width="55" id="img-arrow-left" alt="logo" loading="lazy">
                                 </a>
                             </div>
                             <div class="col-2 d-flex align-items-center menu_right">
                                 <a class="nav_item" id="search" onclick="opensearch()">SEARCH</a>
                                 <a class="nav_item" id="open-menu" onclick="openmenu()">MENU</a>
                             </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </section>
+            <section class="header-temp">
+                <div class="container">
+                    <div class="top_head pt-3 pb-3">
+                        <div class="row">
+                            <img src="images/arrow-left.svg" width="55" id="img-arrow-left" alt="logo" loading="lazy" onclick="back()">
                         </div>
                     </div>
                    
@@ -43,6 +54,11 @@
                     <div class="row img-detail">
                         <div class="col-10 main-view" >
                             <img id="main-image" src="images/DPC/deluxe-03.jpg" onclick="switchImage(this)" alt="">
+                            <div class="btn-showimg">
+                                <button type="button" class="btn btn-primary" id="btn-showimg" onclick="showAllImages()">
+                                    <img src="images/icons8-grid-64.png" alt="">Show all photos
+                                </button>
+                            </div>
                         </div>
                         <div class="col-2 small-view">
                             <div class="current-selected">
@@ -70,10 +86,22 @@
                                 <img src="images/DPC/deluxe-53.jpg" onclick="switchImage(this)" alt="">
                             </div>
                         </div>
+                        
                     </div>
+                    <div class="fabric-photos">
+                        <div class="row">
+                            <img src="images/Fabric/Indoor/Coco/coco-11_COCO_11.webp" alt="">
+                            <img src="images/Fabric/Indoor/Coco/coco-36_coco-36.webp" alt="">
+                            <img src="images/Fabric/Indoor/Coco/coco-38a_coco-38A.webp" alt="">
+                            <img src="images/Fabric/Indoor/Coco/coco-52_coco-52.webp" alt="">
+                            <img src="images/Fabric/Indoor/Coco/coco-54b_coco-54B.webp" alt="">
+                            <img src="images/Fabric/Indoor/Coco/coco-79_COCO_79.webp" alt="">
+                        </div>
+                    </div>
+                    
 
                     <div class="row mt-3 lable-general">
-                        <div class="d-flex directory">
+                        <div class="directory">
                             <a class="back-directory" href="./product-fabric-collection.html">All products</a>
                             <a class="back-directory" style="cursor: default">/</a>
                             <a class="back-directory" href="./product-fabric-design.html">Fabric</a>
@@ -84,20 +112,22 @@
                             <a class="back-directory" style="cursor: default">/</a>
                             <a class="current-directory">03 Mouse</a>
                         </div>
-                        <div class="d-flex mt-5 lable-fabric">
+                        <div class="mt-5 lable-fabric">
                             <div id="code">03 Mouse</div>
                             <div id="name">La Souris</div>
                         </div>
-            
-                        <button type="button" class="btn btn-secondary">Deluxe</button>
+                        <div class="btn0">
+                            <button type="button" class="btn btn-secondary">Deluxe</button>
+                        </div>
+                        
                     </div>
                     <div class="row p-0" style="margin-top: 80px;">
                         <div class="download">
                             <div class="d-flex download-item">
                                 <img src="images/file-download.svg" alt="">
                                 <div id="name">
-                                    <p style="margin-top: -3px;">TECHNICAL</p>
-                                    <p style="margin-top: -15px;">DOCUMENTS</p>
+                                    <p>TECHNICAL DOCUMENTS</p>
+                                    <!-- <p style="margin-top: -15px;"></p> -->
                                 </div>
                             </div>
                             <div class="d-flex mt-3 download-item">
@@ -106,7 +136,9 @@
                                     <p>HD IMAGES</p>
                                 </div>
                             </div>
+                            <div id="line"></div>
                         </div>
+                        
                         <div class="p-0 left-description">
                             <div class="content">
                                 <div class="title"><p>About Collection</p></div>
@@ -162,7 +194,7 @@
                             <div class="content">
                                 <div class="title"><p>Environment Standard</p></div>
                                 <div class="description">
-                                    <div class="d-flex mt-3" style="gap: 18px;">
+                                    <div class="d-flex mt-3" style="gap: 10px;">
                                         <img src="images/GRS_Grey.png" alt="">
                                         <img src="images/OekoTex_100RecycledPolyester_2111231_noQR_Grey_RGB.png" alt="">
                                         <img src="images/ISO_14001_grey_RGB.png" alt="">
@@ -179,74 +211,74 @@
         
             <section class="table-products position-relative">
                 <div class="row">
-                    <div class="col-4" style="margin:27px 70px 0px">
+                    <div class="col-4 lable" style="margin:27px 70px 0px">
                         <p id="lable-samecollection">In the same collection</p>
                     </div>
                 </div>
                 <div class="container mt-5">
-                    <div class="fabric-item">
-                        <img class="img w-100" src="images/DPC/amigo01.jpg" alt=""
-                                    loading="lazy">
-                        <p class="pt-2 m-0" id="design-name">Amigo</p>
-                        <p class="pt-2 m-0" id="design-code">Amigo - 01-Walnut</p>
+                    <div class="row">
+                        <div class="fabric-item">
+                            <img class="img w-100" src="images/DPC/amigo01.jpg" alt=""
+                                        loading="lazy">
+                            <p class="pt-2 m-0" id="design-name">Amigo</p>
+                            <p class="pt-2 m-0" id="design-code">Amigo - 01-Walnut</p>
+                        </div>
+                        <div class="fabric-item">
+                            <img class="img w-100" src="images/DPC/amigo02.jpg" alt=""
+                                        loading="lazy">
+                            <p class="pt-2 m-0" id="design-name">Amigo</p>
+                            <p class="pt-2 m-0" id="design-code">Amigo - 02-Mushroom</p>
+                        </div>
+                        <div class="fabric-item">
+                            <img class="img w-100" src="images/DPC/amigo03.jpg" alt=""
+                                        loading="lazy">
+                            <p class="pt-2 m-0" id="design-name">Amigo</p>
+                            <p class="pt-2 m-0" id="design-code">Amigo - 03-Taupe</p>
+                        </div>
+                        <div class="fabric-item">
+                            <img class="img w-100" src="images/DPC/amigo04.jpg" alt=""
+                                        loading="lazy">
+                            <p class="pt-2 m-0" id="design-name">Amigo</p>
+                            <p class="pt-2 m-0" id="design-code">Amigo - 04-Pecan</p>
+                        </div>
+                        <div class="fabric-item">
+                            <img class="img w-100" src="images/DPC/amigo08.jpg" alt=""
+                                        loading="lazy">
+                            <p class="pt-2 m-0" id="design-name">Amigo</p>
+                            <p class="pt-2 m-0" id="design-code">Amigo - 08-Plum</p>
+                        </div>
+                        <div class="fabric-item">
+                            <img class="img w-100" src="images/DPC/VELLUTO-1-160x160.webp" alt=""
+                                        loading="lazy">
+                            <p class="pt-2 m-0" id="design-name">Velluto</p>
+                            <p class="pt-2 m-0" id="design-code">Velluto - 01-Cream</p>
+                        </div>
+                        <div class="fabric-item">
+                            <img class="img w-100" src="images/DPC/VELLUTO-3-160x160.webp" alt=""
+                                        loading="lazy">
+                            <p class="pt-2 m-0" id="design-name">Velluto</p>
+                            <p class="pt-2 m-0" id="design-code">Velluto - 03-Mika</p>
+                        </div>
+                        <div class="fabric-item">
+                            <img class="img w-100" src="images/DPC/VELLUTO-9-160x160.webp" alt=""
+                                        loading="lazy">
+                            <p class="pt-2 m-0" id="design-name">Velluto</p>
+                            <p class="pt-2 m-0" id="design-code">Velluto - 09-Olive</p>
+                        </div>
+                        <div class="fabric-item">
+                            <img class="img w-100" src="images/DPC/Velluto-33-Rust-160x160.webp" alt=""
+                                        loading="lazy">
+                            <p class="pt-2 m-0" id="design-name">Velluto</p>
+                            <p class="pt-2 m-0" id="design-code">Velluto - 33-Rust</p>
+                        </div>
+                        <div class="fabric-item">
+                            <img class="img w-100" src="images/DPC/Velluto-36-Peacock-160x160.webp" alt=""
+                                        loading="lazy">
+                            <p class="pt-2 m-0" id="design-name">Velluto</p>
+                            <p class="pt-2 m-0" id="design-code">Velluto - 36-Peacock</p>
+                        </div>
                     </div>
-                    <div class="fabric-item">
-                        <img class="img w-100" src="images/DPC/amigo02.jpg" alt=""
-                                    loading="lazy">
-                        <p class="pt-2 m-0" id="design-name">Amigo</p>
-                        <p class="pt-2 m-0" id="design-code">Amigo - 02-Mushroom</p>
-                    </div>
-                    <div class="fabric-item">
-                        <img class="img w-100" src="images/DPC/amigo03.jpg" alt=""
-                                    loading="lazy">
-                        <p class="pt-2 m-0" id="design-name">Amigo</p>
-                        <p class="pt-2 m-0" id="design-code">Amigo - 03-Taupe</p>
-                    </div>
-                    <div class="fabric-item">
-                        <img class="img w-100" src="images/DPC/amigo04.jpg" alt=""
-                                    loading="lazy">
-                        <p class="pt-2 m-0" id="design-name">Amigo</p>
-                        <p class="pt-2 m-0" id="design-code">Amigo - 04-Pecan</p>
-                    </div>
-                    <div class="fabric-item">
-                        <img class="img w-100" src="images/DPC/amigo08.jpg" alt=""
-                                    loading="lazy">
-                        <p class="pt-2 m-0" id="design-name">Amigo</p>
-                        <p class="pt-2 m-0" id="design-code">Amigo - 08-Plum</p>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="fabric-item">
-                        <img class="img w-100" src="images/DPC/VELLUTO-1-160x160.webp" alt=""
-                                    loading="lazy">
-                        <p class="pt-2 m-0" id="design-name">Velluto</p>
-                        <p class="pt-2 m-0" id="design-code">Velluto - 01-Cream</p>
-                    </div>
-                    <div class="fabric-item">
-                        <img class="img w-100" src="images/DPC/VELLUTO-3-160x160.webp" alt=""
-                                    loading="lazy">
-                        <p class="pt-2 m-0" id="design-name">Velluto</p>
-                        <p class="pt-2 m-0" id="design-code">Velluto - 03-Mika</p>
-                    </div>
-                    <div class="fabric-item">
-                        <img class="img w-100" src="images/DPC/VELLUTO-9-160x160.webp" alt=""
-                                    loading="lazy">
-                        <p class="pt-2 m-0" id="design-name">Velluto</p>
-                        <p class="pt-2 m-0" id="design-code">Velluto - 09-Olive</p>
-                    </div>
-                    <div class="fabric-item">
-                        <img class="img w-100" src="images/DPC/Velluto-33-Rust-160x160.webp" alt=""
-                                    loading="lazy">
-                        <p class="pt-2 m-0" id="design-name">Velluto</p>
-                        <p class="pt-2 m-0" id="design-code">Velluto - 33-Rust</p>
-                    </div>
-                    <div class="fabric-item">
-                        <img class="img w-100" src="images/DPC/Velluto-36-Peacock-160x160.webp" alt=""
-                                    loading="lazy">
-                        <p class="pt-2 m-0" id="design-name">Velluto</p>
-                        <p class="pt-2 m-0" id="design-code">Velluto - 36-Peacock</p>
-                    </div>
+                    
                 </div>
 
                 <!-- <div class="button-showmore">
@@ -916,15 +948,15 @@
                 <div class="footer-middle">
                     <div class="container">
                         <div class="row justify-content-between">
-                            <div class="col-lg-3 col-md-6">
+                            <div class="col-lg-3 col-md-6" id="contact-mail">
                                 <h3 class="box-footer-title">START A CONVERSATION</h3>
                                 <ul class="list-cate">
                                     <li>
-                                        <a href="mailto:hello@dpceline.com" id="contact-mail">info@dpceline.com</a>
+                                        <a href="mailto:hello@dpceline.com">info@dpceline.com</a>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-4 col-md-6" id="contact-address">
                                 <h3 class="box-footer-title">OUR OFFICE</h3>
                                 <ul class="list-cate">
                                     <li>
@@ -935,7 +967,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-lg-3 col-md-6">
+                            <div class="col-lg-3 col-md-6" id="contact-social">
                                 <h3 class="box-footer-title">SOCIAL MEDIA</h3>
                                 <ul class="list-cate">
                                     <li>
@@ -963,7 +995,7 @@
                         <div class="col-2 d-flex align-items-center">
                             
                         </div>
-                        <div class="col-8 text-center">
+                        <div class="col-8 text-center logo">
                             <a>
                                 <img src="images/logo.svg" width="55" id="img-logo-ref" alt="logo" loading="lazy">
                             </a>
@@ -976,18 +1008,18 @@
                     
                 </div>
                 <div class="body-menu" >
-                    <div class="row p-0">
-                        <div class="col-3 d-flex flex-column">
+                    <div class="row p-0 menu-item">
+                        <div class="col-3 d-flex flex-column a1">
                             <a class="option-menu" href="product-fabric-collection.html">Fabric</a>
                             <a class="option-menu" href="./product-leather-collection.html">Leather</a>
                             <a class="option-menu" href="#">Curtain</a>
                         </div>
-                        <div class="col-5 d-flex flex-column">
+                        <div class="col-5 d-flex flex-column a2">
                             <a class="option-menu" href="#">Roller Blind</a>
                             <a class="option-menu" href="./product-wallpaper-collection.html">Wall Covering</a>
                             <a class="option-menu" href="#">Window furnishing</a>
                         </div>
-                        <div class="col-4 d-flex flex-column">
+                        <div class="col-4 d-flex flex-column a3">
                             <a class="option-menu" href="#">Bespoke Services</a>
                             <a class="option-menu" href="./our-project.html">Our Projects</a>
                             <a class="option-menu" href="#">About Us</a>
@@ -996,13 +1028,13 @@
                 </div>
             </section>
 
-            <section class="search-area" >
+            <section class="search-area">
                 <div class="header-search">
                     <div class="row mt-3">
                         <div class="col-2 d-flex align-items-center">
                             
                         </div>
-                        <div class="col-8 text-center">
+                        <div class="col-8 text-center logo">
                             <a>
                                 <img src="images/logo.svg" width="55" id="img-logo-ref" alt="logo" loading="lazy">
                             </a>
