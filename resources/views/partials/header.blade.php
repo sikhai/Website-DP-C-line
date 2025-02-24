@@ -3,9 +3,9 @@
         <div class="top_head pt-3 pb-3">
             <div class="row">
                 <div class="col-2 d-flex align-items-center">
-                    <a class="nav_item" href="#contact-mail">CONTACT</a>
+                    <a class="nav_item" href="#contact-mail" id="contact">CONTACT</a>
                 </div>
-                <div class="col-8 text-center">
+                <div class="col-8 logo">
                     <a href="{{ url('/') }}">
                         <img src="{{ Voyager::image(setting('site.logo')) }}" width="55" id="img-logo-ref"
                             alt="logo" loading="lazy">
