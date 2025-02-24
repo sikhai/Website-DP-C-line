@@ -161,6 +161,9 @@ h2.title span {
     width: 42px;
     height: 32px;
 }
+.header .logo #img-arrow-left{
+    display: none;
+}
 .header .container a{
     text-decoration: none;
 }
@@ -534,4 +537,335 @@ footer .footer-bottom p {
     white-space: nowrap;
 }
 
+/**************************************************
+                MOBILE CSS AREA 
+****************************************************/
+@media (max-width: 768px) {
+    body {
+       background: var(--blue_bg);
+       width: 100%;
+    }
+    .sidebar {
+        display: none;
+    }
 
+    h2.title {
+        font-size: 28px;
+        line-height: 42px;
+        font-family: "DP Céline";
+        text-transform: uppercase;
+        font-weight: 100;
+        margin: 0;
+        letter-spacing: 2px;
+        z-index: 999;
+        pointer-events: none;
+    }
+    
+    h2.title span {
+        font-family: 'DP Céline';
+        font-size: 28px;
+        font-style: italic;
+        font-weight: 100;
+        line-height: 42px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        z-index: 999;
+    }
+
+    .big-layout {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        background: url('../images/BG-items.webp');
+        background-color: #202E41;
+        background-size: cover;
+        background-repeat: no-repeat;
+        mix-blend-mode: lumino1sity !important;
+        overflow: hidden;
+    }
+    .layout{
+        width: 100%;
+        max-width: none;
+    }
+
+    /************************** Header ************************/
+    section.header{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    section.header .container{
+        width: 100%;
+    }
+    section.header .container .top_head{
+        /* display: flex;
+        justify-content: space-between; */
+        animation: none;
+    } 
+    section.header .container .top_head .logo img{
+        display: flex;
+        text-align: start;
+        margin-left: -10vw;
+        width: 36px;
+        height: 40px;
+    }
+    section.header #contact{
+        display: none;
+    }
+    .body_head {
+        padding: 10vh 0 2vh;
+        animation: none;
+    }
+    .top_head .menu_right{
+        gap: 10px;
+        justify-content: flex-end;
+        /* margin-left: 2vw; */
+    }
+    .header{
+        height: max-content;
+    }
+    .header .logo #img-arrow-left{
+        display: flex;
+        margin-left: -15vw;
+    }
+    .header .logo #img-logo-ref{
+        display: none;
+    }
+    .header .container .back-btn{
+        display: none !important;
+    }
+    .header .background{
+        width: 100vw;
+        top: 8vh;
+        height: 27vh;
+    }
+    .header .container .content h3{
+        font-size: 28px;
+        line-height: 42px;
+        margin-top: 10px;
+        width: 80vw;
+        height: max-content;
+    }
+    .header .container .content p{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .header .container .content{
+        margin-top: 12vh;
+    }
+    .project-info p{
+        font-size: 16px;
+        line-height: 24px;
+        margin: 20px 0px 20px 0px;
+        width: 95vw;
+    }
+    .project-info .description-left{
+        width: 90vw;
+    }
+    .project-info .description-right{
+        width: 100vw;
+    }
+    .project-info .description-right .mini-left{
+        width: 100vw;
+    }
+    .project-info .description-right .mini-right{
+        width: 100vw;
+    }
+    .project-info .img-1{
+        margin: 20px 0px 20px 0px;
+        width: 95vw;
+    }
+    .project-info .description-detail{
+        margin-left: -50vw;
+    }
+    .project-info h2{
+        font-size: 28px;
+        line-height: 42px;
+        margin-top: 10vh;
+    }
+    .project-info h5{
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 0px;
+    }
+    .project-info .product{
+        width: 50vw;
+    }
+    .project-info .product .img-2{
+        width: 100%;
+        margin: 40px 0 20px 0;
+    }
+    .next-project .next-project-title{
+        width: 100vw;
+        margin-top: -90vh !important;
+    }
+    .next-project .next-project-title a{
+        display: none;
+    }
+    .next-project .next-project-img{
+        width: 100vw;
+        margin-top: 20vh;
+    }
+    .next-project p{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .next-project h2{
+        font-size: 28px;
+        line-height: 42px;
+    }
+
+    /* footer */
+    footer #contact-mail, #contact-address, #contact-social{
+        padding: 5vh;
+        gap: 2vh;
+    }
+    footer .footer-bottom p {
+        font-size: 85px;
+    }
+    footer .footer-middle {
+        padding-top: 0vh;
+        padding-bottom: 0vh;
+    }
+
+    /* menu-area */
+    .menu-area {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        top: 0;
+        /* left: 0; */
+        display: flex;
+        /* justify-content: center; */
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        background-color: #202E41;
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        z-index: 1000;
+        overflow: hidden;
+    }
+    .menu-area .body-menu .menu-item {
+        display: grid;
+    }
+    .menu-area .header-menu .menu_right{
+        gap: 8px;
+        padding: 0;
+        margin-left: -12vw;
+    }
+    .menu-area .header-menu .logo{
+        display: flex;
+        justify-content: flex-start;
+        padding: 0;
+    }
+    .menu-area .body-menu {
+        margin: 10vh 10vw;
+    }
+    .body-menu .option-menu{
+        font-family: "DP Céline";
+        text-decoration: none;
+        font-size: 22px;
+        font-weight: 100;
+        line-height: 34px;
+        letter-spacing: 2px;
+        /* text-align: center; */
+        color: #BEB0A2;
+        margin-bottom: 24px;
+    }
+    .body-menu .a1, .a2, .a3{
+        width: 300px;
+    }
+    .header-menu .logo img{
+        width: 36px;
+        height: 40px;
+        margin-left: -6vw;
+    }
+
+    /************************** search-area ******************************/
+
+    .search-area {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        top: 0;
+        /* left: 0; */
+        display: flex;
+        /* justify-content: center; */
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        background-color: #202E41;
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        z-index: 1000;
+        overflow: hidden;
+    }
+
+    .search-area .header-search .menu_right{
+        gap: 8px;
+        padding: 0;
+        margin-left: -12vw;
+    }
+    .search-area .header-search .logo{
+        display: flex;
+        justify-content: flex-start;
+        padding: 0;
+    }
+    .header-search .logo img{
+        width: 36px;
+        height: 40px;
+        margin-left: -6vw;
+    }
+    .search-area .body-search {
+        margin: 10vh 10vw;
+    }
+    .body-search .option-menu{
+        font-family: "DP Céline";
+        text-decoration: none;
+        font-size: 48px;
+        font-weight: 100;
+        line-height: 72px;
+        letter-spacing: 2px;
+        /* text-align: center; */
+        color: #BEB0A2;
+        margin-bottom: 24px;
+    }
+    .body-search .input-group {
+        width: 654px;
+    }
+    .body-search .input-group input{
+        background-color: transparent;
+        border-width: 0px 0px 1px 0px;
+        border-radius: 0px;
+        border-color: #697586;
+        width: 655px;
+        height: 100px;
+        color: #FCFCFD;
+        font-size: 24px;
+        font-family: 'PlusJakartaSans-Light';
+    }
+    .body-search .input-group input::placeholder {
+        color: #697586;
+        font-size: 24px;
+        letter-spacing: 1%;
+        font-weight: 100;
+        opacity: 1; /* Firefox */
+    }
+    .body-search .input-group input::-ms-input-placeholder { /* Edge 12 -18 */
+        color: #697586;
+        font-size: 24px;
+        letter-spacing: 1%;
+        font-weight: 100;
+    }
+    .body-search h4{
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 1px;
+        margin-left: 15px;
+        /* font-family: 'PlusJakartaSans-Light'; */
+    }
+
+}

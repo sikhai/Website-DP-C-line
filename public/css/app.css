@@ -175,6 +175,10 @@ section.header .container .top_head .logo{
     text-align: center;
 }
 
+.header .logo #img-arrow-left{
+    display: none;
+}
+
 .top_head .menu_right {
     gap: 24px;
 }

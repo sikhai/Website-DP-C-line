@@ -51,6 +51,8 @@
     </script>
 @endsection
 
+@section('body_class', 'project-detail')
+
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/our-project-detail.css') }}">
     <style>
@@ -86,25 +88,25 @@
     <section class="project-info">
         <div class="container">
             <div class="row mt-3 d-flex p-0">
-                <div class="col-6">
+                <div class="col-6 description-left">
                     <p>{{ $project->short_description }}</p>
                 </div>
-                <div class="col-6">
+                <div class="col-6 description-right">
                     <div class="line1"></div>
                     <div class="row d-flex p-0">
-                        <div class="col-3">
+                        <div class="col-3 mini-left">
                             <h3>Products</h3>
                         </div>
-                        <div class="col-9">
+                        <div class="col-9 mini-right">
                             <p>{{ $project->product_descriptions }}</p>
                         </div>
                     </div>
                     <div class="line1"></div>
                     <div class="row d-flex p-0">
-                        <div class="col-3">
+                        <div class="col-3 mini-left">
                             <h3>Project</h3>
                         </div>
-                        <div class="col-9">
+                        <div class="col-9 mini-right">
                             <p>{{ $project->name }}</p>
                         </div>
                     </div>
@@ -118,14 +120,14 @@
                 </div>
                 <div class="row">
                     <div class="col-6">&nbsp;</div>
-                    <div class="col-6">
+                    <div class="col-6 description-detail">
                         <p>{{ $caption_image_1 }}</p>
                     </div>
                 </div>
                 <div class="row">
                     <img class="img-1" src="{{ Voyager::image($image_2) }}" alt="">
                 </div>
-                <div class="row mt-5">
+                <div class="row">
                     <div class="col-6">
                         <p>{{ $caption_image_2 }}</p>
                     </div>
@@ -151,7 +153,7 @@
                     <div class="row d-flex">
 
                         @foreach ($uniqueCategories as $category)
-                            <div class="col-3">
+                            <div class="col-3 product">
                                 <img src="{{ Voyager::image($category->image) }}" class="img-2" alt="">
                                 <h5>{{ $category->name }}</h5>
                             </div>
@@ -169,10 +171,10 @@
                 @php
                     $image_other = json_decode($project_other->images_with_captions, true)[0]['path'] ?? null;
                 @endphp
-                <div class="col-6">
+                <div class="col-6 next-project-img">
                     <img src="{{ Voyager::image($image_other) }}" alt="{{ $project_other->name }}">
                 </div>
-                <div class="col-6" style="margin-top: 80px;padding-left:30px">
+                <div class="col-6 next-project-title" style="margin-top: 80px;padding-left:30px">
                     <a href="/our-project/{{ $project_other->slug }}">READ MORE</a>
                     <p>Next project</p>
                     <h2>{{ $project_other->name }}</h2>
