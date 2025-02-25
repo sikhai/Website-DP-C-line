@@ -25,7 +25,7 @@
             @else
                 @if (isset($category) || isset($title_head))
                     <h1>{{ isset( $category->name) ? $category->name : (isset($title_head) ? $title_head : '') }}</h1>
-                    <div class="d-flex align-items-center menu_fabric">
+                    {{-- <div class="d-flex align-items-center menu_fabric">
                         <a class="nav_item" id="next-tab" href="{{ route('home') }}">Home</a>
                         <p class="nav_item">/</p>
                         @isset( $category->name )
@@ -35,7 +35,7 @@
                         @else
                             <a class="nav_item" id="current-tab">{{ isset($title_head) ? $title_head : '' }}</a>
                         @endisset
-                    </div>
+                    </div> --}}
                     <div id="line"></div>
                 @endif
             @endhome

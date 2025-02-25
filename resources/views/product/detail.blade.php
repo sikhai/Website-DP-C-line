@@ -2,6 +2,18 @@
     <link rel="stylesheet" href="{{ asset('css/product-fabric-detail.css') }}">
 @endsection
 
+<section class="header-temp">
+    <div class="container">
+        <div class="top_head pt-3 pb-3">
+            <div class="row">
+                <img src="{{ asset('images/arrow-left.svg') }}" width="55" id="img-arrow-left" alt="logo"
+                    loading="lazy" onclick="back()">
+            </div>
+        </div>
+
+    </div>
+</section>
+
 <!-- detail item -->
 <section class="detail-fabric pb-5">
     <div class="container" style="margin-top: 90px;">
@@ -9,6 +21,11 @@
             <div class="col-10 main-view">
                 <img id="main-image" src="{{ env('APP_URL') . '/storage/' . $product['image'] }}"
                     onclick="switchImage(this)" alt="{{ $product['name'] }}">
+                <div class="btn-showimg">
+                    <button type="button" class="btn btn-primary" id="btn-showimg" onclick="showAllImages()">
+                        <img src="{{ asset('images/icons8-grid-64.png') }}" alt="">Show all photos
+                    </button>
+                </div>
             </div>
             <div class="col-2 small-view">
                 <div class="current-selected">
@@ -22,11 +39,22 @@
                 @endforeach
 
             </div>
+
+            <div class="fabric-photos">
+                <div class="row">
+                    <img src="{{ env('APP_URL') . '/storage/' . $product['image'] }}" onclick="switchImage(this)"
+                        alt="{{ $product['name'] }}">
+                    @foreach (json_decode($product['images'] ?? '[]') as $item)
+                        <img src="{{ Voyager::image($item) }}" onclick="switchImage(this)"
+                            alt="{{ $product['name'] }}">
+                    @endforeach
+                </div>
+            </div>
         </div>
 
         <div class="row mt-3 lable-general">
-            <div class="d-flex directory">
-                <a class="back-directory" >All products</a>
+            <div class="directory">
+                <a class="back-directory">All products</a>
                 <a class="back-directory" style="cursor: default">/</a>
                 @if ($collection)
                     <a class="back-directory" href="/{{ $collection->slug }}">{{ $collection->name }}</a>
@@ -45,7 +73,9 @@
                 <div id="name">{{ $product['name'] }}</div>
             </div>
             @if (isset($product->category->name))
-                <button type="button" class="btn btn-secondary">{{ $product->category->name }}</button>
+                <div class="btn0">
+                    <button type="button" class="btn btn-secondary">{{ $product->category->name }}</button>
+                </div>
             @endif
         </div>
         <div class="row p-0" style="margin-top: 80px;">
@@ -66,8 +96,7 @@
                                     <a class="text-decoration-none"
                                         href="{{ Storage::url($filePath['download_link']) }}"
                                         download="{{ basename($filePath['original_name']) }}">
-                                        <p style="margin-top: -3px;">TECHNICAL</p>
-                                        <p style="margin-top: -15px;">DOCUMENTS</p>
+                                        <p>TECHNICAL DOCUMENTS</p>
                                     </a>
                                 </div>
                             @endif
@@ -79,6 +108,7 @@
                             <p>HD IMAGES</p>
                         </div>
                     </div>
+                    <div id="line"></div>
                 </div>
             @endif
             @if ($attributes)
@@ -106,7 +136,7 @@
 @if ($products_orther)
     <section class="table-products position-relative">
         <div class="row">
-            <div class="col-4" style="margin:27px 70px 0px">
+            <div class="col-4 lable" style="margin:27px 70px 0px">
                 <p id="lable-samecollection">In the same collection</p>
             </div>
         </div>

@@ -29,6 +29,8 @@ class CategoryController extends Controller
         // Lấy categories và designs nổi bật
         $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
 
+        $category_slug = $categories[0]['slug'] ? $categories[0]['slug'] : null;
+
         $designs = Design::with(['products' => function ($query) {
             $query->where('is_featured', 1);
         }])->where('is_featured', 1)
@@ -42,13 +44,15 @@ class CategoryController extends Controller
         $result_attributes = $this->filterAttributesWithStatus($this->productService, $categories[0]['id']);
 
         // Trả về view hiển thị sản phẩm
-        return view('product', compact('category', 'categories', 'result_attributes', 'products', 'designs', 'title_head'));
+        return view('product', compact('category', 'categories', 'result_attributes', 'products', 'designs', 'title_head', 'category_slug'));
     }
 
     public function showCategory($category_slug)
     {
         // Tìm category dựa trên slug, trả về lỗi 404 nếu không tồn tại
         $category = Category::where('slug', $category_slug)->firstOrFail();
+
+        $category_slug = $category->slug ? $category->slug : null;
 
         // Lấy các categories và designs liên quan đến category này
         $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
@@ -70,6 +74,6 @@ class CategoryController extends Controller
         $result_attributes = $this->filterAttributesWithStatus($this->productService, $category->id);
 
         // Trả về view hiển thị thông tin category
-        return view('product', compact('category', 'categories', 'result_attributes', 'products', 'designs'));
+        return view('product', compact('category', 'categories', 'result_attributes', 'products', 'designs', 'category_slug'));
     }
 }

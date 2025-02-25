@@ -16,17 +16,15 @@
                 @php
                     $images = json_decode($item['images'], true);
                 @endphp
-                <div class="col-lg-4 col-12 p-0">
-                    <div class="fabric-item">
-                        <a class="text-decoration-none" href="/design/{{ $item['slug'] }}">
-                            <img class="img w-100" src="{{ isset($images[0]) ? Voyager::image($images[0]) : ''}}" alt="{{ $item['name'] }}"
-                                loading="lazy">
-                            <div class="d-flex m-0" id="block-collection-lable">
-                                <p id="collection-name">{{ $item['name'] }}</p>
-                                <p id="collection-quantity">({{ $item->products->count() }})</p>
-                            </div>
-                        </a>
-                    </div>
+                <div class="fabric-item">
+                    <a class="text-decoration-none" href="/design/{{ $item['slug'] }}">
+                        <img class="img w-100" src="{{ isset($images[0]) ? Voyager::image($images[0]) : '' }}"
+                            alt="{{ $item['name'] }}" loading="lazy">
+                        <div class="d-flex m-0" id="block-collection-lable">
+                            <p id="collection-name">{{ $item['name'] }}</p>
+                            <p id="collection-quantity">({{ $item->products->count() }})</p>
+                        </div>
+                    </a>
                 </div>
             @endforeach
         </div>
