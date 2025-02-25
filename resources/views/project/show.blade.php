@@ -77,7 +77,7 @@
 
 @section('loader')
     <div class="loader">
-        <img src="./images/dpceline.png" alt="">
+        <img class="mw-100" src="./images/dpceline.png" alt="">
     </div>
 @endsection
 

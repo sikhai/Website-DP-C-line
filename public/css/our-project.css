@@ -83,7 +83,7 @@ h2.title span {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -236,18 +236,23 @@ h2.title span {
     text-decoration: none;
 }
 .table-projects .container{
+    display: flex;
+    justify-content: space-between;
+    gap: 64px;
+    height: max-content;
     margin-bottom: 80px;
 }
 
 .table-projects .container .froject-item{
+    width: 660px;
     gap: 8px;
-    padding: 0px;
-    padding-bottom: 80px;
+    padding: 25px;
 }
 
 .table-projects .container .froject-item .img{
     height: 333px;
     object-fit: cover;
+    object-position: center center;
 }
 
 .table-projects .container .froject-item #block-collection-lable{
@@ -522,3 +527,300 @@ footer .footer-bottom p {
 }
 
 
+/**************************************************
+                MOBILE CSS AREA 
+****************************************************/
+@media (max-width: 768px) {
+    body {
+       background: var(--blue_bg);
+       width: 100%;
+    }
+    .sidebar {
+        display: none;
+    }
+
+    h2.title {
+        font-size: 28px;
+        line-height: 42px;
+        font-family: "DP Céline";
+        text-transform: uppercase;
+        font-weight: 100;
+        margin: 0;
+        letter-spacing: 2px;
+        z-index: 999;
+        pointer-events: none;
+    }
+    
+    h2.title span {
+        font-family: 'DP Céline';
+        font-size: 28px;
+        font-style: italic;
+        font-weight: 100;
+        line-height: 42px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        z-index: 999;
+    }
+
+    .big-layout {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+        background: url('../images/BG-items.webp');
+        background-color: #202E41;
+        background-size: cover;
+        background-repeat: no-repeat;
+        mix-blend-mode: lumino1sity !important;
+        overflow: hidden;
+    }
+    .layout{
+        width: 100%;
+        max-width: none;
+    }
+
+    /************************** Header ************************/
+    section.header{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    section.header .container{
+        width: 100%;
+    }
+    section.header .container .top_head{
+        /* display: flex;
+        justify-content: space-between; */
+        animation: none;
+    } 
+    section.header .container .top_head .logo img{
+        display: flex;
+        text-align: start;
+        margin-left: -10vw;
+        width: 36px;
+        height: 40px;
+    }
+    section.header #contact{
+        display: none;
+    }
+    .body_head {
+        padding: 10vh 0 2vh;
+        animation: none;
+    }
+    .top_head .menu_right{
+        gap: 10px;
+        justify-content: flex-end;
+        /* margin-left: 2vw; */
+    }
+    .body_head h1 {
+        font-size: 48px;
+        text-align: center;
+        /* text-transform: uppercase; */
+        font-family: "DP Céline";
+        letter-spacing: 2px;
+    }
+
+    .body_head span {
+        font-family: 'DP Céline';
+        font-size: 48px;
+        text-align: center;
+        font-style: italic;
+        font-weight: 100;
+        text-transform: uppercase;
+        margin-left: -8px;
+        margin-right: 6px;
+    }
+
+    .body_head #line{
+        /* Line 3 */
+        margin-top :15px;
+        width: 100%;
+        height: 0px;
+        border: 1px solid rgba(253, 252, 245, 0.2);
+    }
+    .body_head .menu_fabric{
+        display: none !important;
+    }
+
+    .table-projects .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 80px;
+        height: max-content;
+    }
+    .table-projects .container .row{
+        gap: 32px
+    }
+    .table-projects .container .froject-item{
+        width: 100vw;
+        gap: 8px;
+        padding: 3vw;
+    }
+
+    .table-projects .container .froject-item .img{
+        height: 214px;
+    }
+    .table-projects .container .froject-item #collection-name{
+        font-family: 'DP Céline';
+        font-size: 28px;
+        line-height: 42px;
+        color: var(--main);
+        /* margin-top: 16px; */
+        letter-spacing: 1px;
+    }
+    /* footer */
+    footer #contact-mail, #contact-address, #contact-social{
+        padding: 5vh;
+        gap: 2vh;
+    }
+    footer .footer-bottom p {
+        font-size: 85px;
+    }
+    footer .footer-middle {
+        padding-top: 0vh;
+        padding-bottom: 0vh;
+    }
+
+    /* menu-area */
+    .menu-area {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        top: 0;
+        /* left: 0; */
+        display: flex;
+        /* justify-content: center; */
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        background-color: #202E41;
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        z-index: 1000;
+        overflow: hidden;
+    }
+    .menu-area .body-menu .menu-item {
+        display: grid;
+    }
+    .menu-area .header-menu .menu_right{
+        gap: 8px;
+        padding: 0;
+        margin-left: -12vw;
+    }
+    .menu-area .header-menu .logo{
+        display: flex;
+        justify-content: flex-start;
+        padding: 0;
+    }
+    .menu-area .body-menu {
+        margin: 10vh 10vw;
+    }
+    .body-menu .option-menu{
+        font-family: "DP Céline";
+        text-decoration: none;
+        font-size: 22px;
+        font-weight: 100;
+        line-height: 34px;
+        letter-spacing: 2px;
+        /* text-align: center; */
+        color: #BEB0A2;
+        margin-bottom: 24px;
+    }
+    .body-menu .a1, .a2, .a3{
+        width: 300px;
+    }
+    .header-menu .logo img{
+        width: 36px;
+        height: 40px;
+        margin-left: -6vw;
+    }
+
+    /************************** search-area ******************************/
+
+    .search-area {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        top: 0;
+        /* left: 0; */
+        display: flex;
+        /* justify-content: center; */
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        background-color: #202E41;
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        z-index: 1000;
+        overflow: hidden;
+    }
+
+    .search-area .header-search .menu_right{
+        gap: 8px;
+        padding: 0;
+        margin-left: -12vw;
+    }
+    .search-area .header-search .logo{
+        display: flex;
+        justify-content: flex-start;
+        padding: 0;
+    }
+    .header-search .logo img{
+        width: 36px;
+        height: 40px;
+        margin-left: -6vw;
+    }
+    .search-area .body-search {
+        margin: 10vh 10vw;
+    }
+    .body-search .option-menu{
+        font-family: "DP Céline";
+        text-decoration: none;
+        font-size: 48px;
+        font-weight: 100;
+        line-height: 72px;
+        letter-spacing: 2px;
+        /* text-align: center; */
+        color: #BEB0A2;
+        margin-bottom: 24px;
+    }
+    .body-search .input-group {
+        width: 654px;
+    }
+    .body-search .input-group input{
+        background-color: transparent;
+        border-width: 0px 0px 1px 0px;
+        border-radius: 0px;
+        border-color: #697586;
+        width: 655px;
+        height: 100px;
+        color: #FCFCFD;
+        font-size: 24px;
+        font-family: 'PlusJakartaSans-Light';
+    }
+    .body-search .input-group input::placeholder {
+        color: #697586;
+        font-size: 24px;
+        letter-spacing: 1%;
+        font-weight: 100;
+        opacity: 1; /* Firefox */
+    }
+    .body-search .input-group input::-ms-input-placeholder { /* Edge 12 -18 */
+        color: #697586;
+        font-size: 24px;
+        letter-spacing: 1%;
+        font-weight: 100;
+    }
+    .body-search h4{
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 1px;
+        margin-left: 15px;
+        /* font-family: 'PlusJakartaSans-Light'; */
+    }
+}

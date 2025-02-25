@@ -884,7 +884,7 @@ footer .footer-bottom p {
         margin-top: -8vh;
     }
     .table-products .sum{
-        margin: -5vh 21vw;
+        margin: auto !important;
         width: max-content;
     }
     .table-products .swiper-container{
