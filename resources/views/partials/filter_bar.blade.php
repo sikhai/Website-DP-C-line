@@ -40,12 +40,13 @@
                 </div>
                 <div class="row mt-2">
                     @foreach ($values as $value => $data)
-                        <div class="col-3 p-0">
+                        <div class="col-6 col-md-6 p-0">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="{{ $value }}"
-                                    data-products="{{ count($data['list_ids']) }}" id="check_{{ucfirst($name)}}_{{ $value }}"
+                                    data-products="{{ count($data['list_ids']) }}"
+                                    id="check_{{ ucfirst($name) }}_{{ $value }}"
                                     attribute-name="{{ ucfirst($name) }}">
-                                <label class="form-check-label" for="check_{{ucfirst($name)}}_{{ $value }}">
+                                <label class="form-check-label text-break" for="check_{{ ucfirst($name) }}_{{ $value }}">
                                     {{ $value }}
                                 </label>
                             </div>
@@ -83,7 +84,7 @@
         }).join(',');
 
         // Tạo URL với tham số mới
-        const urlParams = `/products?attribute=${attributePairs}&category={{$category_slug}}`;
+        const urlParams = `/products?attribute=${attributePairs}&category={{ $category_slug }}`;
 
         // Điều hướng đến URL với tham số đã tạo
         window.location.href = urlParams;

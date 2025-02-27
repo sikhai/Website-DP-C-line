@@ -139,31 +139,32 @@ h2.title span {
     gap: 24px;
 }
 .tab-general-fabric .tab-collection-design #next-tab{
-    /* Collection */
-    text-decoration: none ;
-    /* iv - 48 */
+    text-decoration: none;
+    width: 203px;
+    height: 72px;
     font-family: 'DP Céline';
     font-style: normal;
     font-weight: 100;
     font-size: 48px;
     line-height: 72px;
-    /* identical to box height, onextr 150% */
+    display: flex;
+    align-items: center;
+    text-align: center;
     letter-spacing: 2px;
-
-    /* beige / 600 */
     color: #8D7863;
 }
 .tab-general-fabric .tab-collection-design #current-tab{
-    /* Collection */
-    text-decoration: none ;
-
-    /* iv - 48 */
+    text-decoration: none;
+    width: 203px;
+    height: 72px;
     font-family: 'DP Céline';
     font-style: normal;
     font-weight: 100;
     font-size: 48px;
     line-height: 72px;
-    /* identical to box height, or 150% */
+    display: flex;
+    align-items: center;
+    text-align: center;
     letter-spacing: 2px;
     color: var(--main);
 }

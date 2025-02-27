@@ -56,7 +56,7 @@
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/our-project-detail.css') }}">
     <style>
-        .header .container:before {
+        .header .background {
             background: url('{{ Voyager::image($image) }}');
             background-position-y: center;
             background-size: cover;
@@ -84,6 +84,9 @@
     </div>
 @endsection
 
+@section('background_project_detail')
+    <div class="background"></div>
+@endsection
 @section('content')
     <section class="project-info">
         <div class="container">
@@ -134,7 +137,8 @@
                     <div class="col"><img class="mw-100" src="{{ Voyager::image($image_3) }}" alt=""></div>
                 </div>
                 <div class="row">
-                    <div class="col-7"><img class="img-1 mw-100" src="{{ Voyager::image($image_4) }}" alt=""></div>
+                    <div class="col-7"><img class="img-1 mw-100" src="{{ Voyager::image($image_4) }}" alt="">
+                    </div>
                 </div>
             </div>
             @php

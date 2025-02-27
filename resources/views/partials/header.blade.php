@@ -41,6 +41,7 @@
             @endhome
         </div>
     </div>
+    @yield('background_project_detail')
 </section>
 <section class="menu-area">
     <div class="header-menu">

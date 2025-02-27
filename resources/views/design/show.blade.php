@@ -4,7 +4,7 @@
 
 <section class="table-products position-relative">
     <div class="row">
-        <div class="col-4" style="margin:27px 70px 0px">
+        <div class="col-4 sum" style="margin:27px 70px 0px">
             <p id="sum-products">{{ $products->total() }} Products</p>
         </div>
     </div>
