@@ -33,7 +33,7 @@
             </div>
 
             @foreach ($result_attributes as $name => $values)
-                <div class="row mt-5">
+                <div class="row mt-5 attributes">
                     <div class="col-12 p-0">
                         <h4>{{ ucfirst($name) }}</h4>
                     </div>

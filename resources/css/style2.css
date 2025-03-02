@@ -1887,7 +1887,7 @@ footer .footer-bottom p {
         height: 100vh;
         padding: 20px 15px;
         background: #202E41;
-        overflow-y: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
     }
 
@@ -1927,6 +1927,10 @@ footer .footer-bottom p {
         font-size: 16px;
         letter-spacing: 1px;
         margin-left: -8vw;
+    }
+
+    .layout .filter-bar .attributes {
+        margin-top: .5rem !important;
     }
 
     .filter-bar .filter-hidden {
