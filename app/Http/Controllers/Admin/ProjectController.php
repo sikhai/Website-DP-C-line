@@ -117,6 +117,14 @@ class ProjectController extends VoyagerBaseController
 
         $imagesWithCaptions = [];
 
+        // Xử lý hình ảnh chính
+        if ($request->hasFile('image')) {
+            $folder = 'projects/' . now()->format('FY');
+            $imagePath = Storage::disk('public')->putFile($folder, $request->file('image'));
+
+            $requestData['image'] = "$imagePath"; // Lưu đường dẫn vào DB
+        }
+
         // Xử lý hình ảnh cũ
         if ($request->has('images_with_captions.existing')) {
             foreach ($request->input('images_with_captions.existing') as $image) {

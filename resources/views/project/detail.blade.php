@@ -57,7 +57,7 @@
     <link rel="stylesheet" href="{{ asset('css/our-project-detail.css') }}">
     <style>
         .header .background {
-            background: url('{{ Voyager::image($image) }}');
+            background: url('{{ Voyager::image($project->image) }}');
             background-position-y: center;
             background-size: cover;
         }

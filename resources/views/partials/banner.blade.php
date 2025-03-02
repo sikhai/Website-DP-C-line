@@ -1,6 +1,6 @@
 <section class="banner">
     <div class="image-container">
-        <img src="images/spacejoy-YI2YkyaREHk-unsplash.jpg" alt="">
+        <img src="{{ Voyager::image($projects_of_mounth['image']) }}" alt="{{ $projects_of_mounth['name'] }}">
         <div class="overlay"></div>
     </div>
 
