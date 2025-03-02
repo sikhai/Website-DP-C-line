@@ -58,7 +58,7 @@
 
 
             <!-- button apply  -->
-            <div class="row mt-5 mb-5 btn-apply-filter">
+            <div class="row mt-5 mb-5 btn-apply-filter position-relative">
                 <button type="button" class="btn btn-secondary btn-filter-action">
                     APPLY
                 </button>
