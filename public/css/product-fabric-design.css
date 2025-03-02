@@ -140,7 +140,6 @@ h2.title span {
 }
 .tab-general-fabric .tab-collection-design #next-tab{
     text-decoration: none;
-    width: 203px;
     height: 72px;
     font-family: 'DP Céline';
     font-style: normal;
@@ -155,7 +154,6 @@ h2.title span {
 }
 .tab-general-fabric .tab-collection-design #current-tab{
     text-decoration: none;
-    width: 203px;
     height: 72px;
     font-family: 'DP Céline';
     font-style: normal;
