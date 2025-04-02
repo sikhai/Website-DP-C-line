@@ -59,6 +59,14 @@ class ProjectController extends VoyagerBaseController
         $project->slug = $request->input('slug');
         $project->short_description = $request->input('short_description');
 
+        // Xử lý hình ảnh chính
+        if ($request->hasFile('image')) {
+            $folder = 'projects/' . now()->format('FY');
+            $imagePath = Storage::disk('public')->putFile($folder, $request->file('image'));
+
+            $requestData['image'] = "$imagePath"; // Lưu đường dẫn vào DB
+        }
+
         // Xử lý hình ảnh và caption
         $images = [];
         if ($request->hasFile('images')) {
@@ -116,6 +124,14 @@ class ProjectController extends VoyagerBaseController
         $requestData['is_featured'] = $request->has('is_featured') ? 1 : 0;
 
         $imagesWithCaptions = [];
+
+        // Xử lý hình ảnh chính
+        if ($request->hasFile('image')) {
+            $folder = 'projects/' . now()->format('FY');
+            $imagePath = Storage::disk('public')->putFile($folder, $request->file('image'));
+
+            $requestData['image'] = "$imagePath"; // Lưu đường dẫn vào DB
+        }
 
         // Xử lý hình ảnh cũ
         if ($request->has('images_with_captions.existing')) {

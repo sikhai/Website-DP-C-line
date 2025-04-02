@@ -34,6 +34,8 @@ class DesignController extends Controller
         // Lấy category dựa vào `parent_id` của Design
         $category = Category::where('id', $designs->parent_id)->first();
 
+        $category_slug = $category->slug ? $category->slug : null;
+
         $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
         $products = Product::with('attributes')
             ->where('category_id', $designs->id)
@@ -44,7 +46,7 @@ class DesignController extends Controller
         // Sử dụng ProductService để lấy attributes và đếm số lượng
         $result_attributes = $this->filterAttributesWithStatus($this->productService, $category->id);
 
-        return view('design', compact('category', 'categories', 'result_attributes', 'products', 'designs'));
+        return view('design', compact('category', 'categories', 'result_attributes', 'products', 'designs', 'category_slug'));
     }
 
     public function showProducts(Request $request)
@@ -93,11 +95,6 @@ class DesignController extends Controller
 
         $category = null;
 
-        if ($category_slug) {
-            $category = Category::where('slug', $category_slug)->firstOrFail();
-        }
-
-
         $title_head = 'All Products';
 
         $searchString = $request->input('search');
@@ -105,6 +102,12 @@ class DesignController extends Controller
         $searchString = strip_tags($searchString);
 
         $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
+
+        if ($category_slug) {
+            $category = Category::where('slug', $category_slug)->firstOrFail();
+        }else{
+            $category_slug = $categories[0]['slug'];
+        }
 
         // Base query for featured products
         $query_products = Product::with('attributes', 'category')->where('is_featured', 1)->orderBy('created_at', 'desc');
@@ -118,7 +121,13 @@ class DesignController extends Controller
             });
         }
 
-        $result_attributes = $this->filterAttributesWithStatus($this->productService, $category->id);
+        if (!$category) {
+            $category_id = $categories[0]['id'];
+        }else{
+            $category_id = $category->id;
+        }
+
+        $result_attributes = $this->filterAttributesWithStatus($this->productService, $category_id);
 
         if (count($attributes_filler) > 0) {
             foreach ($attributes_filler as $attribute) {

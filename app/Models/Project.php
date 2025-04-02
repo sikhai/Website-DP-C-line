@@ -11,6 +11,7 @@ class Project extends Model
         'description',
         'short_description',
         'product_descriptions',
+        'image',
         'images',
         'images_with_captions',
         'slug',

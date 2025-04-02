@@ -1,53 +1,51 @@
 <footer>
     <div class="line">
-        <div class="line">
-            <ul class="d-flex">
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SOPHISTICATED</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SOPHISTICATED</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SOPHISTICATED</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
-            </ul>
-            <ul class="d-flex">
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SOPHISTICATED</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SOPHISTICATED</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SOPHISTICATED</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
-                <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
-            </ul>
-        </div>
+        <ul class="d-flex">
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SOPHISTICATED</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SOPHISTICATED</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SOPHISTICATED</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
+        </ul>
+        <ul class="d-flex">
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SOPHISTICATED</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SOPHISTICATED</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SOPHISTICATED</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> PROFESSIONAL</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> LUXURIOUS</li>
+            <li><img src="{{ asset('images/Exclude.svg') }}" alt=""> SUSTAINABLE</li>
+        </ul>
     </div>
     <div class="footer-middle">
         <div class="container">
@@ -55,7 +53,7 @@
                 <div class="col-lg-3 col-md-6" id="contact-mail">
                     <h3 class="box-footer-title">START A CONVERSATION</h3>
                     <ul class="list-cate">
-                        <li><a href="mailto:{{ setting('site.email') }}" >{{ setting('site.email') }}</a></li>
+                        <li><a href="mailto:{{ setting('site.email') }}">{{ setting('site.email') }}</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-6" id="contact-address">
