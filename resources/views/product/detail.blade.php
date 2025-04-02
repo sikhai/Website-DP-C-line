@@ -1,5 +1,5 @@
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/product-fabric-detail.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/product-fabric-detail.css?v=1') }}">
 @endsection
 
 <!-- detail item -->
