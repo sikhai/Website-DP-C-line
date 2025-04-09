@@ -1,5 +1,5 @@
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/product-fabric-detail.css?v=1') }}">
+    <link rel="stylesheet" href="{{ asset('css/product-fabric-detail.css?v=2') }}">
 @endsection
 
 <section class="header-temp">

@@ -133,6 +133,8 @@ h2.title span {
     background: no-repeat;
     background-size: cover;
     background-repeat: no-repeat;
+    object-fit: cover;
+    object-position: center;
 }
 .detail-fabric .container .img-detail .main-view .btn-showimg{
     display: none;
