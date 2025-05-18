@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 
 use App\Models\Category;
+use App\Models\Collection;
 
 class Design extends Model
 {
@@ -25,7 +26,7 @@ class Design extends Model
 
     public function parentCategory()
     {
-        return $this->belongsTo(Category::class, 'parent_id');
+        return $this->belongsTo(Collection::class, 'parent_id');
     }
 
     protected static function boot()

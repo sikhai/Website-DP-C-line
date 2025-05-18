@@ -18,7 +18,7 @@
                                 $images = json_decode($item['images'], true);
                             @endphp
                             <div class="flip-card-{{ $key == 0 ? 'front' : 'back' }}">
-                                <a href="/{{ $item->parentCategory['slug'] }}">
+                                <a href="/{{ isset($item->parentCategory['slug']) ? $item->parentCategory['slug'] : '' }}">
                                     @if (!empty($images) && isset($images[0]))
                                         <img class="img-flip w-100" src="{{ Voyager::image($images[0]) }}"
                                             alt="{{ $item['name'] }}">
@@ -35,9 +35,9 @@
                         <div class="flip-card-inner">
                             @foreach ($designs_is_trending as $key => $item)
                                 <div class="flip-card-{{ $key == 0 ? 'front' : 'back' }}">
-                                    <p>{{ $item->parentCategory['name'] }}</p>
+                                    <p>{{ isset($item->parentCategory['name']) ? $item->parentCategory['name'] : '' }}</p>
                                     <h3>{{ $item['name'] }}</h3>
-                                    <a href="/{{ $item->parentCategory['slug'] }}">SEE COLLECTION <img
+                                    <a href="/{{ isset($item->parentCategory['slug']) ? $item->parentCategory['slug'] : '' }}">SEE COLLECTION <img
                                             src="{{ asset('images/arrow-right-beige800.svg') }}" alt="arrow"></a>
                                 </div>
                             @endforeach
@@ -52,7 +52,7 @@
                                     $images = json_decode($item['images'], true);
                                 @endphp
                                 <div class="flip-card-{{ $key == 0 ? 'front' : 'back' }}">
-                                    <a href="/{{ $item->parentCategory['slug'] }}">
+                                    <a href="/{{ isset($item->parentCategory['slug']) ? $item->parentCategory['slug'] : '' }}">
                                         @if (!empty($images) && isset($images[1]))
                                             <img class="w-100 img" src="{{ Voyager::image($images[1]) }}"
                                                 alt="{{ $item['name'] }}">
