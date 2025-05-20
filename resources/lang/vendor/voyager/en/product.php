@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'additional_fields'=> 'Additional Fields',
-    'setting_attribute'=> 'Setting Attributes',
+    'additional_fields' => 'Additional Fields',
+    'setting_attribute' => 'Setting Attributes',
     'category'         => 'Product Design',
     'content'          => 'Product Content',
     'code'             => 'Product Code',
@@ -13,7 +13,7 @@ return [
     'excerpt'          => 'Excerpt <small>Small description of this product</small>',
     'image'            => 'Product Images',
     'meta_description' => 'Meta Description',
-    'short_description'=> 'Short Description <small>Small description of this product</small>',
+    'short_description' => 'Short Description <small>Small description of this product</small>',
     'meta_keywords'    => 'Meta Keywords',
     'new'              => 'Create New product',
     'seo_content'      => 'SEO Content',
@@ -26,4 +26,7 @@ return [
     'title'            => 'Product Title',
     'title_sub'        => 'The title for your product',
     'update'           => 'Update product',
+    'price'            => 'Price',
+    'meter'            => 'Price (meter)',
+    'tax'              => 'Import tax',
 ];

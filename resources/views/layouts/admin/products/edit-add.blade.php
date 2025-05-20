@@ -341,6 +341,39 @@
                                 <span id="product-code-error" style="color: red; display: none;"></span>
                             </div>
                             <div class="form-group">
+                                <label for="price">{{ __('voyager::product.price') }}</label>
+                                @include('voyager::multilingual.input-hidden', [
+                                    '_field_name' => 'price',
+                                    '_field_trans' => get_field_translations($dataTypeContent, 'price'),
+                                ])
+                                <input required type="text" class="form-control" name="price"
+                                    id="price" placeholder="product code"
+                                    value="{{ $dataTypeContent->price ?? '' }}">
+                                <span id="product-code-error" style="color: red; display: none;"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="meter">{{ __('voyager::product.meter') }}</label>
+                                @include('voyager::multilingual.input-hidden', [
+                                    '_field_name' => 'meter',
+                                    '_field_trans' => get_field_translations($dataTypeContent, 'meter'),
+                                ])
+                                <input required type="text" class="form-control" name="meter"
+                                    id="meter" placeholder="product code"
+                                    value="{{ $dataTypeContent->meter ?? '' }}">
+                                <span id="product-code-error" style="color: red; display: none;"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="tax">{{ __('voyager::product.tax') }}</label>
+                                @include('voyager::multilingual.input-hidden', [
+                                    '_field_name' => 'tax',
+                                    '_field_trans' => get_field_translations($dataTypeContent, 'tax'),
+                                ])
+                                <input required type="text" class="form-control" name="tax"
+                                    id="tax" placeholder="product code"
+                                    value="{{ $dataTypeContent->tax ?? '' }}">
+                                <span id="product-code-error" style="color: red; display: none;"></span>
+                            </div>
+                            <div class="form-group">
                                 <label for="is_featured">{{ __('voyager::generic.featured') }}</label>
                                 <input type="checkbox"
                                     name="is_featured"@if (isset($dataTypeContent->is_featured) && $dataTypeContent->is_featured) checked="checked" @endif>
