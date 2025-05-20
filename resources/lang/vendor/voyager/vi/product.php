@@ -3,7 +3,7 @@
 return [
     'additional_fields'=> 'Additional Fields',
     'setting_attribute'=> 'Setting Attributes',
-    'category'         => 'Product Category',
+    'category'         => 'Product Design',
     'content'          => 'Product Content',
     'code'             => 'Product Code',
     'trending'         => 'Trending products',
