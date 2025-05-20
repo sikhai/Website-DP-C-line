@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             // Gán foreign key mới sang bảng designs
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('designs')->onDelete('set null');
+            $table->dropForeign(['category_id']);
+            $table->dropColumn('category_id');
         });
     }
 
