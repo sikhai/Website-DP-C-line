@@ -12,13 +12,29 @@ class Product extends Model
 {
     use HasFactory, Translatable;
 
+    public $timestamps = true;
+
     protected $casts = [
         'images' => 'array',
     ];
 
     protected $fillable = [
-        'name', 'title', 'product_code', 'description', 'short_description', 'price', 'meter', 'tax', 'stock_quantity',
-        'image', 'images', 'keywords', 'slug', 'status', 'is_featured', 'category_id'
+        'name',
+        'title',
+        'product_code',
+        'description',
+        'short_description',
+        'price',
+        'meter',
+        'tax',
+        'stock_quantity',
+        'image',
+        'images',
+        'keywords',
+        'slug',
+        'status',
+        'is_featured',
+        'category_id'
     ];
 
     protected $translatable = ['name', 'short_description', 'description', 'keywords', 'slug'];
@@ -34,12 +50,23 @@ class Product extends Model
     public function attributes()
     {
         return $this->belongsToMany(Attribute::class, 'product_attribute', 'product_id', 'attribute_id')
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     public function projects()
     {
         return $this->belongsToMany(Project::class, 'product_project');
     }
-}
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+
+            // dd(request()->all()); // Dừng và in dữ liệu của `Design` trước khi lưu
+            $now = now();
+            $model->updated_at = $now;
+        });
+    }
+}
