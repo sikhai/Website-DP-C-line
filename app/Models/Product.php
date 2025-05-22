@@ -62,11 +62,14 @@ class Product extends Model
     {
         parent::boot();
 
-        static::saving(function ($model) {
-
-            // dd(request()->all()); // Dừng và in dữ liệu của `Design` trước khi lưu
+        static::creating(function ($model) {
             $now = now();
+            $model->created_at = $now;
             $model->updated_at = $now;
+        });
+
+        static::updating(function ($model) {
+            $model->updated_at = now();
         });
     }
 }
