@@ -399,6 +399,11 @@
                                     @endif
                                 @endif
                             </div>
+                            <div class="form-group">
+                                {{-- <label  for="created_at">{{ __('voyager::generic.created_at') }}</label> --}}
+                                <input type="hidden"
+                                    name="created_at" value="{{ $dataTypeContent->created_at ?? '' }}">
+                            </div>
                         </div>
                     </div>
 

@@ -29,4 +29,6 @@ return [
     'price'            => 'Price',
     'meter'            => 'Price (meter)',
     'tax'              => 'Import tax',
+    'created_at'       => 'Created At',
+    'updated_at'       => 'Updated At',
 ];
