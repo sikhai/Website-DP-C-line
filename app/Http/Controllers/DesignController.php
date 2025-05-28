@@ -36,7 +36,7 @@ class DesignController extends Controller
 
         $category_slug = $category->slug ? $category->slug : null;
 
-        $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
+        $categories = Category::where('is_featured', 1)->where('type', 'PRODUCT')->whereNull('parent_id')->get();
         $products = Product::with('attributes')
             ->where('category_id', $designs->id)
             ->where('is_featured', 1)
@@ -101,7 +101,7 @@ class DesignController extends Controller
 
         $searchString = strip_tags($searchString);
 
-        $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
+        $categories = Category::where('is_featured', 1)->where('type', 'PRODUCT')->whereNull('parent_id')->get();
 
         if ($category_slug) {
             $category = Category::where('slug', $category_slug)->firstOrFail();

@@ -30,7 +30,7 @@ class ProductsController extends Controller
 
         $products_orther = null;
 
-        $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
+        $categories = Category::where('is_featured', 1)->where('type', 'PRODUCT')->whereNull('parent_id')->get();
 
         // Nếu có product_slug, tìm product theo slug
         $product = Product::with('category')->with('attributes')->where('slug', $product_slug)->where('is_featured', 1)->first();

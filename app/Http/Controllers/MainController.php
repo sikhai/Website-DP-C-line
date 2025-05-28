@@ -15,7 +15,7 @@ class MainController extends Controller
     public function home()
     {
 
-        $categories = Category::where('is_featured', 1)->whereNull('parent_id')->get();
+        $categories = Category::where('is_featured', 1)->where('type', 'PRODUCT')->whereNull('parent_id')->get();
         $designs_is_trending = Design::where('is_trending', 1)
             ->with('parentCategory')
             ->orderBy('created_at', 'desc')

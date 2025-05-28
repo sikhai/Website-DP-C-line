@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 
 use App\Models\Design;
+use App\Models\Accessory;
 
 class Category extends Model
 {
@@ -23,11 +26,24 @@ class Category extends Model
     public function products()
     {
         return $this->hasMany(Product::class, 'category_id');
-    }    
+    }
 
     public function childCategories()
     {
         return $this->hasMany(Design::class, 'parent_id');
+    }
+
+    public function childAccessory()
+    {
+        return $this->hasMany(Accessory::class, 'category_id');
+    }
+    /**
+     * Scope a query to only include active users.
+     */
+    #[Scope]
+    public function scopeAccessoryType(Builder $query)
+    {
+        return $query->where('type', 'ACCESSORY');
     }
 
     protected static function boot()
