@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\DesignController;
+use App\Http\Controllers\AccessoryImportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +53,7 @@ Route::prefix('design')->group(function () {
 
 // Route hiển thị danh sách hoặc chi tiết các Product thuộc Category
 // Route::get('/{category_slug}/{product_slug}', [ProductsController::class, 'show'])->name('product.show');
+
+// Import accessories
+Route::get('/accessories/import', [AccessoryImportController::class, 'showForm'])->name('accessories.import.form');
+Route::post('/accessories/import', [AccessoryImportController::class, 'import'])->name('accessories.import');

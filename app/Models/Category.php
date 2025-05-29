@@ -45,6 +45,11 @@ class Category extends Model
     {
         return $query->where('type', 'ACCESSORY');
     }
+    #[Scope]
+    public function scopeProductType(Builder $query)
+    {
+        return $query->where('type', 'PRODUCT');
+    }
 
     protected static function boot()
     {

@@ -22,6 +22,6 @@ class Collection extends Model
     
     public function parentCategory()
     {
-        return $this->belongsTo(Category::class, 'parent_id');
+        return $this->belongsTo(Category::class, 'parent_id')->productType();
     }
 }

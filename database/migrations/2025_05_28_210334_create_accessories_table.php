@@ -17,10 +17,11 @@ return new class extends Migration
 
             $table->string('name');
             $table->unsignedBigInteger('category_id')->nullable();
-            $table->string('product_code')->unique();
+            $table->string('product_code')->nullable()->unique();
             $table->decimal('price', 12, 2)->nullable();
             $table->decimal('dealer_price', 12, 2)->nullable();
             $table->unsignedInteger('stock_quantity')->nullable();
+            $table->string('measure')->nullable();
             $table->string('image')->nullable();
             $table->string('slug')->unique();
             $table->text('description')->nullable();

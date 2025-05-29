@@ -18,6 +18,7 @@ class Accessory extends Model
         'price',
         'dealer_price',
         'stock_quantity',
+        'measure',
         'image',
         'slug',
         'description',
