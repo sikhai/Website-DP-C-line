@@ -347,7 +347,7 @@
                                     '_field_trans' => get_field_translations($dataTypeContent, 'price'),
                                 ])
                                 <input required type="text" class="form-control" name="price"
-                                    id="price" placeholder="product code"
+                                    id="price" placeholder="Price"
                                     value="{{ $dataTypeContent->price ?? '' }}">
                                 <span id="product-code-error" style="color: red; display: none;"></span>
                             </div>
@@ -358,7 +358,7 @@
                                     '_field_trans' => get_field_translations($dataTypeContent, 'meter'),
                                 ])
                                 <input required type="text" class="form-control" name="meter"
-                                    id="meter" placeholder="product code"
+                                    id="meter" placeholder="Price meter"
                                     value="{{ $dataTypeContent->meter ?? '' }}">
                                 <span id="product-code-error" style="color: red; display: none;"></span>
                             </div>
@@ -369,7 +369,7 @@
                                     '_field_trans' => get_field_translations($dataTypeContent, 'tax'),
                                 ])
                                 <input required type="text" class="form-control" name="tax"
-                                    id="tax" placeholder="product code"
+                                    id="tax" placeholder="Import tax"
                                     value="{{ $dataTypeContent->tax ?? '' }}">
                                 <span id="product-code-error" style="color: red; display: none;"></span>
                             </div>
