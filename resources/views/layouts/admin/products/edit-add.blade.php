@@ -346,9 +346,8 @@
                                     '_field_name' => 'price',
                                     '_field_trans' => get_field_translations($dataTypeContent, 'price'),
                                 ])
-                                <input required type="text" class="form-control" name="price"
-                                    id="price" placeholder="Price"
-                                    value="{{ $dataTypeContent->price ?? '' }}">
+                                <input required type="text" class="form-control" name="price" id="price"
+                                    placeholder="Price" value="{{ $dataTypeContent->price ?? '' }}">
                                 <span id="product-code-error" style="color: red; display: none;"></span>
                             </div>
                             <div class="form-group">
@@ -357,9 +356,8 @@
                                     '_field_name' => 'meter',
                                     '_field_trans' => get_field_translations($dataTypeContent, 'meter'),
                                 ])
-                                <input required type="text" class="form-control" name="meter"
-                                    id="meter" placeholder="Price meter"
-                                    value="{{ $dataTypeContent->meter ?? '' }}">
+                                <input required type="text" class="form-control" name="meter" id="meter"
+                                    placeholder="Price meter" value="{{ $dataTypeContent->meter ?? '' }}">
                                 <span id="product-code-error" style="color: red; display: none;"></span>
                             </div>
                             <div class="form-group">
@@ -368,9 +366,8 @@
                                     '_field_name' => 'tax',
                                     '_field_trans' => get_field_translations($dataTypeContent, 'tax'),
                                 ])
-                                <input required type="text" class="form-control" name="tax"
-                                    id="tax" placeholder="Import tax"
-                                    value="{{ $dataTypeContent->tax ?? '' }}">
+                                <input required type="text" class="form-control" name="tax" id="tax"
+                                    placeholder="Import tax" value="{{ $dataTypeContent->tax ?? '' }}">
                                 <span id="product-code-error" style="color: red; display: none;"></span>
                             </div>
                             <div class="form-group">
@@ -397,12 +394,19 @@
                                                 download="{{ basename($filePath['original_name']) }}">{{ $filePath['original_name'] }}</a>
                                         </p>
                                     @endif
+
+                                    @if ($dataTypeContent->qr_code_path)
+                                        <p>Mã QR</p>
+                                        <img src="{{ Storage::disk('public')->url($dataTypeContent->qr_code_path) }}" width="150" alt="QR Code">
+                                    @endif
                                 @endif
                             </div>
                             <div class="form-group">
                                 {{-- <label  for="created_at">{{ __('voyager::generic.created_at') }}</label> --}}
-                                <input type="hidden"
-                                    name="created_at" value="{{ $dataTypeContent->created_at ?? '' }}">
+                                <input type="hidden" name="created_at"
+                                    value="{{ $dataTypeContent->created_at ?? '' }}">
+                                <input type="hidden" name="stock_quantity"
+                                    value="{{ $dataTypeContent->stock_quantity ?? 0.00 }}">
                             </div>
                         </div>
                     </div>
