@@ -17,6 +17,7 @@ use TCG\Voyager\Models\Setting;
 
 use App\Models\Attribute;
 use App\Models\Product;
+use App\Models\DeliveryVendor;
 use App\Services\ProductService;
 
 class ProductController extends VoyagerBaseController
@@ -50,13 +51,15 @@ class ProductController extends VoyagerBaseController
         $isModelTranslatable = is_bread_translatable($dataTypeContent);
         $this->eagerLoadRelations($dataTypeContent, $dataType, 'add', $isModelTranslatable);
 
+        $Suppliers = $this->getSuppliers();
+
         $attributes_name = $this->getUniqueAttributeNames();
         $result_attributes = $this->productService->getAttributesWithProductCount();
         $status_attributes = $this->productService->getStatusAttributes($result_attributes);
 
         $view = 'layouts.admin.products.edit-add';
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'attributes_name', 'result_attributes', 'status_attributes'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'attributes_name', 'result_attributes', 'status_attributes', 'Suppliers'));
     }
 
     public function store(Request $request)
@@ -144,6 +147,8 @@ class ProductController extends VoyagerBaseController
         $isModelTranslatable = is_bread_translatable($dataTypeContent);
         $this->eagerLoadRelations($dataTypeContent, $dataType, 'edit', $isModelTranslatable);
 
+        $Suppliers = $this->getSuppliers();
+
         $attributes = $dataTypeContent->attributes->pluck('value')->last();
         $attributes = json_decode($attributes, true);
 
@@ -152,7 +157,7 @@ class ProductController extends VoyagerBaseController
 
         $view = 'layouts.admin.products.edit-add';
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'attributes', 'status_attributes'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'attributes', 'status_attributes', 'Suppliers'));
     }
 
     public function update(Request $request, $id)
@@ -315,5 +320,16 @@ class ProductController extends VoyagerBaseController
         $path = 'products/' . $filename;
         Storage::disk('public')->put($path, (string) $webpImage);
         return $path;
+    }
+
+    protected function getSuppliers()
+    {
+        return DeliveryVendor::whereHas('freightRates.freightType', function ($query) {
+            $query->where('type', '!=', 'domestic');
+        })->with(['freightRates' => function ($query) {
+            $query->whereHas('freightType', function ($q) {
+                $q->where('type', '!=', 'domestic');
+            });
+        }])->get();
     }
 }

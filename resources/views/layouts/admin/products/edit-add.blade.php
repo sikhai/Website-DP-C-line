@@ -211,11 +211,25 @@
                                                         class="form-control" placeholder="{{ __('Attribute Name') }}"
                                                         value="{{ $attribute['name'] }}">
                                                 </div>
+
                                                 <div class="col-md-5">
-                                                    <input type="text" name="attributes[{{ $key }}][value]"
-                                                        class="form-control" placeholder="{{ __('Attribute Value') }}"
-                                                        value="{{ $attribute['value'] }}">
+                                                    @if ($attribute['name'] === 'Supplier')
+                                                        <select name="attributes[{{ $key }}][value]"
+                                                            class="form-control">
+                                                            @foreach ($Suppliers as $supplier)
+                                                                <option value="{{ $supplier->name }}"
+                                                                    @if ($attribute['value'] == $supplier->name) selected @endif>
+                                                                    {{ $supplier->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    @else
+                                                        <input type="text" name="attributes[{{ $key }}][value]"
+                                                            class="form-control" placeholder="{{ __('Attribute Value') }}"
+                                                            value="{{ $attribute['value'] }}">
+                                                    @endif
                                                 </div>
+
                                                 <div class="col-md-2">
                                                     <button type="button"
                                                         class="btn btn-danger remove-attribute-btn">{{ __('Remove') }}</button>
@@ -233,11 +247,26 @@
                                                             class="form-control" placeholder="{{ __('Attribute Name') }}"
                                                             value="{{ $name }}">
                                                     </div>
+
                                                     <div class="col-md-5">
-                                                        <input type="text" name="attributes[{{ $key }}][value]"
-                                                            class="form-control" placeholder="{{ __('Attribute Value') }}"
-                                                            value="" required>
+                                                        @if ($name === 'Supplier')
+                                                            <select name="attributes[{{ $key }}][value]"
+                                                                class="form-control" required>
+                                                                <option value="">{{ __('Choose Supplier') }}</option>
+                                                                @foreach ($Suppliers as $supplier)
+                                                                    <option value="{{ $supplier->id }}">
+                                                                        {{ $supplier->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        @else
+                                                            <input type="text"
+                                                                name="attributes[{{ $key }}][value]"
+                                                                class="form-control"
+                                                                placeholder="{{ __('Attribute Value') }}" value=""
+                                                                required>
+                                                        @endif
                                                     </div>
+
                                                     <div class="col-md-2">
                                                         <button type="button"
                                                             class="btn btn-danger remove-attribute-btn">{{ __('Remove') }}</button>
@@ -397,7 +426,8 @@
 
                                     @if ($dataTypeContent->qr_code_path)
                                         <p>Mã QR</p>
-                                        <img src="{{ Storage::disk('public')->url($dataTypeContent->qr_code_path) }}" width="150" alt="QR Code">
+                                        <img src="{{ Storage::disk('public')->url($dataTypeContent->qr_code_path) }}"
+                                            width="150" alt="QR Code">
                                     @endif
                                 @endif
                             </div>
@@ -406,7 +436,7 @@
                                 <input type="hidden" name="created_at"
                                     value="{{ $dataTypeContent->created_at ?? '' }}">
                                 <input type="hidden" name="stock_quantity"
-                                    value="{{ $dataTypeContent->stock_quantity ?? 0.00 }}">
+                                    value="{{ $dataTypeContent->stock_quantity ?? 0.0 }}">
                             </div>
                         </div>
                     </div>
