@@ -23,6 +23,16 @@ class Project extends Model
         return $this->belongsToMany(Product::class, 'product_project');
     }
 
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id')->productType();
+    }
+
     // protected static function boot()
     // {
     //     parent::boot();

@@ -51,6 +51,11 @@ class Category extends Model
         return $query->where('type', 'PRODUCT');
     }
 
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'category_id');
+    }
+
     protected static function boot()
     {
         parent::boot();

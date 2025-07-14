@@ -43,4 +43,9 @@ class User extends \TCG\Voyager\Models\User
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function ownedProjects()
+    {
+        return $this->hasMany(Project::class, 'owner_id');
+    }
 }
