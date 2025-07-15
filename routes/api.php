@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PerformanceController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\Api\QrCodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,4 @@ Route::get('/attributes', [PerformanceController::class, 'getAttributesPerforman
 Route::get('/get-products-by-attribute', [PerformanceController::class, 'getProductsByAttributePerformance']);
 Route::get('/load-more-products', [ProductsController::class, 'loadMoreProducts']);
 Route::get('/load-more-filter-products', [ProductsController::class, 'loadMoreFilterProducts']);
+Route::middleware(['verify.qr.key'])->post('/generate-qr', [QrCodeController::class, 'generate']);
