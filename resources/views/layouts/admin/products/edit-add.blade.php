@@ -423,12 +423,11 @@
                                                 download="{{ basename($filePath['original_name']) }}">{{ $filePath['original_name'] }}</a>
                                         </p>
                                     @endif
-
-                                    @if ($dataTypeContent->qr_code_path)
-                                        <p>Mã QR</p>
-                                        <img src="{{ Storage::disk('public')->url($dataTypeContent->qr_code_path) }}"
-                                            width="150" alt="QR Code">
-                                    @endif
+                                @endif
+                                @if ($dataTypeContent->qr_code_path)
+                                    <p>Mã QR</p>
+                                    <img src="{{ Storage::disk('public')->url($dataTypeContent->qr_code_path) }}"
+                                        width="150" alt="QR Code">
                                 @endif
                             </div>
                             <div class="form-group">
