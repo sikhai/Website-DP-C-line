@@ -17,18 +17,28 @@ class QrCodeController extends Controller
             'product_codes.*' => 'required|string|max:191',
         ]);
 
-        $dispatched = [];
+        $results = [];
 
         foreach ($validated['product_codes'] as $productCode) {
-            GenerateQrCodeJob::dispatch($productCode);
-            $dispatched[] = $productCode;
+            $filename = 'qrcodes/' . Str::slug($productCode) . '.png';
+            $path = storage_path('app/public/' . $filename);
+
+            if (file_exists($path)) {
+                // Đã tồn tại, trả path luôn
+                $results[$productCode] = $filename;
+            } else {
+                // Chưa có → dispatch job
+                GenerateQrCodeJob::dispatch($productCode);
+                $results[$productCode] = $filename;
+            }
         }
 
         return response()->json([
             'message' => 'QR generation jobs dispatched.',
-            'data' => $dispatched,
+            'data' => $results,
         ]);
     }
+
 
     // private function generateQrCode(string $data, array $options): string
     // {
