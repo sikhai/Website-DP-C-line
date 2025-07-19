@@ -28,3 +28,4 @@ Route::get('/get-products-by-attribute', [PerformanceController::class, 'getProd
 Route::get('/load-more-products', [ProductsController::class, 'loadMoreProducts']);
 Route::get('/load-more-filter-products', [ProductsController::class, 'loadMoreFilterProducts']);
 Route::middleware(['verify.qr.key'])->post('/generate-qr', [QrCodeController::class, 'generate']);
+Route::middleware(['verify.qr.key'])->post('/products/update-all-qr-paths', [QrCodeController::class, 'updateAllQrPaths']);
