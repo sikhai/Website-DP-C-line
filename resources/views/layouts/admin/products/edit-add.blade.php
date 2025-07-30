@@ -186,15 +186,26 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                            <button type="button" class="btn btn-primary"
-                                id="add-attribute-btn">{{ __('Add Attribute') }}</button>
+                            <div class="form-group">
+                                <label for="color">{{ __('voyager::product.color') }}</label>
+                                @include('voyager::multilingual.input-hidden', [
+                                    '_field_name' => 'color',
+                                    '_field_trans' => get_field_translations($dataTypeContent, 'color'),
+                                ])
+                                <input required type="text" class="form-control" name="color"
+                                    id="color" placeholder="Product color"
+                                    value="{{ $dataTypeContent->color ?? '' }}">
+                                <span id="product-code-error" style="color: red; display: none;"></span>
+                            </div>
+                            {{-- <button type="button" class="btn btn-primary"
+                                id="add-attribute-btn">{{ __('Add Attribute') }}</button> --}}
 
-                            <button type="button" class="btn btn-primary setting_attribute" data-toggle="modal"
+                            {{-- <button type="button" class="btn btn-primary setting_attribute" data-toggle="modal"
                                 data-target="#setting_attribute">
                                 {{ __('voyager::product.setting_attribute') }}
-                            </button>
+                            </button> --}}
 
-                            <div id="attributes-container">
+                            {{-- <div id="attributes-container">
                                 <!-- Existing attributes -->
                                 @if (isset($attributes) && is_array($attributes))
                                     @php
@@ -276,10 +287,10 @@
                                         @endforeach
                                     @endif
                                 @endif
-                            </div>
+                            </div> --}}
 
 
-                            <div id="setting_attribute" class="modal fade" role="dialog">
+                            {{-- <div id="setting_attribute" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
                                     <!-- Nội dung modal -->
                                     <div class="modal-content">
@@ -309,7 +320,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>
@@ -730,7 +741,7 @@
 
 
     // Dữ liệu từ server sẽ được render vào JavaScript thông qua Blade 
-    var items = @json($status_attributes);
+    // var items = @_json($status_attributes);
 
     // Hàm hiển thị các mục vào modal
     function loadAttributes() {

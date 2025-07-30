@@ -53,13 +53,13 @@ class ProductController extends VoyagerBaseController
 
         $Suppliers = $this->getSuppliers();
 
-        $attributes_name = $this->getUniqueAttributeNames();
-        $result_attributes = $this->productService->getAttributesWithProductCount();
-        $status_attributes = $this->productService->getStatusAttributes($result_attributes);
+        // $attributes_name = $this->getUniqueAttributeNames();
+        // $result_attributes = $this->productService->getAttributesWithProductCount();
+        // $status_attributes = $this->productService->getStatusAttributes($result_attributes);
 
         $view = 'layouts.admin.products.edit-add';
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'attributes_name', 'result_attributes', 'status_attributes', 'Suppliers'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'Suppliers'));
     }
 
     public function store(Request $request)
@@ -149,15 +149,15 @@ class ProductController extends VoyagerBaseController
 
         $Suppliers = $this->getSuppliers();
 
-        $attributes = $dataTypeContent->attributes->pluck('value')->last();
-        $attributes = json_decode($attributes, true);
+        // $attributes = $dataTypeContent->attributes->pluck('value')->last();
+        // $attributes = json_decode($attributes, true);
 
-        $result_attributes = $this->productService->getAttributesWithProductCount();
-        $status_attributes = $this->productService->getStatusAttributes($result_attributes);
+        // $result_attributes = $this->productService->getAttributesWithProductCount();
+        // $status_attributes = $this->productService->getStatusAttributes($result_attributes);
 
         $view = 'layouts.admin.products.edit-add';
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'attributes', 'status_attributes', 'Suppliers'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'Suppliers'));
     }
 
     public function update(Request $request, $id)

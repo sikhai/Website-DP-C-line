@@ -18,7 +18,7 @@ class ProductService
         // Lưu hoặc lấy dữ liệu từ cache với thời gian hết hạn là 720 phút
         return Cache::remember($cacheKey, 720, function () {
             // Lấy tất cả các thuộc tính
-            $attributes = Attribute::get();
+            $attributes = Attribute::where('type' , 'product')->get();
             $result_attributes = [];
 
             if ($attributes->isEmpty()) {
