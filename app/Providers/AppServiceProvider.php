@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Models\Product;
 use App\Observers\ProductObserver;
+use TCG\Voyager\Facades\Voyager;
+use App\FormFields\AttributesFormField;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -26,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Product::observe(ProductObserver::class);
+
+        Voyager::addFormField(AttributesFormField::class);
         
         Blade::if('home', function () {
             return Route::currentRouteName() === 'home';
