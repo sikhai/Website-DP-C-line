@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('designs', function (Blueprint $table) {
-            $table->text('attributes')->nullable()->after('description')->comment('JSON column to store design attributes');
+        Schema::create('attribute_values', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('attribute_id')->constrained()->onDelete('cascade');
+            $table->string('value');
+            $table->timestamps();
+
+            $table->unique(['attribute_id', 'value']);
         });
     }
 
@@ -21,8 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('designs', function (Blueprint $table) {
-            $table->dropColumn('attributes');
-        });
+        Schema::dropIfExists('attribute_values');
     }
 };

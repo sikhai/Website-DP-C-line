@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('designs', function (Blueprint $table) {
-            $table->text('attributes')->nullable()->after('description')->comment('JSON column to store design attributes');
+        Schema::table('attributes', function (Blueprint $table) {
+            $table->unique('name');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('designs', function (Blueprint $table) {
-            $table->dropColumn('attributes');
+        Schema::table('attributes', function (Blueprint $table) {
+            $table->dropUnique(['name']);
         });
     }
 };
