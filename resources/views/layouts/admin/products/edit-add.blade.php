@@ -380,7 +380,7 @@
                                     value="{{ $dataTypeContent->product_code ?? '' }}">
                                 <span id="product-code-error" style="color: red; display: none;"></span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group hidden">
                                 <label for="price">{{ __('voyager::product.price') }}</label>
                                 @include('voyager::multilingual.input-hidden', [
                                     '_field_name' => 'price',
@@ -390,7 +390,7 @@
                                     placeholder="Price" value="{{ $dataTypeContent->price ?? '' }}">
                                 <span id="product-code-error" style="color: red; display: none;"></span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group hidden">
                                 <label for="meter">{{ __('voyager::product.meter') }}</label>
                                 @include('voyager::multilingual.input-hidden', [
                                     '_field_name' => 'meter',
@@ -400,7 +400,7 @@
                                     placeholder="Price meter" value="{{ $dataTypeContent->meter ?? '' }}">
                                 <span id="product-code-error" style="color: red; display: none;"></span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group hidden">
                                 <label for="tax">{{ __('voyager::product.tax') }}</label>
                                 @include('voyager::multilingual.input-hidden', [
                                     '_field_name' => 'tax',
