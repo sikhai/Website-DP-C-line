@@ -21,25 +21,44 @@ class QrCodeController extends Controller
         ]);
 
         $results = [];
+        $notFound = [];
 
         foreach ($validated['product_codes'] as $productCode) {
-            $filename = 'qrcodes/' . Str::slug($productCode) . '.png';
+            $sluggedCode = Str::slug($productCode);
+            $filename = 'qrcodes/' . $sluggedCode . '.png';
             $path = storage_path('app/public/' . $filename);
 
-            if (file_exists($path)) {
-                // Đã tồn tại, trả path luôn
-                $results[$productCode] = $filename;
+            // Tìm product theo product_code
+            $product = Product::where('product_code', $productCode)->first();
+
+            if ($product) {
+                // Cập nhật qr_code_path nếu khác hoặc chưa có
+                if ($product->qr_code_path !== $filename) {
+                    $product->qr_code_path = $filename;
+                    $product->save();
+                }
             } else {
-                // Chưa có → dispatch job
-                GenerateQrCodeJob::dispatch($productCode);
-                $results[$productCode] = $filename;
+                $notFound[] = $productCode;
             }
+
+            if (!file_exists($path)) {
+                // Chưa có file → dispatch job để tạo
+                GenerateQrCodeJob::dispatch($productCode);
+            }
+
+            $results[$productCode] = $filename;
         }
 
-        return response()->json([
-            'message' => 'QR generation jobs dispatched.',
+        $response = [
+            'message' => 'QR generation jobs dispatched. 1',
             'data' => $results,
-        ]);
+        ];
+
+        if (!empty($notFound)) {
+            $response['not_found_product_codes'] = $notFound;
+        }
+
+        return response()->json($response);
     }
 
     public function updateAllQrPaths(): JsonResponse
