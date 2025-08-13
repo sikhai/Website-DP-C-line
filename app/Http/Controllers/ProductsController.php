@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Crypt;
 
 
 class ProductsController extends Controller
-{   
+{
     protected $productService;
 
     public function __construct(ProductService $productService)
@@ -33,27 +33,37 @@ class ProductsController extends Controller
         $categories = Category::where('is_featured', 1)->where('type', 'PRODUCT')->whereNull('parent_id')->get();
 
         // Nếu có product_slug, tìm product theo slug
-        $product = Product::with('category')->with('attributes')->where('slug', $product_slug)->where('is_featured', 1)->first();
+        $product = Product::with('category', 'attributes')
+            ->where('slug', $product_slug)
+            ->where('is_featured', 1)
+            ->first();
 
-        if (isset($product->category->parent_id)) {
-            $collection = Category::with('childCategories.products')->find($product->category->parent_id);
+        if ($product && $product->category && $product->category->parent_id) {
+            $collection = Category::with('childCategories.products')
+                ->find($product->category->parent_id);
 
-            $products = collect();
+            if ($collection) {
+                $products = collect();
 
-            foreach ($collection->childCategories as $design) {
-                $products_orther = $products->merge(
-                    $design->products()
-                        ->where('id', '!=', $product->id)
-                        ->take(11 - $products->count())
-                        ->get()
-                );
+                foreach ($collection->childCategories as $design) {
+                    $products = $products->merge(
+                        $design->products()
+                            ->where('id', '!=', $product->id)
+                            ->take(11 - $products->count())
+                            ->get()
+                    );
 
-                // Nếu đã đủ 10 sản phẩm, thoát khỏi vòng lặp
-                if ($products_orther->count() >= 10) {
-                    break;
+                    if ($products->count() >= 10) {
+                        break;
+                    }
                 }
+            } else {
+                $products = collect(); // không có category cha
             }
+        } else {
+            $products = collect(); // không có product hoặc category
         }
+
 
         if (!$product) {
             abort(404);
@@ -95,7 +105,7 @@ class ProductsController extends Controller
     public function fillerAttributes($array1, $array2)
     {
 
-        if ( !is_array($array1) || !is_array($array2) ) {
+        if (!is_array($array1) || !is_array($array2)) {
             return false;
         }
         // Lọc dữ liệu từ mảng thứ hai (chỉ lấy những phần tử có status = 1)
@@ -146,13 +156,13 @@ class ProductsController extends Controller
 
         $encrypted_ids = $request->input('encrypted_ids');
         $page = $request->input('page', 1);
-    
+
         // Giải mã mảng ID
         $decoded_ids = Crypt::decrypt($encrypted_ids);
-    
+
         // Lấy sản phẩm từ danh sách ID
         $products = Product::whereIn('id', $decoded_ids)
-                           ->paginate(20, ['*'], 'page', $page);
+            ->paginate(20, ['*'], 'page', $page);
 
 
         return response()->json([

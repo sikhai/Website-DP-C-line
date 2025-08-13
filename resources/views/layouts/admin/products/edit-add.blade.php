@@ -386,8 +386,8 @@
                                     '_field_name' => 'price',
                                     '_field_trans' => get_field_translations($dataTypeContent, 'price'),
                                 ])
-                                <input required type="text" class="form-control" name="price" id="price"
-                                    placeholder="Price" value="{{ $dataTypeContent->price ?? '' }}">
+                                <input type="text" class="form-control" name="price" id="price"
+                                    placeholder="Price" value="{{ $dataTypeContent->price ?? 0 }}">
                                 <span id="product-code-error" style="color: red; display: none;"></span>
                             </div>
                             <div class="form-group hidden">
@@ -396,8 +396,8 @@
                                     '_field_name' => 'meter',
                                     '_field_trans' => get_field_translations($dataTypeContent, 'meter'),
                                 ])
-                                <input required type="text" class="form-control" name="meter" id="meter"
-                                    placeholder="Price meter" value="{{ $dataTypeContent->meter ?? '' }}">
+                                <input type="text" class="form-control" name="meter" id="meter"
+                                    placeholder="Price meter" value="{{ $dataTypeContent->meter ?? 0 }}">
                                 <span id="product-code-error" style="color: red; display: none;"></span>
                             </div>
                             <div class="form-group hidden">
@@ -406,8 +406,8 @@
                                     '_field_name' => 'tax',
                                     '_field_trans' => get_field_translations($dataTypeContent, 'tax'),
                                 ])
-                                <input required type="text" class="form-control" name="tax" id="tax"
-                                    placeholder="Import tax" value="{{ $dataTypeContent->tax ?? '' }}">
+                                <input type="text" class="form-control" name="tax" id="tax"
+                                    placeholder="Import tax" value="{{ $dataTypeContent->tax ?? 0 }}">
                                 <span id="product-code-error" style="color: red; display: none;"></span>
                             </div>
                             <div class="form-group">
