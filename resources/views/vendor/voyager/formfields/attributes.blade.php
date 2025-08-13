@@ -8,74 +8,49 @@
             </tr>
         </thead>
         <tbody id="attributes-rows">
+
             @php
-                $attributes = old($row->field, json_decode($dataTypeContent->{$row->field} ?? '[]', true));
+                // Lấy attributes từ old() hoặc DB
+                $attributes = json_decode(old($row->field, $dataTypeContent->{$row->field} ?? '[]'), true) ?? [];
+
+                $attributes = is_array($attributes) ? $attributes : json_decode($attributes, true) ?? [];
+
+                // Nếu chưa có dữ liệu và có designAttributes -> build mảng rỗng value
+                if (empty($attributes) && isset($designAttributes) && $designAttributes->count()) {
+                    $attributes = collect($designAttributes)->mapWithKeys(fn($name) => [$name => ''])->toArray();
+                }
             @endphp
 
-            @if (is_array($attributes) && count($attributes))
-                @foreach ($attributes as $name => $value)
-                    <tr>
-                        <td>
-                            <input type="text" name="attributes_keys[]" class="form-control" value="{{ $name }}">
-                        </td>
-                        <td>
-                            @if (strtolower($name) === 'supplier' && isset($suppliers))
-                                <select name="attributes_values[]" class="form-control">
-                                    @foreach ($suppliers as $supplier)
-                                        <option value="{{ $supplier->name }}"
-                                            @if ($value == $supplier->name) selected @endif>
-                                            {{ $supplier->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            @else
-                                @php
-                                    $currentName = $name ?? $attrName;
-                                    $inputType = in_array(strtolower($currentName), ['roll width', 'roll length'])
-                                        ? 'number'
-                                        : 'text';
-                                @endphp
-                                <input type="{{ $inputType }}" name="attributes_values[]" class="form-control"
-                                    value="{{ $value ?? '' }}">
-                            @endif
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger m-0 remove-attr">X</button>
-                        </td>
-                    </tr>
-                @endforeach
-            @elseif(isset($designAttributes) && $designAttributes->count())
-                @foreach ($designAttributes as $attrName)
-                    <tr>
-                        <td>
-                            <input type="text" name="attributes_keys[]" class="form-control"
-                                value="{{ $attrName }}">
-                        </td>
-                        <td>
-                            @if (strtolower($attrName) === 'supplier' && isset($suppliers))
-                                <select name="attributes_values[]" class="form-control">
-                                    @foreach ($suppliers as $supplier)
-                                        <option value="{{ $supplier->name }}">
-                                            {{ $supplier->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            @else
-                                @php
-                                    $currentName = $name ?? $attrName;
-                                    $inputType = in_array(strtolower($currentName), ['roll width', 'roll length'])
-                                        ? 'number'
-                                        : 'text';
-                                @endphp
+            @foreach ($attributes as $name => $value)
+                <tr>
+                    <td>
+                        <input type="text" name="attributes_keys[]" class="form-control" value="{{ $name }}">
+                    </td>
+                    <td>
+                        @if (strtolower($name) === 'supplier' && isset($suppliers))
+                            <select name="attributes_values[]" class="form-control">
+                                @foreach ($suppliers as $supplier)
+                                    <option value="{{ $supplier->name }}" @selected($value == $supplier->name)>
+                                        {{ $supplier->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        @else
+                            @php
+                                $inputType = in_array(strtolower($name), ['roll width', 'roll length'])
+                                    ? 'number'
+                                    : 'text';
+                            @endphp
+                            <input type="{{ $inputType }}" name="attributes_values[]" class="form-control"
+                                value="{{ $value ?? '' }}">
+                        @endif
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger remove-attr">X</button>
+                    </td>
+                </tr>
+            @endforeach
 
-                                <input type="{{ $inputType }}" name="attributes_values[]" class="form-control"
-                                    value="{{ $value ?? '' }}">
-                            @endif
-                        </td>
-                        <td><button type="button" class="btn btn-danger remove-attr">X</button></td>
-                    </tr>
-                @endforeach
-            @endif
         </tbody>
     </table>
 
