@@ -29,4 +29,14 @@ class Accessory extends Model
     {
         return $this->belongsTo(Category::class)->accessoryType();
     }
+    // 🔹 Helper scopes
+    public function scopeDelivery($query)
+    {
+        return $query->where('type', 'Delivery');
+    }
+
+    public function scopeAccessories($query)
+    {
+        return $query->where('type', 'Accessories');
+    }
 }
