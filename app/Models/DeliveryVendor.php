@@ -12,10 +12,21 @@ class DeliveryVendor extends Model
     protected $fillable = [
         'name',
         'point_of_origin',
+        'type',
     ];
 
     public function freightRates()
     {
         return $this->hasMany(DeliveryFreightRate::class, 'vendor_id');
+    }
+    // 🔹 Helper scopes
+    public function scopeDelivery($query)
+    {
+        return $query->where('type', 'Delivery');
+    }
+
+    public function scopeAccessories($query)
+    {
+        return $query->where('type', 'Accessories');
     }
 }

@@ -24,19 +24,17 @@ class Accessory extends Model
         'description',
         'short_description',
         'keywords',
+        'delivery_vendors_id', // ✅ thêm vào đây
     ];
+
     public function category()
     {
         return $this->belongsTo(Category::class)->accessoryType();
     }
-    // 🔹 Helper scopes
-    public function scopeDelivery($query)
-    {
-        return $query->where('type', 'Delivery');
-    }
 
-    public function scopeAccessories($query)
+    public function deliveryVendor()
     {
-        return $query->where('type', 'Accessories');
+        return $this->belongsTo(DeliveryVendor::class, 'delivery_vendors_id');
     }
 }
+
