@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Observers\ProductObserver;
 use TCG\Voyager\Facades\Voyager;
 use App\FormFields\AttributesFormField;
+use App\FormFields\VendorAttributesFormField;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -30,6 +31,8 @@ class AppServiceProvider extends ServiceProvider
         Product::observe(ProductObserver::class);
 
         Voyager::addFormField(AttributesFormField::class);
+
+        Voyager::addFormField(VendorAttributesFormField::class);
         
         Blade::if('home', function () {
             return Route::currentRouteName() === 'home';
