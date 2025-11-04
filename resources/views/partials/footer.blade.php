@@ -62,6 +62,14 @@
                         <li>{{ setting('site.address') }}</li>
                         <li><a href="tel:{{ setting('site.phone') }}">{{ setting('site.phone') }}</a></li>
                     </ul>
+                    <h3 class="box-footer-title mt-2">Branch</h3>
+                    <ul class="list-cate">
+                        <li>{{ setting('site.address1') }}</li>
+                    </ul>
+                    <h3 class="box-footer-title mt-2">Manufacturing facility</h3>
+                    <ul class="list-cate">
+                        <li>{{ setting('site.manufacturing_facility') }}</li>
+                    </ul>
                 </div>
                 <div class="col-lg-3 col-md-6" id="contact-social">
                     <h3 class="box-footer-title">SOCIAL MEDIA</h3>
