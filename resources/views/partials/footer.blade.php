@@ -57,16 +57,16 @@
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-6" id="contact-address">
-                    <h3 class="box-footer-title">OUR OFFICE</h3>
+                    <h3 class="box-footer-title text-uppercase">OUR OFFICE</h3>
                     <ul class="list-cate">
                         <li>{{ setting('site.address') }}</li>
                         <li><a href="tel:{{ setting('site.phone') }}">{{ setting('site.phone') }}</a></li>
                     </ul>
-                    <h3 class="box-footer-title mt-2">Branch</h3>
+                    <h3 class="box-footer-title mt-2 text-uppercase">Branch</h3>
                     <ul class="list-cate">
                         <li>{{ setting('site.address1') }}</li>
                     </ul>
-                    <h3 class="box-footer-title mt-2">Manufacturing facility</h3>
+                    <h3 class="box-footer-title mt-2 text-uppercase">Manufacturing facility</h3>
                     <ul class="list-cate">
                         <li>{{ setting('site.manufacturing_facility') }}</li>
                     </ul>
