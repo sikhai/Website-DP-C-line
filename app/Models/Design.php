@@ -29,6 +29,18 @@ class Design extends Model
         return $this->belongsTo(Collection::class, 'parent_id');
     }
 
+    /**
+     * Tổng số products thuộc một design.
+     *
+     * @return int
+     */
+    public function getTotalProductsAttribute()
+    {
+        // Nếu quan hệ đã load: count() không tốn query
+        // Nếu chưa load: Eloquent tự chạy SELECT COUNT(*) WHERE design_id = ?
+        return $this->products()->count();
+    }
+
     protected static function boot()
     {
         parent::boot();

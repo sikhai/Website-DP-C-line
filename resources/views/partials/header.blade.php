@@ -9,7 +9,8 @@
                     <a href="{{ url('/') }}">
                         <img src="{{ Voyager::image(setting('site.logo')) }}" width="55" id="img-logo-ref"
                             alt="logo" loading="lazy">
-                        <img src="{{ asset('images/arrow-left.svg') }}" width="55" id="img-arrow-left" alt="logo" loading="lazy">
+                        <img src="{{ asset('images/arrow-left.svg') }}" width="55" id="img-arrow-left"
+                            alt="logo" loading="lazy">
                     </a>
                 </div>
                 <div class="col-2 d-flex align-items-center menu_right">
@@ -24,11 +25,11 @@
                 <h1>Li<span>v</span>e <span>A</span>rtf<span>u</span>lly</h1>
             @else
                 @if (isset($category) || isset($title_head))
-                    <h1>{{ isset( $category->name) ? $category->name : (isset($title_head) ? $title_head : '') }}</h1>
+                    <h1>{{ isset($category->name) ? $category->name : (isset($title_head) ? $title_head : '') }}</h1>
                     {{-- <div class="d-flex align-items-center menu_fabric">
                         <a class="nav_item" id="next-tab" href="{{ route('home') }}">Home</a>
                         <p class="nav_item">/</p>
-                        @isset( $category->name )
+                        @isset($category->name)
                             <a class="nav_item" id="next-tab">All Products</a>
                             <p class="nav_item">/</p>
                             <a class="nav_item" id="current-tab">{{ $category->name }}</a>
@@ -66,18 +67,20 @@
     <div class="body-menu">
         <div class="row p-0 menu-item">
             <div class="col-4 d-flex flex-column a1">
-                @foreach ($categories->take(3) as $key => $category)
-                    <a class="option-menu" href="/{{ $category->slug }}">{{ $category->name }}</a>
+                @foreach ($categories->take(3) as $category)
+                    <a class="option-menu" href="{{ route('categories.show', $category->slug) }}">
+                        {{ $category->name }}
+                    </a>
                 @endforeach
             </div>
             <div class="col-4 d-flex flex-column a2">
                 @foreach ($categories->skip(3)->take(3) as $key => $category)
-                    <a class="option-menu" href="/{{ $category->slug }}">{{ $category->name }}</a>
+                    <a class="option-menu" href="{{ route('categories.show', $category->slug) }}">{{ $category->name }}</a>
                 @endforeach
             </div>
             <div class="col-4 d-flex flex-column a3">
                 @foreach ($categories->skip(6)->take(2) as $key => $category)
-                    <a class="option-menu" href="/{{ $category->slug }}">{{ $category->name }}</a>
+                    <a class="option-menu" href="{{ route('categories.show', $category->slug) }}">{{ $category->name }}</a>
                 @endforeach
                 <a class="option-menu" href="#">About Us</a>
             </div>

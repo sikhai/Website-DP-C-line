@@ -43,7 +43,9 @@ Route::get('/products/{product_slug}', [ProductsController::class, 'detail'])->n
 
 
 // Route cho category với slug động
-Route::get('/{category_slug}', [CategoryController::class, 'showCategory'])->name('category.show');
+Route::prefix('category')->group(function () {
+    Route::get('{slug}', [CategoryController::class, 'show'])->name('categories.show');
+});
 
 
 Route::prefix('design')->group(function () {

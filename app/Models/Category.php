@@ -15,7 +15,9 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
+        'type',
         'shape',
+        'unit',
         'image',
         'images',
         'description',
@@ -23,19 +25,48 @@ class Category extends Model
         'parent_id'
     ];
 
-    public function products()
-    {
-        return $this->hasMany(Product::class, 'category_id');
-    }
-
     public function childCategories()
     {
         return $this->hasMany(Design::class, 'parent_id');
     }
 
+    public function collections()
+    {
+        return $this->hasMany(Collection::class, 'parent_id');
+    }
+
     public function childAccessory()
     {
         return $this->hasMany(Accessory::class, 'category_id');
+    }
+
+    /**
+     * Tổng số collections thuộc category.
+     * @return int
+     */
+    public function getTotalCollectionsAttribute()
+    {
+        // Vì đã load quan hệ collections, chỉ cần count() trực tiếp.
+        return $this->collections->count();
+    }
+    /**
+     * Tổng số designs thuộc category.
+     * @return int
+     */
+    public function getTotalDesignsAttribute()
+    {
+        return $this->collections->flatMap->designs->count();
+    }
+
+    /**
+     * Tổng số products thuộc category.
+     * @return int
+     */
+    public function getTotalProductsAttribute()
+    {
+        return $this->collections->flatMap(function ($collection) {
+            return $collection->designs->flatMap->products;
+        })->count();
     }
     /**
      * Scope a query to only include active users.

@@ -47,33 +47,24 @@ class CategoryController extends Controller
         return view('product', compact('category', 'categories', 'result_attributes', 'products', 'designs', 'title_head', 'category_slug'));
     }
 
-    public function showCategory($category_slug)
+    public function show($category_slug)
     {
         // Tìm category dựa trên slug, trả về lỗi 404 nếu không tồn tại
-        $category = Category::where('slug', $category_slug)->firstOrFail();
+        $category = Category::where('slug', $category_slug)->with('collections.designs.products')->firstOrFail();
 
         $category_slug = $category->slug ? $category->slug : null;
 
         // Lấy các categories và designs liên quan đến category này
         $categories = Category::where('is_featured', 1)->where('type', 'PRODUCT')->whereNull('parent_id')->get();
-        $designs = Design::with('products')
-            ->where('parent_id', $category->id)
-            ->where('is_featured', 1)
-            ->get();
-
-        // Lấy danh sách product_ids từ các thiết kế liên quan
-        $design_ids = $designs->pluck('id')->toArray();
-
-        // Lấy tất cả sản phẩm liên quan đến các thiết kế
-        $products = Product::where('is_featured', 1)
-            ->whereIn('category_id', $design_ids)
-            ->get();
 
         // Gọi ProductService để lấy attributes với số lượng sản phẩm
         // $result_attributes = $this->productService->getAttributesWithProductCount();
         $result_attributes = $this->filterAttributesWithStatus($this->productService, $category->id);
 
+
+        $title_head = 'Collection';
+
         // Trả về view hiển thị thông tin category
-        return view('product', compact('category', 'categories', 'result_attributes', 'products', 'designs', 'category_slug'));
+        return view('category.show', compact('category', 'categories', 'result_attributes', 'category_slug', 'title_head'));
     }
 }

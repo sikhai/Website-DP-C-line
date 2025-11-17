@@ -16,7 +16,7 @@
                     @foreach ($categories as $item)
                         <li>
                             <a class="dropdown-item"
-                                href="/{{ $item->slug}}">
+                                href="{{ route('categories.show', $item->slug) }}">
                                 {{ $item->name }}
                             </a>
                         </li>
