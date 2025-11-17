@@ -44,4 +44,19 @@ class Collection extends Model
         // Gộp toàn bộ products của tất cả designs, sau đó đếm tổng
         return $this->designs->flatMap->products->count();
     }
+
+    public function getImageAttribute($value)
+    {
+        // Nếu collection đã có image → trả về luôn
+        if (!empty($value)) {
+            return $value;
+        }
+
+        // Nếu không có image → lấy từ product
+        $firstProduct = $this->designs
+            ->flatMap->products
+            ->first();
+
+        return $firstProduct->image ?? null;
+    }
 }

@@ -50,7 +50,16 @@ class CategoryController extends Controller
     public function show($category_slug)
     {
         // Tìm category dựa trên slug, trả về lỗi 404 nếu không tồn tại
-        $category = Category::where('slug', $category_slug)->with('collections.designs.products')->firstOrFail();
+        $category = Category::where('slug', $category_slug)
+            ->with([
+                'collectionsWithProducts' => function ($q) {
+                    $q->whereHas('designs', function ($q2) {
+                        $q2->whereHas('products');
+                    });
+                },
+                'collectionsWithProducts.designs.products',
+            ])
+            ->firstOrFail();
 
         $category_slug = $category->slug ? $category->slug : null;
 

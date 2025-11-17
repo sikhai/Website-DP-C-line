@@ -68,6 +68,13 @@ class Category extends Model
             return $collection->designs->flatMap->products;
         })->count();
     }
+
+    public function collectionsWithProducts()
+    {
+        return $this->hasMany(Collection::class, 'parent_id')
+            ->whereRelation('designs.products', 'id', '!=', null);
+    }
+
     /**
      * Scope a query to only include active users.
      */
