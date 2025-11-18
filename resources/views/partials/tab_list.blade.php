@@ -1,7 +1,7 @@
 <section class="tab-general-fabric position-relative">
     <div class="row">
         <div class="d-flex align-items-center tab-collection-design">
-            <a class="nav_item" id="{{ !isset($title_head) ? 'current-tab' : ($title_head == 'Collection' ? 'current-tab' : 'next-tab') }}" href="/collection">Collection</a>
+            <a class="nav_item" id="{{ !isset($title_head) ? 'current-tab' : ($title_head == 'Collection' ? 'current-tab' : 'next-tab') }}" href="{{ route('collections.index') }}">Collection</a>
             <a class="nav_item" id="{{ !isset($title_head) ? 'next-tab' : ($title_head == 'All Products' ? 'current-tab' : 'next-tab') }}" href="/products">Design</a>
         </div>
     </div>

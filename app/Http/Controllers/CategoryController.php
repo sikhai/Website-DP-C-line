@@ -21,44 +21,13 @@ class CategoryController extends Controller
         $this->productService = $productService;
     }
 
-    public function showCollection()
-    {
-        $category = null;
-        $title_head = 'Collection';
-
-        // Lấy categories và designs nổi bật
-        $categories = Category::where('is_featured', 1)->where('type', 'PRODUCT')->whereNull('parent_id')->get();
-
-        $category_slug = $categories[0]['slug'] ? $categories[0]['slug'] : null;
-
-        $designs = Design::with(['products' => function ($query) {
-            $query->where('is_featured', 1);
-        }])->where('is_featured', 1)
-            ->whereHas('products', function ($query) {
-                $query->where('is_featured', 1);
-            })->get();
-
-        $products = Product::where('is_featured', 1)->get();
-
-        // Gọi ProductService để lấy attributes với số lượng sản phẩm
-        $result_attributes = $this->filterAttributesWithStatus($this->productService, $categories[0]['id']);
-
-        // Trả về view hiển thị sản phẩm
-        return view('product', compact('category', 'categories', 'result_attributes', 'products', 'designs', 'title_head', 'category_slug'));
-    }
-
     public function show($category_slug)
     {
         // Tìm category dựa trên slug, trả về lỗi 404 nếu không tồn tại
         $category = Category::where('slug', $category_slug)
-            ->with([
-                'collectionsWithProducts' => function ($q) {
-                    $q->whereHas('designs', function ($q2) {
-                        $q2->whereHas('products');
-                    });
-                },
-                'collectionsWithProducts.designs.products',
-            ])
+            ->with(['collections' => function ($q) {
+                $q->whereHas('designs.products');
+            }, 'collections.designs.products'])
             ->firstOrFail();
 
         $category_slug = $category->slug ? $category->slug : null;

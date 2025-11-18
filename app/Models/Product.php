@@ -47,6 +47,11 @@ class Product extends Model
         return $this->belongsTo(Design::class, 'category_id');
     }
 
+    public function design()
+    {
+        return $this->belongsTo(Design::class, 'category_id');
+    }
+
     public function attributes()
     {
         return $this->belongsToMany(Attribute::class, 'product_attribute', 'product_id', 'attribute_id')

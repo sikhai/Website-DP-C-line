@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\DesignController;
+use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\AccessoryImportController;
 
 /*
@@ -35,8 +36,13 @@ Route::post('/update-status-attributes', [ProductController::class, 'updateStatu
 Route::get('/our-project', [ProjectsController::class, 'show'])->name('project.show');
 Route::get('/our-project/{project_slug}', [ProjectsController::class, 'detail'])->name('project.detail');
 
-// Route cho sản phẩm
-Route::get('/collection', [CategoryController::class, 'showCollection'])->name('collection.show');
+// Route cho collection
+Route::prefix('collections')->as('collections.')->group(function () {
+    Route::get('/', [CollectionController::class, 'index'])->name('index');
+    Route::get('{collection:slug}', [CollectionController::class, 'show'])->name('show');
+});
+
+
 Route::get('/products', [DesignController::class, 'showProducts'])->name('products.show');
 // Route hiển thị chi tiết sản phẩm với slug
 Route::get('/products/{product_slug}', [ProductsController::class, 'detail'])->name('product.detail');
@@ -47,11 +53,10 @@ Route::prefix('category')->group(function () {
     Route::get('{slug}', [CategoryController::class, 'show'])->name('categories.show');
 });
 
-
 Route::prefix('design')->group(function () {
-    // Route hiển thị chi tiết Design với slug
     Route::get('{design_slug}', [DesignController::class, 'show'])->name('design.show');
 });
+
 
 // Route hiển thị danh sách hoặc chi tiết các Product thuộc Category
 // Route::get('/{category_slug}/{product_slug}', [ProductsController::class, 'show'])->name('product.show');

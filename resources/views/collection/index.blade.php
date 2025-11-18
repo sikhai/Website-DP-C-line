@@ -12,14 +12,14 @@
     <section class="table-products position-relative mb-5">
         <div class="row">
             <div class="col-4 sum" style="margin:27px 70px 0px">
-                <p id="sum-products">{{ $category->total_products }} Products, {{ $category->total_collections }} collections</p>
+                 <p id="sum-products">{{ $totalProducts }} Products, {{ $collections->count() }} collections</p>
             </div>
         </div>
 
 
         <div class="container">
             <div class="row">
-                @foreach ($category->collections as $item)
+                @foreach ($collections as $item)
                     <div class="fabric-item">
                         <a href="{{ route('collections.show', $item) }}">
                             <img class="img w-100" src="{{ Voyager::image($item->image) }}"
@@ -44,7 +44,7 @@
 
 
     <!-- Filter bar -->
-    @include('partials.filter_bar')
+    {{-- @include('partials.filter_bar') --}}
 @endsection
 
 @push('scripts')

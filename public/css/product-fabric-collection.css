@@ -324,6 +324,7 @@ h2.title span {
 
 .table-products .container .fabric-item .img{
     height: 236px;
+    object-fit: cover;
 }
 
 .table-products .container .fabric-item #block-collection-lable{

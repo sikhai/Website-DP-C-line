@@ -19,12 +19,19 @@ class Design extends Model
         'is_featured',
     ];
 
+    protected $appends = ['image'];
+
     public function products()
     {
         return $this->hasMany(Product::class, 'category_id');
     }
 
     public function parentCategory()
+    {
+        return $this->belongsTo(Collection::class, 'parent_id');
+    }
+
+    public function collection()
     {
         return $this->belongsTo(Collection::class, 'parent_id');
     }
@@ -39,6 +46,18 @@ class Design extends Model
         // Nếu quan hệ đã load: count() không tốn query
         // Nếu chưa load: Eloquent tự chạy SELECT COUNT(*) WHERE design_id = ?
         return $this->products()->count();
+    }
+
+    /**
+     * Virtual attribute: image
+     * Nếu design chưa có image, lấy image của product đầu tiên
+     */
+    public function getImageAttribute()
+    {
+        // Nếu bạn muốn có field image trong design, gán giá trị từ product đầu tiên
+        $firstProduct = $this->products()->whereNotNull('image')->first();
+
+        return $firstProduct ? $firstProduct->image : null;
     }
 
     protected static function boot()

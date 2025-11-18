@@ -72,7 +72,7 @@ class Category extends Model
     public function collectionsWithProducts()
     {
         return $this->hasMany(Collection::class, 'parent_id')
-            ->whereRelation('designs.products', 'id', '!=', null);
+            ->whereHas('designs.products');
     }
 
     /**
