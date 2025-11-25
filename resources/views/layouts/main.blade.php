@@ -38,7 +38,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
-    <script src="{{ asset('js/main.js') }}" defer></script>
+    @if (Route::is('home'))
+        <script src="{{ asset('js/main.js') }}" defer></script>
+    @endif
     <script src="{{ asset('js/menu-script.js') }}" defer></script>
     <script src="{{ asset('js/Scrollbanner.js?v3') }}" defer></script>
     @stack('scripts')

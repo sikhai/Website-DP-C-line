@@ -94,3 +94,47 @@ $('#btn-showmore-filter').on('click', function() {
     var encryptedIds = $(this).data('list_ids');
     loadMoreFilterProducts(encryptedIds);
 });
+
+class LoadMore {
+    constructor(btn, container, endpoint, params = {}) {
+        this.btn = document.getElementById(btn);
+        this.container = document.getElementById(container);
+        this.endpoint = endpoint;
+        this.page = 1;
+        this.params = params;
+
+        if (this.btn) {
+            this.btn.addEventListener('click', () => this.load());
+        }
+    }
+
+    load() {
+        this.btn.disabled = true;
+        document.getElementById("btn-loading").classList.remove("d-none");
+
+        const url = new URL(this.endpoint);
+
+        url.searchParams.set("page", this.page + 1);
+
+        for (const key in this.params) {
+            url.searchParams.set(key, this.params[key]);
+        }
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                this.container.insertAdjacentHTML("beforeend", data.html);
+                
+                if (!data.next_page) {
+                    this.btn.style.display = "none";
+                } else {
+                    this.page++;
+                }
+            })
+            .finally(() => {
+                this.btn.disabled = false;
+                document.getElementById("btn-loading").classList.add("d-none");
+            });
+    }
+}
+

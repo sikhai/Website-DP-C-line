@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PerformanceController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\Api\QrCodeController;
+use App\Http\Controllers\Api\DesignApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,5 @@ Route::get('/load-more-products', [ProductsController::class, 'loadMoreProducts'
 Route::get('/load-more-filter-products', [ProductsController::class, 'loadMoreFilterProducts']);
 Route::middleware(['verify.qr.key'])->post('/generate-qr', [QrCodeController::class, 'generate']);
 Route::middleware(['verify.qr.key'])->post('/products/update-all-qr-paths', [QrCodeController::class, 'updateAllQrPaths']);
+
+Route::get('/designs', [DesignApiController::class, 'loadMore'])->name('api.designs');

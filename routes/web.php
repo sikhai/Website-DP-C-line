@@ -53,8 +53,9 @@ Route::prefix('category')->group(function () {
     Route::get('{slug}', [CategoryController::class, 'show'])->name('categories.show');
 });
 
-Route::prefix('design')->group(function () {
-    Route::get('{design_slug}', [DesignController::class, 'show'])->name('design.show');
+Route::prefix('designs')->name('designs.')->group(function () {
+    Route::get('/', [DesignController::class, 'index'])->name('index');
+    Route::get('/{design:slug}', [DesignController::class, 'show'])->name('show');
 });
 
 
