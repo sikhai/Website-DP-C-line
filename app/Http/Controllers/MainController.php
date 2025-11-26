@@ -17,7 +17,7 @@ class MainController extends Controller
 
         $categories = Category::where('is_featured', 1)->where('type', 'PRODUCT')->whereNull('parent_id')->get();
         $designs_is_trending = Design::where('is_trending', 1)
-            ->with('parentCategory')
+            ->with('collection')
             ->orderBy('created_at', 'desc')
             ->take(2)
             ->get();

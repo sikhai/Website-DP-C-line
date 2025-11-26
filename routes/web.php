@@ -36,27 +36,41 @@ Route::post('/update-status-attributes', [ProductController::class, 'updateStatu
 Route::get('/our-project', [ProjectsController::class, 'show'])->name('project.show');
 Route::get('/our-project/{project_slug}', [ProjectsController::class, 'detail'])->name('project.detail');
 
-// Route cho collection
 Route::prefix('collections')->as('collections.')->group(function () {
+    Route::post('cache/clear-all', [CollectionController::class, 'clearProductsCache'])
+        ->name('clearAllCache');
+
+    Route::post('cache/{collection}/clear', [CollectionController::class, 'clearProductsCache'])
+        ->name('clearCache');
+
     Route::get('/', [CollectionController::class, 'index'])->name('index');
     Route::get('{collection:slug}', [CollectionController::class, 'show'])->name('show');
 });
 
-
-Route::get('/products', [DesignController::class, 'showProducts'])->name('products.show');
-// Route hiển thị chi tiết sản phẩm với slug
-Route::get('/products/{product_slug}', [ProductsController::class, 'detail'])->name('product.detail');
-
+// PRODUCTS ROUTES
+Route::prefix('products')->name('products.')->group(function () {
+    Route::get('/', [ProductsController::class, 'index'])->name('index');
+    Route::get('/{product:slug}', [ProductsController::class, 'detail'])->name('show');
+});
 
 // Route cho category với slug động
 Route::prefix('category')->group(function () {
-    Route::get('{slug}', [CategoryController::class, 'show'])->name('categories.show');
+    Route::get('{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
 });
 
 Route::prefix('designs')->name('designs.')->group(function () {
     Route::get('/', [DesignController::class, 'index'])->name('index');
-    Route::get('/{design:slug}', [DesignController::class, 'show'])->name('show');
+    // Load more designs
+    Route::get('/load-more', [DesignController::class, 'loadMore'])->name('loadMore');
+    // Load more products of a specific design
+    Route::get(
+        '{design}/products/load-more',
+        [ProductsController::class, 'loadMoreByDesign']
+    )->name('products.loadMore');
+    // Detail of a design
+    Route::get('{design:slug}', [DesignController::class, 'show'])->name('show');
 });
+
 
 
 // Route hiển thị danh sách hoặc chi tiết các Product thuộc Category

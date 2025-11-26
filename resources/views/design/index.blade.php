@@ -20,7 +20,7 @@
 
     @if ($designs->total() > 20)
         <div class="button-showmore">
-            <button type="button" class="btn btn-primary" id="btnLoadMore" data-collection-id="{{ $collection->id }}">
+            <button type="button" class="btn btn-primary" id="btnLoadMore">
                 <span id="btn-loading" class="spinner-border spinner-border-sm d-none"></span>
                 SHOW MORE PRODUCTS
             </button>
@@ -36,10 +36,7 @@
     new LoadMore({
         button: "btnLoadMore",
         container: "design-list",
-        endpoint: "{{ route('designs.loadMore') }}",
-        params: {
-            collection_id: "{{ $collection->id }}"
-        }
+        endpoint: "{{ route('designs.loadMore') }}"
     });
 </script>
 @endpush

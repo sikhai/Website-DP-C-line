@@ -1,60 +1,46 @@
+@extends('layouts.main')
+
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/product-fabric-design.css') }}">
 @endsection
 
-<section class="table-products position-relative">
-    <div class="row">
-        <div class="col-4 sum" style="margin:27px 70px 0px">
-            <p id="sum-products">{{ $products->total() }} Products</p>
-        </div>
-    </div>
-    <div class="container mb-5">
-        <div class="row" id="product-list">
-            @foreach ($products as $item)
-                <div class="fabric-item">
-                    <a class="text-decoration-none" href="/products/{{ $item['slug'] }}">
-                        <img class="img w-100" src="{{ env('APP_URL') . '/storage/' . $item['image'] }}"
-                            alt="{{ $item['name'] }}" loading="lazy">
-                        <p class="pt-2 m-0" id="design-name">{{ $item['name'] }}</p>
-                        <p class="pt-2 m-0" id="design-code">{{ $item->category->name }}</p>
-                    </a>
-                </div>
-            @endforeach
-        </div>
-    </div>
+@section('content')
+    <section class="table-products position-relative">
 
-    @if ($products->total() > 20)
-        @if (isset($attributeString) && isset($category_slug) && isset($encrypted_ids))
-            <div class="button-showmore">
-                <button type="button" class="btn btn-primary" id="btn-showmore-filter"
-                    data-list_ids="{{ $encrypted_ids }}">
-                    <span id="btn-loading" class="spinner-border spinner-border-sm d-none" role="status"
-                        aria-hidden="true"></span>
-                    SHOW MORE PRODUCTS
-                </button>
+        <div class="row">
+            <div class="col-4 ms-5 mt-4">
+                <p id="sum-products">{{ $totalProducts }} Products</p>
             </div>
-        @else
+        </div>
+
+        <div class="container mb-5">
+            <div class="row" id="productList">
+                @if ($products)
+                    @foreach ($products as $product)
+                        @include('partials.product-items', ['product' => $product])
+                    @endforeach
+                @endif
+            </div>
+        </div>
+
+        @if ($totalProducts > 20)
             <div class="button-showmore">
-                <button type="button" class="btn btn-primary" id="btn-showmore"
-                    data-category="{{ isset($designs->slug) ? $designs->slug : '' }}">
-                    <span id="btn-loading" class="spinner-border spinner-border-sm d-none" role="status"
-                        aria-hidden="true"></span>
+                <button type="button" class="btn btn-primary" id="btnLoadMore" data-design-id="{{ $design->id }}">
+                    <span id="btn-loading" class="spinner-border spinner-border-sm d-none"></span>
                     SHOW MORE PRODUCTS
                 </button>
             </div>
         @endif
+    </section>
+@endsection
 
-    @endif
-</section>
-
-<script id="product-template" type="text/x-handlebars-template">
-    <div class="col-lg-3">
-        <div class="fabric-item">
-            <a class="text-decoration-none" href="/design/@{{ slug }}">
-                <img class="img w-100" src="@{{ image_url }}" alt="@{{ name }}" loading="lazy">
-                <p class="pt-2 m-0" id="design-name">@{{ name }}</p>
-                <p class="pt-2 m-0" id="design-code">@{{ category.name }}</p>
-            </a>
-        </div>
-    </div>
-</script>
+@push('scripts')
+    <script src="{{ asset('js/loadmore.js') }}"></script>
+    <script>
+        new LoadMore({
+            button: "btnLoadMore",
+            container: "productList",
+            endpoint: "{{ route('designs.products.loadMore', $design) }}",
+        });
+    </script>
+@endpush

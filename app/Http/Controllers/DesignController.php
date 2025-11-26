@@ -26,28 +26,94 @@ class DesignController extends Controller
         $this->productService = $productService;
     }
 
-    public function show($design_slug)
+    public function index()
     {
-        dd($design_slug);
-        // Lấy Design dựa trên slug, nếu không tồn tại trả về lỗi 404
-        $designs = Design::with('products')->where('slug', $design_slug)->where('is_featured', 1)->firstOrFail();
+        // Lấy tất cả design (cha) với eager load collection
+        $designs = Design::with('collection')
+            ->orderBy('created_at', 'desc')
+            ->paginate(20); // phân trang 20 item
 
-        // Lấy category dựa vào `parent_id` của Design
-        $category = Category::where('id', $designs->parent_id)->first();
+        // Featured categories (giống show) – optional
+        $categories = Category::where('is_featured', 1)
+            ->where('type', 'PRODUCT')
+            ->whereNull('parent_id')
+            ->get();
 
-        $category_slug = $category->slug ? $category->slug : null;
+        // Filter attributes – nếu cần
+        $result_attributes = [];
 
-        $categories = Category::where('is_featured', 1)->where('type', 'PRODUCT')->whereNull('parent_id')->get();
-        $products = Product::with('attributes')
-            ->where('category_id', $designs->id)
+        $totalProducts = $designs->sum('total_products');
+        $totalDesigns = $designs->total();
+
+        return view('design.index', compact(
+            'designs',
+            'categories',
+            'result_attributes',
+            'totalProducts',
+            'totalDesigns'
+        ));
+    }
+
+    public function show(Design $design)
+    {
+        // Load products và category relation (eager load)
+        $design->load('products', 'collection');
+
+        // Nếu muốn chỉ lấy featured products
+        $products = $design->products()
             ->where('is_featured', 1)
             ->orderBy('created_at', 'desc')
             ->paginate(20);
 
-        // Sử dụng ProductService để lấy attributes và đếm số lượng
-        $result_attributes = $this->filterAttributesWithStatus($this->productService, $category->id);
+        // Lấy category dựa trên parent_id (Collection)
+        $category = $design->collection;
 
-        return view('design', compact('category', 'categories', 'result_attributes', 'products', 'designs', 'category_slug'));
+        $category_slug = $category ? $category->slug : null;
+
+        // Các categories featured (sidebar/filter)
+        $categories = Category::where('is_featured', 1)
+            ->where('type', 'PRODUCT')
+            ->whereNull('parent_id')
+            ->get();
+
+        // Nếu bạn muốn filter attributes theo productService
+        // $result_attributes = $this->filterAttributesWithStatus($this->productService, $category->id);
+        $result_attributes = [];
+
+        // Lấy tổng sản phẩm của design (có thể dùng accessor cache)
+        $totalProducts = $design->total_products;
+
+        return view('design.show', compact(
+            'design',
+            'category',
+            'categories',
+            'result_attributes',
+            'products',
+            'category_slug',
+            'totalProducts'
+        ));
+    }
+
+    public function loadMore(Request $request)
+    {
+        $page = $request->page ?? 1;
+
+        $query = Design::with('products');
+
+        // Filter theo collection
+        if ($request->collection_id) {
+            $query->where('parent_id', $request->collection_id);
+        }
+
+        $designs = $query->paginate(20);
+
+        // Render partial HTML item
+        $html = view('partials.design-items', compact('designs'))->render();
+
+        return response()->json([
+            'html' => $html,
+            'next_page' => $designs->nextPageUrl() ? $page + 1 : null,
+        ]);
     }
 
     public function showProducts(Request $request)
@@ -106,7 +172,7 @@ class DesignController extends Controller
 
         if ($category_slug) {
             $category = Category::where('slug', $category_slug)->firstOrFail();
-        }else{
+        } else {
             $category_slug = $categories[0]['slug'];
         }
 
@@ -124,7 +190,7 @@ class DesignController extends Controller
 
         if (!$category) {
             $category_id = $categories[0]['id'];
-        }else{
+        } else {
             $category_id = $category->id;
         }
 

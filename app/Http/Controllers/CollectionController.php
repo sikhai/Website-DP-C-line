@@ -28,21 +28,39 @@ class CollectionController extends Controller
         $category  = 'Collection';
         $result_attributes = [];
 
+        // Lấy tất cả collection có ít nhất 1 product qua designs
         $collections = Collection::whereHas('designs.products')
-            ->with('designs.products')
+            ->with('designs')
             ->get();
 
-        $totalProducts = Product::whereHas('design.collection')->count();
+        // Tính tổng products cho từng collection
+        foreach ($collections as $collection) {
+            $collection->total_products = $collection->products_count;
 
-        // Lấy các categories và designs liên quan đến category này
-        $categories = Category::where('is_featured', 1)->where('type', 'PRODUCT')->whereNull('parent_id')->get();
+            //Xóa cache products count nếu cần thiết
+            // $collection->clearProductsCountCache();
+        }
 
-        // Gọi ProductService để lấy attributes với số lượng sản phẩm
-        // $result_attributes = $this->productService->getAttributesWithProductCount();
-        // $result_attributes = $this->filterAttributesWithStatus($this->productService, $category->id);
+        // Tính tổng products của tất cả collections cùng lúc (1 query duy nhất)
+        $totalProducts = Product::whereHas('design', function ($q) use ($collections) {
+            $q->whereIn('parent_id', $collections->pluck('id'));
+        })->count();
 
-        // Trả về view hiển thị thông tin category
-        return view('collection.index', compact('category', 'categories', 'result_attributes', 'title_head', 'totalProducts', 'collections'));
+        // Lấy các categories
+        $categories = Category::where('is_featured', 1)
+            ->where('type', 'PRODUCT')
+            ->whereNull('parent_id')
+            ->get();
+
+        // Trả về view
+        return view('collection.index', compact(
+            'category',
+            'categories',
+            'result_attributes',
+            'title_head',
+            'totalProducts',
+            'collections'
+        ));
     }
 
     public function show(Collection $collection)
@@ -51,17 +69,55 @@ class CollectionController extends Controller
         $category  = 'Collection';
         $result_attributes = [];
 
+        // Load category relation
         $collection->load('category');
 
-        // Paginate designs, 20 per page, kèm products và category của design
+        // Paginate designs 20 per page, eager load products to avoid N+1
         $designs = $collection->designs()->with('products')->paginate(20);
 
-        $categories = Category::where('is_featured', 1)->where('type', 'PRODUCT')->whereNull('parent_id')->get();
+        // Tổng số designs của collection (toàn bộ)
+        $totalDesigns = $collection->designs()->count();
 
-        $totalProducts = $designs->sum(function ($design) {
-            return $design->products->count();
-        });
+        // Tổng số products của tất cả designs trong collection (toàn bộ)
+        // Dùng 1 query duy nhất để tránh N+1
+        $totalProducts = Product::whereHas('design', function ($query) use ($collection) {
+            $query->where('parent_id', $collection->id);
+        })->count();
 
-        return view('collection.show', compact('categories', 'result_attributes', 'title_head', 'totalProducts', 'designs', 'collection'));
+        // Các categories featured
+        $categories = Category::where('is_featured', 1)
+            ->where('type', 'PRODUCT')
+            ->whereNull('parent_id')
+            ->get();
+
+        return view('collection.show', compact(
+            'categories',
+            'result_attributes',
+            'title_head',
+            'totalProducts',
+            'totalDesigns',
+            'designs',
+            'collection'
+        ));
+    }
+
+
+    public function clearProductsCache($id = null)
+    {
+        if ($id) {
+            // Xóa cache của collection theo id
+            $collection = Collection::find($id);
+            if ($collection) {
+                $collection->clearProductsCountCache();
+            }
+        } else {
+            // Xóa cache của tất cả collection
+            $collections = Collection::all();
+            foreach ($collections as $collection) {
+                $collection->clearProductsCountCache();
+            }
+        }
+
+        return redirect()->back()->with('success', 'Cache ProductsCount đã được xóa.');
     }
 }

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="d-flex align-items-center tab-collection-design">
             <a class="nav_item" id="{{ !isset($title_head) ? 'current-tab' : ($title_head == 'Collection' ? 'current-tab' : 'next-tab') }}" href="{{ route('collections.index') }}">Collection</a>
-            <a class="nav_item" id="{{ !isset($title_head) ? 'next-tab' : ($title_head == 'All Products' ? 'current-tab' : 'next-tab') }}" href="/products">Design</a>
+            <a class="nav_item" id="{{ !isset($title_head) ? 'next-tab' : ($title_head == 'All Products' ? 'current-tab' : 'next-tab') }}" href="{{ route('designs.index') }}">Design</a>
         </div>
     </div>
     <div class="row pt-5 pb-3">

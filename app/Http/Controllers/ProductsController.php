@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Design;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Services\ProductService;
@@ -168,6 +169,25 @@ class ProductsController extends Controller
         return response()->json([
             "products" => $products->items(),
             "next_page" => $products->currentPage() < $products->lastPage() ? $products->currentPage() + 1 : null,
+        ]);
+    }
+
+
+    public function loadMoreByDesign(Request $request, Design $design)
+    {
+        $page = $request->get('page', 1);
+
+        $products = $design->products()
+            ->orderBy('id')
+            ->paginate(20, ['*'], 'page', $page);
+
+        $html = view('partials.product-items', [
+            'products' => $products
+        ])->render();
+
+        return response()->json([
+            'html' => $html,
+            'next_page' => $products->hasMorePages(),
         ]);
     }
 }
