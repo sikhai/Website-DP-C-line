@@ -1,5 +1,5 @@
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/product-fabric-collection.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/product-fabric-collection.css?v=1') }}">
 @endsection
 
 <section class="table-products position-relative mb-5">
