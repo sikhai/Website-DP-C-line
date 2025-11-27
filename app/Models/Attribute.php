@@ -6,27 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attribute extends Model
 {
-    protected $fillable = ['name', 'type', 'status'];
+    protected $fillable = ['name', 'value', 'type', 'status'];
 
     public function values()
     {
         return $this->hasMany(AttributeValue::class);
     }
 
-    public function products()
+    // helper to get attribute id quickly
+    public static function getIdByName(string $name)
     {
-        return $this->belongsToMany(Product::class, 'product_attribute', 'attribute_id', 'product_id')
-            ->withTimestamps();
-    }
-
-    public static function storeName($name, $type = 'product', $status = true, $value = '')
-    {
-        $attribute = self::firstOrNew(['name' => $name]);
-        $attribute->type = $type;
-        $attribute->status = $status;
-        $attribute->value = $value ?? '';
-        $attribute->save();
-
-        return $attribute;
+        return static::where('name', $name)->value('id');
     }
 }
+

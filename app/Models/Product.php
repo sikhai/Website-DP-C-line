@@ -76,5 +76,17 @@ class Product extends Model
         static::updating(function ($model) {
             $model->updated_at = now();
         });
+
+        static::saved(function ($product) {
+            if ($product->design && $product->design->collection && $product->design->collection->category) {
+                $product->design->collection->category->clearCache();
+            }
+        });
+
+        static::deleted(function ($product) {
+            if ($product->design && $product->design->collection && $product->design->collection->category) {
+                $product->design->collection->category->clearCache();
+            }
+        });
     }
 }

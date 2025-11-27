@@ -21,28 +21,37 @@ class CategoryController extends Controller
         $this->productService = $productService;
     }
 
-    public function show($category_slug)
+    public function show(Category $category)
     {
-        // Tìm category dựa trên slug, trả về lỗi 404 nếu không tồn tại
-        $category = Category::where('slug', $category_slug)
-            ->with(['collections' => function ($q) {
-                $q->whereHas('designs.products');
-            }, 'collections.designs.products'])
-            ->firstOrFail();
+        // Preload quan hệ tối ưu — chỉ load những gì cần
+        $category->load([
+            'collections' => function ($q) {
+                $q->whereHas('designs.products'); // chỉ lấy collections có products
+            },
+            'collections.designs' => function ($q) {
+                $q->whereHas('products'); // chỉ lấy designs có sản phẩm
+            },
+            'collections.designs.products' // preload products để tránh N+1
+        ]);
 
-        $category_slug = $category->slug ? $category->slug : null;
+        // Featured categories (sidebar)
+        $categories = Category::where('is_featured', 1)
+            ->productType()
+            ->whereNull('parent_id')
+            ->get();
 
-        // Lấy các categories và designs liên quan đến category này
-        $categories = Category::where('is_featured', 1)->where('type', 'PRODUCT')->whereNull('parent_id')->get();
-
-        // Gọi ProductService để lấy attributes với số lượng sản phẩm
-        // $result_attributes = $this->productService->getAttributesWithProductCount();
-        $result_attributes = $this->filterAttributesWithStatus($this->productService, $category->id);
-
+        // Filter attributes
+        $result_attributes = [];
+        // $result_attributes = $this->filterAttributesWithStatus($this->productService, $category->id);
 
         $title_head = 'Collection';
 
-        // Trả về view hiển thị thông tin category
-        return view('category.show', compact('category', 'categories', 'result_attributes', 'category_slug', 'title_head'));
+        return view('category.show', [
+            'category'        => $category,
+            'categories'      => $categories,
+            'result_attributes' => $result_attributes,
+            'category_slug'   => $category->slug,
+            'title_head'      => $title_head,
+        ]);
     }
 }

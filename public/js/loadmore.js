@@ -134,7 +134,15 @@ class LoadMore {
 
             const data = await res.json();
 
-            if (!data.html) throw new Error("Invalid response: missing HTML");
+            if (data.html) {
+                this.container.insertAdjacentHTML("beforeend", data.html);
+            }
+
+            if (data.next_page === false) {
+                this.button.style.display = "none";
+            } else {
+                this.page++;
+            }
 
             this.container.insertAdjacentHTML("beforeend", data.html);
 

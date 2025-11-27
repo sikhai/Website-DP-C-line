@@ -20,6 +20,11 @@ class Design extends Model
         'is_featured',
     ];
 
+    protected $casts = [
+        'images' => 'array',
+        'attributes' => 'array',
+    ];
+
     protected $appends = ['image'];
 
     // -----------------------
@@ -41,7 +46,9 @@ class Design extends Model
     public function getTotalProductsAttribute()
     {
         return Cache::remember("design_{$this->id}_products_count", 300, function () {
-            return $this->products()->count();
+            return $this->products()
+                ->where('is_featured', 1)
+                ->count();
         });
     }
 
@@ -50,15 +57,36 @@ class Design extends Model
     // -----------------------
     public function getImageAttribute()
     {
-        // Nếu đã có image trong design → trả về luôn
-        if (!empty($this->images)) {
-            return $this->images;
+        // Nếu design đã có images → trả về ảnh đầu tiên
+        if (!empty($this->images) && is_array($this->images) && count($this->images) > 0) {
+            return $this->images[0]; // luôn trả về string
         }
 
+        // Lấy ảnh đầu tiên của product liên quan (nếu có), dùng cache
         return Cache::remember("design_{$this->id}_image", 300, function () {
             $firstProduct = $this->products()->whereNotNull('image')->first();
-            return $firstProduct ? $firstProduct->image : null;
+            return $firstProduct && $firstProduct->image ? $firstProduct->image : null;
         });
+    }
+
+    public function attributeValues()
+    {
+        return $this->morphToMany(
+            AttributeValue::class,
+            'entity',
+            'entity_attribute_values',
+            'entity_id',
+            'attribute_value_id'
+        )->withPivot('attribute_id')
+            ->withTimestamps();
+    }
+
+    // Optional: convenience: get attributes as name => value list
+    public function attributesMapped()
+    {
+        return $this->attributeValues->mapWithKeys(function ($av) {
+            return [$av->attribute->name => $av->value];
+        })->toArray();
     }
 
     // -----------------------
@@ -84,6 +112,18 @@ class Design extends Model
 
         static::deleted(function ($design) {
             $design->clearProductsCountCache();
+        });
+
+        static::saved(function ($design) {
+            if ($design->collection && $design->collection->category) {
+                $design->collection->category->clearCache();
+            }
+        });
+
+        static::deleted(function ($design) {
+            if ($design->collection && $design->collection->category) {
+                $design->collection->category->clearCache();
+            }
         });
     }
 }

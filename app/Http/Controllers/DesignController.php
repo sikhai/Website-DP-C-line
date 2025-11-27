@@ -28,24 +28,35 @@ class DesignController extends Controller
 
     public function index()
     {
-        // Lấy tất cả design (cha) với eager load collection
+        $title_head = 'Design';
+
+        // 1. Lấy danh sách ID của toàn bộ design để chạy accessor (dùng cache)
+        $allDesigns = Design::select('id')->get();
+
+        // Tổng design (không phân trang)
+        $totalDesigns = $allDesigns->count();
+
+        // 2. Tổng sản phẩm (dựa trên accessor cached)
+        //    => KHÔNG gây n+1 query vì cache đã có.
+        $totalProducts = $allDesigns->sum(function ($design) {
+            return $design->total_products;
+        });
+
+        // 3. Lấy designs cho UI (paginate)
         $designs = Design::with('collection')
             ->orderBy('created_at', 'desc')
-            ->paginate(20); // phân trang 20 item
+            ->paginate(20);
 
-        // Featured categories (giống show) – optional
+        // Featured categories
         $categories = Category::where('is_featured', 1)
             ->where('type', 'PRODUCT')
             ->whereNull('parent_id')
             ->get();
 
-        // Filter attributes – nếu cần
         $result_attributes = [];
 
-        $totalProducts = $designs->sum('total_products');
-        $totalDesigns = $designs->total();
-
         return view('design.index', compact(
+            'title_head',
             'designs',
             'categories',
             'result_attributes',
@@ -65,6 +76,7 @@ class DesignController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(20);
 
+        // $design->clearProductsCountCache();
         // Lấy category dựa trên parent_id (Collection)
         $category = $design->collection;
 
@@ -100,21 +112,23 @@ class DesignController extends Controller
 
         $query = Design::with('products');
 
-        // Filter theo collection
         if ($request->collection_id) {
             $query->where('parent_id', $request->collection_id);
         }
 
-        $designs = $query->paginate(20);
+        $designs = $query->paginate(20, ['*'], 'page', $page);
 
-        // Render partial HTML item
-        $html = view('partials.design-items', compact('designs'))->render();
+        $html = '';
+        if ($designs->count() > 0) {
+            $html = view('partials.design-items', compact('designs'))->render();
+        }
 
         return response()->json([
             'html' => $html,
-            'next_page' => $designs->nextPageUrl() ? $page + 1 : null,
+            'next_page' => $designs->nextPageUrl() ? $page + 1 : false,
         ]);
     }
+
 
     public function showProducts(Request $request)
     {

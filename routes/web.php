@@ -49,7 +49,7 @@ Route::prefix('collections')->as('collections.')->group(function () {
 
 // PRODUCTS ROUTES
 Route::prefix('products')->name('products.')->group(function () {
-    Route::get('/', [ProductsController::class, 'index'])->name('index');
+    // Route::get('/', [ProductsController::class, 'index'])->name('index');
     Route::get('/{product:slug}', [ProductsController::class, 'detail'])->name('show');
 });
 

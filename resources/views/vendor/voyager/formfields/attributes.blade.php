@@ -11,7 +11,7 @@
 
             @php
                 // Lấy attributes từ old() hoặc DB
-                $attributes = json_decode(old($row->field, $dataTypeContent->{$row->field} ?? '[]'), true) ?? [];
+                $attributes = old($row->field, $dataTypeContent->{$row->field} ?? '[]');
 
                 $attributes = is_array($attributes) ? $attributes : json_decode($attributes, true) ?? [];
 

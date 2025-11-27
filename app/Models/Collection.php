@@ -85,4 +85,21 @@ class Collection extends Model
         Cache::forget("collection_{$this->id}_designs_count");
         Cache::forget("collection_{$this->id}_image");
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saved(function ($collection) {
+            if ($collection->category) {
+                $collection->category->clearCache();
+            }
+        });
+
+        static::deleted(function ($collection) {
+            if ($collection->category) {
+                $collection->category->clearCache();
+            }
+        });
+    }
 }

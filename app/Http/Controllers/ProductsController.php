@@ -34,56 +34,37 @@ class ProductsController extends Controller
         $categories = Category::where('is_featured', 1)->where('type', 'PRODUCT')->whereNull('parent_id')->get();
 
         // Nếu có product_slug, tìm product theo slug
-        $product = Product::with('category', 'attributes')
+        $product = Product::with('design.collection.category')
             ->where('slug', $product_slug)
             ->where('is_featured', 1)
             ->first();
-
-        if ($product && $product->category && $product->category->parent_id) {
-            $collection = Category::with('childCategories.products')
-                ->find($product->category->parent_id);
-
-            if ($collection) {
-                $products = collect();
-
-                foreach ($collection->childCategories as $design) {
-                    $products = $products->merge(
-                        $design->products()
-                            ->where('id', '!=', $product->id)
-                            ->take(11 - $products->count())
-                            ->get()
-                    );
-
-                    if ($products->count() >= 10) {
-                        break;
-                    }
-                }
-            } else {
-                $products = collect(); // không có category cha
-            }
-        } else {
-            $products = collect(); // không có product hoặc category
-        }
-
 
         if (!$product) {
             abort(404);
         }
 
-        if (isset($product->attributes[0])) {
-            $attributes = $product->attributes[0];
-            $data_attributes = json_decode($attributes->value, true);
+        // Breadcrumb
+        $breadcrumb = [
+            'category'   => $product->design->collection->category ?? null,
+            'collection' => $product->design->collection ?? null,
+            'design'     => $product->design ?? null,
+            'product'    => $product,
+        ];
 
-            $result_attributes = $this->productService->getAttributesWithProductCount();
+        // Lấy attributes của design
+        $data_attributes = $product->design->attributes ?? null;
 
-            $status_attributes = $this->productService->getStatusAttributes($result_attributes);
+        $attributes = $this->caculateAttribute($data_attributes);
 
-            $data_attributes_new = $this->fillerAttributes($data_attributes, $status_attributes);
-
-            $attributes = $this->caculateAttribute($data_attributes_new);
-        }
-
-        return view('product_detail', compact('collection', 'categories', 'product', 'attributes', 'products_orther'));
+        // Lấy các product khác cùng design
+        $products_orther = $product->design
+            ->products()
+            ->where('is_featured', 1)
+            ->where('id', '<>', $product->id)
+            ->take(8)
+            ->get();
+            
+        return view('product.detail', compact('collection', 'categories', 'product', 'attributes', 'products_orther', 'breadcrumb'));
     }
 
     public function caculateAttribute($data)

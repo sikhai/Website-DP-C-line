@@ -13,13 +13,20 @@ class AttributeValue extends Model
         return $this->belongsTo(Attribute::class);
     }
 
-    public static function storeValue(Attribute $attribute, string $value): void
+    // morph relation: entities that use this attribute value
+    public function entities()
     {
-        if (!empty($value)) {
-            static::firstOrCreate([
-                'attribute_id' => $attribute->id,
-                'value' => $value
-            ]);
-        }
+        // you can list common models: designs, products, vendors, ...
+        return $this->morphedByMany(Design::class, 'entity', 'entity_attribute_values', 'attribute_value_id', 'entity_id')
+            ->withPivot('attribute_id')
+            ->withTimestamps();
+    }
+
+    // If you want helper shortcuts for other models, add:
+    public function products()
+    {
+        return $this->morphedByMany(Product::class, 'entity', 'entity_attribute_values', 'attribute_value_id', 'entity_id')
+            ->withPivot('attribute_id')
+            ->withTimestamps();
     }
 }

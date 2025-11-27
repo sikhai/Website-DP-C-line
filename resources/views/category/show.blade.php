@@ -26,20 +26,13 @@
                                 alt="{{ $item['name'] }}" loading="lazy">
                             <div class="d-flex m-0" id="block-collection-lable">
                                 <p id="collection-name">{{ $item['name'] }}</p>
-                                <p id="collection-quantity">({{ $item->total_products }})</p>
+                                <p id="collection-quantity">({{ $item->products_count }})</p>
                             </div>
                         </a>
                     </div>
                 @endforeach
             </div>
         </div>
-        {{-- @if (count($designs) > 12)
-            <div class="button-showmore pt-5">
-                <button type="button" class="btn btn-primary" id="btn-showmore">
-                    SHOW MORE PRODUCTS
-                </button>
-            </div>
-        @endif --}}
     </section>
 
 

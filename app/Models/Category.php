@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
-
-use App\Models\Design;
-use App\Models\Accessory;
 
 class Category extends Model
 {
@@ -25,54 +22,71 @@ class Category extends Model
         'parent_id'
     ];
 
-    public function childCategories()
-    {
-        return $this->hasMany(Design::class, 'parent_id');
-    }
+    // -----------------------------
+    // QUAN HỆ
+    // -----------------------------
 
     public function collections()
     {
         return $this->hasMany(Collection::class, 'parent_id');
     }
 
-    public function childAccessory()
+    public function designs()
     {
-        return $this->hasMany(Accessory::class, 'category_id');
+        return $this->hasManyThrough(
+            Design::class,
+            Collection::class,
+            'parent_id',   // collection.parent_id = category.id
+            'parent_id',   // design.parent_id = collection.id
+            'id',
+            'id'
+        );
     }
 
-    /**
-     * Tổng số collections thuộc category.
-     * @return int
-     */
+    public function products()
+    {
+        return $this->hasManyThrough(
+            Product::class,
+            Design::class,
+            'parent_id',    // design.parent_id = collection.id
+            'category_id',  // product.category_id = design.id
+            'id',
+            'id'
+        );
+    }
+
+    // -----------------------------
+    // CACHE: COLLECTION COUNT
+    // -----------------------------
     public function getTotalCollectionsAttribute()
     {
-        // Vì đã load quan hệ collections, chỉ cần count() trực tiếp.
-        return $this->collections->count();
+        return Cache::remember("category_{$this->id}_collections_count", 300, function () {
+            return $this->collections()->count();
+        });
     }
-    /**
-     * Tổng số designs thuộc category.
-     * @return int
-     */
+
+    // -----------------------------
+    // CACHE: DESIGNS COUNT
+    // -----------------------------
     public function getTotalDesignsAttribute()
     {
-        return $this->collections->flatMap->designs->count();
+        return Cache::remember("category_{$this->id}_designs_count", 300, function () {
+            return $this->designs()->count();
+        });
     }
 
-    /**
-     * Tổng số products thuộc category.
-     * @return int
-     */
+    // -----------------------------
+    // CACHE: PRODUCTS COUNT
+    // -----------------------------
     public function getTotalProductsAttribute()
     {
-        return $this->collections->flatMap(function ($collection) {
-            return $collection->designs->flatMap->products;
-        })->count();
-    }
-
-    public function collectionsWithProducts()
-    {
-        return $this->hasMany(Collection::class, 'parent_id')
-            ->whereHas('designs.products');
+        return Cache::remember("category_{$this->id}_products_count", 300, function () {
+            return Product::whereHas('design', function ($q) {
+                $q->whereHas('collection', function ($q2) {
+                    $q2->where('parent_id', $this->id);
+                });
+            })->count();
+        });
     }
 
     /**
@@ -89,19 +103,29 @@ class Category extends Model
         return $query->where('type', 'PRODUCT');
     }
 
-    public function projects()
+    // -----------------------------
+    // Xóa cache
+    // -----------------------------
+    public function clearCache()
     {
-        return $this->hasMany(Project::class, 'category_id');
+        Cache::forget("category_{$this->id}_collections_count");
+        Cache::forget("category_{$this->id}_designs_count");
+        Cache::forget("category_{$this->id}_products_count");
     }
 
+    // -----------------------------
+    // BOOT MODEL
+    // -----------------------------
     protected static function boot()
     {
         parent::boot();
 
-        // Lắng nghe sự kiện `saving` (gọi cả khi tạo và cập nhật)
-        static::saving(function ($category) {
-            // dd(request()->all()); // Dừng và in dữ liệu của `Category` trước khi lưu
-            // dd($Category); // Dừng và in dữ liệu của `Category` trước khi lưu
+        static::saved(function ($category) {
+            $category->clearCache();
+        });
+
+        static::deleted(function ($category) {
+            $category->clearCache();
         });
     }
 }

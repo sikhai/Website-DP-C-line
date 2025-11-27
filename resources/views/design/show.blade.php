@@ -16,9 +16,7 @@
         <div class="container mb-5">
             <div class="row" id="productList">
                 @if ($products)
-                    @foreach ($products as $product)
-                        @include('partials.product-items', ['product' => $product])
-                    @endforeach
+                    @include('partials.product-items', ['products' => $products])
                 @endif
             </div>
         </div>
