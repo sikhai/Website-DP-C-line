@@ -28,6 +28,14 @@ class ImportDesignAttributes extends Command
      */
     public function handle()
     {
+        // 1. Clear existing data
+        \DB::table('entity_attribute_values')->delete(); // nếu có bảng pivot
+        \DB::table('attribute_values')->delete();
+        \DB::table('attributes')->delete();
+
+        $this->info('Cleared attributes and attribute_values tables.');
+
+        // 2. Proceed with import
         $designs = Design::whereNotNull('attributes')->get();
 
         foreach ($designs as $design) {
@@ -38,11 +46,11 @@ class ImportDesignAttributes extends Command
                 if ($value === null || trim($value) === '') continue;
 
                 // 1) ensure Attribute exists
-                $attribute = $attribute = Attribute::updateOrCreate(
+                $attribute = Attribute::updateOrCreate(
                     ['name' => $name],
                     [
                         'type' => 'design',
-                        'status' => true,
+                        'status' => false,
                         'value' => ''
                     ]
                 );
@@ -54,7 +62,6 @@ class ImportDesignAttributes extends Command
                 ]);
 
                 // 3) attach to design
-                // avoid duplicates
                 \DB::table('entity_attribute_values')->updateOrInsert([
                     'entity_type' => Design::class,
                     'entity_id'   => $design->id,

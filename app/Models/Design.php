@@ -9,6 +9,8 @@ use App\Models\Category;
 use App\Models\Collection;
 use App\Models\Product;
 
+use App\Services\AttributeService;
+
 class Design extends Model
 {
     protected $fillable = [
@@ -89,6 +91,17 @@ class Design extends Model
         })->toArray();
     }
 
+    public function getActiveAttributesAttribute()
+    {
+        return $this->attributeValues()
+            ->whereHas('attribute', fn($q) => $q->where('status', 1))
+            ->with('attribute')
+            ->get()
+            ->mapWithKeys(fn($attrValue) => [$attrValue->attribute->name => $attrValue->value])
+            ->toArray();
+    }
+
+
     // -----------------------
     // Xóa cache thủ công
     // -----------------------
@@ -105,25 +118,38 @@ class Design extends Model
     {
         parent::boot();
 
-        // Clear cache khi Product liên quan thay đổi
+        // -------------------------
+        // Event: Saved (create/update)
+        // -------------------------
         static::saved(function ($design) {
+            // 1) Clear design-related cache
             $design->clearProductsCountCache();
-        });
 
-        static::deleted(function ($design) {
-            $design->clearProductsCountCache();
-        });
-
-        static::saved(function ($design) {
+            // 2) Clear collection->category cache nếu có
             if ($design->collection && $design->collection->category) {
                 $design->collection->category->clearCache();
             }
+
+            // 3) Sync attributes nếu có data mới
+            if (!empty($design->attributes)) {
+                AttributeService::updateAttributes($design, $design->attributes);
+            }
         });
 
+        // -------------------------
+        // Event: Deleted
+        // -------------------------
         static::deleted(function ($design) {
+            // 1) Clear design-related cache
+            $design->clearProductsCountCache();
+
+            // 2) Clear collection->category cache nếu có
             if ($design->collection && $design->collection->category) {
                 $design->collection->category->clearCache();
             }
+
+            // 3) Detach all attributes
+            AttributeService::detachAllAttributes($design);
         });
     }
 }

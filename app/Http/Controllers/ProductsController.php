@@ -52,7 +52,7 @@ class ProductsController extends Controller
         ];
 
         // Lấy attributes của design
-        $data_attributes = $product->design->attributes ?? null;
+        $data_attributes = $product->design->active_attributes ?? null;
 
         $attributes = $this->caculateAttribute($data_attributes);
 
@@ -132,28 +132,7 @@ class ProductsController extends Controller
             "next_page" => $products->currentPage() < $products->lastPage() ? $products->currentPage() + 1 : null,
         ]);
     }
-
-    public function loadMoreFilterProducts(Request $request)
-    {
-
-        $encrypted_ids = $request->input('encrypted_ids');
-        $page = $request->input('page', 1);
-
-        // Giải mã mảng ID
-        $decoded_ids = Crypt::decrypt($encrypted_ids);
-
-        // Lấy sản phẩm từ danh sách ID
-        $products = Product::whereIn('id', $decoded_ids)
-            ->paginate(20, ['*'], 'page', $page);
-
-
-        return response()->json([
-            "products" => $products->items(),
-            "next_page" => $products->currentPage() < $products->lastPage() ? $products->currentPage() + 1 : null,
-        ]);
-    }
-
-
+    
     public function loadMoreByDesign(Request $request, Design $design)
     {
         $page = $request->get('page', 1);

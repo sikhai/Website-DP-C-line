@@ -11,6 +11,8 @@ use App\Http\Controllers\DesignController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\AccessoryImportController;
 
+use Illuminate\Support\Facades\Artisan;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,3 +81,10 @@ Route::prefix('designs')->name('designs.')->group(function () {
 // Import accessories
 Route::get('/accessories/import', [AccessoryImportController::class, 'showForm'])->name('accessories.import.form');
 Route::post('/accessories/import', [AccessoryImportController::class, 'import'])->name('accessories.import');
+
+
+// Route to trigger the import command
+Route::get('/run-import', function () {
+    Artisan::call('app:import-design-attributes');
+    return 'Import finished!';
+});
