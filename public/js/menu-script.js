@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (evt.key === 'Enter') {
             const query = input.value.trim();
             if (query) {
-                window.location.href = `/products?search=${encodeURIComponent(query)}`;
+                window.location.href = `/designs?search=${encodeURIComponent(query)}`;
             } else {
                 updateTextSearch('Vui lòng nhập từ khóa tìm kiếm!');
             }

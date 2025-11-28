@@ -26,26 +26,42 @@ class DesignController extends Controller
         $this->productService = $productService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $title_head = 'Design';
+        $keyword = $request->get('search', null);
 
         // 1. Lấy danh sách ID của toàn bộ design để chạy accessor (dùng cache)
-        $allDesigns = Design::select('id')->get();
+        $allDesignsQuery = Design::query();
 
-        // Tổng design (không phân trang)
+        // Nếu có từ khóa → filter theo name hoặc slug
+        if ($keyword) {
+            $allDesignsQuery->where(function ($q) use ($keyword) {
+                $q->where('name', 'like', "%{$keyword}%")
+                    ->orWhere('slug', 'like', "%{$keyword}%");
+            });
+        }
+
+        $allDesigns = $allDesignsQuery->select('id')->get();
+
         $totalDesigns = $allDesigns->count();
 
-        // 2. Tổng sản phẩm (dựa trên accessor cached)
-        //    => KHÔNG gây n+1 query vì cache đã có.
+        // Tổng sản phẩm (dựa trên accessor cached)
         $totalProducts = $allDesigns->sum(function ($design) {
             return $design->total_products;
         });
 
-        // 3. Lấy designs cho UI (paginate)
-        $designs = Design::with('collection')
-            ->orderBy('created_at', 'desc')
-            ->paginate(20);
+        // 2. Lấy designs cho UI (paginate)
+        $designsQuery = Design::with('collection')->orderBy('created_at', 'desc');
+
+        if ($keyword) {
+            $designsQuery->where(function ($q) use ($keyword) {
+                $q->where('name', 'like', "%{$keyword}%")
+                    ->orWhere('slug', 'like', "%{$keyword}%");
+            });
+        }
+
+        $designs = $designsQuery->paginate(20);
 
         // Featured categories
         $categories = Category::where('is_featured', 1)

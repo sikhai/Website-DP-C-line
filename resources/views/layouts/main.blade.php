@@ -41,8 +41,8 @@
     @if (Route::is('home'))
         <script src="{{ asset('js/main.js') }}" defer></script>
     @endif
-    <script src="{{ asset('js/menu-script.js') }}" defer></script>
-    <script src="{{ asset('js/Scrollbanner.js?v3') }}" defer></script>
+    <script src="{{ asset('js/menu-script.js?v=3') }}" defer></script>
+    <script src="{{ asset('js/Scrollbanner.js?v=3') }}" defer></script>
     @stack('scripts')
 </body>
 
