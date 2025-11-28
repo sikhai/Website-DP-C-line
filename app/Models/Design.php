@@ -23,7 +23,6 @@ class Design extends Model
     ];
 
     protected $casts = [
-        'images' => 'array',
         'attributes' => 'array',
     ];
 
@@ -59,9 +58,15 @@ class Design extends Model
     // -----------------------
     public function getImageAttribute()
     {
-        // Nếu design đã có images → trả về ảnh đầu tiên
-        if (!empty($this->images) && is_array($this->images) && count($this->images) > 0) {
-            return $this->images[0]; // luôn trả về string
+        // Chuẩn hóa: decode JSON string thành array
+        $images = $this->images;
+        if (is_string($images)) {
+            $images = json_decode($images, true) ?? [];
+        }
+
+        // Nếu đã có images → trả về ảnh đầu tiên
+        if (!empty($images) && count($images) > 0) {
+            return $images[0];
         }
 
         // Lấy ảnh đầu tiên của product liên quan (nếu có), dùng cache
