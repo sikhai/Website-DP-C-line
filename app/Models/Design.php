@@ -20,10 +20,7 @@ class Design extends Model
         'images',
         'description',
         'is_featured',
-    ];
-
-    protected $casts = [
-        'attributes' => 'array',
+        'attributes',
     ];
 
     protected $appends = ['image'];
@@ -136,8 +133,12 @@ class Design extends Model
             }
 
             // 3) Sync attributes nếu có data mới
-            if (!empty($design->attributes)) {
-                AttributeService::updateAttributes($design, $design->attributes);
+            $raw = $design->getRawOriginal('attributes');
+
+            $attrs = json_decode($raw, true);
+
+            if (!empty($attrs)) {
+                AttributeService::updateAttributes($design, $attrs);
             }
         });
 

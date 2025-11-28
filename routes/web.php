@@ -84,7 +84,7 @@ Route::post('/accessories/import', [AccessoryImportController::class, 'import'])
 
 
 // Route to trigger the import command
-// Route::get('/run-import', function () {
-//     Artisan::call('app:import-design-attributes');
-//     return 'Import finished!';
-// });
+Route::get('/run-import', function () {
+    Artisan::call('app:import-design-attributes');
+    return 'Import finished!';
+});

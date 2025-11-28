@@ -39,7 +39,10 @@ class ImportDesignAttributes extends Command
         $designs = Design::whereNotNull('attributes')->get();
 
         foreach ($designs as $design) {
-            $attrs = $design->attributes; // nếu cast array
+
+            $raw = $design->getRawOriginal('attributes');
+            $attrs = json_decode($raw, true);
+
             if (!is_array($attrs)) continue;
 
             foreach ($attrs as $name => $value) {
