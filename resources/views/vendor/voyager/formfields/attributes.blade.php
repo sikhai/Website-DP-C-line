@@ -10,16 +10,31 @@
         <tbody id="attributes-rows">
 
             @php
-                // Lấy attributes từ old() hoặc DB
-                $attributes = old($row->field, $dataTypeContent->{$row->field} ?? '[]');
+                // Lấy raw value từ old() hoặc DB (đảm bảo có chuỗi JSON mặc định)
+                $raw = old($row->field, $dataTypeContent->{$row->field} ?? '[]');
 
-                $attributes = is_array($attributes) ? $attributes : json_decode($attributes, true) ?? [];
+                // Nếu đã là array thì dùng luôn
+                if (is_array($raw)) {
+                    $attributes = $raw;
+                } else {
+                    // Thử decode lần 1
+                    $attributes = json_decode($raw, true);
 
-                // Nếu chưa có dữ liệu và có designAttributes -> build mảng rỗng value
+                    // Nếu kết quả decode lần 1 vẫn là string => có khả năng bị double-encoded -> decode lần 2
+                    if (is_string($attributes)) {
+                        $attributes = json_decode($attributes, true);
+                    }
+                }
+
+                // Fallback: đảm bảo luôn là array
+                $attributes = is_array($attributes) ? $attributes : [];
+
+                // Nếu không có dữ liệu và có designAttributes -> build mảng rỗng value
                 if (empty($attributes) && isset($designAttributes) && $designAttributes->count()) {
                     $attributes = collect($designAttributes)->mapWithKeys(fn($name) => [$name => ''])->toArray();
                 }
             @endphp
+
 
             @foreach ($attributes as $name => $value)
                 <tr>

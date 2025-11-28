@@ -137,6 +137,10 @@ class Design extends Model
 
             $attrs = json_decode($raw, true);
 
+            if (is_string($attrs)) {
+                $attrs = json_decode($attrs, true);
+            }
+
             if (!empty($attrs)) {
                 AttributeService::updateAttributes($design, $attrs);
             }
