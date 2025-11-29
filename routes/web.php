@@ -61,6 +61,7 @@ Route::prefix('category')->group(function () {
 });
 
 Route::prefix('designs')->name('designs.')->group(function () {
+    // Route::get('/fix-design-attributes/{id?}', [DesignController::class, 'fixAttributes'])->name('fixAttributes');
     Route::get('/', [DesignController::class, 'index'])->name('index');
     // Load more designs
     Route::get('/load-more', [DesignController::class, 'loadMore'])->name('loadMore');

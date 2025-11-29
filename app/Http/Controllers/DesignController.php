@@ -163,4 +163,72 @@ class DesignController extends Controller
 
         return response()->json($result);
     }
+
+    public function fixAttributes($id = null)
+    {
+        // --------------------------------
+        // CASE 1: CHỈ FIX 1 RECORD
+        // --------------------------------
+        if ($id) {
+            $design = Design::find($id);
+
+            if (!$design) {
+                return response("Không tìm thấy design ID: $id", 404);
+            }
+
+            $raw = $design->getRawOriginal('attributes');
+
+            // decode lần 1
+            $attrs = json_decode($raw, true);
+
+            // decode lần 2 nếu vẫn là string (double encoded)
+            if (is_string($attrs)) {
+                $attrs = json_decode($attrs, true);
+            }
+
+            // validate
+            if (!is_array($attrs)) {
+                return "⚠️ Dữ liệu attributes không decode được hoặc không đúng format.";
+            }
+
+            // save lại dạng array chuẩn → Laravel sẽ encode đúng 1 lần
+            $design->attributes = $attrs;
+            $design->save();
+
+            return response()->json([
+                'id' => $id,
+                'raw' => $raw,
+                'decoded' => $attrs,
+                'status' => "Đã fix xong record ID: $id"
+            ]);
+        }
+
+        // --------------------------------
+        // CASE 2: FIX TOÀN BỘ DATABASE
+        // --------------------------------
+        Design::chunk(100, function ($designs) {
+            foreach ($designs as $design) {
+
+                $raw = $design->getRawOriginal('attributes');
+                if (!$raw) continue;
+
+                $attrs = json_decode($raw, true);
+
+                if (is_string($attrs)) {
+                    $attrs = json_decode($attrs, true);
+                }
+
+                if (!is_array($attrs)) {
+                    continue;
+                }
+
+                $design->attributes = $attrs;
+                $design->save();
+
+                echo "Fixed ID: {$design->id}<br>";
+            }
+        });
+
+        return "🎉 Đã fix toàn bộ!";
+    }
 }
