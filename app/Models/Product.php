@@ -63,6 +63,20 @@ class Product extends Model
         return $this->belongsToMany(Project::class, 'product_project');
     }
 
+    public function warehouseTransactions()
+    {
+        return $this->hasMany(WarehouseProductTransaction::class);
+    }
+
+    public function stockByUnit($unitId)
+    {
+        return WarehouseProductTransaction::stock(
+            $this->id,
+            self::class,
+            $unitId
+        );
+    }
+
     protected static function boot()
     {
         parent::boot();

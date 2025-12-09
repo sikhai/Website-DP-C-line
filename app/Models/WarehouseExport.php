@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class WarehouseImport extends Model
+class WarehouseExport extends Model
 {
     protected $fillable = [
-        'import_code',
+        'export_code',
         'user_id',
         'project_id',
     ];

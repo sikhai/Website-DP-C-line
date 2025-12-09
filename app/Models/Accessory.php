@@ -36,5 +36,12 @@ class Accessory extends Model
     {
         return $this->belongsTo(DeliveryVendor::class, 'delivery_vendors_id');
     }
+    public function stockByUnit($unitId)
+    {
+        return WarehouseProductTransaction::stock(
+            $this->id,
+            self::class,
+            $unitId
+        );
+    }
 }
-
