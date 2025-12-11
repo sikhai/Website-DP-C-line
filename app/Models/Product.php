@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use TCG\Voyager\Traits\Translatable;
-use TCG\Voyager\Facades\Voyager;
-use App\Models\Design;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory, Translatable;
+    use HasFactory, Translatable, SoftDeletes;
 
     public $timestamps = true;
 
@@ -22,30 +21,27 @@ class Product extends Model
         'name',
         'title',
         'product_code',
+        'qr_code_path',
         'description',
         'short_description',
         'price',
         'meter',
         'tax',
         'stock_quantity',
+        'color',
         'image',
+        'get_image_url',
         'images',
         'keywords',
         'slug',
         'status',
         'is_featured',
+        'is_trending',
+        'file',
         'category_id'
     ];
 
     protected $translatable = ['name', 'short_description', 'description', 'keywords', 'slug'];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function category()
-    {
-        return $this->belongsTo(Design::class, 'category_id');
-    }
 
     public function design()
     {
@@ -58,49 +54,81 @@ class Product extends Model
             ->withTimestamps();
     }
 
-    public function projects()
-    {
-        return $this->belongsToMany(Project::class, 'product_project');
-    }
-
     public function warehouseTransactions()
     {
         return $this->hasMany(WarehouseProductTransaction::class);
     }
 
-    public function stockByUnit($unitId)
+    public function getStockAttribute()
     {
-        return WarehouseProductTransaction::stock(
-            $this->id,
-            self::class,
-            $unitId
-        );
+        return WarehouseProductTransaction::stock($this->id, Product::class, $this->unit_id ?? null);
     }
 
-    protected static function boot()
+    public function getDisplayNameAttribute()
     {
-        parent::boot();
+        return $this->name;
+    }
 
-        static::creating(function ($model) {
-            $now = now();
-            $model->created_at = $now;
-            $model->updated_at = $now;
-        });
 
-        static::updating(function ($model) {
-            $model->updated_at = now();
-        });
+    public function getAttributeValueByName(string $name)
+    {
+        $attributesRelation = $this->getRelationValue('attributes');
 
-        static::saved(function ($product) {
-            if ($product->design && $product->design->collection && $product->design->collection->category) {
-                $product->design->collection->category->clearCache();
+        // Kiểm tra nếu relation không tồn tại hoặc rỗng thì trả về null luôn
+        if (!$attributesRelation || $attributesRelation->isEmpty()) {
+            return null;
+        }
+
+        // Có thể lấy $attributesRelation[0], nhưng nên lặp qua hết để chắc chắn
+        foreach ($attributesRelation as $attribute) {
+            $values = json_decode($attribute->value, true);
+
+            if (is_array($values)) {
+                foreach ($values as $val) {
+                    if (isset($val['name']) && $val['name'] === $name) {
+                        return $val['value'];
+                    }
+                }
             }
-        });
+        }
 
-        static::deleted(function ($product) {
-            if ($product->design && $product->design->collection && $product->design->collection->category) {
-                $product->design->collection->category->clearCache();
+        // Không tìm thấy attribute có tên như yêu cầu thì trả về null
+        return null;
+    }
+
+    public function getParsedAttributesAttribute()
+    {
+        $parsed = [];
+
+        // Lấy quan hệ nếu đã được load, nếu chưa thì load thủ công
+        $attributesRelation = $this->relationLoaded('attributes')
+            ? $this->getRelation('attributes')
+            : $this->attributes()->get();
+
+        foreach ($attributesRelation as $attribute) {
+            $json = json_decode($attribute->value, true);
+
+            if (is_array($json)) {
+                foreach ($json as $item) {
+                    if (is_array($item) && isset($item['name'], $item['value'])) {
+                        $parsed[$item['name']] = $item['value'];
+                    }
+                }
             }
-        });
+        }
+
+        return $parsed;
+    }
+
+    public function getLabelAttribute(): string
+    {
+        $name = $this->name ?? '';
+        $code = $this->product_code ?? '';
+
+        if ($name && $code) {
+            return "{$name} ({$code})";
+        }
+
+        return $name ?: $code;
     }
 }

@@ -16,7 +16,10 @@ class WarehouseExport extends Model
 
     public function transactions(): HasMany
     {
-        return $this->hasMany(WarehouseProductTransaction::class);
+        return $this->hasMany(
+            WarehouseProductTransaction::class,
+            'warehouse_export_id'
+        );
     }
 
     public function user(): BelongsTo

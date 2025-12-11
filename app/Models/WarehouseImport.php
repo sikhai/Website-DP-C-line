@@ -16,7 +16,7 @@ class WarehouseImport extends Model
 
     public function transactions(): HasMany
     {
-        return $this->hasMany(WarehouseProductTransaction::class);
+        return $this->hasMany(WarehouseProductTransaction::class, 'warehouse_import_id');
     }
 
     public function user(): BelongsTo
@@ -27,5 +27,12 @@ class WarehouseImport extends Model
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
+    }
+
+    public function getTotalQuantityAttribute()
+    {
+        return $this->transactions
+            ->where('type', WarehouseProductTransaction::TYPE_IMPORT)
+            ->sum('quantity');
     }
 }

@@ -24,24 +24,26 @@ class Accessory extends Model
         'description',
         'short_description',
         'keywords',
-        'delivery_vendors_id', // ✅ thêm vào đây
+        'delivery_vendors_id',
     ];
+
+    public function getDisplayNameAttribute()
+    {
+        return $this->name;
+    }
 
     public function category()
     {
-        return $this->belongsTo(Category::class)->accessoryType();
+        return $this->belongsTo(Category::class);
     }
 
     public function deliveryVendor()
     {
         return $this->belongsTo(DeliveryVendor::class, 'delivery_vendors_id');
     }
-    public function stockByUnit($unitId)
+
+    public function getStockAttribute()
     {
-        return WarehouseProductTransaction::stock(
-            $this->id,
-            self::class,
-            $unitId
-        );
+        return WarehouseProductTransaction::stock($this->id, Accessory::class, $this->unit_id ?? null);
     }
 }

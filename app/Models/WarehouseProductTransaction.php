@@ -27,7 +27,6 @@ class WarehouseProductTransaction extends Model
         'extras' => 'array',
     ];
 
-    // ===== MORPH item (Product | Accessory) =====
     public function item(): MorphTo
     {
         return $this->morphTo();
@@ -53,22 +52,53 @@ class WarehouseProductTransaction extends Model
         return $this->belongsTo(User::class);
     }
 
-    /* ========== HÀM TỒN KHO ========== */
-
-    public static function stock($itemId, $itemType, $unitId)
+    // ============================
+    // TỐI ƯU SCOPES
+    // ============================
+    public function scopeForItem($query, $itemId, $itemType)
     {
-        $in = self::where('item_id', $itemId)
-            ->where('item_type', $itemType)
-            ->where('unit_id', $unitId)
-            ->where('type', self::TYPE_IMPORT)
-            ->sum('quantity');
+        return $query->where('item_id', $itemId)
+            ->where('item_type', $itemType);
+    }
 
-        $out = self::where('item_id', $itemId)
-            ->where('item_type', $itemType)
-            ->where('unit_id', $unitId)
-            ->where('type', self::TYPE_EXPORT)
-            ->sum('quantity');
+    // ============================
+    // TỒN KHO (CHỈ 1 QUERY)
+    // ============================
+    public static function stock($itemId, $itemType, $unitId = null)
+    {
+        $query = self::forItem($itemId, $itemType);
 
-        return $in - $out;
+        if ($unitId) {
+            $query->where('unit_id', $unitId);
+        }
+
+        $result = $query->selectRaw("
+                SUM(CASE WHEN type = 'IMPORT' THEN quantity ELSE 0 END) AS total_in,
+                SUM(CASE WHEN type = 'EXPORT' THEN quantity ELSE 0 END) AS total_out
+            ")
+            ->first();
+
+        return ($result->total_in ?? 0) - ($result->total_out ?? 0);
+    }
+
+    public function getCategoryNameAttribute()
+    {
+        $item = $this->item;
+
+        if (!$item) {
+            return null;
+        }
+
+        // Nếu là Accessory
+        if ($item instanceof Accessory) {
+            return $item->category->name ?? null;
+        }
+
+        // Nếu là Product
+        if ($item instanceof Product) {
+            return $item->design?->collection?->category?->name ?? null;
+        }
+
+        return null;
     }
 }
