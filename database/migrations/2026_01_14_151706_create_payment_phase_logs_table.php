@@ -13,17 +13,18 @@ return new class extends Migration
     {
         Schema::create('payment_phase_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('payment_phase_id')->constrained()->cascadeOnDelete();
+
             $table->foreignId('project_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('payment_phase_id')->constrained()->cascadeOnDelete();
 
-            $table->string('action'); // create | update | delete
+            $table->string('action'); // collect | mark_as_paid | update
             $table->json('changed_fields')->nullable();
-            $table->text('reason')->nullable();
-
             $table->json('old_data')->nullable();
             $table->json('new_data')->nullable();
+            $table->string('reason')->nullable();
 
-            $table->foreignId('created_by')->nullable();
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
+
             $table->timestamps();
         });
     }

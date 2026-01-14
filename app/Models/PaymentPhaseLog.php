@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class PaymentPhaseLog extends Model
 {
     protected $fillable = [
-        'payment_phase_id',
         'project_id',
+        'payment_phase_id',
         'action',
         'changed_fields',
-        'reason',
         'old_data',
         'new_data',
+        'reason',
         'created_by',
     ];
 
@@ -22,4 +22,22 @@ class PaymentPhaseLog extends Model
         'old_data' => 'array',
         'new_data' => 'array',
     ];
+
+    /* ================= RELATIONS ================= */
+
+    public function paymentPhase()
+    {
+        return $this->belongsTo(PaymentPhase::class);
+    }
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }
+
