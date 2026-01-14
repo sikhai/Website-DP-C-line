@@ -15,7 +15,9 @@ class Project extends Model
         'images',
         'images_with_captions',
         'slug',
-        'is_featured'
+        'is_featured',
+        'total_amount',
+        'locked',
     ];
 
     public function products()
@@ -31,6 +33,23 @@ class Project extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id')->productType();
+    }
+
+    public function paymentPhases()
+    {
+        return $this->hasMany(PaymentPhase::class);
+    }
+
+    /* ================= HELPERS ================= */
+
+    public function getTotalPhaseAmountAttribute()
+    {
+        return $this->paymentPhases()->sum('amount');
+    }
+
+    public function getRemainingAmountAttribute()
+    {
+        return $this->total_amount - $this->total_phase_amount;
     }
 
     // protected static function boot()
