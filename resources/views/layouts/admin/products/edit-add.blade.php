@@ -192,9 +192,8 @@
                                     '_field_name' => 'color',
                                     '_field_trans' => get_field_translations($dataTypeContent, 'color'),
                                 ])
-                                <input required type="text" class="form-control" name="color"
-                                    id="color" placeholder="Product color"
-                                    value="{{ $dataTypeContent->color ?? '' }}">
+                                <input required type="text" class="form-control" name="color" id="color"
+                                    placeholder="Product color" value="{{ $dataTypeContent->color ?? '' }}">
                                 <span id="product-code-error" style="color: red; display: none;"></span>
                             </div>
                             {{-- <button type="button" class="btn btn-primary"
@@ -344,9 +343,8 @@
                                     '_field_name' => 'slug',
                                     '_field_trans' => get_field_translations($dataTypeContent, 'slug'),
                                 ])
-                                <input type="text" class="form-control" id="slug" name="slug"
-                                    placeholder="slug" {!! isFieldSlugAutoGenerator($dataType, $dataTypeContent, 'slug') !!}
-                                    value="{{ $dataTypeContent->slug ?? '' }}">
+                                <input type="text" class="form-control" id="slug" name="slug" placeholder="slug"
+                                    {!! isFieldSlugAutoGenerator($dataType, $dataTypeContent, 'slug') !!} value="{{ $dataTypeContent->slug ?? '' }}">
                             </div>
                             <div class="form-group">
                                 <label for="status">{{ __('voyager::product.status') }}</label>
@@ -361,11 +359,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="category_id">{{ __('voyager::product.category') }}</label>
-                                <select class="form-control" name="category_id">
+                                <select class="form-control select2" name="category_id">
                                     @foreach (App\Models\Design::with('products')->where('is_featured', 1)->get() as $category)
-                                        <option
-                                            value="{{ $category->id }}"@if (isset($dataTypeContent->category_id) && $dataTypeContent->category_id == $category->id) selected="selected" @endif>
-                                            {{ $category->name }}</option>
+                                        <option value="{{ $category->id }}"
+                                            @if (isset($dataTypeContent->category_id) && $dataTypeContent->category_id == $category->id) selected @endif>
+                                            {{ $category->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -375,9 +374,8 @@
                                     '_field_name' => 'product_code',
                                     '_field_trans' => get_field_translations($dataTypeContent, 'product_code'),
                                 ])
-                                <input required type="text" class="form-control" name="product_code"
-                                    id="product_code" placeholder="product code"
-                                    value="{{ $dataTypeContent->product_code ?? '' }}">
+                                <input required type="text" class="form-control" name="product_code" id="product_code"
+                                    placeholder="product code" value="{{ $dataTypeContent->product_code ?? '' }}">
                                 <span id="product-code-error" style="color: red; display: none;"></span>
                             </div>
                             <div class="form-group hidden">
