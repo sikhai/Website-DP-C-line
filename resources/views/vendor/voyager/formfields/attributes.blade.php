@@ -56,8 +56,10 @@
                                     ? 'number'
                                     : 'text';
                             @endphp
+
                             <input type="{{ $inputType }}" name="attributes_values[]" class="form-control"
-                                value="{{ $value ?? '' }}">
+                                value="{{ $value ?? '' }}"
+                                @if ($inputType === 'number') step="0.01" min="0" @endif>
                         @endif
                     </td>
                     <td>
