@@ -460,11 +460,32 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                            @if (isset($dataTypeContent->image))
-                                <img src="{{ filter_var($dataTypeContent->image, FILTER_VALIDATE_URL) ? $dataTypeContent->image : Voyager::image($dataTypeContent->image) }}"
-                                    style="width:100%" />
-                            @endif
-                            <input type="file" name="image">
+
+                            @php
+                                $currentImage = null;
+
+                                if (isset($dataTypeContent->image)) {
+                                    $currentImage = filter_var($dataTypeContent->image, FILTER_VALIDATE_URL)
+                                        ? $dataTypeContent->image
+                                        : Voyager::image($dataTypeContent->image);
+                                }
+
+                                $inputId = 'voyager_image_' . uniqid();
+                                $previewId = $inputId . '_preview';
+                            @endphp
+
+                            <div class="image-upload-zone border-2 border-dashed border-gray-300 rounded p-4 text-center cursor-pointer"
+                                data-input="{{ $inputId }}" data-preview="{{ $previewId }}" tabindex="0">
+                                <p class="text-muted mb-2">
+                                    Kéo & thả ảnh, dán (Ctrl+V) hoặc click để chọn
+                                </p>
+
+                                <img src="{{ $currentImage }}" id="{{ $previewId }}"
+                                    style="max-width:100%; {{ empty($currentImage) ? 'display:none;' : '' }}">
+
+                                <input type="file" id="{{ $inputId }}" name="image" accept="image/*"
+                                    style="display:none;">
+                            </div>
                         </div>
                     </div>
 
@@ -801,5 +822,72 @@
             }
         });
     });
+
+    function initImageUpload() {
+
+        document.querySelectorAll('.image-upload-zone').forEach(zone => {
+
+            if (zone.dataset.initialized) return;
+            zone.dataset.initialized = true;
+
+            const input = document.getElementById(zone.dataset.input);
+            const preview = document.getElementById(zone.dataset.preview);
+
+            if (!input || !preview) return;
+
+            zone.addEventListener('click', () => input.click());
+
+            input.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    showPreview(this.files[0], preview);
+                }
+            });
+
+            zone.addEventListener('dragover', e => {
+                e.preventDefault();
+                zone.style.background = '#f0f8ff';
+            });
+
+            zone.addEventListener('dragleave', () => {
+                zone.style.background = '';
+            });
+
+            zone.addEventListener('drop', e => {
+                e.preventDefault();
+                zone.style.background = '';
+
+                if (e.dataTransfer.files.length) {
+                    input.files = e.dataTransfer.files;
+                    showPreview(e.dataTransfer.files[0], preview);
+                }
+            });
+
+            zone.addEventListener('paste', e => {
+                const items = e.clipboardData?.items;
+                if (!items) return;
+
+                for (let item of items) {
+                    if (item.type.indexOf('image') !== -1) {
+                        const file = item.getAsFile();
+                        const dataTransfer = new DataTransfer();
+                        dataTransfer.items.add(file);
+                        input.files = dataTransfer.files;
+                        showPreview(file, preview);
+                    }
+                }
+            });
+        });
+    }
+
+    function showPreview(file, preview) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
+
+    document.addEventListener('DOMContentLoaded', initImageUpload);
 </script>
 @stop
