@@ -485,7 +485,7 @@
                                     style="position: relative;">
 
                                     <img src="{{ $currentImage }}" id="{{ $previewId }}"
-                                        style="max-width:100%; {{ empty($currentImage) ? 'display:none;' : '' }}">
+                                        style="max-width:100%;width: 100%; {{ empty($currentImage) ? 'display:none;' : '' }}">
 
                                     <button type="button"
                                         class="btn btn-danger btn-sm btn-remove-image position-absolute"
