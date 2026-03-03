@@ -474,14 +474,42 @@
                                 $previewId = $inputId . '_preview';
                             @endphp
 
-                            <div class="image-upload-zone border-2 border-dashed border-gray-300 rounded p-4 text-center cursor-pointer"
+                            <div class="image-upload-zone border-2 border-dashed border-gray-300 rounded p-4 text-center"
                                 data-input="{{ $inputId }}" data-preview="{{ $previewId }}" tabindex="0">
+
                                 <p class="text-muted mb-2">
-                                    Kéo & thả ảnh, dán (Ctrl+V) hoặc click để chọn
+                                    Kéo & thả ảnh, dán (Ctrl+V)
                                 </p>
 
-                                <img src="{{ $currentImage }}" id="{{ $previewId }}"
-                                    style="max-width:100%; {{ empty($currentImage) ? 'display:none;' : '' }}">
+                                <div class="image-preview-wrapper position-relative d-inline-block"
+                                    style="position: relative;">
+
+                                    <img src="{{ $currentImage }}" id="{{ $previewId }}"
+                                        style="max-width:100%; {{ empty($currentImage) ? 'display:none;' : '' }}">
+
+                                    <button type="button"
+                                        class="btn btn-danger btn-sm btn-remove-image position-absolute"
+                                        style="
+                                            top: -10px;
+                                            right: -10px;
+                                            border-radius: 50%;
+                                            width: 30px;
+                                            height: 30px;
+                                            padding: 0;
+                                            position: absolute;
+                                            align-items: center;
+                                            justify-content: center;
+                                            {{ empty($currentImage) ? 'display:none;' : '' }}
+                                        ">
+                                        ×
+                                    </button>
+                                </div>
+
+                                <div class="mt-3">
+                                    <button type="button" class="btn btn-sm btn-primary btn-select-image">
+                                        Chọn hình
+                                    </button>
+                                </div>
 
                                 <input type="file" id="{{ $inputId }}" name="image" accept="image/*"
                                     style="display:none;">
@@ -832,17 +860,40 @@
 
             const input = document.getElementById(zone.dataset.input);
             const preview = document.getElementById(zone.dataset.preview);
+            const selectBtn = zone.querySelector('.btn-select-image');
+            const removeBtn = zone.querySelector('.btn-remove-image');
 
             if (!input || !preview) return;
 
-            zone.addEventListener('click', () => input.click());
+            // Click zone
+            // zone.addEventListener('click', (e) => {
+            //     if (e.target.tagName !== 'BUTTON') {
+            //         input.click();
+            //     }
+            // });
 
+            // Select button
+            selectBtn?.addEventListener('click', () => {
+                input.click();
+            });
+
+            // Remove button
+            removeBtn?.addEventListener('click', () => {
+                input.value = '';
+                preview.src = '';
+                preview.style.display = 'none';
+                removeBtn.style.display = 'none';
+            });
+
+            // Change file
             input.addEventListener('change', function() {
                 if (this.files && this.files[0]) {
                     showPreview(this.files[0], preview);
+                    removeBtn.style.display = 'flex';
                 }
             });
 
+            // Drag
             zone.addEventListener('dragover', e => {
                 e.preventDefault();
                 zone.style.background = '#f0f8ff';
@@ -859,9 +910,11 @@
                 if (e.dataTransfer.files.length) {
                     input.files = e.dataTransfer.files;
                     showPreview(e.dataTransfer.files[0], preview);
+                    removeBtn.style.display = 'inline-block';
                 }
             });
 
+            // Paste
             zone.addEventListener('paste', e => {
                 const items = e.clipboardData?.items;
                 if (!items) return;
@@ -873,6 +926,7 @@
                         dataTransfer.items.add(file);
                         input.files = dataTransfer.files;
                         showPreview(file, preview);
+                        removeBtn.style.display = 'inline-block';
                     }
                 }
             });
