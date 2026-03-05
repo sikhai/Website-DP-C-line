@@ -101,4 +101,9 @@ class WarehouseProductTransaction extends Model
 
         return null;
     }
+
+    public function extras()
+    {
+        return $this->morphMany(Extra::class, 'extraable');
+    }
 }
