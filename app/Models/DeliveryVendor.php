@@ -55,4 +55,13 @@ class DeliveryVendor extends Model
             ];
         });
     }
+
+
+    /**
+     * Relationship: Vendor có nhiều Sample
+     */
+    public function samples()
+    {
+        return $this->hasMany(Sample::class, 'delivery_vendors_id');
+    }
 }
