@@ -19,12 +19,15 @@ class WarehousePermissionSeeder extends Seeder
             ['key' => 'create_warehouse_imports', 'table_name' => 'warehouse_imports'],
             ['key' => 'update_warehouse_imports', 'table_name' => 'warehouse_imports'],
             ['key' => 'delete_warehouse_imports', 'table_name' => 'warehouse_imports'],
+            ['key' => 'confirm_warehouse_imports', 'table_name' => 'warehouse_imports'],
 
             // Exports
             ['key' => 'view_warehouse_exports', 'table_name' => 'warehouse_exports'],
             ['key' => 'create_warehouse_exports', 'table_name' => 'warehouse_exports'],
             ['key' => 'update_warehouse_exports', 'table_name' => 'warehouse_exports'],
             ['key' => 'delete_warehouse_exports', 'table_name' => 'warehouse_exports'],
+            ['key' => 'confirm_warehouse_exports', 'table_name' => 'warehouse_exports'],
+
         ];
 
         foreach ($permissions as $perm) {
