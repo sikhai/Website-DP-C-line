@@ -9,6 +9,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('sample_returns', function (Blueprint $table) {
+            $table->text('note')->nullable();
+
             $table->foreignId('returned_by')
                 ->nullable()
                 ->after('note')
@@ -22,6 +24,8 @@ return new class extends Migration
         Schema::table('sample_returns', function (Blueprint $table) {
             $table->dropForeign(['returned_by']);
             $table->dropColumn('returned_by');
+
+            $table->dropColumn('note');
         });
     }
 };
