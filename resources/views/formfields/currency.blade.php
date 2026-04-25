@@ -15,22 +15,22 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const select = document.getElementById('currency_select');
-    const priceInput = document.querySelector('input[name="price"]');
+    const currencyRateInput = document.querySelector('input[name="currency_rate"]');
 
-    if (!select || !priceInput) return;
+    if (!select || !currencyRateInput) return;
 
-    function updatePrice() {
+    function updateCurrencyRate() {
         const selected = select.options[select.selectedIndex];
         const rate = selected.getAttribute('data-rate');
 
         if (rate) {
-            priceInput.value = parseFloat(rate);
+            currencyRateInput.value = parseFloat(rate);
         }
     }
 
-    select.addEventListener('change', updatePrice);
+    select.addEventListener('change', updateCurrencyRate);
 
     // khi edit form (load sẵn)
-    updatePrice();
+    updateCurrencyRate();
 });
 </script>
