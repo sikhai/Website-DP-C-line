@@ -11,6 +11,7 @@ use App\Observers\ProductObserver;
 use TCG\Voyager\Facades\Voyager;
 use App\FormFields\AttributesFormField;
 use App\FormFields\VendorAttributesFormField;
+use App\FormFields\CurrencyFormField;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -33,6 +34,8 @@ class AppServiceProvider extends ServiceProvider
         Voyager::addFormField(AttributesFormField::class);
 
         Voyager::addFormField(VendorAttributesFormField::class);
+
+        Voyager::addFormField(CurrencyFormField::class);
         
         Blade::if('home', function () {
             return Route::currentRouteName() === 'home';
