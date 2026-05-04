@@ -360,7 +360,7 @@
                             <div class="form-group">
                                 <label for="category_id">{{ __('voyager::product.category') }}</label>
                                 <select class="form-control select2" name="category_id">
-                                    @foreach (App\Models\Design::with('products')->where('is_featured', 1)->get() as $category)
+                                    @foreach (App\Models\Design::with('products')->get() as $category)
                                         <option value="{{ $category->id }}"
                                             @if (isset($dataTypeContent->category_id) && $dataTypeContent->category_id == $category->id) selected @endif>
                                             {{ $category->name }}
