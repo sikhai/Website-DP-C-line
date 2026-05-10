@@ -48,4 +48,14 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->hasMany(Project::class, 'owner_id');
     }
+
+    public function payrolls()
+    {
+        return $this->hasMany(Payroll::class);
+    }
+
+    public function businessTrips()
+    {
+        return $this->hasMany(BusinessTrip::class);
+    }
 }
