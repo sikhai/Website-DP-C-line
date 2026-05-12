@@ -23,9 +23,9 @@
                     <div class="fabric-item">
                         <a href="{{ route('collections.show', $item) }}">
                             <img class="img w-100" src="{{ Voyager::image($item->image) }}"
-                                alt="{{ $item['name'] }}" loading="lazy">
+                                alt="{{ $item['display_name'] ?? '' }}" loading="lazy">
                             <div class="d-flex m-0" id="block-collection-lable">
-                                <p id="collection-name">{{ $item['name'] }}</p>
+                                <p id="collection-name">{{ $item['display_name'] ?? '' }}</p>
                                 <p id="collection-quantity">({{ $item->products_count }})</p>
                             </div>
                         </a>

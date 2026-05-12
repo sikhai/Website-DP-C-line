@@ -99,7 +99,7 @@
 
                     @if ($breadcrumb['collection'])
                         <a class="back-directory" href="{{ route('collections.show', $breadcrumb['collection']) }}">
-                            {{ $breadcrumb['collection']->name }}
+                            {{ $breadcrumb['collection']->display_name ?? '' }}
                         </a> /
                     @endif
 

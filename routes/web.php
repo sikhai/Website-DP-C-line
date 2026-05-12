@@ -50,8 +50,8 @@ Route::prefix('collections')->as('collections.')->group(function () {
     Route::get('{collection:slug}', [CollectionController::class, 'show'])->name('show');
 
     // Import display_name
-    Route::get('/import/display-name', [CollectionImportController::class, 'showForm'])->name('import.form');
-    Route::post('/import/display-name', [CollectionImportController::class, 'import'])->name('import');
+    // Route::get('/import/display-name', [CollectionImportController::class, 'showForm'])->name('import.form');
+    // Route::post('/import/display-name', [CollectionImportController::class, 'import'])->name('import');
 });
 
 // PRODUCTS ROUTES
@@ -85,8 +85,8 @@ Route::prefix('designs')->name('designs.')->group(function () {
 // Route::get('/{category_slug}/{product_slug}', [ProductsController::class, 'show'])->name('product.show');
 
 // Import accessories
-Route::get('/accessories/import', [AccessoryImportController::class, 'showForm'])->name('accessories.import.form');
-Route::post('/accessories/import', [AccessoryImportController::class, 'import'])->name('accessories.import');
+// Route::get('/accessories/import', [AccessoryImportController::class, 'showForm'])->name('accessories.import.form');
+// Route::post('/accessories/import', [AccessoryImportController::class, 'import'])->name('accessories.import');
 
 
 // Route to trigger the import command
