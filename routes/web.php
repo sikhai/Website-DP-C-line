@@ -10,6 +10,7 @@ use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\DesignController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\AccessoryImportController;
+use App\Http\Controllers\CollectionImportController;
 
 use Illuminate\Support\Facades\Artisan;
 
@@ -47,6 +48,10 @@ Route::prefix('collections')->as('collections.')->group(function () {
 
     Route::get('/', [CollectionController::class, 'index'])->name('index');
     Route::get('{collection:slug}', [CollectionController::class, 'show'])->name('show');
+
+    // Import display_name
+    Route::get('/import/display-name', [CollectionImportController::class, 'showForm'])->name('import.form');
+    Route::post('/import/display-name', [CollectionImportController::class, 'import'])->name('import');
 });
 
 // PRODUCTS ROUTES

@@ -12,6 +12,7 @@ class Collection extends Model
 {
     protected $fillable = [
         'name',
+        'display_name',
         'slug',
         'shape',
         'image',
