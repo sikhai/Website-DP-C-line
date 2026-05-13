@@ -96,6 +96,10 @@ class DesignController extends Controller
         // Lấy category dựa trên parent_id (Collection)
         $category = $design->collection;
 
+        if ($category?->display_name) {
+            $category->name = $category->display_name ?? null;
+        }
+
         $category_slug = $category ? $category->slug : null;
 
         // Các categories featured (sidebar/filter)
