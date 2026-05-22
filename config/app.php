@@ -18,6 +18,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'maintenance_page' => env('MAINTENANCE_PAGE', false),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
