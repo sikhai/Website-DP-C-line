@@ -17,7 +17,7 @@ class AttributesFormField extends AbstractHandler
         $deliveryVendorHelper = new DeliveryVendorHelper();
         $suppliers = $deliveryVendorHelper->getSuppliers();
 
-        $designAttributes = Attribute::where('type', 'design')->pluck('name')->unique();
+        $designAttributes = Attribute::where('type', 'design')->where('status', 1)->pluck('name')->unique();
 
         return view('vendor.voyager.formfields.attributes', compact(
             'row',

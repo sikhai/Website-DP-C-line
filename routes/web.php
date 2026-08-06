@@ -29,6 +29,11 @@ Route::get('/', [MainController::class, 'home'])->name('home');
 /* admin */
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+
+    Route::group(['middleware' => 'admin.user'], function () {
+        Route::get('design-attributes', [\App\Http\Controllers\Admin\DesignAttributeController::class, 'index'])->name('design-attributes.index');
+        Route::post('design-attributes/{id}/toggle-status', [\App\Http\Controllers\Admin\DesignAttributeController::class, 'toggleStatus'])->name('design-attributes.toggle-status');
+    });
 });
 
 Route::post('/check-product-code', [ProductController::class, 'checkProductCode'])->name('check.product.code');
