@@ -21,15 +21,24 @@ class ProductObserver
         $filename = Str::slug($code) . '.png';
         $path = "qrcodes/{$filename}";
 
-        // Nếu chưa có thì tạo mới
-        if (!Storage::disk('public')->exists($path)) {
-            $qrPng = QrCode::format('png')->size(300)->generate($code);
-            Storage::disk('public')->put($path, $qrPng);
-        }
+        try {
+            if (!Storage::disk('public')->exists($path)) {
+                if (extension_loaded('imagick')) {
+                    $qrPng = QrCode::format('png')->size(300)->generate($code);
+                    Storage::disk('public')->put($path, $qrPng);
+                } else {
+                    $path = "qrcodes/{$filename}.svg";
+                    $qrSvg = QrCode::format('svg')->size(300)->generate($code);
+                    Storage::disk('public')->put($path, $qrSvg);
+                }
+            }
 
-        // (Tuỳ chọn) Lưu path vào DB nếu có cột qr_code_path
-        $product->qr_code_path = $path;
-        $product->saveQuietly(); // tránh gọi lại observer
+            // (Tuỳ chọn) Lưu path vào DB nếu có cột qr_code_path
+            $product->qr_code_path = $path;
+            $product->saveQuietly(); // tránh gọi lại observer
+        } catch (\Throwable $e) {
+            \Log::warning("QR Code generation failed for product {$code}: " . $e->getMessage());
+        }
 
         \App\Services\PrintProductSearchRevision::bumpAfterCommit();
     }

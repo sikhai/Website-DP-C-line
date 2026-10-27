@@ -17,3 +17,8 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/storage/app/imports/
+/storage/app/public/products/*.webp
+*.xlsx
+*.xls
+
