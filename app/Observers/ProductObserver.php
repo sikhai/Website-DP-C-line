@@ -30,6 +30,8 @@ class ProductObserver
         // (Tuỳ chọn) Lưu path vào DB nếu có cột qr_code_path
         $product->qr_code_path = $path;
         $product->saveQuietly(); // tránh gọi lại observer
+
+        \App\Services\PrintProductSearchRevision::bumpAfterCommit();
     }
 
     /**
@@ -37,7 +39,7 @@ class ProductObserver
      */
     public function updated(Product $product): void
     {
-        //
+        \App\Services\PrintProductSearchRevision::bumpAfterCommit();
     }
 
     /**
@@ -45,7 +47,7 @@ class ProductObserver
      */
     public function deleted(Product $product): void
     {
-        //
+        \App\Services\PrintProductSearchRevision::bumpAfterCommit();
     }
 
     /**
@@ -53,7 +55,7 @@ class ProductObserver
      */
     public function restored(Product $product): void
     {
-        //
+        \App\Services\PrintProductSearchRevision::bumpAfterCommit();
     }
 
     /**
@@ -61,6 +63,6 @@ class ProductObserver
      */
     public function forceDeleted(Product $product): void
     {
-        //
+        \App\Services\PrintProductSearchRevision::bumpAfterCommit();
     }
 }

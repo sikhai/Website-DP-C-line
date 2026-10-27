@@ -124,6 +124,8 @@ class Design extends Model
         // Event: Saved (create/update)
         // -------------------------
         static::saved(function ($design) {
+            \App\Services\PrintProductSearchRevision::bumpAfterCommit();
+
             // 1) Clear design-related cache
             $design->clearProductsCountCache();
 
@@ -150,6 +152,8 @@ class Design extends Model
         // Event: Deleted
         // -------------------------
         static::deleted(function ($design) {
+            \App\Services\PrintProductSearchRevision::bumpAfterCommit();
+
             // 1) Clear design-related cache
             $design->clearProductsCountCache();
 
