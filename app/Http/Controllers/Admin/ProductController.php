@@ -308,18 +308,19 @@ class ProductController extends VoyagerBaseController
 
     private function saveWebpImage($image, $prefix = 'image_')
     {
-        $filename = uniqid($prefix) . '.webp';
+        $customName = uniqid($prefix);
+        $result = \App\Helpers\ImageHelper::storeAsWebp(
+            $image,
+            'products',
+            1200,
+            null,
+            80,
+            null,
+            [],
+            $customName
+        );
 
-        $webpImage = Image::make($image)
-            ->resize(1200, null, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            })
-            ->encode('webp', 50);
-
-        $path = 'products/' . $filename;
-        Storage::disk('public')->put($path, (string) $webpImage);
-        return $path;
+        return $result['path'];
     }
 
     protected function getSuppliers()

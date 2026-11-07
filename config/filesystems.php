@@ -56,6 +56,19 @@ return [
             'throw' => false,
         ],
 
+        'r2_public' => [
+            'driver' => 's3',
+            'key' => env('R2_ACCESS_KEY_ID'),
+            'secret' => env('R2_SECRET_ACCESS_KEY'),
+            'region' => 'auto',
+            'bucket' => env('R2_PUBLIC_BUCKET', 'crm-dpceline-public'),
+            'url' => env('R2_PUBLIC_URL', 'https://cdn.dpceline.com'),
+            'endpoint' => env('R2_ENDPOINT'),
+            'use_path_style_endpoint' => false,
+            'throw' => false,
+            'allow_overwrite' => env('R2_ALLOW_OVERWRITE', false),
+        ],
+
     ],
 
     /*
