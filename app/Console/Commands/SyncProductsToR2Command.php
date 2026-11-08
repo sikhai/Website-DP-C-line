@@ -49,10 +49,12 @@ class SyncProductsToR2Command extends Command
         $isDryRun = (bool) $this->option('dry-run');
 
         $isProduction = app()->isProduction();
-        $isOverwrite = $isOverwriteRequested && $isProduction;
+        $allowOverwriteNonProd = (bool) config('filesystems.disks.r2_public.allow_overwrite', false)
+            || (bool) env('R2_ALLOW_OVERWRITE', false);
+        $isOverwrite = $isOverwriteRequested && ($isProduction || $allowOverwriteNonProd);
 
-        if ($isOverwriteRequested && ! $isProduction) {
-            $this->warn('⚠ [BẢO VỆ MÔI TRƯỜNG] Bạn đang ở môi trường Non-Prod. Cờ --overwrite bị vô hiệu hóa để bảo vệ CDN.');
+        if ($isOverwriteRequested && ! $isProduction && ! $allowOverwriteNonProd) {
+            $this->warn('⚠ [BẢO VỆ MÔI TRƯỜNG] Bạn đang ở môi trường Non-Prod. Cờ --overwrite bị vô hiệu hóa (Bật R2_ALLOW_OVERWRITE=true trong .env nếu muốn ép ghi đè).');
         }
 
         $localDisk = Storage::disk('public');
