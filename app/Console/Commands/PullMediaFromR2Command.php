@@ -131,13 +131,11 @@ class PullMediaFromR2Command extends Command
                     @mkdir($dir, 0755, true);
                 }
 
-                yield function () use ($s3, $bucket, $item) {
-                    return $s3->getObjectAsync([
-                        'Bucket' => $bucket,
-                        'Key' => $item['key'],
-                        'SaveAs' => $item['local_path'],
-                    ]);
-                };
+                yield $s3->getObjectAsync([
+                    'Bucket' => $bucket,
+                    'Key' => $item['key'],
+                    'SaveAs' => $item['local_path'],
+                ]);
             }
         };
 
@@ -146,7 +144,7 @@ class PullMediaFromR2Command extends Command
 
         $pool = new EachPromise($generator(), [
             'concurrency' => $concurrency,
-            'fulfilled' => function (Response $response) use ($bar, &$successCount) {
+            'fulfilled' => function ($value) use ($bar, &$successCount) {
                 $successCount++;
                 $bar->setMessage("Đã tải {$successCount} files");
                 $bar->advance();
