@@ -143,9 +143,23 @@ class ImageHelper
 
         // CỔNG TỐI ƯU SIÊU TỐC (FAST-PATH BYPASS):
         // Nếu file đã là WebP chuẩn từ Client và dung lượng hợp lý (<= 800KB)
-        // và không yêu cầu cưỡng chế resize kích thước -> Bỏ qua Intervention Image (giảm từ 1000ms xuống < 5ms)
+        // và không yêu cầu cưỡng chế resize kích thước -> Kiểm tra magic bytes RIFF...WEBP chống giả mạo
         $isClientWebp = strtolower($file->getClientOriginalExtension()) === 'webp' || $file->getMimeType() === 'image/webp';
+        $isValidWebpMagic = false;
+
         if ($isClientWebp && $file->getSize() <= 800 * 1024 && ! $width && ! $height) {
+            $realPath = $file->getRealPath();
+            if ($realPath && is_readable($realPath)) {
+                $handle = @fopen($realPath, 'rb');
+                if ($handle) {
+                    $header = fread($handle, 12);
+                    fclose($handle);
+                    $isValidWebpMagic = (strlen($header) >= 12 && str_starts_with($header, 'RIFF') && substr($header, 8, 4) === 'WEBP');
+                }
+            }
+        }
+
+        if ($isValidWebpMagic) {
             $webpData = (string) file_get_contents($file->getRealPath());
             $size = strlen($webpData);
         } else {

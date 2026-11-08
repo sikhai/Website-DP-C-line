@@ -22,68 +22,70 @@ export async function compressImageToWebp(file, options = {}) {
     }
 
     return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
+        const objectUrl = URL.createObjectURL(file);
+        const img = new Image();
+        img.src = objectUrl;
 
-        reader.onload = (event) => {
-            const img = new Image();
-            img.src = event.target.result;
+        img.onload = () => {
+            URL.revokeObjectURL(objectUrl);
+            let { width, height } = img;
 
-            img.onload = () => {
-                let { width, height } = img;
-
-                // Tính toán tỷ lệ resize giữ nguyên aspect ratio
-                if (width > maxWidth || height > maxHeight) {
-                    if (width / height > maxWidth / maxHeight) {
-                        height = Math.round((height * maxWidth) / width);
-                        width = maxWidth;
-                    } else {
-                        width = Math.round((width * maxHeight) / height);
-                        height = maxHeight;
-                    }
+            // Tính toán tỷ lệ resize giữ nguyên aspect ratio
+            if (width > maxWidth || height > maxHeight) {
+                if (width / height > maxWidth / maxHeight) {
+                    height = Math.round((height * maxWidth) / width);
+                    width = maxWidth;
+                } else {
+                    width = Math.round((width * maxHeight) / height);
+                    height = maxHeight;
                 }
+            }
 
-                const canvas = document.createElement('canvas');
-                canvas.width = width;
-                canvas.height = height;
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
 
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0, width, height);
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
 
-                canvas.toBlob(
-                    (blob) => {
-                        if (!blob) {
-                            resolve(file); // Fallback về file gốc nếu trình duyệt lỗi
-                            return;
-                        }
+            canvas.toBlob(
+                (blob) => {
+                    // Thu hồi bộ nhớ canvas GPU ngay sau khi xuất blob
+                    canvas.width = 0;
+                    canvas.height = 0;
 
-                        // Nếu file nén lại nặng hơn file gốc (hiếm khi xảy ra), dùng file gốc
-                        if (blob.size >= file.size && file.type === 'image/webp') {
-                            resolve(file);
-                            return;
-                        }
+                    if (!blob) {
+                        resolve(file); // Fallback về file gốc nếu trình duyệt lỗi
+                        return;
+                    }
 
-                        // Đổi tên đuôi thành .webp
-                        const originalName = file.name;
-                        const baseName = originalName.substring(0, originalName.lastIndexOf('.')) || originalName;
-                        const newFileName = `${baseName}.webp`;
+                    // Nếu file nén lại nặng hơn file gốc (hiếm khi xảy ra), dùng file gốc
+                    if (blob.size >= file.size && file.type === 'image/webp') {
+                        resolve(file);
+                        return;
+                    }
 
-                        const compressedFile = new File([blob], newFileName, {
-                            type: 'image/webp',
-                            lastModified: Date.now(),
-                        });
+                    // Đổi tên đuôi thành .webp
+                    const originalName = file.name;
+                    const baseName = originalName.substring(0, originalName.lastIndexOf('.')) || originalName;
+                    const newFileName = `${baseName}.webp`;
 
-                        resolve(compressedFile);
-                    },
-                    'image/webp',
-                    quality
-                );
-            };
+                    const compressedFile = new File([blob], newFileName, {
+                        type: 'image/webp',
+                        lastModified: Date.now(),
+                    });
 
-            img.onerror = () => resolve(file);
+                    resolve(compressedFile);
+                },
+                'image/webp',
+                quality
+            );
         };
 
-        reader.onerror = () => resolve(file);
+        img.onerror = () => {
+            URL.revokeObjectURL(objectUrl);
+            resolve(file);
+        };
     });
 }
 
