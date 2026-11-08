@@ -54,7 +54,7 @@
         <div class="container" style="margin-top: 90px;">
             <div class="row img-detail">
                 <div class="col-10 main-view">
-                    <img id="main-image" src="{{ env('APP_URL') . '/storage/' . $product['image'] }}"
+                    <img id="main-image" src="{{ storage_image_url($product['image']) }}"
                         onclick="switchImage(this)" alt="{{ $product['name'] }}">
                     <div class="btn-showimg">
                         <button type="button" class="btn btn-primary" id="btn-showimg" onclick="showAllImages()">
@@ -64,7 +64,7 @@
                 </div>
                 <div class="col-2 small-view">
                     <div class="current-selected">
-                        <img src="{{ env('APP_URL') . '/storage/' . $product['image'] }}" onclick="switchImage(this)"
+                        <img src="{{ storage_image_url($product['image']) }}" onclick="switchImage(this)"
                             alt="{{ $product['name'] }}">
                     </div>
                     @foreach (json_decode($product['images'] ?? '[]') as $item)
@@ -77,7 +77,7 @@
 
                 <div class="fabric-photos">
                     <div class="row">
-                        <img src="{{ env('APP_URL') . '/storage/' . $product['image'] }}" onclick="switchImage(this)"
+                        <img src="{{ storage_image_url($product['image']) }}" onclick="switchImage(this)"
                             alt="{{ $product['name'] }}">
                         @foreach (json_decode($product['images'] ?? '[]') as $item)
                             <img src="{{ Voyager::image($item) }}" onclick="switchImage(this)"

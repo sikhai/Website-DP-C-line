@@ -9,7 +9,7 @@
                     <div class="swiper-slide item" data-shape="{{$category['shape']}}">
                         <a href="/{{ $category->slug }}" style="text-decoration: none;">
                             <div class="img-wrapper-service">
-                                <img class="w-100" src="{{ env('APP_URL').'/storage/'.$category['image'] }}" alt="{{ $category['name'] }}"
+                                <img class="w-100" src="{{ storage_image_url($category['image']) }}" alt="{{ $category['name'] }}"
                                     loading="lazy">
                                 <div class="overlay_service"></div>
                             </div>

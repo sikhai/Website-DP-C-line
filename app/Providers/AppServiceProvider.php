@@ -21,7 +21,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        require_once app_path('helpers.php');
+
+        $this->app->singleton('voyager', function () {
+            return new \App\Services\CustomVoyager();
+        });
+
+        \TCG\Voyager\Facades\Voyager::clearResolvedInstance('voyager');
     }
 
     /**
