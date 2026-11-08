@@ -141,21 +141,30 @@ class ImageHelper
             ];
         }
 
-        // Xử lý bằng Intervention Image
-        $image = Image::make($file);
-        
-        // Resize nếu có yêu cầu (giữ nguyên tỷ lệ)
-        if ($width || $height) {
-            $image->resize($width, $height, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            });
-        }
+        // CỔNG TỐI ƯU SIÊU TỐC (FAST-PATH BYPASS):
+        // Nếu file đã là WebP chuẩn từ Client và dung lượng hợp lý (<= 800KB)
+        // và không yêu cầu cưỡng chế resize kích thước -> Bỏ qua Intervention Image (giảm từ 1000ms xuống < 5ms)
+        $isClientWebp = strtolower($file->getClientOriginalExtension()) === 'webp' || $file->getMimeType() === 'image/webp';
+        if ($isClientWebp && $file->getSize() <= 800 * 1024 && ! $width && ! $height) {
+            $webpData = (string) file_get_contents($file->getRealPath());
+            $size = strlen($webpData);
+        } else {
+            // Xử lý bằng Intervention Image
+            $image = Image::make($file);
+            
+            // Resize nếu có yêu cầu (giữ nguyên tỷ lệ)
+            if ($width || $height) {
+                $image->resize($width, $height, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+            }
 
-        // Encode sang webp với chất lượng chỉ định
-        $webpData = (string) $image->encode('webp', $quality);
-        $size = strlen($webpData);
-        $image->destroy();
+            // Encode sang webp với chất lượng chỉ định
+            $webpData = (string) $image->encode('webp', $quality);
+            $size = strlen($webpData);
+            $image->destroy();
+        }
 
         // Cấu hình headers tối ưu cho Cloudflare R2 / S3 Object Storage và CDN caching
         $defaultOptions = [
